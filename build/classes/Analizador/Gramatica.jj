@@ -235,21 +235,24 @@ void Clases() :
 
 
 
-void ClasesA() :
+void ClasesA() : 
 {}
 {
-   (<LLAVA>(TipoEncapsular() ( Constructor()|Cuerpo()))?<LLAVC> | <DERIVATE> <CLASES> <LLAVA>Constructor_hijo() Cuerpo()<LLAVC>)?
+   <LLAVA>(TipoEncapsular() (Constructor()|Cuerpo()))?<LLAVC> | <DERIVATE> <CLASES> <LLAVA>Constructor_hijo() Cuerpo()<LLAVC>
 }
 
 
-
-void Constructor() :
+void Constructor() : 
 {}
 {
-    <CLASES> <PAREA>Argumentos()<PAREC> <LLAVA>Sentencia()<LLAVC>
+    <CLASES> <PAREA>Argumentos()<PAREC> <LLAVA>Sentencia()<LLAVC> ConstructorA()
 }
 
-
+void ConstructorA() : 
+{}
+{
+    TipoEncapsular()(Cuerpo()|(<CLASES> <PAREA>Argumentos()<PAREC> <LLAVA>Sentencia()<LLAVC> ConstructorA())?)
+}
 
 void Constructor_hijo() :
 {}
@@ -516,10 +519,10 @@ void ExpA() :
 
 
 
-void Declaracion() :
+void Declaracion() : 
 {}
 {
-    <VAR> (ArregloD())? (<ASIG> DeclaracionT())?   
+    <VAR> (((<ASIG> DeclaracionT())?)|(ArregloD()(<ASIG> <PAREA>DeclaracionTA()<PAREC>)?))   
 }
 
 
@@ -530,14 +533,23 @@ void DeclaracionT() :
     (Valor()(Oper()Valor())*)|(<PAREA>Valor()(Oper()Valor())*<PAREC>)
 }
 
+void DeclaracionTA() : 
+{}
+{
+    ((Valor()(Oper()Valor())*)|(<PAREA>Valor()(Oper()Valor())*<PAREC>))DeclaracionTA1()
+}
 
+void DeclaracionTA1() : 
+{}
+{
+    (<COM>(Valor()(Oper()Valor())*)|(<PAREA>Valor()(Oper()Valor())*<PAREC>)DeclaracionTA1())?
+}
 
 void ArregloD():
 {}
 {
-    <CORA><CORC>
+    <CORA><CORC>(<CORA><CORC>)?
 }
-
 
 
 void ArregloL():
@@ -553,7 +565,7 @@ void ArregloL():
 void Valor():
 {}
 {
-    <ENTERO>|<FLOTANTEDOUBLE>|<CHAR>|<CADENA>|<TRUE>|<FALSE>|<VAR> (<CORA> ArregloD())?
+    <ENTERO>|<FLOTANTEDOUBLE>|<CHAR>|<CADENA>|<TRUE>|<FALSE>|<VAR> (ArregloL())?
 }
 
 
