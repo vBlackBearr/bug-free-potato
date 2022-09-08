@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE filesystem PUBLIC "-//NetBeans//DTD Filesystem 1.2//EN"
+                            "http://www.netbeans.org/dtds/filesystem-1_2.dtd">
+<filesystem>
+    <folder name="Loaders">
+        <folder name="text">
+            <folder name="x-aaj">
+                <folder name="Factories">
+                    <file name="org-lenguajee-AAJDataObject.instance">
+                        <!--org.lenguajee.AAJDataObject-->
+                        <attr name="iconBase" stringvalue="limon.gif"/>
+                        <attr intvalue="300" name="position"/>
+                        <attr
+                            bundlevalue="org.lenguajee.Bundle#LBL_AAJ_LOADER" name="displayName"/>
+                        <attr
+                            methodvalue="org.openide.loaders.DataLoaderPool.factory" name="instanceCreate"/>
+                        <attr name="dataObjectClass" stringvalue="org.lenguajee.AAJDataObject"/>
+                        <attr name="mimeType" stringvalue="text/x-aaj"/>
+                    </file>
+                </folder>
+                <folder name="Actions">
+                    <file name="org-openide-actions-OpenAction.shadow">
+                        <!--org.lenguajee.AAJDataObject-->
+                        <attr name="originalFile" stringvalue="Actions/System/org-openide-actions-OpenAction.instance"/>
+                        <attr intvalue="100" name="position"/>
+                    </file>
+                    <file name="org-openide-actions-OpenAction-separatorAfter.instance">
+                        <!--org.lenguajee.AAJDataObject-->
+                        <attr name="instanceCreate" newvalue="javax.swing.JSeparator"/>
+                        <attr intvalue="200" name="position"/>
+                    </file>
+                    <file name="org-openide-actions-CutAction.shadow">
+                        <!--org.lenguajee.AAJDataObject-->
+                        <attr name="originalFile" stringvalue="Actions/Edit/org-openide-actions-CutAction.instance"/>
+                        <attr intvalue="300" name="position"/>
+                    </file>
+                    <file name="org-openide-actions-CopyAction.shadow">
+                        <!--org.lenguajee.AAJDataObject-->
+                        <attr name="originalFile" stringvalue="Actions/Edit/org-openide-actions-CopyAction.instance"/>
+                        <attr intvalue="400" name="position"/>
+                    </file>
+                    <file name="org-openide-actions-CopyAction-separatorAfter.instance">
+                        <!--org.lenguajee.AAJDataObject-->
+                        <attr name="instanceCreate" newvalue="javax.swing.JSeparator"/>
+                        <attr intvalue="500" name="position"/>
+                    </file>
+                    <file name="org-openide-actions-DeleteAction.shadow">
+                        <!--org.lenguajee.AAJDataObject-->
+                        <attr name="originalFile" stringvalue="Actions/Edit/org-openide-actions-DeleteAction.instance"/>
+                        <attr intvalue="600" name="position"/>
+                    </file>
+                    <file name="org-openide-actions-RenameAction.shadow">
+                        <!--org.lenguajee.AAJDataObject-->
+                        <attr name="originalFile" stringvalue="Actions/System/org-openide-actions-RenameAction.instance"/>
+                        <attr intvalue="700" name="position"/>
+                    </file>
+                    <file name="org-openide-actions-RenameAction-separatorAfter.instance">
+                        <!--org.lenguajee.AAJDataObject-->
+                        <attr name="instanceCreate" newvalue="javax.swing.JSeparator"/>
+                        <attr intvalue="800" name="position"/>
+                    </file>
+                    <file name="org-openide-actions-SaveAsTemplateAction.shadow">
+                        <!--org.lenguajee.AAJDataObject-->
+                        <attr name="originalFile" stringvalue="Actions/System/org-openide-actions-SaveAsTemplateAction.instance"/>
+                        <attr intvalue="900" name="position"/>
+                    </file>
+                    <file name="org-openide-actions-SaveAsTemplateAction-separatorAfter.instance">
+                        <!--org.lenguajee.AAJDataObject-->
+                        <attr name="instanceCreate" newvalue="javax.swing.JSeparator"/>
+                        <attr intvalue="1000" name="position"/>
+                    </file>
+                    <file name="org-openide-actions-FileSystemAction.shadow">
+                        <!--org.lenguajee.AAJDataObject-->
+                        <attr name="originalFile" stringvalue="Actions/System/org-openide-actions-FileSystemAction.instance"/>
+                        <attr intvalue="1100" name="position"/>
+                    </file>
+                    <file name="org-openide-actions-FileSystemAction-separatorAfter.instance">
+                        <!--org.lenguajee.AAJDataObject-->
+                        <attr name="instanceCreate" newvalue="javax.swing.JSeparator"/>
+                        <attr intvalue="1200" name="position"/>
+                    </file>
+                    <file name="org-openide-actions-ToolsAction.shadow">
+                        <!--org.lenguajee.AAJDataObject-->
+                        <attr name="originalFile" stringvalue="Actions/System/org-openide-actions-ToolsAction.instance"/>
+                        <attr intvalue="1300" name="position"/>
+                    </file>
+                    <file name="org-openide-actions-PropertiesAction.shadow">
+                        <!--org.lenguajee.AAJDataObject-->
+                        <attr name="originalFile" stringvalue="Actions/System/org-openide-actions-PropertiesAction.instance"/>
+                        <attr intvalue="1400" name="position"/>
+                    </file>
+                </folder>
+            </folder>
+        </folder>
+    </folder>
+    <folder name="Services">
+        <folder name="MIMEResolver">
+            <file name="org-lenguajee-AAJDataObject-Extension.xml">
+                <!--org.lenguajee.AAJDataObject-->
+                <attr
+                    methodvalue="org.openide.filesystems.MIMEResolver.create" name="instanceCreate"/>
+                <attr name="instanceClass" stringvalue="org.openide.filesystems.MIMEResolver"/>
+                <attr name="mimeType" stringvalue="text/x-aaj"/>
+                <attr name="ext.0" stringvalue="aaj"/>
+                <attr name="ext.1" stringvalue="AAJ"/>
+                <attr bundlevalue="org.lenguajee.Bundle#LBL_AAJ_LOADER" name="displayName"/>
+            </file>
+        </folder>
+    </folder>
+    <folder name="Templates">
+        <folder name="Other">
+            <file name="AAJTemplate.aaj" url="nbresloc:/org/lenguajee/AAJTemplate.aaj">
+                <!--org.lenguajee-->
+                <attr boolvalue="true" name="template"/>
+                <attr boolvalue="true" name="requireProject"/>
+            </file>
+        </folder>
+    </folder>
+    <folder name="Editors">
+        <folder name="text">
+            <folder name="x-aaj">
+                <folder name="MultiView">
+                    <file name="org-lenguajee-AAJDataObject-createEditor.instance">
+                        <!--org.lenguajee.AAJDataObject.createEditor(org.openide.util.Lookup)-->
+                        <attr
+                            methodvalue="org.netbeans.core.spi.multiview.MultiViewFactory.createMultiViewDescription" name="instanceCreate"/>
+                        <attr name="instanceClass" stringvalue="org.netbeans.core.multiview.ContextAwareDescription"/>
+                        <attr name="class" stringvalue="org.lenguajee.AAJDataObject"/>
+                        <attr
+                            bundlevalue="org.lenguajee.Bundle#LBL_AAJ_EDITOR" name="displayName"/>
+                        <attr name="iconBase" stringvalue="limon.gif"/>
+                        <attr name="preferredID" stringvalue="AAJ"/>
+                        <attr intvalue="1" name="persistenceType"/>
+                        <attr intvalue="1000" name="position"/>
+                        <attr name="method" stringvalue="createEditor"/>
+                        <attr boolvalue="true" name="sourceview"/>
+                    </file>
+                    <file name="org-lenguajee-AAJVisualElement.instance">
+                        <!--org.lenguajee.AAJVisualElement-->
+                        <attr
+                            methodvalue="org.netbeans.core.spi.multiview.MultiViewFactory.createMultiViewDescription" name="instanceCreate"/>
+                        <attr name="instanceClass" stringvalue="org.netbeans.core.multiview.ContextAwareDescription"/>
+                        <attr name="class" stringvalue="org.lenguajee.AAJVisualElement"/>
+                        <attr
+                            bundlevalue="org.lenguajee.Bundle#LBL_AAJ_VISUAL" name="displayName"/>
+                        <attr name="iconBase" stringvalue="limon.gif"/>
+                        <attr name="preferredID" stringvalue="AAJVisual"/>
+                        <attr intvalue="2" name="persistenceType"/>
+                        <attr intvalue="2000" name="position"/>
+                    </file>
+                </folder>
+            </folder>
+        </folder>
+    </folder>
+</filesystem>

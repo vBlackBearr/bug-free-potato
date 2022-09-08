@@ -1,0 +1,617 @@
+options {
+  IGNORE_CASE = false;
+  STATIC = false;
+  UNICODE_INPUT=true;
+}
+
+PARSER_BEGIN(Gramatica)
+/** Analizador de expresiones aritmeticas sencillas. */
+package Analizador; 
+public class Gramatica {
+
+    String muestraLexico = "";
+}
+PARSER_END(Gramatica)
+
+/** Lexico */
+    SKIP : {
+      " "
+    | "\t"
+    | "\b"
+    | "\r"
+    | "\n"
+    | "/*" : ML_COMMENT_STATE
+}
+
+<ML_COMMENT_STATE> SKIP:
+{
+    <"*/">:DEFAULT
+    |<~[] > 
+}
+
+
+/** ---------- Palabras reservadas ---------- */
+TOKEN : {
+      < IF : "If" > { muestraLexico = muestraLexico + " If -> Palabra reservada ( 1 - Si)" + "\n"; }
+    | < ELSE: "Else" > { muestraLexico = muestraLexico + "Else -> Palabra reservada ( 2 - Sino)" + "\n"; }
+    | < WHILE: "While" > { muestraLexico = muestraLexico + "While -> Palabra reservada ( 3 - Mientras)" + "\n"; }
+    | < CLASS: "class" > {muestraLexico = muestraLexico + "class -> Palabra reservada ( 4 - Clase)" + "\n";;}
+    | < PACK: "Pack" > { muestraLexico = muestraLexico + "Pack -> Palabra reservada ( 5 - Paquete)" + "\n"; }
+    | < LIBRARY: "Library" > { muestraLexico = muestraLexico + "Library -> Palabra reservada ( 6 - Libreria)" + "\n"; }
+    | < PUBLIC: "public" > { muestraLexico = muestraLexico + "public -> Palabra reservada ( 7 - Publico)" + "\n"; }
+    | < PRIVATE: "private" > { muestraLexico = muestraLexico + "private -> Palabra reservada ( 8 - Privado)" + "\n"; }
+    | < BREAK: "break" > { muestraLexico = muestraLexico + "break -> Palabra reservada ( 9 - Interrumpir)" + "\n"; }
+    | < DO: "do" > { muestraLexico = muestraLexico + "do -> Palabra reservada ( 10 - Hacer)" + "\n"; }
+    | < CHAR: "char" > { muestraLexico = muestraLexico + "char -> Palabra reservada ( 11 - Caracter)" + "\n"; }
+    | < STRING: "string" > { muestraLexico = muestraLexico + "string -> Palabra reservada ( 12 - Cadena)" + "\n"; }
+    | < INT: "int" > { muestraLexico = muestraLexico + "int -> Palabra reservada ( 13 - Entero )" + "\n"; }
+    | < FLOAT: "float" > { muestraLexico = muestraLexico + "float -> Palabra reservada ( 14 - Flotante )" + "\n"; }
+    | < BOOLEAN: "boolean" > { muestraLexico = muestraLexico + "boolean -> Palabra reservada ( 15 - Booleano )" + "\n"; }
+    | < TRY: "Try" > { muestraLexico = muestraLexico + "Try -> Palabra reservada ( 16 - Intenta... )" + "\n"; }
+    | < CATCH: "Catch" > { muestraLexico = muestraLexico + "Catch -> Palabra reservada ( 17 - Atrapa... )" + "\n"; }
+    | < SUPER: "Super" > { muestraLexico = muestraLexico + "Super -> Palabra reservada ( 18 - Super )" + "\n"; }
+    | < THIS: "This" > { muestraLexico = muestraLexico + "This -> Palabra reservada ( 19 - Este )" + "\n"; }
+    | < DERIVATE: "Derivate" > { muestraLexico = muestraLexico + "Derivate -> Palabra reservada ( 20 - Deriva de... )" + "\n"; }
+    | < RETURN: "return" > { muestraLexico = muestraLexico + "return -> Palabra reservada ( 21 - Regresa... )" + "\n"; }
+    | < FINAL: "Final" > { muestraLexico = muestraLexico + "Final -> Palabra reservada ( 22 - Final )" + "\n"; }
+    | < VOID: "void" > { muestraLexico = muestraLexico + "void -> Palabra reservada ( 23 - Vacio )" + "\n"; }
+    | < NULL: "null" > { muestraLexico = muestraLexico + "null -> Palabra reservada ( 24 - Nulo )" + "\n"; }
+    | < IMPORT: "import" > { muestraLexico = muestraLexico + "import -> Palabra reservada ( 25 - Importar... )" + "\n"; }
+    | < TRUE: "true" > { muestraLexico = muestraLexico + "true -> Palabra reservada ( 26 - Verdadero )" + "\n"; }
+    | < FALSE: "false" > { muestraLexico = muestraLexico + "false -> Palabra reservada ( 27 - Falso )" + "\n"; }
+    | < FOR: "For" > { muestraLexico = muestraLexico + "For -> Palabra reservada ( 28 - Para... )" + "\n"; }
+    | < SWITCH: "Switch" > { muestraLexico = muestraLexico + "Switch -> Palabra reservada ( 29 - Switch )" + "\n"; }
+    | < CASE: "Case" > { muestraLexico = muestraLexico + "Case -> Palabra reservada ( 30 - Caso tipo... )" + "\n"; }
+    | < ARRAY: "Array" > { muestraLexico = muestraLexico + "Array -> Palabra reservada ( 31 - Arreglo )" + "\n"; }
+    | < PRINMAIN: "principalMain" > { muestraLexico = muestraLexico + "principalMain -> Palabra reservada ( 32 - Principal )" + "\n"; }
+    | < DOUBLE: "double" > { muestraLexico = muestraLexico + "double -> Palabra reservada ( 33 - Decimal )" + "\n"; }
+    | < EXCEPT: "Except" > { muestraLexico = muestraLexico + "Except -> Palabra reservada ( 34 - Excepto... )" + "\n"; }
+    | < DEF: "Default" > { muestraLexico = muestraLexico + "Default -> Palabra reservada ( 35 - Default )" + "\n"; }
+
+}
+    
+
+
+
+
+/** ---------- Tokens fijos ---------- */
+TOKEN : {
+     < LLAVA: "{" > { muestraLexico = muestraLexico + "{ -> Token fijo ( 36 - LLave que abre )" + "\n";}
+    | < LLAVC: "}" > { muestraLexico = muestraLexico + "{ -> Token fijo ( 37 - LLave que cierra )" + "\n";}
+    | < CORA: "[" > { muestraLexico = muestraLexico + "[ -> Token fijo ( 38 - Corchete que abre )" + "\n";}
+    | < CORC: "]" > { muestraLexico = muestraLexico + "] -> Token fijo ( 39 - Corchete que cierra )" + "\n";}
+    | < PAREA: "(" > { muestraLexico = muestraLexico + "( -> Token fijo ( 40 - Parentesis que abre )" + "\n";}
+    | < PAREC: ")" > { muestraLexico = muestraLexico + ") -> Token fijo ( 41 - Parentesis que cierra )" + "\n";}
+    | < PYC: ";" > { muestraLexico = muestraLexico + "; -> Token fijo ( 42 - Punto y coma )" + "\n";}
+    | < COMSIM: "'" > { muestraLexico = muestraLexico + "' -> Token fijo ( 43 - Comilla simple )" + "\n";}
+    | < COM: "," > { muestraLexico = muestraLexico + ", -> Token fijo ( 44 - Como )" + "\n";}
+    | < PUNT: "." > { muestraLexico = muestraLexico + ". -> Token fijo ( 45 - Punto )" + "\n";}
+    | < GUIONB: "_" > { muestraLexico = muestraLexico + "_ -> Token fijo ( 46 - Guion bajo )" + "\n";}
+    | < DOSP: ":" > { muestraLexico = muestraLexico + ": -> Token fijo ( 47 - Dos puntos )" + "\n";}
+}
+
+
+
+/** ---------- Operadores relacionales ---------- */
+TOKEN : {
+      < MAYORQ : ">" > { muestraLexico = muestraLexico + "> -> Operador relacional ( 48 - Mayor que )" + "\n";}
+    | < MENORQ: "<" > { muestraLexico = muestraLexico + "< -> Operador relacional ( 49 - Menor que )" + "\n";}
+    | < MAYORI: ">=" > { muestraLexico = muestraLexico + ">= -> Operador relacional ( 50 - Mayor o igual que )" + "\n";}
+    | < MENORI: "<=" > { muestraLexico = muestraLexico + ">= -> Operador relacional ( 51 - Menor o igual que )" + "\n";}
+    | < IGUALI: "==" > { muestraLexico = muestraLexico + "== -> Operador relacional ( 52 - Igual Igual )" + "\n";}
+    | < DIFER: "<>" > { muestraLexico = muestraLexico + "== -> Operador relacional ( 53 - Diferente )" + "\n";}
+}
+
+
+
+/** ---------- Operadores lógicos ---------- */
+TOKEN : {
+      < AND: "AND" > { muestraLexico = muestraLexico + "AND -> Palabra reservada ( 54 - Y )" + "\n";}
+    | < OR: "OR" > { muestraLexico = muestraLexico + "OR -> Palabra reservada ( 55 - O )" + "\n";}
+    | < NOT: "NOT" > { muestraLexico = muestraLexico + "NOT -> Palabra reservada ( 56 - Negacion )" + "\n";}
+}
+
+
+
+/** ---------- Operadores incrementales ---------- */
+TOKEN : {
+      < INCRE: "++" > { muestraLexico = muestraLexico + "++ -> Operador incremental ( 57 - Sumando )" + "\n";}
+    | < DECRE: "--" > { muestraLexico = muestraLexico + "-- -> Operador incremental ( 58 - Restando )" + "\n";}
+}
+
+
+
+/** ---------- Operadores de asignación ---------- */
+TOKEN : {
+      < ASIG: "=" > { muestraLexico = muestraLexico + "= -> Operador de asignación ( 59 - Es igual a )" + "\n";}
+    | < SUMASIG: "+=" > { muestraLexico = muestraLexico + "+= -> Operador de asignación ( 59 - Suma a )" + "\n";}
+    | < RESASIG: "-=" > { muestraLexico = muestraLexico + "-= -> Operador de asignación ( 60 - Restale a )" + "\n";}
+    | < MULASIG: "*=" > { muestraLexico = muestraLexico + "*= -> Operador de asignación ( 61 - Multiplica a )" + "\n";}
+    | < DIVASIG: "/=" > { muestraLexico = muestraLexico + "/= -> Operador de asignación ( 62 - Divide a )" + "\n";}
+    | < MODASIG: "%=" > { muestraLexico = muestraLexico + "%= -> Operador de asignación ( 63 - Modulo a )" + "\n";}
+}
+
+
+
+/** ---------- Operadores aritmeticos ---------- */
+TOKEN : {
+      < SUMA: "+" > { muestraLexico = muestraLexico + "+ -> Operador aritmetico ( 64 - Suma )" + "\n";}
+    | < RESTA: "-" > { muestraLexico = muestraLexico + "- -> Operador aritmetico ( 65 - Resta )" + "\n";}
+    | < DIVIS: "/" > { muestraLexico = muestraLexico + "/ -> Operador aritmetico ( 66 - Division )" + "\n";}
+    | < POTEN: "^" > { muestraLexico = muestraLexico + "^ -> Operador aritmetico ( 67 - Potencia )" + "\n";}
+    | < MODUL: "%" > { muestraLexico = muestraLexico + "% -> Operador aritmetico ( 68 - Modulo )" + "\n";}
+    | < MULTI: "*" > { muestraLexico = muestraLexico + "* -> Operador aritmetico ( 69 - multiplicacion )" + "\n";}
+}
+
+
+
+/** ---------- Variables, clases, paquetes y otros... ---------- */
+TOKEN : {
+      < #letraMay: ["A"-"Z"]  >
+    | < #letraMin: ["a"-"z"]  >
+    | < #c: ["a"-"z", "A"-"Z", "0"-"9", "|", "'", "/", "(", ")", "{", "}", "[", "]", ",", ".", ";", "_", ":", " "]  >
+    | < #digito: ["0"-"9"]  >
+    | < ENTERO: (<digito>)+ > { muestraLexico = muestraLexico + image +" -> Numero entero ( 70 - Numero entero )" + "\n";}
+    | < FLOTANTEDOUBLE: ((<digito>)+ "." (<digito>)+)+ > { muestraLexico = muestraLexico + image + " -> Numero flotante ( 71 - Numero decimal )" + "\n";}
+    | < CLASES: <letraMay>(<letraMin>)+ > { muestraLexico = muestraLexico + image + " -> Nombre de clase ( 72 - Nombre de clase )" + "\n";}
+    | < CARACTER: "'"(< letraMay >|< letraMin >|< digito >)"'" > { muestraLexico = muestraLexico + image + " -> Caracter ( 73 - Caracter )" + "\n";}
+    | < CADENA: "\"" (< c >)+ "\"" > { muestraLexico = muestraLexico + image + " -> Cadena ( 74 - Cadena )" + "\n";}
+    | < PAQUET: (<letraMay>) (<letraMin>)+ ("_" (<letraMay>) (<letraMin>)+)+ > { muestraLexico = muestraLexico + image + " -> Paquete ( 75 - Nombre de paquete )" + "\n";}
+    | < VAR: (<letraMin>)+ > { muestraLexico = muestraLexico + image + " -> Variable ( 76 - Nombre variable )" + "\n";}
+    | < FUNC: (< letraMin >)+ (< letraMay > (< letraMin >)+)+ > { muestraLexico = muestraLexico + image + " -> Nombre de funcion ( 77 - Nombre funcion )" + "\n";}
+    | < LIBR: (< letraMin >)+ ("_"(< letraMin >|< letraMay >)+)+ > { muestraLexico = muestraLexico + image + " -> Nombre de librería ( 78 - Nombre libreria )" + "\n";}
+}
+
+/** ---------- Caracteres no validos ---------- */
+TOKEN : {
+      < A: "\u00aa" > { muestraLexico = muestraLexico + image + " -> Carácter no valido " + "\n";}
+    | < GRADOS: "\u00ba" > { muestraLexico = muestraLexico + image + " -> Carácter no valido " + "\n";}
+    | < CPOR: "\u00e7" > { muestraLexico = muestraLexico + image + " -> Carácter no valido " + "\n";}
+    | < PUNTOS: "\u00a8" > { muestraLexico = muestraLexico + image + " -> Carácter no valido " + "\n";}
+    | < ACENTOI: "`" > { muestraLexico = muestraLexico + image + " -> Carácter no valido " + "\n";}
+    | < ACENTO: "\u00b4" > { muestraLexico = muestraLexico + image + " -> Carácter no valido " + "\n";}
+    | < BARRAI: "\\" > { muestraLexico = muestraLexico + image + " -> Carácter no valido " + "\n";}
+}
+/** Fin Lexico */
+
+
+/**Inicio sintactico*/
+
+
+
+void Inicio() :
+{}
+{
+    Import() Clases() <EOF>
+}
+
+
+
+void Import() :
+{}
+{
+    (<IMPORT> Import1())?
+}
+
+
+
+void Import1() :
+{}
+{
+    <LIBR> <PYC> Import2()
+}
+
+
+
+void Import2() :
+{}
+{
+    (<IMPORT> Import1())?
+}
+
+
+
+void Tipo() :
+{}
+{
+     <INT>|<CHAR>|<STRING>|<BOOLEAN>|<FLOAT>|<DOUBLE>
+}
+
+
+
+void TipoEncapsular() :
+{}
+{
+     <PUBLIC>|<PRIVATE>
+}
+
+
+
+void Clases() :
+{}
+{
+    TipoEncapsular() <CLASS> <CLASES> ClasesA()
+}
+
+
+
+void ClasesA() :
+{}
+{
+   (<LLAVA>(TipoEncapsular() ( Constructor()|Cuerpo()))?<LLAVC> | <DERIVATE> <CLASES> <LLAVA>Constructor_hijo() Cuerpo()<LLAVC>)?
+}
+
+
+
+void Constructor() :
+{}
+{
+    <CLASES> <PAREA>Argumentos()<PAREC> <LLAVA>Sentencia()<LLAVC>
+}
+
+
+
+void Constructor_hijo() :
+{}
+{
+    TipoEncapsular() <CLASES> <PAREA>Argumentos()<PAREC> <LLAVA>Super() Sentencia()<LLAVC>
+}
+
+
+
+void Cuerpo() :
+{}
+{
+    Tipo() (Variables_clase() | Metodo()) CuerpoA() | <VOID> MetodosA()
+}
+
+
+
+void CuerpoA() :
+{}
+{
+     (TipoEncapsular() (Tipo() (Variables_clase() | Metodo()) CuerpoA() | <VOID> MetodosA())?)?
+}
+
+
+
+void MetodosA() :
+{}
+{
+    <FUNC> Metodo_void() CuerpoA() | Principal() CuerpoA()
+}
+
+
+
+void Principal() :
+{}
+{
+    <PRINMAIN><PAREA><PAREC> <LLAVA>Sentencia()<LLAVC>
+}
+
+
+
+void Metodo() :
+{}
+{
+    <FUNC> <PAREA>Argumentos()<PAREC> <LLAVA>Sentencia() Retorno()<LLAVC>
+}
+
+
+
+void Retorno() :
+{}
+{
+    <RETURN> Tipo_retorno()
+}
+
+
+
+void Tipo_retorno() :
+{}
+{
+    Valor()<PYC>
+}
+
+
+
+void Metodo_void() :
+{}
+{
+    <PAREA>Argumentos()<PAREC> <LLAVA>Sentencia()<LLAVC>
+}
+
+
+
+void Argumentos() :
+{}
+{
+    (Tipo() Declaracion()) ArgumentosA()
+}
+
+
+
+void ArgumentosA() :
+{}
+{
+    (<COM>Argumentos())?
+}
+
+
+
+void Variables_clase() :
+{}
+{
+    Declaracion()<PYC> Variables_clase()
+}
+
+
+
+void Sentencia() :
+{}
+{
+    (<FOR> Sentencia_ciclofor() Sentencia() | <IF> Sentencia_condicion() Sentencia() | Tipo() Declaracion()<PYC> Sentencia() | <VAR> Sentencia_incremental() Sentencia() | <SWITCH> Sentencia_switch() Sentencia() | <TRY> Sentencia_try() Sentencia() | <THIS> Sentencia_this() Sentencia() | Sentencia_ciclowhile() Sentencia() | <FUNC> SentenciaLlamarMetodo() Sentencia())?
+}
+
+
+
+void Parametros() :
+{}
+{
+    (<VAR> (<CORA> ArregloL())? Parametros2() | Exp() | <CADENA> Parametros2() | <CARACTER> Parametros2())?
+}
+
+
+
+void Parametros2() :
+{}
+{
+    (<COM>(<VAR> (<CORA> ArregloL())? Parametros2() | Exp() | <CADENA> Parametros2() | <CARACTER> Parametros2()))?
+}
+
+
+
+
+void SentenciaLlamarMetodo() :
+{}
+{
+    <PAREA>Parametros()<PAREC><PYC>
+}
+
+
+
+void Sentencia_try() :
+{}
+{
+    <LLAVA>Sentencia()<LLAVC> <CATCH> <PAREA> <EXCEPT> <VAR><PAREC> <LLAVA>Sentencia()<LLAVC>
+}
+
+
+
+void Sentencia_ciclofor() :
+{}
+{
+    <PAREA>Declaracionfor()<PYC> Condg()<PYC> Sentencia_incremental()<PAREC> <LLAVA>Sentencia()<LLAVC>
+}
+
+
+
+void Sentencia_ciclowhile() :
+{}
+{
+    <WHILE> <PAREA>Condg()<PAREC> <LLAVA>Sentencia()<LLAVC> | <DO> <LLAVA>Sentencia()<LLAVC> <WHILE> <PAREA>Condg()<PAREC> <PYC>
+}
+
+
+
+void Sentencia_condicion() :
+{}
+{
+    <PAREA>Condg()<PAREC> <LLAVA>Sentencia()<LLAVC> Si_e()
+}
+
+
+
+void Sentencia_incremental() :
+{}
+{
+    <INCRE><PYC> | <DECRE><PYC>
+}
+
+
+
+void Super() :
+{}
+{
+    <SUPER> <PAREA>Argumentos()<PAREC><PYC>
+}
+
+
+
+void Sentencia_this() :
+{}
+{
+    (<VAR> <ASIG> <VAR> (<CORA> ArregloL())? <PYC> Sentencia_this())?
+}
+
+
+
+void Sentencia_switch() :
+{}
+{
+    <SWITCH> <VAR> (<CORA> ArregloL())? <LLAVA>Case() <DEF> Sentencia() <BREAK><PYC><LLAVC>
+}
+
+
+
+void Case() :
+{}
+{
+    (<CASE> Caso()<DOSP> Sentencia() <BREAK><PYC> Case())?
+}
+
+
+
+void Caso() :
+{}
+{
+    X() | <CADENA> | <CARACTER>
+}
+
+
+
+void Si_e() :
+{}
+{
+    (<ELSE> Si_EA())?
+}
+
+
+
+void Si_EA() :
+{}
+{
+    <LLAVA>Sentencia()<LLAVC> | Sentencia_condicion()
+}
+
+
+
+void Condg() :
+{}
+{
+    (<PAREA>Condg()<PAREC>| Cond() | <NOT> Condg()) CondgA()
+}
+
+
+
+void CondgA() :
+{}
+{
+    (<AND> Condg() CondgA() | <OR> Condg() CondgA() | <NOT> Condg() CondgA())?
+}
+
+
+
+void Cond() :
+{}
+{
+    Exp() (<MAYORQ> | <MENORQ> | <MAYORI> | <MENORI> | <IGUALI> | <DIFER> ) Exp() | <TRUE> | <FALSE>
+}
+
+
+
+void Exp() :
+{}
+{
+    <PAREA>Exp()<PAREC> ExpA() | <VAR>(<CORA> ArregloL())? ExpA() | <ENTERO> ExpA() | <FLOTANTEDOUBLE> ExpA()
+}
+
+
+
+void ExpA() :
+{}
+{
+    <SUMA> Exp() | <RESTA> Exp() | <DIVIS> Exp() | <POTEN> Exp() | <MODUL> Exp() | Parametros()
+}
+
+
+
+void Declaracion() :
+{}
+{
+    <VAR> (ArregloD())? (<ASIG> DeclaracionT())?   
+}
+
+
+
+void DeclaracionT() :
+{}
+{
+    (Valor()(Oper()Valor())*)|(<PAREA>Valor()(Oper()Valor())*<PAREC>)
+}
+
+
+
+void ArregloD():
+{}
+{
+    <CORA><CORC>
+}
+
+
+
+void ArregloL():
+{}
+{
+    ((<ENTERO>)
+    |(<VAR>)
+     ) <CORC>
+}
+
+
+
+void Valor():
+{}
+{
+    <ENTERO>|<FLOTANTEDOUBLE>|<CHAR>|<CADENA>|<TRUE>|<FALSE>|<VAR> (<CORA> ArregloD())?
+}
+
+
+
+void Oper():
+{}
+{
+    <SUMA>|<RESTA>|<DIVIS>|<POTEN>|<MODUL>|<MULTI>
+}
+
+
+
+void Z() :
+{}
+{
+    <TRUE> | <FALSE> | <VAR>
+}
+
+
+
+void X() :
+{}
+{
+    <ENTERO> X1() | <VAR> X1() | <PAREA>X()<PAREC> X1()
+}
+
+
+
+void X1() :
+{}
+{
+    (<SUMA> X() X1() | <RESTA> X() X1() | <DIVIS> X() X1() | <POTEN> X() X1() | <MODUL> X() X1())?
+}
+
+
+
+void Y() :
+{}
+{
+    <FLOTANTEDOUBLE> Y1() | <VAR> Y1() | <PAREA>Y()<PAREC> Y1()
+}
+
+
+
+void Y1() :
+{}
+{
+    <SUMA> Y() Y1() | <RESTA> Y() Y1() | <DIVIS> Y() Y1() | <POTEN> Y() Y1() | <MODUL> Y() Y1()
+}
+
+
+
+void Declaracionfor() :
+{}
+{
+    <INT> <VAR> (<CORA> ArregloL())? <ASIG> X() | <DOUBLE>  <VAR> (<CORA> ArregloL())? <ASIG> Y() | <FLOAT>  <VAR> (<CORA> ArregloL())? <ASIG> Y()
+}
+
+
+
+/**FIN SINTACTICO*/
