@@ -379,7 +379,7 @@ void Sentencia_this() :
 void Sentencia_switch() : 
 {}
 {
-    <SWITCH> <VAR> (<CORA> ArregloL())? <LLAVA>Case() <DEF> Sentencia() <BREAK><PYC><LLAVC> 
+    <VAR> (<CORA> ArregloL())? <LLAVA>Case() <DEF><DOSP> Sentencia() <BREAK><PYC><LLAVC> 
 }
 
 void Case() : 
