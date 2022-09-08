@@ -106,7 +106,7 @@ public class GUI extends javax.swing.JFrame {
         jButton1.setText("jButton1");
 
         fileMenu.setMnemonic('f');
-        fileMenu.setText("File");
+        fileMenu.setText("Archivo");
         fileMenu.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         fileMenu.setMargin(new java.awt.Insets(6, 10, 6, 10));
 
