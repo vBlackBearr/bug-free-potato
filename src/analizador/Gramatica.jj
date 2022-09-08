@@ -177,70 +177,53 @@ TOKEN : {
 
 /**Inicio sintactico*/
 
-
-
-void Inicio() :
+void Inicio() : 
 {}
 {
     Import() Clases() <EOF>
 }
 
-
-
-void Import() :
+void Import() : 
 {}
 {
     (<IMPORT> Import1())?
 }
 
-
-
-void Import1() :
+void Import1() : 
 {}
 {
     <LIBR> <PYC> Import2()
 }
 
-
-
-void Import2() :
+void Import2() : 
 {}
 {
     (<IMPORT> Import1())?
 }
 
-
-
-void Tipo() :
+void Tipo() : 
 {}
 {
      <INT>|<CHAR>|<STRING>|<BOOLEAN>|<FLOAT>|<DOUBLE>
 }
 
-
-
-void TipoEncapsular() :
+void TipoEncapsular() : 
 {}
 {
      <PUBLIC>|<PRIVATE>
 }
 
-
-
-void Clases() :
+void Clases() : 
 {}
 {
     TipoEncapsular() <CLASS> <CLASES> ClasesA()
 }
-
-
 
 void ClasesA() : 
 {}
 {
    <LLAVA>(TipoEncapsular() (Constructor()|Cuerpo()))?<LLAVC> | <DERIVATE> <CLASES> <LLAVA>Constructor_hijo() Cuerpo()<LLAVC>
 }
-
 
 void Constructor() : 
 {}
@@ -254,280 +237,212 @@ void ConstructorA() :
     TipoEncapsular()(Cuerpo()|(<CLASES> <PAREA>Argumentos()<PAREC> <LLAVA>Sentencia()<LLAVC> ConstructorA())?)
 }
 
-void Constructor_hijo() :
+void Constructor_hijo() : 
 {}
 {
     TipoEncapsular() <CLASES> <PAREA>Argumentos()<PAREC> <LLAVA>Super() Sentencia()<LLAVC>
 }
 
-
-
-void Cuerpo() :
+void Cuerpo() : 
 {}
 {
     Tipo() (Variables_clase() | Metodo()) CuerpoA() | <VOID> MetodosA()
 }
 
-
-
-void CuerpoA() :
+void CuerpoA() : 
 {}
 {
      (TipoEncapsular() (Tipo() (Variables_clase() | Metodo()) CuerpoA() | <VOID> MetodosA())?)?
 }
 
-
-
-void MetodosA() :
+void MetodosA() : 
 {}
 {
-    <FUNC> Metodo_void() CuerpoA() | Principal() CuerpoA()
+    <FUNC> Metodo_void() CuerpoA() | Principal() CuerpoA() 
 }
 
-
-
-void Principal() :
+void Principal() : 
 {}
 {
-    <PRINMAIN><PAREA><PAREC> <LLAVA>Sentencia()<LLAVC>
+    <PRINMAIN><PAREA><PAREC> <LLAVA>Sentencia()<LLAVC> 
 }
 
-
-
-void Metodo() :
+void Metodo() : 
 {}
 {
     <FUNC> <PAREA>Argumentos()<PAREC> <LLAVA>Sentencia() Retorno()<LLAVC>
 }
 
-
-
-void Retorno() :
+void Retorno() : 
 {}
 {
     <RETURN> Tipo_retorno()
 }
 
-
-
-void Tipo_retorno() :
+void Tipo_retorno() : 
 {}
 {
     Valor()<PYC>
 }
 
-
-
-void Metodo_void() :
+void Metodo_void() : 
 {}
 {
     <PAREA>Argumentos()<PAREC> <LLAVA>Sentencia()<LLAVC>
 }
 
-
-
-void Argumentos() :
+void Argumentos() : 
 {}
 {
     (Tipo() Declaracion()) ArgumentosA()
 }
 
-
-
-void ArgumentosA() :
+void ArgumentosA() : 
 {}
 {
     (<COM>Argumentos())?
 }
 
-
-
-void Variables_clase() :
+void Variables_clase() : 
 {}
 {
     Declaracion()<PYC> Variables_clase()
 }
 
-
-
-void Sentencia() :
+void Sentencia() : 
 {}
 {
     (<FOR> Sentencia_ciclofor() Sentencia() | <IF> Sentencia_condicion() Sentencia() | Tipo() Declaracion()<PYC> Sentencia() | <VAR> Sentencia_incremental() Sentencia() | <SWITCH> Sentencia_switch() Sentencia() | <TRY> Sentencia_try() Sentencia() | <THIS> Sentencia_this() Sentencia() | Sentencia_ciclowhile() Sentencia() | <FUNC> SentenciaLlamarMetodo() Sentencia())?
 }
 
-
-
-void Parametros() :
+void Parametros() : 
 {}
 {
     (<VAR> (<CORA> ArregloL())? Parametros2() | Exp() | <CADENA> Parametros2() | <CARACTER> Parametros2())?
 }
 
-
-
-void Parametros2() :
+void Parametros2() : 
 {}
 {
     (<COM>(<VAR> (<CORA> ArregloL())? Parametros2() | Exp() | <CADENA> Parametros2() | <CARACTER> Parametros2()))?
 }
 
 
-
-
-void SentenciaLlamarMetodo() :
+void SentenciaLlamarMetodo() : 
 {}
 {
     <PAREA>Parametros()<PAREC><PYC>
 }
 
-
-
-void Sentencia_try() :
+void Sentencia_try() : 
 {}
 {
     <LLAVA>Sentencia()<LLAVC> <CATCH> <PAREA> <EXCEPT> <VAR><PAREC> <LLAVA>Sentencia()<LLAVC>
 }
 
-
-
-void Sentencia_ciclofor() :
+void Sentencia_ciclofor() : 
 {}
 {
     <PAREA>Declaracionfor()<PYC> Condg()<PYC> Sentencia_incremental()<PAREC> <LLAVA>Sentencia()<LLAVC>
 }
 
-
-
-void Sentencia_ciclowhile() :
+void Sentencia_ciclowhile() : 
 {}
 {
     <WHILE> <PAREA>Condg()<PAREC> <LLAVA>Sentencia()<LLAVC> | <DO> <LLAVA>Sentencia()<LLAVC> <WHILE> <PAREA>Condg()<PAREC> <PYC>
 }
 
-
-
-void Sentencia_condicion() :
+void Sentencia_condicion() : 
 {}
 {
     <PAREA>Condg()<PAREC> <LLAVA>Sentencia()<LLAVC> Si_e()
 }
 
-
-
-void Sentencia_incremental() :
+void Sentencia_incremental() : 
 {}
 {
     <INCRE><PYC> | <DECRE><PYC>
 }
 
-
-
-void Super() :
+void Super() : 
 {}
 {
     <SUPER> <PAREA>Argumentos()<PAREC><PYC>
 }
 
-
-
-void Sentencia_this() :
+void Sentencia_this() : 
 {}
 {
     (<VAR> <ASIG> <VAR> (<CORA> ArregloL())? <PYC> Sentencia_this())?
 }
 
-
-
-void Sentencia_switch() :
+void Sentencia_switch() : 
 {}
 {
-    <SWITCH> <VAR> (<CORA> ArregloL())? <LLAVA>Case() <DEF> Sentencia() <BREAK><PYC><LLAVC>
+    <SWITCH> <VAR> (<CORA> ArregloL())? <LLAVA>Case() <DEF> Sentencia() <BREAK><PYC><LLAVC> 
 }
 
-
-
-void Case() :
+void Case() : 
 {}
 {
     (<CASE> Caso()<DOSP> Sentencia() <BREAK><PYC> Case())?
 }
 
-
-
-void Caso() :
+void Caso() : 
 {}
 {
     X() | <CADENA> | <CARACTER>
 }
 
-
-
-void Si_e() :
+void Si_e() : 
 {}
 {
     (<ELSE> Si_EA())?
 }
 
-
-
-void Si_EA() :
+void Si_EA() : 
 {}
 {
     <LLAVA>Sentencia()<LLAVC> | Sentencia_condicion()
 }
 
-
-
-void Condg() :
+void Condg() : 
 {}
 {
     (<PAREA>Condg()<PAREC>| Cond() | <NOT> Condg()) CondgA()
 }
 
-
-
-void CondgA() :
+void CondgA() : 
 {}
 {
     (<AND> Condg() CondgA() | <OR> Condg() CondgA() | <NOT> Condg() CondgA())?
 }
 
-
-
-void Cond() :
+void Cond() : 
 {}
 {
     Exp() (<MAYORQ> | <MENORQ> | <MAYORI> | <MENORI> | <IGUALI> | <DIFER> ) Exp() | <TRUE> | <FALSE>
 }
 
-
-
-void Exp() :
+void Exp() : 
 {}
 {
     <PAREA>Exp()<PAREC> ExpA() | <VAR>(<CORA> ArregloL())? ExpA() | <ENTERO> ExpA() | <FLOTANTEDOUBLE> ExpA()
 }
 
-
-
-void ExpA() :
+void ExpA() : 
 {}
 {
     <SUMA> Exp() | <RESTA> Exp() | <DIVIS> Exp() | <POTEN> Exp() | <MODUL> Exp() | Parametros()
 }
 
-
-
 void Declaracion() : 
 {}
 {
-    <VAR> (((<ASIG> DeclaracionT())?)|(ArregloD()(<ASIG> <PAREA>DeclaracionTA()<PAREC>)?))   
+    <VAR> (ArregloD()(<ASIG> <PAREA>DeclaracionTA()<PAREC>)?|(<ASIG> DeclaracionT())?)   
 }
 
-
-
-void DeclaracionT() :
+void DeclaracionT() : 
 {}
 {
     (Valor()(Oper()Valor())*)|(<PAREA>Valor()(Oper()Valor())*<PAREC>)
@@ -551,7 +466,6 @@ void ArregloD():
     <CORA><CORC>(<CORA><CORC>)?
 }
 
-
 void ArregloL():
 {}
 {
@@ -560,15 +474,11 @@ void ArregloL():
      ) <CORC>
 }
 
-
-
 void Valor():
 {}
 {
     <ENTERO>|<FLOTANTEDOUBLE>|<CHAR>|<CADENA>|<TRUE>|<FALSE>|<VAR> (ArregloL())?
 }
-
-
 
 void Oper():
 {}
@@ -576,54 +486,40 @@ void Oper():
     <SUMA>|<RESTA>|<DIVIS>|<POTEN>|<MODUL>|<MULTI>
 }
 
-
-
-void Z() :
+void Z() : 
 {}
 {
     <TRUE> | <FALSE> | <VAR>
 }
 
-
-
-void X() :
+void X() : 
 {}
 {
-    <ENTERO> X1() | <VAR> X1() | <PAREA>X()<PAREC> X1()
+    <ENTERO> X1() | <VAR> X1() | <PAREA>X()<PAREC> X1() 
 }
 
-
-
-void X1() :
+void X1() : 
 {}
 {
     (<SUMA> X() X1() | <RESTA> X() X1() | <DIVIS> X() X1() | <POTEN> X() X1() | <MODUL> X() X1())?
 }
 
-
-
-void Y() :
+void Y() : 
 {}
 {
     <FLOTANTEDOUBLE> Y1() | <VAR> Y1() | <PAREA>Y()<PAREC> Y1()
 }
 
-
-
-void Y1() :
+void Y1() : 
 {}
 {
-    <SUMA> Y() Y1() | <RESTA> Y() Y1() | <DIVIS> Y() Y1() | <POTEN> Y() Y1() | <MODUL> Y() Y1()
+    <SUMA> Y() Y1() | <RESTA> Y() Y1() | <DIVIS> Y() Y1() | <POTEN> Y() Y1() | <MODUL> Y() Y1() 
 }
 
-
-
-void Declaracionfor() :
+void Declaracionfor() : 
 {}
 {
     <INT> <VAR> (<CORA> ArregloL())? <ASIG> X() | <DOUBLE>  <VAR> (<CORA> ArregloL())? <ASIG> Y() | <FLOAT>  <VAR> (<CORA> ArregloL())? <ASIG> Y()
 }
-
-
 
 /**FIN SINTACTICO*/
