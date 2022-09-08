@@ -1,33 +1,67 @@
 import raptor_util_Print;
-public class Miclase{
-private Ig(int pfd){
-}
-private Igf(int pfdds){
-}
-public void principalMain(){
-escribirEnConsola("Hola mundo desde Rex Raptor");
-/*Este es un codigo de Raptor*/
-int x=30;
-string y="hola";
-escribirEnConsola(x);
-escribirEnConsola(y);
-escribirEnConsola(z);
-int z=x+y;
-int arreglo[][]=("hola");
-escribirEnConsola(z);
-If(x>=y){
-While(true){
+public class Miclase {
+  private Ig(int pfd){
+  }
+  private Igf(int pfdds){
+  }
+  public void principalMain(){
+     escribirEnConsola("Hola mundo desde Rex Raptor");
+     /*Este es un codigo de Raptor*/
+     int x=30;
+     string y="hola";
+     escribirEnConsola(x);
+     escribirEnConsola(y);
+     escribirEnConsola(z);
+     int z=x+y;
+     int arreglo[][]=("hola" );
+     escribirEnConsola(z);
+     If(x>=y){
+           While(true){
 
-}
-escribirEnConsola("X es mayor");
-}
+            }
+            escribirEnConsola("X es mayor");
+            If(true){
+                  For(int i =0; i<=55;++;){
+                        escribirEnConsola(z);
+                  }
+
+            } Else{
+
+                  int z=x+y+5*5434/44;
+                  double ax = 2.5;
+                  int arreglo[][]=("hola");
+           }
+      }
+   }
+
+   public void escribirEnConsola(char variable){
+           Try{
+                 escribirEnConsola(z);
+           }Catch(Except e){
+                 escribirEnConsola(x);
+                 escribirEnConsola(y);
+                 escribirEnConsola(z);
+           }
+           Switch Switch var{
+               Case 1:
+                  escribirEnConsola(x);
+               break;
+
+               Case "a":
+                  escribirEnConsola(y);
+               break;
+
+               Case 'b':
+                  escribirEnConsola(f);
+               break;
+               Default
+                  escribirEnConsola(p);
+               break;
+           }
+    }
+    public int sumarNumeros(int x, string y){
+           double z=x+y;
+            return z;
+      }
 }
 
-public void escribirEnConsola(char variable){
-
-}
-public int sumarNumeros(int x, string y){
-double z=x+y;
-return z;
-}
-}
