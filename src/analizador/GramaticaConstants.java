@@ -191,6 +191,8 @@ public interface GramaticaConstants {
   int ACENTO = 97;
   /** RegularExpression Id. */
   int BARRAI = 98;
+  /** RegularExpression Id. */
+  int ARROBA = 99;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -298,6 +300,7 @@ public interface GramaticaConstants {
     "\"`\"",
     "\"\\u00b4\"",
     "\"\\\\\"",
+    "\"@\"",
   };
 
 }

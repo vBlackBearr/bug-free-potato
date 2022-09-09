@@ -4,11 +4,11 @@ package Analizador;
 
 /** Token Manager. */
 public class GramaticaTokenManager implements GramaticaConstants
-{
-public String muestraLexico="";
+{public String muestraLexico="";
     public GramaticaTokenManager(){
         
     }
+
   /** Debug output. */
   public  java.io.PrintStream debugStream = System.out;
   /** Set debug output. */
@@ -251,6 +251,8 @@ private int jjMoveStringLiteralDfa0_0()
       case 62:
          jjmatchedKind = 56;
          return jjMoveStringLiteralDfa1_0(0x400000000000000L, 0x0L);
+      case 64:
+         return jjStopAtPos(0, 99);
       case 65:
          return jjMoveStringLiteralDfa1_0(0x4000008000000000L, 0x0L);
       case 67:
@@ -1123,7 +1125,7 @@ public static final String[] jjstrLiteralImages = {
 "\117\122", "\116\117\124", "\53\53", "\55\55", "\75", "\53\75", "\55\75", "\52\75", 
 "\57\75", "\45\75", "\53", "\55", "\57", "\136", "\45", "\52", null, null, null, null, 
 null, null, null, null, null, null, null, null, null, "\252", "\272", "\347", 
-"\250", "\140", "\264", "\134", };
+"\250", "\140", "\264", "\134", "\100", };
 
 /** Lexer state names. */
 public static final String[] lexStateNames = {
@@ -1136,10 +1138,10 @@ public static final int[] jjnewLexState = {
    -1, -1, -1, -1, -1, -1, 1, 0, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 
    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 
    -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 
-   -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 
+   -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, 
 };
 static final long[] jjtoToken = {
-   0xfffffffffffffe01L, 0x7fff87fffL, 
+   0xfffffffffffffe01L, 0xffff87fffL, 
 };
 static final long[] jjtoSkip = {
    0x1feL, 0x0L, 
@@ -1911,6 +1913,13 @@ void TokenLexicalActions(Token matchedToken)
         image.append(jjstrLiteralImages[98]);
         lengthOfMatch = jjstrLiteralImages[98].length();
                          muestraLexico = muestraLexico + image + " -> Car\u00c3\u00a1cter no valido " + "\n";
+         break;
+      case 99 :
+        if (image == null)
+            image = new StringBuffer();
+        image.append(jjstrLiteralImages[99]);
+        lengthOfMatch = jjstrLiteralImages[99].length();
+                            System.out.println(image + " -> Car\u00c3\u00a1cter no valido " + "\n");
          break;
       default : 
          break;

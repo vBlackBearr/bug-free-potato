@@ -17,7 +17,7 @@ int arreglo[]=("hola");
 escribirEnConsola(z);
 If(x>=y){
 While(true){
-
+@
 }
 escribirEnConsola("X es mayor");
 }

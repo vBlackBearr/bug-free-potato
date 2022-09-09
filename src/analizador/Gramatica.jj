@@ -171,6 +171,7 @@ TOKEN : {
     | < ACENTOI: "`" > { muestraLexico = muestraLexico + image + " -> Carácter no valido " + "\n";}
     | < ACENTO: "\u00b4" > { muestraLexico = muestraLexico + image + " -> Carácter no valido " + "\n";}
     | < BARRAI: "\\" > { muestraLexico = muestraLexico + image + " -> Carácter no valido " + "\n";}
+    | < ARROBA: "\u0040" > {System.out.println(image + " -> Carácter no valido " + "\n");}
 }
 /** Fin Lexico */
 
