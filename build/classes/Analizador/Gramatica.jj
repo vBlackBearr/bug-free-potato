@@ -312,7 +312,7 @@ void Variables_clase() :
 void Sentencia() : 
 {}
 {
-    (<FOR> Sentencia_ciclofor() Sentencia() | <IF> Sentencia_condicion() Sentencia() | Tipo() Declaracion()<PYC> Sentencia() | <VAR> Sentencia_incremental() Sentencia() | <SWITCH> Sentencia_switch() Sentencia() | <TRY> Sentencia_try() Sentencia() | <THIS> Sentencia_this() Sentencia() | Sentencia_ciclowhile() Sentencia() | <FUNC> SentenciaLlamarMetodo() Sentencia())?
+    (<FOR> Sentencia_ciclofor() Sentencia() | <IF> Sentencia_condicion() Sentencia() | Tipo() Declaracion()<PYC> Sentencia() | <VAR> Sentencia_incremental()<PYC> Sentencia() | <SWITCH> Sentencia_switch() Sentencia() | <TRY> Sentencia_try() Sentencia() | <THIS> Sentencia_this() Sentencia() | Sentencia_ciclowhile() Sentencia() | <FUNC> SentenciaLlamarMetodo() Sentencia())?
 }
 
 void Parametros() : 
@@ -361,7 +361,7 @@ void Sentencia_condicion() :
 void Sentencia_incremental() : 
 {}
 {
-    <INCRE><PYC> | <DECRE><PYC>
+    <INCRE> | <DECRE>
 }
 
 void Super() : 
@@ -463,7 +463,7 @@ void DeclaracionTA1() :
 void ArregloD():
 {}
 {
-    <CORA><CORC>(<CORA><CORC>)?
+    <CORA><CORC>
 }
 
 void ArregloL():
@@ -477,7 +477,7 @@ void ArregloL():
 void Valor():
 {}
 {
-    <ENTERO>|<FLOTANTEDOUBLE>|<CHAR>|<CADENA>|<TRUE>|<FALSE>|<VAR> (ArregloL())?
+    <ENTERO>|<FLOTANTEDOUBLE>|<CHAR>|<CADENA>|<TRUE>|<FALSE>|<VAR> (<CORA>ArregloL())?
 }
 
 void Oper():
