@@ -5,10 +5,9 @@ package Analizador;
 /** Token Manager. */
 public class GramaticaTokenManager implements GramaticaConstants
 {
-    public String muestraLexico = "";
-
-    public GramaticaTokenManager() {
-
+public String muestraLexico="";
+    public GramaticaTokenManager(){
+        
     }
   /** Debug output. */
   public  java.io.PrintStream debugStream = System.out;
