@@ -8,7 +8,7 @@ PARSER_BEGIN(Gramatica)
 /** Analizador de expresiones aritmeticas sencillas. */
 package Analizador; 
 public class Gramatica {
-
+    public static int linea=1;
     String muestraLexico = "";
 }
 PARSER_END(Gramatica)
@@ -181,25 +181,104 @@ TOKEN : {
 void Inicio() : 
 {}
 {
-    Import() Clases() <EOF>
+    try {
+        Import() Clases() <EOF>
+    }
+    catch(ParseException e)
+    {
+        Token t=getToken(0);
+            if(t.image==null){
+           t=getNextToken();
+        }
+        if (t.image=="\n")
+        {
+            linea = linea + 1;
+        }
+        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n")
+        {
+            do{
+                t=getNextToken();
+            }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n");
+        }
+    }
 }
 
 void Import() : 
 {}
 {
-    (<IMPORT> Import1())?
+    try {
+        (<IMPORT> Import1())?
+    }
+    catch(ParseException e)
+        {
+            Token t=getToken(0);
+            if(t.image==null){
+                t=getNextToken();
+            }
+            System.out.println("Error en nombre de libreria: "+t.beginLine);
+        if (t.image=="\n")
+        {
+            linea = linea + 1;
+        }
+        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n")
+        {
+            do{
+                t=getNextToken();
+            }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n");
+        }
+        Inicio();
+    }
+}
+
+void Puntoyc():
+{}
+{
+    try {
+        <PYC>
+    }
+    catch(ParseException e){ 
+            Token t=getToken(0);
+            if(t.image==null){
+                t=getNextToken();
+            }
+            System.out.println("Falta punto y coma: "+t.beginLine);
+            if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image==null)
+            {
+                do{
+                    t=getNextToken();
+                }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image==null);
+            }
+            if (t.image=="\n")
+            {
+                linea = linea + 1;
+            }
+    }
 }
 
 void Import1() : 
 {}
 {
-    <LIBR> <PYC> Import2()
-}
-
-void Import2() : 
-{}
-{
-    (<IMPORT> Import1())?
+    try {
+        <LIBR> Puntoyc() Import()
+    }
+    catch(ParseException e){           
+            Token t=getToken(0);
+            if(t.image==null){
+                t=getNextToken();
+            }
+            System.out.println("Error en nombre de libreria: "+t.beginLine);
+            if (t.image=="\n")
+            {
+                linea = linea + 1;
+            }
+            if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n")
+            {
+                do{
+                    t=getNextToken();
+                }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n");
+            }
+            Import();
+    }
 }
 
 void Tipo() : 
