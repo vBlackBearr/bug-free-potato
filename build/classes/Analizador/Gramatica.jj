@@ -9,6 +9,7 @@ PARSER_BEGIN(Gramatica)
 package Analizador; 
 public class Gramatica {
     public static int linea=1;
+    	public static int la;
     String muestraLexico = "";
 }
 PARSER_END(Gramatica)
@@ -190,12 +191,14 @@ void Inicio() :
             if(t.image==null){
            t=getNextToken();
         }
-        if (t.image=="\n")
-        {
-            linea = linea + 1;
-        }
-        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n")
-        {
+        System.out.println("Error general");
+        la=t.beginLine;
+			if (t.image=="\n")
+			{
+				linea = linea + 1;
+			}
+			if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n")
+			{
             do{
                 t=getNextToken();
             }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n");
@@ -215,43 +218,19 @@ void Import() :
             if(t.image==null){
                 t=getNextToken();
             }
-            System.out.println("Error en nombre de libreria: "+t.beginLine);
-        if (t.image=="\n")
-        {
-            linea = linea + 1;
-        }
-        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n")
-        {
+            System.out.println("Error en declaracion de import: "+t.beginLine);
+			la=t.beginLine;
+			if (t.image=="\n")
+			{
+				linea = linea + 1;
+			}
+			if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n")
+			{
             do{
                 t=getNextToken();
             }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n");
         }
-        Inicio();
-    }
-}
-
-void Puntoyc():
-{}
-{
-    try {
-        <PYC>
-    }
-    catch(ParseException e){ 
-            Token t=getToken(0);
-            if(t.image==null){
-                t=getNextToken();
-            }
-            System.out.println("Falta punto y coma: "+t.beginLine);
-            if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image==null)
-            {
-                do{
-                    t=getNextToken();
-                }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image==null);
-            }
-            if (t.image=="\n")
-            {
-                linea = linea + 1;
-            }
+		Inicio();
     }
 }
 
@@ -267,43 +246,340 @@ void Import1() :
                 t=getNextToken();
             }
             System.out.println("Error en nombre de libreria: "+t.beginLine);
-            if (t.image=="\n")
-            {
-                linea = linea + 1;
-            }
-            if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n")
-            {
-                do{
-                    t=getNextToken();
+            la=t.beginLine;
+        if (t.image=="\n")
+        {
+            linea = linea + 1;
+        }
+        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n")
+        {
+            do{
+				t=getNextToken();
                 }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n");
             }
-            Import();
+	Import();		
     }
+}
+
+void Puntoyc():
+{}
+{
+    try {
+            <PYC>
+        }
+        catch(ParseException e){           
+                Token t=getToken(0);
+                if(t.image==null){
+                    t=getNextToken();
+                }
+                System.out.println("Se esperaba \";\": "+t.beginLine);
+                la=t.beginLine;
+			if (t.image=="\n")
+			{
+				linea = linea + 1;
+			}
+			if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n")
+			{
+            do{
+                t=getNextToken();
+                    }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n");
+                } 
+        }
 }
 
 void Tipo() : 
 {}
 {
-     <INT>|<CHAR>|<STRING>|<BOOLEAN>|<FLOAT>|<DOUBLE>
+    try {
+        <INT>
+    }
+    catch(ParseException e)
+    {
+        Token t=getToken(0);
+            if(t.image==null){
+           t=getNextToken();
+        }
+        System.out.println("Error en declaracion de entero: "+t.beginLine);
+        la=t.beginLine;
+			if (t.image=="\n")
+			{
+				linea = linea + 1;
+			}
+			if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n")
+			{
+            do{
+                t=getNextToken();
+            }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n");
+        }
+    }
+     |
+    try {
+        <CHAR>
+    }
+    catch(ParseException e)
+    {
+        Token t=getToken(0);
+            if(t.image==null){
+           t=getNextToken();
+        }
+        System.out.println("Error en declaracion de char: "+t.beginLine);
+        la=t.beginLine;
+			if (t.image=="\n")
+			{
+				linea = linea + 1;
+			}
+			if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n")
+			{
+            do{
+                t=getNextToken();
+            }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n");
+        }
+    }
+    |
+    try {
+        <STRING>
+    }
+    catch(ParseException e)
+    {
+        Token t=getToken(0);
+            if(t.image==null){
+           t=getNextToken();
+        }
+        System.out.println("Error en declaracion de string: "+t.beginLine);
+        la=t.beginLine;
+			if (t.image=="\n")
+			{
+				linea = linea + 1;
+			}
+			if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n")
+			{
+            do{
+                t=getNextToken();
+            }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n");
+        }
+    }
+    |
+    try {
+        <BOOLEAN>
+    }
+    catch(ParseException e)
+    {
+        Token t=getToken(0);
+            if(t.image==null){
+           t=getNextToken();
+        }
+        System.out.println("Error en declaracion de boolean: "+t.beginLine);
+        la=t.beginLine;
+			if (t.image=="\n")
+			{
+				linea = linea + 1;
+			}
+			if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n")
+			{
+            do{
+                t=getNextToken();
+            }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n");
+        }
+    }
+    |
+    try {
+        <FLOAT>
+    }
+    catch(ParseException e)
+    {
+        Token t=getToken(0);
+            if(t.image==null){
+           t=getNextToken();
+        }
+        System.out.println("Error en declaracion de float: "+t.beginLine);
+        la=t.beginLine;
+			if (t.image=="\n")
+			{
+				linea = linea + 1;
+			}
+			if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n")
+			{
+            do{
+                t=getNextToken();
+            }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n");
+        }
+    }
+    |
+    try {
+        <DOUBLE>
+    }
+    catch(ParseException e)
+    {
+        Token t=getToken(0);
+            if(t.image==null){
+           t=getNextToken();
+        }
+        System.out.println("Error en declaracion de double: "+t.beginLine);
+        la=t.beginLine;
+			if (t.image=="\n")
+			{
+				linea = linea + 1;
+			}
+			if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n")
+			{
+            do{
+                t=getNextToken();
+            }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n");
+        }
+    }
 }
 
 void TipoEncapsular() : 
 {}
 {
-     <PUBLIC>|<PRIVATE>
+    try {
+      <PUBLIC>  
+	}
+	catch(ParseException e)
+	{
+        Token t=getToken(0);
+            if(t.image==null){
+           t=getNextToken();
+        }
+		System.out.println("Se espereba \"public\": "+t.beginLine);
+        la=t.beginLine;
+			if (t.image=="\n")
+			{
+				linea = linea + 1;
+			}
+			if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n")
+			{
+            do{
+                t=getNextToken();
+            }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n");
+        }
+	}
+    |
+	try {
+		  <PRIVATE>  
+	}
+	catch(ParseException e)
+	{
+			Token t=getToken(0);
+				if(t.image==null){
+			   t=getNextToken();
+			}
+			System.out.println("Se espereba \"private\": "+t.beginLine);
+			la=t.beginLine;
+			if (t.image=="\n")
+			{
+				linea = linea + 1;
+			}
+			if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n")
+			{
+            do{
+                t=getNextToken();
+				}while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n");
+			}
+	}
 }
 
 void Clases() : 
 {}
 {
-    TipoEncapsular() <CLASS> <CLASES> ClasesA()
+    try {
+        TipoEncapsular() <CLASS>
+			try {
+				<CLASES> ClasesA()
+			}
+			catch(ParseException e)
+			{
+					Token t=getToken(0);
+						if(t.image==null){
+						t=getNextToken();
+					}
+						System.out.println("Error en nombre de clase: "+t.beginLine);
+					la=t.beginLine;
+			if (t.image=="\n")
+			{
+				linea = linea + 1;
+			}
+			if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n")
+			{
+            do{
+                t=getNextToken();
+				}while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n");
+			}
+			}
+    }
+    catch(ParseException e)
+    {
+            Token t=getToken(0);
+                if(t.image==null){
+                t=getNextToken();
+            }
+                System.out.println("Se esperaba \"class\": "+t.beginLine);
+            la=t.beginLine;
+			if (t.image=="\n")
+			{
+				linea = linea + 1;
+			}
+			if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n")
+			{
+				do{
+					t=getNextToken();
+				}while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n");
+            }
+            
+    }
 }
 
 void ClasesA() : 
 {}
 {
-   <LLAVA>(TipoEncapsular() (Constructor()|Cuerpo()))?<LLAVC> | <DERIVATE> <CLASES> <LLAVA>Constructor_hijo() Cuerpo()<LLAVC>
+	try {
+			<LLAVA>(TipoEncapsular() (Constructor()|Cuerpo()))?
+			try {
+				<LLAVC>
+			}
+			catch(ParseException e)
+			{
+					Token t=getToken(0);
+						if(t.image==null){
+					   t=getNextToken();
+					}
+					System.out.println("Se esperaba \"\": "+t.beginLine);
+					la=t.beginLine;
+				if (t.image=="\n")
+				{
+					linea = linea + 1;
+				}
+				if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n")
+				{
+					do{
+						t=getNextToken();
+					}while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n");
+				}
+			}
+	}
+		
+	catch(ParseException e)
+	{
+			Token t=getToken(0);
+				if(t.image==null){
+			   t=getNextToken();
+			}
+			System.out.println("Se esperaba \"\": "+t.beginLine);
+			la=t.beginLine;
+			if (t.image=="\n")
+			{
+				linea = linea + 1;
+			}
+			if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n")
+			{
+				do{
+					t=getNextToken();
+				}while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n");
+			}
+	}
+    | <DERIVATE> <CLASES> <LLAVA>Constructor_hijo() Cuerpo()<LLAVC>
 }
+
 
 void Constructor() : 
 {}
