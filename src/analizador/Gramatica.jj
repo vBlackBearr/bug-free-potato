@@ -312,7 +312,7 @@ void Tipo() :
             }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n");
         }
     }
-     |
+    |
     try {
         <CHAR>
     }
@@ -529,33 +529,64 @@ void Clases() :
     }
 }
 
-void ClasesA() : 
+void Llavea():
 {}
 {
 	try {
-			<LLAVA>(TipoEncapsular() (Constructor()|Cuerpo()))?
-			try {
-				<LLAVC>
+			<LLAVA>
+	}
+	catch(ParseException e)
+	{
+			Token t=getToken(0);
+				if(t.image==null){
+			   t=getNextToken();
 			}
-			catch(ParseException e)
+			System.out.println("Se esperaba \"{\": "+t.beginLine);
+			if (t.image=="\n")
 			{
-					Token t=getToken(0);
-						if(t.image==null){
-					   t=getNextToken();
-					}
-					System.out.println("Se esperaba \"\": "+t.beginLine);
-					la=t.beginLine;
-				if (t.image=="\n")
-				{
-					linea = linea + 1;
-				}
-				if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n")
-				{
-					do{
-						t=getNextToken();
-					}while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n");
-				}
+				linea = linea + 1;
 			}
+			if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n")
+			{
+				do{
+					t=getNextToken();
+				}while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n");
+			}
+	}
+}
+
+void Llavec():
+{}
+{
+	try {
+			<LLAVC>
+	}
+	catch(ParseException e)
+	{
+			Token t=getToken(0);
+				if(t.image==null){
+			   t=getNextToken();
+			}
+			System.out.println("Se esperaba \"}\": "+t.beginLine);
+			if (t.image=="\n")
+			{
+				linea = linea + 1;
+			}
+			if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n")
+			{
+				do{
+					t=getNextToken();
+				}while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n");
+			}
+	}
+}
+
+void ClasesA() : 
+{}
+{
+			
+	try {
+			Llavea()(TipoEncapsular() (Constructor()|Cuerpo()))? Llavec()
 	}
 		
 	catch(ParseException e)
@@ -564,7 +595,32 @@ void ClasesA() :
 				if(t.image==null){
 			   t=getNextToken();
 			}
-			System.out.println("Se esperaba \"\": "+t.beginLine);
+			System.out.println("Error en declaracion de clase: "+t.beginLine);
+			la=t.beginLine;
+			if (t.image=="\n")
+			{
+				linea = linea + 1;
+			}
+			if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n")
+			{
+				do{
+					t=getNextToken();
+				}while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n");
+			}
+			Clases();
+	}
+    | 
+	try {
+			<DERIVATE> <CLASES> Llavea()Constructor_hijo() Cuerpo()Llavec()
+	}
+		
+	catch(ParseException e)
+	{
+			Token t=getToken(0);
+				if(t.image==null){
+			   t=getNextToken();
+			}
+			System.out.println("Error en declaracion de clase: "+t.beginLine);
 			la=t.beginLine;
 			if (t.image=="\n")
 			{
@@ -577,26 +633,25 @@ void ClasesA() :
 				}while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n");
 			}
 	}
-    | <DERIVATE> <CLASES> <LLAVA>Constructor_hijo() Cuerpo()<LLAVC>
 }
 
 
 void Constructor() : 
 {}
 {
-    <CLASES> <PAREA>Argumentos()<PAREC> <LLAVA>Sentencia()<LLAVC> ConstructorA()
+    <CLASES> <PAREA>Argumentos()<PAREC> Llavea()Sentencia()Llavec() ConstructorA()
 }
 
 void ConstructorA() : 
 {}
 {
-    TipoEncapsular()(Cuerpo()|(<CLASES> <PAREA>Argumentos()<PAREC> <LLAVA>Sentencia()<LLAVC> ConstructorA())?)
+    TipoEncapsular()(Cuerpo()|(<CLASES> <PAREA>Argumentos()<PAREC> Llavea()Sentencia()Llavec() ConstructorA())?)
 }
 
 void Constructor_hijo() : 
 {}
 {
-    TipoEncapsular() <CLASES> <PAREA>Argumentos()<PAREC> <LLAVA>Super() Sentencia()<LLAVC>
+    TipoEncapsular() <CLASES> <PAREA>Argumentos()<PAREC> Llavea()Super() Sentencia()Llavec()
 }
 
 void Cuerpo() : 
@@ -620,13 +675,13 @@ void MetodosA() :
 void Principal() : 
 {}
 {
-    <PRINMAIN><PAREA><PAREC> <LLAVA>Sentencia()<LLAVC> 
+    <PRINMAIN><PAREA><PAREC> Llavea()Sentencia()Llavec() 
 }
 
 void Metodo() : 
 {}
 {
-    <FUNC> <PAREA>Argumentos()<PAREC> <LLAVA>Sentencia() Retorno()<LLAVC>
+    <FUNC> <PAREA>Argumentos()<PAREC> Llavea()Sentencia() Retorno()Llavec()
 }
 
 void Retorno() : 
@@ -644,7 +699,7 @@ void Tipo_retorno() :
 void Metodo_void() : 
 {}
 {
-    <PAREA>Argumentos()<PAREC> <LLAVA>Sentencia()<LLAVC>
+    <PAREA>Argumentos()<PAREC> Llavea()Sentencia()Llavec()
 }
 
 void Argumentos() : 
@@ -693,25 +748,25 @@ void SentenciaLlamarMetodo() :
 void Sentencia_try() : 
 {}
 {
-    <LLAVA>Sentencia()<LLAVC> <CATCH> <PAREA> <EXCEPT> <VAR><PAREC> <LLAVA>Sentencia()<LLAVC>
+    Llavea()Sentencia()Llavec() <CATCH> <PAREA> <EXCEPT> <VAR><PAREC> Llavea()Sentencia()Llavec()
 }
 
 void Sentencia_ciclofor() : 
 {}
 {
-    <PAREA>Declaracionfor()<PYC> Condg()<PYC> Sentencia_incremental()<PAREC> <LLAVA>Sentencia()<LLAVC>
+    <PAREA>Declaracionfor()<PYC> Condg()<PYC> Sentencia_incremental()<PAREC> Llavea()Sentencia()Llavec()
 }
 
 void Sentencia_ciclowhile() : 
 {}
 {
-    <WHILE> <PAREA>Condg()<PAREC> <LLAVA>Sentencia()<LLAVC> | <DO> <LLAVA>Sentencia()<LLAVC> <WHILE> <PAREA>Condg()<PAREC> <PYC>
+    <WHILE> <PAREA>Condg()<PAREC> Llavea()Sentencia()Llavec() | <DO> Llavea()Sentencia()Llavec() <WHILE> <PAREA>Condg()<PAREC> <PYC>
 }
 
 void Sentencia_condicion() : 
 {}
 {
-    <PAREA>Condg()<PAREC> <LLAVA>Sentencia()<LLAVC> Si_e()
+    <PAREA>Condg()<PAREC> Llavea()Sentencia()Llavec() Si_e()
 }
 
 void Sentencia_incremental() : 
@@ -735,7 +790,7 @@ void Sentencia_this() :
 void Sentencia_switch() : 
 {}
 {
-    <VAR> (<CORA> ArregloL())? <LLAVA>Case() <DEF><DOSP> Sentencia() <BREAK><PYC><LLAVC> 
+    <VAR> (<CORA> ArregloL())? Llavea()Case() <DEF><DOSP> Sentencia() <BREAK><PYC>Llavec() 
 }
 
 void Case() : 
@@ -759,7 +814,7 @@ void Si_e() :
 void Si_EA() : 
 {}
 {
-    <LLAVA>Sentencia()<LLAVC> | Sentencia_condicion()
+    Llavea()Sentencia()Llavec() | Sentencia_condicion()
 }
 
 void Condg() : 
