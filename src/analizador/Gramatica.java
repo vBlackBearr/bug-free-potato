@@ -57,7 +57,7 @@ public class Gramatica implements GramaticaConstants {
             if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
            t=getNextToken();
         }
-            System.out.println("Error en nombre de libreria: "+t.beginLine);
+            System.out.println("Error en nombre de libreria, linea: "+t.beginLine+", columna: "+t.beginColumn);
             la=t.beginLine;
         if (t.image=="\n")
         {
@@ -83,7 +83,7 @@ public class Gramatica implements GramaticaConstants {
                 if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
            t=getNextToken();
         }
-                System.out.println("Se esperaba \";\": "+t.beginLine);
+                System.out.println("Se esperaba \";\", linea: "+t.beginLine+", columna: "+t.beginColumn);
                 la=t.beginLine;
                         if (t.image=="\n")
                         {
@@ -129,7 +129,7 @@ public class Gramatica implements GramaticaConstants {
             if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
            t=getNextToken();
         }
-        System.out.println("Se esperaba tipo de dato: "+t.beginLine);
+        System.out.println("Se esperaba tipo de dato, linea: "+t.beginLine+", columna: "+t.beginColumn);
         la=t.beginLine;
                         if (t.image=="\n")
                         {
@@ -163,7 +163,7 @@ public class Gramatica implements GramaticaConstants {
             if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
            t=getNextToken();
         }
-                System.out.println("Se espereba \"public\" o \"private\": "+t.beginLine);
+                System.out.println("Se espereba \"public\" o \"private\", linea: "+t.beginLine+", columna: "+t.beginColumn);
         la=t.beginLine;
                         if (t.image=="\n")
                         {
@@ -186,7 +186,7 @@ public class Gramatica implements GramaticaConstants {
                 if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
            t=getNextToken();
         }
-                System.out.println("Error en nombre de clase: "+t.beginLine);
+                System.out.println("Error en nombre de clase, linea: "+t.beginLine+", columna: "+t.beginColumn);
                 la=t.beginLine;
                 if (t.image=="\n")
                 {
@@ -213,7 +213,7 @@ public class Gramatica implements GramaticaConstants {
                                 t=getNextToken();
                         }
                         if(t.beginColumn!=1){
-                                System.out.println("Se esperaba \"class\": "+t.beginLine);
+                                System.out.println("Se esperaba \"class\", linea: "+t.beginLine+", columna: "+t.beginColumn);
                         }
             la=t.beginLine;
                         if (t.image=="\n")
@@ -239,7 +239,7 @@ public class Gramatica implements GramaticaConstants {
                                 if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
            t=getNextToken();
         }
-                        System.out.println("Se esperaba \"{\": "+t.beginLine);
+                        System.out.println("Se esperaba \"{\", linea: "+t.beginLine+", columna: "+t.beginColumn);
                         if (t.image=="\n")
                         {
                                 linea = linea + 1;
@@ -261,7 +261,7 @@ public class Gramatica implements GramaticaConstants {
                                 if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
            t=getNextToken();
         }
-                        System.out.println("Se esperaba \"}\": "+t.beginLine);
+                        System.out.println("Se esperaba \"}\", linea: "+t.beginLine+", columna: "+t.beginColumn);
                         if (t.image=="\n")
                         {
                                 linea = linea + 1;
@@ -303,7 +303,7 @@ public class Gramatica implements GramaticaConstants {
                                         if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
                            t=getNextToken();
                         }
-                                System.out.println("Error en contenido de clase: "+t.beginLine);
+                                System.out.println("Error en contenido de clase, linea: "+t.beginLine+", columna: "+t.beginColumn);
                                 la=t.beginLine;
                                 if (t.image=="\n")
                                 {
@@ -329,7 +329,7 @@ public class Gramatica implements GramaticaConstants {
                                 if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
            t=getNextToken();
         }
-                        System.out.println("Se esperaba \"(\": "+t.beginLine);
+                        System.out.println("Se esperaba \"(\", linea: "+t.beginLine+", columna: "+t.beginColumn);
                         if (t.image=="\n")
                         {
                                 linea = linea + 1;
@@ -351,7 +351,7 @@ public class Gramatica implements GramaticaConstants {
                                 if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
            t=getNextToken();
         }
-                        System.out.println("Se esperaba \")\": "+t.beginLine);
+                        System.out.println("Se esperaba \")\", linea: "+t.beginLine+", columna: "+t.beginColumn);
                         if (t.image=="\n")
                         {
                                 linea = linea + 1;
@@ -380,7 +380,7 @@ public class Gramatica implements GramaticaConstants {
                                 if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
            t=getNextToken();
         }
-                        System.out.println("Error en constructor: "+t.beginLine);
+                        System.out.println("Error en constructor, linea: "+t.beginLine+", columna: "+t.beginColumn);
                         if (t.image=="\n")
                         {
                                 linea = linea + 1;
@@ -433,7 +433,7 @@ public class Gramatica implements GramaticaConstants {
                                 if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
            t=getNextToken();
         }
-                        System.out.println("Error en constructor: "+t.beginLine);
+                        System.out.println("Error en constructor, linea: "+t.beginLine+", columna: "+t.beginColumn);
                         if (t.image=="\n")
                         {
                                 linea = linea + 1;
@@ -460,7 +460,7 @@ public class Gramatica implements GramaticaConstants {
                                 if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
            t=getNextToken();
         }
-                        System.out.println("Se esperaba \"void\": "+t.beginLine);
+                        System.out.println("Se esperaba \"void\", linea: "+t.beginLine+", columna: "+t.beginColumn);
                         if (t.image=="\n")
                         {
                                 linea = linea + 1;
@@ -508,7 +508,7 @@ public class Gramatica implements GramaticaConstants {
                                 if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
            t=getNextToken();
         }
-                        System.out.println("Se esperaba \"void\": "+t.beginLine);
+                        System.out.println("Se esperaba \"void\", linea: "+t.beginLine+", columna: "+t.beginColumn);
                         if (t.image=="\n")
                         {
                                 linea = linea + 1;
@@ -598,7 +598,7 @@ public class Gramatica implements GramaticaConstants {
                                 if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
            t=getNextToken();
         }
-                        System.out.println("Error en nombre de funcion: "+t.beginLine);
+                        System.out.println("Error en nombre de funcion, linea: "+t.beginLine+", columna: "+t.beginColumn);
                         if (t.image=="\n")
                         {
                                 linea = linea + 1;
@@ -627,7 +627,7 @@ public class Gramatica implements GramaticaConstants {
                                 if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
            t=getNextToken();
         }
-                        System.out.println("Error en metodo: "+t.beginLine);
+                        System.out.println("Error en metodo, linea: "+t.beginLine+", columna: "+t.beginColumn);
                         if (t.image=="\n")
                         {
                                 linea = linea + 1;
@@ -653,7 +653,7 @@ public class Gramatica implements GramaticaConstants {
                                 if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
            t=getNextToken();
         }
-                        System.out.println("Se esperaba \"return\": "+t.beginLine);
+                        System.out.println("Se esperaba \"return\", linea: "+t.beginLine+", columna: "+t.beginColumn);
                         if (t.image=="\n")
                         {
                                 linea = linea + 1;
@@ -676,7 +676,7 @@ public class Gramatica implements GramaticaConstants {
                                 if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
            t=getNextToken();
         }
-                        System.out.println("Error en retorno: "+t.beginLine);
+                        System.out.println("Error en retorno, linea: "+t.beginLine+", columna: "+t.beginColumn);
                         if (t.image=="\n")
                         {
                                 linea = linea + 1;
@@ -698,12 +698,30 @@ public class Gramatica implements GramaticaConstants {
   }
 
   final public void Metodo_void() throws ParseException {
-    Parea();
-    Argumentos();
-    Parec();
-    Llavea();
-    Sentencia();
-    Llavec();
+    try {
+      Parea();
+      Argumentos();
+      Parec();
+      Llavea();
+      Sentencia();
+      Llavec();
+    } catch (ParseException e) {
+                        Token t=getToken(0);
+                                if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
+           t=getNextToken();
+        }
+                        System.out.println("Error en metodo, linea: "+t.beginLine+", columna: "+t.beginColumn);
+                        if (t.image=="\n")
+                        {
+                                linea = linea + 1;
+                        }
+                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
+                        {
+                                do{
+                                        t=getNextToken();
+                                }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+                        }
+    }
   }
 
   final public void Argumentos() throws ParseException {
@@ -716,7 +734,7 @@ public class Gramatica implements GramaticaConstants {
                                 if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
            t=getNextToken();
         }
-                        System.out.println("Error en argumentos: "+t.beginLine);
+                        System.out.println("Error en argumentos, linea: "+t.beginLine+", columna: "+t.beginColumn);
                         if (t.image=="\n")
                         {
                                 linea = linea + 1;
@@ -1076,7 +1094,7 @@ public class Gramatica implements GramaticaConstants {
                                 if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
            t=getNextToken();
         }
-                        System.out.println("Se esperaba \"Case\": "+t.beginLine);
+                        System.out.println("Se esperaba \"Case\", linea: "+t.beginLine+", columna: "+t.beginColumn);
                         if (t.image=="\n")
                         {
                                 linea = linea + 1;
