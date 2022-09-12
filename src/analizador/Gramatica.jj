@@ -15,7 +15,7 @@ public class Gramatica {
 PARSER_END(Gramatica)
 
 /** Lexico */
-    <*>SKIP : {
+	<*>SKIP : {
       " "
     | "\t"
 	| "\r"
@@ -28,42 +28,40 @@ PARSER_END(Gramatica)
 
 
 /** ---------- Palabras reservadas ---------- */
-TOKEN : {
-      < IF : "If" > { muestraLexico = muestraLexico + " If -> Palabra reservada ( 1 - Si)" + "\n"; } : DEFAULT
-    | < ELSE: "Else" > { muestraLexico = muestraLexico + "Else -> Palabra reservada ( 2 - Sino)" + "\n"; } : DEFAULT
-    | < WHILE: "While" > { muestraLexico = muestraLexico + "While -> Palabra reservada ( 3 - Mientras)" + "\n"; } : DEFAULT
-    | < CLASS: "class" > {muestraLexico = muestraLexico + "class -> Palabra reservada ( 4 - Clase)" + "\n";;} : DEFAULT
-    | < PACK: "Pack" > { muestraLexico = muestraLexico + "Pack -> Palabra reservada ( 5 - Paquete)" + "\n"; } : DEFAULT
-    | < LIBRARY: "Library" > { muestraLexico = muestraLexico + "Library -> Palabra reservada ( 6 - Libreria)" + "\n"; } : DEFAULT
-    | < PUBLIC: "public" > { muestraLexico = muestraLexico + "public -> Palabra reservada ( 7 - Publico)" + "\n"; } : DEFAULT
-    | < PRIVATE: "private" > { muestraLexico = muestraLexico + "private -> Palabra reservada ( 8 - Privado)" + "\n"; } : DEFAULT
-    | < BREAK: "break" > { muestraLexico = muestraLexico + "break -> Palabra reservada ( 9 - Interrumpir)" + "\n"; } : DEFAULT
-    | < DO: "do" > { muestraLexico = muestraLexico + "do -> Palabra reservada ( 10 - Hacer)" + "\n"; } : DEFAULT
-    | < CHAR: "char" > { muestraLexico = muestraLexico + "char -> Palabra reservada ( 11 - Caracter)" + "\n"; } : DEFAULT
-    | < STRING: "string" > { muestraLexico = muestraLexico + "string -> Palabra reservada ( 12 - Cadena)" + "\n"; } : DEFAULT
-    | < INT: "int" > { muestraLexico = muestraLexico + "int -> Palabra reservada ( 13 - Entero )" + "\n"; } : DEFAULT
-    | < FLOAT: "float" > { muestraLexico = muestraLexico + "float -> Palabra reservada ( 14 - Flotante )" + "\n"; } : DEFAULT
-    | < BOOLEAN: "boolean" > { muestraLexico = muestraLexico + "boolean -> Palabra reservada ( 15 - Booleano )" + "\n"; } : DEFAULT
-    | < TRY: "Try" > { muestraLexico = muestraLexico + "Try -> Palabra reservada ( 16 - Intenta... )" + "\n"; } : DEFAULT
-    | < CATCH: "Catch" > { muestraLexico = muestraLexico + "Catch -> Palabra reservada ( 17 - Atrapa... )" + "\n"; } : DEFAULT
-    | < SUPER: "Super" > { muestraLexico = muestraLexico + "Super -> Palabra reservada ( 18 - Super )" + "\n"; } : DEFAULT
-    | < THIS: "This" > { muestraLexico = muestraLexico + "This -> Palabra reservada ( 19 - Este )" + "\n"; } : DEFAULT
-    | < DERIVATE: "Derivate" > { muestraLexico = muestraLexico + "Derivate -> Palabra reservada ( 20 - Deriva de... )" + "\n"; } : DEFAULT
-    | < RETURN: "return" > { muestraLexico = muestraLexico + "return -> Palabra reservada ( 21 - Regresa... )" + "\n"; } : DEFAULT
-    | < FINAL: "Final" > { muestraLexico = muestraLexico + "Final -> Palabra reservada ( 22 - Final )" + "\n"; } : DEFAULT
-    | < VOID: "void" > { muestraLexico = muestraLexico + "void -> Palabra reservada ( 23 - Vacio )" + "\n"; } : DEFAULT
-    | < NULL: "null" > { muestraLexico = muestraLexico + "null -> Palabra reservada ( 24 - Nulo )" + "\n"; } : DEFAULT
-    | < IMPORT: "import" > { muestraLexico = muestraLexico + "import -> Palabra reservada ( 25 - Importar... )" + "\n"; } : DEFAULT
-    | < TRUE: "true" > { muestraLexico = muestraLexico + "true -> Palabra reservada ( 26 - Verdadero )" + "\n"; } : DEFAULT
-    | < FALSE: "false" > { muestraLexico = muestraLexico + "false -> Palabra reservada ( 27 - Falso )" + "\n"; } : DEFAULT
-    | < FOR: "For" > { muestraLexico = muestraLexico + "For -> Palabra reservada ( 28 - Para... )" + "\n"; } : DEFAULT
-    | < SWITCH: "Switch" > { muestraLexico = muestraLexico + "Switch -> Palabra reservada ( 29 - Switch )" + "\n"; } : DEFAULT
-    | < CASE: "Case" > { muestraLexico = muestraLexico + "Case -> Palabra reservada ( 30 - Caso tipo... )" + "\n"; } : DEFAULT
-    | < ARRAY: "Array" > { muestraLexico = muestraLexico + "Array -> Palabra reservada ( 31 - Arreglo )" + "\n"; } : DEFAULT
-    | < PRINMAIN: "principalMain" > { muestraLexico = muestraLexico + "principalMain -> Palabra reservada ( 32 - Principal )" + "\n"; } : DEFAULT
-    | < DOUBLE: "double" > { muestraLexico = muestraLexico + "double -> Palabra reservada ( 33 - Decimal )" + "\n"; }: DEFAULT
-    | < EXCEPT: "Except" > { muestraLexico = muestraLexico + "Except -> Palabra reservada ( 34 - Excepto... )" + "\n"; }: DEFAULT
-    | < DEF: "Default" > { muestraLexico = muestraLexico + "Default -> Palabra reservada ( 35 - Default )" + "\n"; }: DEFAULT
+<*>TOKEN : {
+      < IF : "If" > {System.out.println(image + " -> Palabra reservada " + "\n");} : DEFAULT
+    | < ELSE: "Else" > {System.out.println(image + " -> Palabra reservada " + "\n");} : DEFAULT
+    | < WHILE: "While" > {System.out.println(image + " -> Palabra reservada " + "\n");} : DEFAULT
+    | < CLASS: "class" > {System.out.println(image + " -> Palabra reservada " + "\n");} : DEFAULT
+    | < PACK: "Pack" > {System.out.println(image + " -> Palabra reservada " + "\n");} : DEFAULT
+    | < PUBLIC: "public" > {System.out.println(image + " -> Palabra reservada " + "\n");} : DEFAULT
+    | < PRIVATE: "private" > {System.out.println(image + " -> Palabra reservada " + "\n");} : DEFAULT
+    | < BREAK: "break" > {System.out.println(image + " -> Palabra reservada " + "\n");} : DEFAULT
+    | < DO: "do" > {System.out.println(image + " -> Palabra reservada " + "\n");} : DEFAULT
+    | < CHAR: "char" > {System.out.println(image + " -> Palabra reservada " + "\n");} : DEFAULT
+    | < STRING: "string" > {System.out.println(image + " -> Palabra reservada " + "\n");} : DEFAULT
+    | < INT: "int" > {System.out.println(image + " -> Palabra reservada " + "\n");} : DEFAULT
+    | < FLOAT: "float" > {System.out.println(image + " -> Palabra reservada " + "\n");} : DEFAULT
+    | < BOOLEAN: "boolean" > {System.out.println(image + " -> Palabra reservada " + "\n");} : DEFAULT
+    | < TRY: "Try" > {System.out.println(image + " -> Palabra reservada " + "\n");} : DEFAULT
+    | < CATCH: "Catch" > {System.out.println(image + " -> Palabra reservada " + "\n");} : DEFAULT
+    | < SUPER: "Super" > {System.out.println(image + " -> Palabra reservada " + "\n");} : DEFAULT
+    | < THIS: "this" > {System.out.println(image + " -> Palabra reservada " + "\n");} : DEFAULT
+    | < DERIVATE: "Derivate" > {System.out.println(image + " -> Palabra reservada " + "\n");} : DEFAULT
+    | < RETURN: "return" > {System.out.println(image + " -> Palabra reservada " + "\n");} : DEFAULT
+    | < FINAL: "Final" > {System.out.println(image + " -> Palabra reservada " + "\n");} : DEFAULT
+    | < VOID: "void" > {System.out.println(image + " -> Palabra reservada " + "\n");} : DEFAULT
+    | < NULL: "null" > {System.out.println(image + " -> Palabra reservada " + "\n");} : DEFAULT
+    | < IMPORT: "import" > {System.out.println(image + " -> Palabra reservada " + "\n");} : DEFAULT
+    | < TRUE: "true" > {System.out.println(image + " -> Palabra reservada " + "\n");} : DEFAULT
+    | < FALSE: "false" > {System.out.println(image + " -> Palabra reservada " + "\n");} : DEFAULT
+    | < FOR: "For" > {System.out.println(image + " -> Palabra reservada " + "\n");} : DEFAULT
+    | < SWITCH: "Switch" > {System.out.println(image + " -> Palabra reservada " + "\n");} : DEFAULT
+    | < CASE: "Case" > {System.out.println(image + " -> Palabra reservada " + "\n");} : DEFAULT
+    | < PRINMAIN: "principalMain" > {System.out.println(image + " -> Palabra reservada " + "\n");} : DEFAULT
+    | < DOUBLE: "double" > {System.out.println(image + " -> Palabra reservada " + "\n");} : DEFAULT
+    | < EXCEPT: "Except" > {System.out.println(image + " -> Palabra reservada " + "\n");} : DEFAULT
+    | < DEF: "Default" > {System.out.println(image + " -> Palabra reservada " + "\n");} : DEFAULT
 }
     
 
@@ -71,102 +69,102 @@ TOKEN : {
 
 
 /** ---------- Tokens fijos ---------- */
-TOKEN : {
-     < LLAVA: "{" > { muestraLexico = muestraLexico + "{ -> Token fijo ( 36 - LLave que abre )" + "\n";} : SALTO
-    | < LLAVC: "}" > { muestraLexico = muestraLexico + "{ -> Token fijo ( 37 - LLave que cierra )" + "\n";} : SALTO
-    | < CORA: "[" > { muestraLexico = muestraLexico + "[ -> Token fijo ( 38 - Corchete que abre )" + "\n";}  : DEFAULT
-    | < CORC: "]" > { muestraLexico = muestraLexico + "] -> Token fijo ( 39 - Corchete que cierra )" + "\n";}  : DEFAULT
-    | < PAREA: "(" > { muestraLexico = muestraLexico + "( -> Token fijo ( 40 - Parentesis que abre )" + "\n";}  : DEFAULT
-    | < PAREC: ")" > { muestraLexico = muestraLexico + ") -> Token fijo ( 41 - Parentesis que cierra )" + "\n";}  : DEFAULT
-    | < PYC: ";" > { muestraLexico = muestraLexico + "; -> Token fijo ( 42 - Punto y coma )" + "\n";} : SALTO
-    | < COMSIM: "'" > { muestraLexico = muestraLexico + "' -> Token fijo ( 43 - Comilla simple )" + "\n";}  : DEFAULT
-    | < COM: "," > { muestraLexico = muestraLexico + ", -> Token fijo ( 44 - Como )" + "\n";}  : DEFAULT
-    | < PUNT: "." > { muestraLexico = muestraLexico + ". -> Token fijo ( 45 - Punto )" + "\n";}  : DEFAULT
-    | < GUIONB: "_" > { muestraLexico = muestraLexico + "_ -> Token fijo ( 46 - Guion bajo )" + "\n";}  : DEFAULT
-    | < DOSP: ":" > { muestraLexico = muestraLexico + ": -> Token fijo ( 47 - Dos puntos )" + "\n";}  : DEFAULT
+<*>TOKEN : {
+     < LLAVA: "{" > {System.out.println(image + " -> Token fijo " + "\n");} : SALTO
+    | < LLAVC: "}" > {System.out.println(image + " -> Token fijo " + "\n");} : SALTO
+    | < CORA: "[" > {System.out.println(image + " -> Token fijo " + "\n");} : DEFAULT
+    | < CORC: "]" > {System.out.println(image + " -> Token fijo " + "\n");} : DEFAULT
+    | < PAREA: "(" > {System.out.println(image + " -> Token fijo " + "\n");} : DEFAULT
+    | < PAREC: ")" > {System.out.println(image + " -> Token fijo " + "\n");} : DEFAULT
+    | < PYC: ";" > {System.out.println(image + " -> Token fijo " + "\n");} : SALTO
+    | < COMSIM: "'" > {System.out.println(image + " -> Token fijo " + "\n");} : DEFAULT
+    | < COM: "," > {System.out.println(image + " -> Token fijo " + "\n");} : DEFAULT
+    | < PUNT: "." > {System.out.println(image + " -> Token fijo " + "\n");} : DEFAULT
+    | < GUIONB: "_" > {System.out.println(image + " -> Token fijo " + "\n");} : DEFAULT
+    | < DOSP: ":" > {System.out.println(image + " -> Token fijo " + "\n");} : DEFAULT
 }
 
 
 
 /** ---------- Operadores relacionales ---------- */
-TOKEN : {
-      < MAYORQ : ">" > { muestraLexico = muestraLexico + "> -> Operador relacional ( 48 - Mayor que )" + "\n";}  : DEFAULT
-    | < MENORQ: "<" > { muestraLexico = muestraLexico + "< -> Operador relacional ( 49 - Menor que )" + "\n";}  : DEFAULT
-    | < MAYORI: ">=" > { muestraLexico = muestraLexico + ">= -> Operador relacional ( 50 - Mayor o igual que )" + "\n";}  : DEFAULT
-    | < MENORI: "<=" > { muestraLexico = muestraLexico + ">= -> Operador relacional ( 51 - Menor o igual que )" + "\n";}  : DEFAULT
-    | < IGUALI: "==" > { muestraLexico = muestraLexico + "== -> Operador relacional ( 52 - Igual Igual )" + "\n";}  : DEFAULT
-    | < DIFER: "<>" > { muestraLexico = muestraLexico + "== -> Operador relacional ( 53 - Diferente )" + "\n";}  : DEFAULT
+<*>TOKEN : {
+      < MAYORQ : ">" > {System.out.println(image + " -> Operador relacional " + "\n");} : DEFAULT
+    | < MENORQ: "<" > {System.out.println(image + " -> Operador relacional " + "\n");} : DEFAULT
+    | < MAYORI: ">=" > {System.out.println(image + " -> Operador relacional " + "\n");} : DEFAULT
+    | < MENORI: "<=" > {System.out.println(image + " -> Operador relacional " + "\n");} : DEFAULT
+    | < IGUALI: "==" > {System.out.println(image + " -> Operador relacional " + "\n");} : DEFAULT
+    | < DIFER: "<>" > {System.out.println(image + " -> Operador relacional " + "\n");} : DEFAULT
 }
 
 
 
 /** ---------- Operadores lógicos ---------- */
-TOKEN : {
-      < AND: "AND" > { muestraLexico = muestraLexico + "AND -> Palabra reservada ( 54 - Y )" + "\n";}  : DEFAULT
-    | < OR: "OR" > { muestraLexico = muestraLexico + "OR -> Palabra reservada ( 55 - O )" + "\n";} : DEFAULT
-    | < NOT: "NOT" > { muestraLexico = muestraLexico + "NOT -> Palabra reservada ( 56 - Negacion )" + "\n";} : DEFAULT
+<*>TOKEN : {
+      < AND: "AND" > {System.out.println(image + " -> Operador lógico " + "\n");} : DEFAULT
+    | < OR: "OR" > {System.out.println(image + " -> Operador lógico " + "\n");} : DEFAULT
+    | < NOT: "NOT" > {System.out.println(image + " -> Operador lógico " + "\n");} : DEFAULT
 }
 
 
 
 /** ---------- Operadores incrementales ---------- */
-TOKEN : {
-      < INCRE: "++" > { muestraLexico = muestraLexico + "++ -> Operador incremental ( 57 - Sumando )" + "\n";}  : DEFAULT
-    | < DECRE: "--" > { muestraLexico = muestraLexico + "-- -> Operador incremental ( 58 - Restando )" + "\n";}  : DEFAULT
-} 
+<*>TOKEN : {
+      < INCRE: "++" > {System.out.println(image + " -> Operador incremental " + "\n");} : DEFAULT
+    | < DECRE: "--" > {System.out.println(image + " -> Operador incremental " + "\n");} : DEFAULT
+}
 
 
 
 /** ---------- Operadores de asignación ---------- */
-TOKEN : {
-      < ASIG: "=" > { muestraLexico = muestraLexico + "= -> Operador de asignación ( 59 - Es igual a )" + "\n";} : DEFAULT
-    | < SUMASIG: "+=" > { muestraLexico = muestraLexico + "+= -> Operador de asignación ( 59 - Suma a )" + "\n";} : DEFAULT
-    | < RESASIG: "-=" > { muestraLexico = muestraLexico + "-= -> Operador de asignación ( 60 - Restale a )" + "\n";} : DEFAULT
-    | < MULASIG: "*=" > { muestraLexico = muestraLexico + "*= -> Operador de asignación ( 61 - Multiplica a )" + "\n";} : DEFAULT
-    | < DIVASIG: "/=" > { muestraLexico = muestraLexico + "/= -> Operador de asignación ( 62 - Divide a )" + "\n";} : DEFAULT
-    | < MODASIG: "%=" > { muestraLexico = muestraLexico + "%= -> Operador de asignación ( 63 - Modulo a )" + "\n";} : DEFAULT
+<*>TOKEN : {
+      < ASIG: "=" > {System.out.println(image + " -> Operador de asignación " + "\n");} : DEFAULT
+    | < SUMASIG: "+=" > {System.out.println(image + " -> Operador de asignación " + "\n");} : DEFAULT
+    | < RESASIG: "-=" > {System.out.println(image + " -> Operador de asignación " + "\n");} : DEFAULT
+    | < MULASIG: "*=" > {System.out.println(image + " -> Operador de asignación " + "\n");} : DEFAULT
+    | < DIVASIG: "/=" > {System.out.println(image + " -> Operador de asignación " + "\n");} : DEFAULT
+    | < MODASIG: "%=" > {System.out.println(image + " -> Operador de asignación " + "\n");} : DEFAULT
 }
 
 
 
 /** ---------- Operadores aritmeticos ---------- */
-TOKEN : {
-      < SUMA: "+" > { muestraLexico = muestraLexico + "+ -> Operador aritmetico ( 64 - Suma )" + "\n";} : DEFAULT
-    | < RESTA: "-" > { muestraLexico = muestraLexico + "- -> Operador aritmetico ( 65 - Resta )" + "\n";} : DEFAULT
-    | < DIVIS: "/" > { muestraLexico = muestraLexico + "/ -> Operador aritmetico ( 66 - Division )" + "\n";} : DEFAULT
-    | < POTEN: "^" > { muestraLexico = muestraLexico + "^ -> Operador aritmetico ( 67 - Potencia )" + "\n";} : DEFAULT
-    | < MODUL: "%" > { muestraLexico = muestraLexico + "% -> Operador aritmetico ( 68 - Modulo )" + "\n";} : DEFAULT
-    | < MULTI: "*" > { muestraLexico = muestraLexico + "* -> Operador aritmetico ( 69 - multiplicacion )" + "\n";} : DEFAULT
+<*>TOKEN : {
+      < SUMA: "+" > {System.out.println(image + " -> Operador aritmetico " + "\n");} : DEFAULT
+    | < RESTA: "-" > {System.out.println(image + " -> Operador aritmetico " + "\n");} : DEFAULT
+    | < DIVIS: "/" > {System.out.println(image + " -> Operador aritmetico " + "\n");} : DEFAULT
+    | < POTEN: "^" > {System.out.println(image + " -> Operador aritmetico " + "\n");} : DEFAULT
+    | < MODUL: "%" > {System.out.println(image + " -> Operador aritmetico " + "\n");} : DEFAULT
+    | < MULTI: "*" > {System.out.println(image + " -> Operador aritmetico " + "\n");} : DEFAULT
 }
 
 
 
 /** ---------- Variables, clases, paquetes y otros... ---------- */
-TOKEN : {
+<*>TOKEN : {
       < #letraMay: ["A"-"Z"]  >
     | < #letraMin: ["a"-"z"]  >
     | < #c: ["a"-"z", "A"-"Z", "0"-"9", "|", "'", "/", "(", ")", "{", "}", "[", "]", ",", ".", ";", "_", ":", " "]  >
     | < #digito: ["0"-"9"]  >
-    | < ENTERO: (<digito>)+ > { muestraLexico = muestraLexico + image +" -> Numero entero ( 70 - Numero entero )" + "\n";} : DEFAULT
-    | < FLOTANTEDOUBLE: ((<digito>)+ "." (<digito>)+)+ > { muestraLexico = muestraLexico + image + " -> Numero flotante ( 71 - Numero decimal )" + "\n";} : DEFAULT
-    | < CLASES: <letraMay>(<letraMin>)+ > { muestraLexico = muestraLexico + image + " -> Nombre de clase ( 72 - Nombre de clase )" + "\n";} : DEFAULT
-    | < CARACTER: "'"(< letraMay >|< letraMin >|< digito >)"'" > { muestraLexico = muestraLexico + image + " -> Caracter ( 73 - Caracter )" + "\n";} : DEFAULT
-    | < CADENA: "\"" (< c >)+ "\"" > { muestraLexico = muestraLexico + image + " -> Cadena ( 74 - Cadena )" + "\n";} : DEFAULT
-    | < PAQUET: (<letraMay>) (<letraMin>)+ ("_" (<letraMay>) (<letraMin>)+)+ > { muestraLexico = muestraLexico + image + " -> Paquete ( 75 - Nombre de paquete )" + "\n";} : DEFAULT
-    | < VAR: (<letraMin>)+ > { muestraLexico = muestraLexico + image + " -> Variable ( 76 - Nombre variable )" + "\n";} : DEFAULT
-    | < FUNC: (< letraMin >)+ (< letraMay > (< letraMin >)+)+ > { muestraLexico = muestraLexico + image + " -> Nombre de funcion ( 77 - Nombre funcion )" + "\n";} : DEFAULT
-    | < LIBR: (< letraMin >)+ ("_"(< letraMin >|< letraMay >)+)+ > { muestraLexico = muestraLexico + image + " -> Nombre de librería ( 78 - Nombre libreria )" + "\n";} : DEFAULT
+    | < ENTERO: (<digito>)+ > {System.out.println(image + " -> Numero entero " + "\n");} : DEFAULT
+    | < FLOTANTEDOUBLE: ((<digito>)+ "." (<digito>)+)+ > {System.out.println(image + " -> Numero flotante " + "\n");} : DEFAULT
+    | < CLASES: <letraMay>(<letraMin>)+ > {System.out.println(image + " -> Nombre de clase " + "\n");} : DEFAULT
+    | < CARACTER: "'"(< letraMay >|< letraMin >|< digito >)"'" > {System.out.println(image + " -> Caracter " + "\n");} : DEFAULT
+    | < CADENA: "\"" (< c >)+ "\"" > {System.out.println(image + " -> Cadena " + "\n");} : DEFAULT
+    | < PAQUET: (<letraMay>) (<letraMin>)+ ("_" (<letraMay>) (<letraMin>)+)+ > {System.out.println(image + " -> Nombre de paquete " + "\n");} : DEFAULT
+    | < VAR: (<letraMin>)+ > {System.out.println(image + " -> Nombre de variable " + "\n");} : DEFAULT
+    | < FUNC: (< letraMin >)+ (< letraMay > (< letraMin >)+)+ > {System.out.println(image + " -> Nombre de función " + "\n");} : DEFAULT
+    | < LIBR: (< letraMin >)+ ("_"(< letraMin >|< letraMay >)+)+ > {System.out.println(image + " -> Nombre de libreria " + "\n");} : DEFAULT
 }
 
 /** ---------- Caracteres no validos ---------- */
-TOKEN : {
-      < A: "\u00aa" > { muestraLexico = muestraLexico + image + " -> Carácter no valido " + "\n";} : DEFAULT
-    | < GRADOS: "\u00ba" > { muestraLexico = muestraLexico + image + " -> Carácter no valido " + "\n";} : DEFAULT
-    | < CPOR: "\u00e7" > { muestraLexico = muestraLexico + image + " -> Carácter no valido " + "\n";} : DEFAULT
-    | < PUNTOS: "\u00a8" > { muestraLexico = muestraLexico + image + " -> Carácter no valido " + "\n";} : DEFAULT
-    | < ACENTOI: "`" > { muestraLexico = muestraLexico + image + " -> Carácter no valido " + "\n";} : DEFAULT
-    | < ACENTO: "\u00b4" > { muestraLexico = muestraLexico + image + " -> Carácter no valido " + "\n";} : DEFAULT
-    | < BARRAI: "\\" > { muestraLexico = muestraLexico + image + " -> Carácter no valido " + "\n";} : DEFAULT
+<*>TOKEN : {
+      < A: "\u00aa" > {System.out.println(image + " -> Carácter no valido " + "\n");} : DEFAULT
+    | < GRADOS: "\u00ba" > {System.out.println(image + " -> Carácter no valido " + "\n");} : DEFAULT
+    | < CPOR: "\u00e7" > {System.out.println(image + " -> Carácter no valido " + "\n");} : DEFAULT
+    | < PUNTOS: "\u00a8" > {System.out.println(image + " -> Carácter no valido " + "\n");} : DEFAULT
+    | < ACENTOI: "`" > {System.out.println(image + " -> Carácter no valido " + "\n");} : DEFAULT
+    | < ACENTO: "\u00b4" > {System.out.println(image + " -> Carácter no valido " + "\n");} : DEFAULT
+    | < BARRAI: "\\" > {System.out.println(image + " -> Carácter no valido " + "\n");} : DEFAULT
     | < ARROBA: "\u0040" > {System.out.println(image + " -> Carácter no valido " + "\n");} : DEFAULT
 }
 /** Fin Lexico */
