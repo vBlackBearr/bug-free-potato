@@ -36,7 +36,7 @@ public class GUI extends javax.swing.JFrame {
      * Creates new form GUI
      */
     public GUI() {
-        GramaticaTokenManager valores = new GramaticaTokenManager();
+       
         initComponents();
         NumeroLinea tln = new NumeroLinea(txtArea_Editor);
         jScroll_Editor.setRowHeaderView(tln);

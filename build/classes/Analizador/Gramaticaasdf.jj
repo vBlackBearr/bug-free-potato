@@ -7,10 +7,10 @@ options {
 PARSER_BEGIN(Gramatica)
 /** Analizador de expresiones aritmeticas sencillas. */
 package Analizador; 
-import Analizador.GramaticaTokenManager;
 public class Gramatica {
     public static int linea=1;
-	public static int la;
+    	public static int la;
+    String muestraLexico = "";
 }
 PARSER_END(Gramatica)
 
@@ -170,6 +170,7 @@ TOKEN : {
     | < ARROBA: "\u0040" > {System.out.println(image + " -> Carácter no valido " + "\n");} : DEFAULT
 }
 /** Fin Lexico */
+
 
 /**Inicio sintactico*/
 
