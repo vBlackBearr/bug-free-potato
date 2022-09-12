@@ -5,7 +5,10 @@ package Analizador;
 /** Token Manager. */
 public class GramaticaTokenManager implements GramaticaConstants
 {
-
+public String muestraLexico="";
+    public GramaticaTokenManager(){
+        
+    }
   /** Debug output. */
   public  java.io.PrintStream debugStream = System.out;
   /** Set debug output. */
@@ -1733,42 +1736,42 @@ void TokenLexicalActions(Token matchedToken)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[64]);
         lengthOfMatch = jjstrLiteralImages[64].length();
-                      muestraLexico = muestraLexico + "= -> Operador de asignaci\u00c3\u00b3n ( 59 - Es igual a )" + "\n";
+                      muestraLexico = muestraLexico + "= -> Operador de asignaci\u00f3n ( 59 - Es igual a )" + "\n";
          break;
       case 65 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[65]);
         lengthOfMatch = jjstrLiteralImages[65].length();
-                          muestraLexico = muestraLexico + "+= -> Operador de asignaci\u00c3\u00b3n ( 59 - Suma a )" + "\n";
+                          muestraLexico = muestraLexico + "+= -> Operador de asignaci\u00f3n ( 59 - Suma a )" + "\n";
          break;
       case 66 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[66]);
         lengthOfMatch = jjstrLiteralImages[66].length();
-                          muestraLexico = muestraLexico + "-= -> Operador de asignaci\u00c3\u00b3n ( 60 - Restale a )" + "\n";
+                          muestraLexico = muestraLexico + "-= -> Operador de asignaci\u00f3n ( 60 - Restale a )" + "\n";
          break;
       case 67 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[67]);
         lengthOfMatch = jjstrLiteralImages[67].length();
-                          muestraLexico = muestraLexico + "*= -> Operador de asignaci\u00c3\u00b3n ( 61 - Multiplica a )" + "\n";
+                          muestraLexico = muestraLexico + "*= -> Operador de asignaci\u00f3n ( 61 - Multiplica a )" + "\n";
          break;
       case 68 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[68]);
         lengthOfMatch = jjstrLiteralImages[68].length();
-                          muestraLexico = muestraLexico + "/= -> Operador de asignaci\u00c3\u00b3n ( 62 - Divide a )" + "\n";
+                          muestraLexico = muestraLexico + "/= -> Operador de asignaci\u00f3n ( 62 - Divide a )" + "\n";
          break;
       case 69 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[69]);
         lengthOfMatch = jjstrLiteralImages[69].length();
-                          muestraLexico = muestraLexico + "%= -> Operador de asignaci\u00c3\u00b3n ( 63 - Modulo a )" + "\n";
+                          muestraLexico = muestraLexico + "%= -> Operador de asignaci\u00f3n ( 63 - Modulo a )" + "\n";
          break;
       case 70 :
         if (image == null)
@@ -1864,63 +1867,63 @@ void TokenLexicalActions(Token matchedToken)
         if (image == null)
             image = new StringBuffer();
         image.append(input_stream.GetSuffix(jjimageLen + (lengthOfMatch = jjmatchedPos + 1)));
-                                                                     muestraLexico = muestraLexico + image + " -> Nombre de librer\u00c3\u00ada ( 78 - Nombre libreria )" + "\n";
+                                                                     muestraLexico = muestraLexico + image + " -> Nombre de librer\u00eda ( 78 - Nombre libreria )" + "\n";
          break;
       case 89 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[89]);
         lengthOfMatch = jjstrLiteralImages[89].length();
-                        muestraLexico = muestraLexico + image + " -> Car\u00c3\u00a1cter no valido " + "\n";
+                        muestraLexico = muestraLexico + image + " -> Car\u00e1cter no valido " + "\n";
          break;
       case 90 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[90]);
         lengthOfMatch = jjstrLiteralImages[90].length();
-                             muestraLexico = muestraLexico + image + " -> Car\u00c3\u00a1cter no valido " + "\n";
+                             muestraLexico = muestraLexico + image + " -> Car\u00e1cter no valido " + "\n";
          break;
       case 91 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[91]);
         lengthOfMatch = jjstrLiteralImages[91].length();
-                           muestraLexico = muestraLexico + image + " -> Car\u00c3\u00a1cter no valido " + "\n";
+                           muestraLexico = muestraLexico + image + " -> Car\u00e1cter no valido " + "\n";
          break;
       case 92 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[92]);
         lengthOfMatch = jjstrLiteralImages[92].length();
-                             muestraLexico = muestraLexico + image + " -> Car\u00c3\u00a1cter no valido " + "\n";
+                             muestraLexico = muestraLexico + image + " -> Car\u00e1cter no valido " + "\n";
          break;
       case 93 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[93]);
         lengthOfMatch = jjstrLiteralImages[93].length();
-                         muestraLexico = muestraLexico + image + " -> Car\u00c3\u00a1cter no valido " + "\n";
+                         muestraLexico = muestraLexico + image + " -> Car\u00e1cter no valido " + "\n";
          break;
       case 94 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[94]);
         lengthOfMatch = jjstrLiteralImages[94].length();
-                             muestraLexico = muestraLexico + image + " -> Car\u00c3\u00a1cter no valido " + "\n";
+                             muestraLexico = muestraLexico + image + " -> Car\u00e1cter no valido " + "\n";
          break;
       case 95 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[95]);
         lengthOfMatch = jjstrLiteralImages[95].length();
-                         muestraLexico = muestraLexico + image + " -> Car\u00c3\u00a1cter no valido " + "\n";
+                         muestraLexico = muestraLexico + image + " -> Car\u00e1cter no valido " + "\n";
          break;
       case 96 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[96]);
         lengthOfMatch = jjstrLiteralImages[96].length();
-                            System.out.println(image + " -> Car\u00c3\u00a1cter no valido " + "\n");
+                            System.out.println(image + " -> Car\u00e1cter no valido " + "\n");
          break;
       default : 
          break;
@@ -1952,9 +1955,5 @@ private void jjCheckNAddStates(int start, int end)
       jjCheckNAdd(jjnextStates[start]);
    } while (start++ != end);
 }
-    public String muestraLexico = "";
 
-    public GramaticaTokenManager() {
-
-    }
 }
