@@ -15,60 +15,55 @@ public class Gramatica {
 PARSER_END(Gramatica)
 
 /** Lexico */
-    SKIP : {
+    <*>SKIP : {
       " "
     | "\t"
-    | "\b"
-    | "\r"
-    | "\n"
-    | "/*" : ML_COMMENT_STATE
+	| "\r"
 }
 
-<ML_COMMENT_STATE> SKIP:
-{
-    <"*/">:DEFAULT
-    |<~[] > 
-}
+<SALTO> SKIP:{"\n" {Gramatica.linea++;}}
+
+<DEFAULT> TOKEN: {
+    < ENTER : "\n" > {Gramatica.linea++;}}
 
 
 /** ---------- Palabras reservadas ---------- */
 TOKEN : {
-      < IF : "If" > { muestraLexico = muestraLexico + " If -> Palabra reservada ( 1 - Si)" + "\n"; }
-    | < ELSE: "Else" > { muestraLexico = muestraLexico + "Else -> Palabra reservada ( 2 - Sino)" + "\n"; }
-    | < WHILE: "While" > { muestraLexico = muestraLexico + "While -> Palabra reservada ( 3 - Mientras)" + "\n"; }
-    | < CLASS: "class" > {muestraLexico = muestraLexico + "class -> Palabra reservada ( 4 - Clase)" + "\n";;}
-    | < PACK: "Pack" > { muestraLexico = muestraLexico + "Pack -> Palabra reservada ( 5 - Paquete)" + "\n"; }
-    | < LIBRARY: "Library" > { muestraLexico = muestraLexico + "Library -> Palabra reservada ( 6 - Libreria)" + "\n"; }
-    | < PUBLIC: "public" > { muestraLexico = muestraLexico + "public -> Palabra reservada ( 7 - Publico)" + "\n"; }
-    | < PRIVATE: "private" > { muestraLexico = muestraLexico + "private -> Palabra reservada ( 8 - Privado)" + "\n"; }
-    | < BREAK: "break" > { muestraLexico = muestraLexico + "break -> Palabra reservada ( 9 - Interrumpir)" + "\n"; }
-    | < DO: "do" > { muestraLexico = muestraLexico + "do -> Palabra reservada ( 10 - Hacer)" + "\n"; }
-    | < CHAR: "char" > { muestraLexico = muestraLexico + "char -> Palabra reservada ( 11 - Caracter)" + "\n"; }
-    | < STRING: "string" > { muestraLexico = muestraLexico + "string -> Palabra reservada ( 12 - Cadena)" + "\n"; }
-    | < INT: "int" > { muestraLexico = muestraLexico + "int -> Palabra reservada ( 13 - Entero )" + "\n"; }
-    | < FLOAT: "float" > { muestraLexico = muestraLexico + "float -> Palabra reservada ( 14 - Flotante )" + "\n"; }
-    | < BOOLEAN: "boolean" > { muestraLexico = muestraLexico + "boolean -> Palabra reservada ( 15 - Booleano )" + "\n"; }
-    | < TRY: "Try" > { muestraLexico = muestraLexico + "Try -> Palabra reservada ( 16 - Intenta... )" + "\n"; }
-    | < CATCH: "Catch" > { muestraLexico = muestraLexico + "Catch -> Palabra reservada ( 17 - Atrapa... )" + "\n"; }
-    | < SUPER: "Super" > { muestraLexico = muestraLexico + "Super -> Palabra reservada ( 18 - Super )" + "\n"; }
-    | < THIS: "This" > { muestraLexico = muestraLexico + "This -> Palabra reservada ( 19 - Este )" + "\n"; }
-    | < DERIVATE: "Derivate" > { muestraLexico = muestraLexico + "Derivate -> Palabra reservada ( 20 - Deriva de... )" + "\n"; }
-    | < RETURN: "return" > { muestraLexico = muestraLexico + "return -> Palabra reservada ( 21 - Regresa... )" + "\n"; }
-    | < FINAL: "Final" > { muestraLexico = muestraLexico + "Final -> Palabra reservada ( 22 - Final )" + "\n"; }
-    | < VOID: "void" > { muestraLexico = muestraLexico + "void -> Palabra reservada ( 23 - Vacio )" + "\n"; }
-    | < NULL: "null" > { muestraLexico = muestraLexico + "null -> Palabra reservada ( 24 - Nulo )" + "\n"; }
-    | < IMPORT: "import" > { muestraLexico = muestraLexico + "import -> Palabra reservada ( 25 - Importar... )" + "\n"; }
-    | < TRUE: "true" > { muestraLexico = muestraLexico + "true -> Palabra reservada ( 26 - Verdadero )" + "\n"; }
-    | < FALSE: "false" > { muestraLexico = muestraLexico + "false -> Palabra reservada ( 27 - Falso )" + "\n"; }
-    | < FOR: "For" > { muestraLexico = muestraLexico + "For -> Palabra reservada ( 28 - Para... )" + "\n"; }
-    | < SWITCH: "Switch" > { muestraLexico = muestraLexico + "Switch -> Palabra reservada ( 29 - Switch )" + "\n"; }
-    | < CASE: "Case" > { muestraLexico = muestraLexico + "Case -> Palabra reservada ( 30 - Caso tipo... )" + "\n"; }
-    | < ARRAY: "Array" > { muestraLexico = muestraLexico + "Array -> Palabra reservada ( 31 - Arreglo )" + "\n"; }
-    | < PRINMAIN: "principalMain" > { muestraLexico = muestraLexico + "principalMain -> Palabra reservada ( 32 - Principal )" + "\n"; }
-    | < DOUBLE: "double" > { muestraLexico = muestraLexico + "double -> Palabra reservada ( 33 - Decimal )" + "\n"; }
-    | < EXCEPT: "Except" > { muestraLexico = muestraLexico + "Except -> Palabra reservada ( 34 - Excepto... )" + "\n"; }
-    | < DEF: "Default" > { muestraLexico = muestraLexico + "Default -> Palabra reservada ( 35 - Default )" + "\n"; }
-
+      < IF : "If" > { muestraLexico = muestraLexico + " If -> Palabra reservada ( 1 - Si)" + "\n"; } : DEFAULT
+    | < ELSE: "Else" > { muestraLexico = muestraLexico + "Else -> Palabra reservada ( 2 - Sino)" + "\n"; } : DEFAULT
+    | < WHILE: "While" > { muestraLexico = muestraLexico + "While -> Palabra reservada ( 3 - Mientras)" + "\n"; } : DEFAULT
+    | < CLASS: "class" > {muestraLexico = muestraLexico + "class -> Palabra reservada ( 4 - Clase)" + "\n";;} : DEFAULT
+    | < PACK: "Pack" > { muestraLexico = muestraLexico + "Pack -> Palabra reservada ( 5 - Paquete)" + "\n"; } : DEFAULT
+    | < LIBRARY: "Library" > { muestraLexico = muestraLexico + "Library -> Palabra reservada ( 6 - Libreria)" + "\n"; } : DEFAULT
+    | < PUBLIC: "public" > { muestraLexico = muestraLexico + "public -> Palabra reservada ( 7 - Publico)" + "\n"; } : DEFAULT
+    | < PRIVATE: "private" > { muestraLexico = muestraLexico + "private -> Palabra reservada ( 8 - Privado)" + "\n"; } : DEFAULT
+    | < BREAK: "break" > { muestraLexico = muestraLexico + "break -> Palabra reservada ( 9 - Interrumpir)" + "\n"; } : DEFAULT
+    | < DO: "do" > { muestraLexico = muestraLexico + "do -> Palabra reservada ( 10 - Hacer)" + "\n"; } : DEFAULT
+    | < CHAR: "char" > { muestraLexico = muestraLexico + "char -> Palabra reservada ( 11 - Caracter)" + "\n"; } : DEFAULT
+    | < STRING: "string" > { muestraLexico = muestraLexico + "string -> Palabra reservada ( 12 - Cadena)" + "\n"; } : DEFAULT
+    | < INT: "int" > { muestraLexico = muestraLexico + "int -> Palabra reservada ( 13 - Entero )" + "\n"; } : DEFAULT
+    | < FLOAT: "float" > { muestraLexico = muestraLexico + "float -> Palabra reservada ( 14 - Flotante )" + "\n"; } : DEFAULT
+    | < BOOLEAN: "boolean" > { muestraLexico = muestraLexico + "boolean -> Palabra reservada ( 15 - Booleano )" + "\n"; } : DEFAULT
+    | < TRY: "Try" > { muestraLexico = muestraLexico + "Try -> Palabra reservada ( 16 - Intenta... )" + "\n"; } : DEFAULT
+    | < CATCH: "Catch" > { muestraLexico = muestraLexico + "Catch -> Palabra reservada ( 17 - Atrapa... )" + "\n"; } : DEFAULT
+    | < SUPER: "Super" > { muestraLexico = muestraLexico + "Super -> Palabra reservada ( 18 - Super )" + "\n"; } : DEFAULT
+    | < THIS: "This" > { muestraLexico = muestraLexico + "This -> Palabra reservada ( 19 - Este )" + "\n"; } : DEFAULT
+    | < DERIVATE: "Derivate" > { muestraLexico = muestraLexico + "Derivate -> Palabra reservada ( 20 - Deriva de... )" + "\n"; } : DEFAULT
+    | < RETURN: "return" > { muestraLexico = muestraLexico + "return -> Palabra reservada ( 21 - Regresa... )" + "\n"; } : DEFAULT
+    | < FINAL: "Final" > { muestraLexico = muestraLexico + "Final -> Palabra reservada ( 22 - Final )" + "\n"; } : DEFAULT
+    | < VOID: "void" > { muestraLexico = muestraLexico + "void -> Palabra reservada ( 23 - Vacio )" + "\n"; } : DEFAULT
+    | < NULL: "null" > { muestraLexico = muestraLexico + "null -> Palabra reservada ( 24 - Nulo )" + "\n"; } : DEFAULT
+    | < IMPORT: "import" > { muestraLexico = muestraLexico + "import -> Palabra reservada ( 25 - Importar... )" + "\n"; } : DEFAULT
+    | < TRUE: "true" > { muestraLexico = muestraLexico + "true -> Palabra reservada ( 26 - Verdadero )" + "\n"; } : DEFAULT
+    | < FALSE: "false" > { muestraLexico = muestraLexico + "false -> Palabra reservada ( 27 - Falso )" + "\n"; } : DEFAULT
+    | < FOR: "For" > { muestraLexico = muestraLexico + "For -> Palabra reservada ( 28 - Para... )" + "\n"; } : DEFAULT
+    | < SWITCH: "Switch" > { muestraLexico = muestraLexico + "Switch -> Palabra reservada ( 29 - Switch )" + "\n"; } : DEFAULT
+    | < CASE: "Case" > { muestraLexico = muestraLexico + "Case -> Palabra reservada ( 30 - Caso tipo... )" + "\n"; } : DEFAULT
+    | < ARRAY: "Array" > { muestraLexico = muestraLexico + "Array -> Palabra reservada ( 31 - Arreglo )" + "\n"; } : DEFAULT
+    | < PRINMAIN: "principalMain" > { muestraLexico = muestraLexico + "principalMain -> Palabra reservada ( 32 - Principal )" + "\n"; } : DEFAULT
+    | < DOUBLE: "double" > { muestraLexico = muestraLexico + "double -> Palabra reservada ( 33 - Decimal )" + "\n"; }: DEFAULT
+    | < EXCEPT: "Except" > { muestraLexico = muestraLexico + "Except -> Palabra reservada ( 34 - Excepto... )" + "\n"; }: DEFAULT
+    | < DEF: "Default" > { muestraLexico = muestraLexico + "Default -> Palabra reservada ( 35 - Default )" + "\n"; }: DEFAULT
 }
     
 
@@ -77,71 +72,71 @@ TOKEN : {
 
 /** ---------- Tokens fijos ---------- */
 TOKEN : {
-     < LLAVA: "{" > { muestraLexico = muestraLexico + "{ -> Token fijo ( 36 - LLave que abre )" + "\n";}
-    | < LLAVC: "}" > { muestraLexico = muestraLexico + "{ -> Token fijo ( 37 - LLave que cierra )" + "\n";}
-    | < CORA: "[" > { muestraLexico = muestraLexico + "[ -> Token fijo ( 38 - Corchete que abre )" + "\n";}
-    | < CORC: "]" > { muestraLexico = muestraLexico + "] -> Token fijo ( 39 - Corchete que cierra )" + "\n";}
-    | < PAREA: "(" > { muestraLexico = muestraLexico + "( -> Token fijo ( 40 - Parentesis que abre )" + "\n";}
-    | < PAREC: ")" > { muestraLexico = muestraLexico + ") -> Token fijo ( 41 - Parentesis que cierra )" + "\n";}
-    | < PYC: ";" > { muestraLexico = muestraLexico + "; -> Token fijo ( 42 - Punto y coma )" + "\n";}
-    | < COMSIM: "'" > { muestraLexico = muestraLexico + "' -> Token fijo ( 43 - Comilla simple )" + "\n";}
-    | < COM: "," > { muestraLexico = muestraLexico + ", -> Token fijo ( 44 - Como )" + "\n";}
-    | < PUNT: "." > { muestraLexico = muestraLexico + ". -> Token fijo ( 45 - Punto )" + "\n";}
-    | < GUIONB: "_" > { muestraLexico = muestraLexico + "_ -> Token fijo ( 46 - Guion bajo )" + "\n";}
-    | < DOSP: ":" > { muestraLexico = muestraLexico + ": -> Token fijo ( 47 - Dos puntos )" + "\n";}
+     < LLAVA: "{" > { muestraLexico = muestraLexico + "{ -> Token fijo ( 36 - LLave que abre )" + "\n";} : SALTO
+    | < LLAVC: "}" > { muestraLexico = muestraLexico + "{ -> Token fijo ( 37 - LLave que cierra )" + "\n";} : SALTO
+    | < CORA: "[" > { muestraLexico = muestraLexico + "[ -> Token fijo ( 38 - Corchete que abre )" + "\n";}  : DEFAULT
+    | < CORC: "]" > { muestraLexico = muestraLexico + "] -> Token fijo ( 39 - Corchete que cierra )" + "\n";}  : DEFAULT
+    | < PAREA: "(" > { muestraLexico = muestraLexico + "( -> Token fijo ( 40 - Parentesis que abre )" + "\n";}  : DEFAULT
+    | < PAREC: ")" > { muestraLexico = muestraLexico + ") -> Token fijo ( 41 - Parentesis que cierra )" + "\n";}  : DEFAULT
+    | < PYC: ";" > { muestraLexico = muestraLexico + "; -> Token fijo ( 42 - Punto y coma )" + "\n";} : SALTO
+    | < COMSIM: "'" > { muestraLexico = muestraLexico + "' -> Token fijo ( 43 - Comilla simple )" + "\n";}  : DEFAULT
+    | < COM: "," > { muestraLexico = muestraLexico + ", -> Token fijo ( 44 - Como )" + "\n";}  : DEFAULT
+    | < PUNT: "." > { muestraLexico = muestraLexico + ". -> Token fijo ( 45 - Punto )" + "\n";}  : DEFAULT
+    | < GUIONB: "_" > { muestraLexico = muestraLexico + "_ -> Token fijo ( 46 - Guion bajo )" + "\n";}  : DEFAULT
+    | < DOSP: ":" > { muestraLexico = muestraLexico + ": -> Token fijo ( 47 - Dos puntos )" + "\n";}  : DEFAULT
 }
 
 
 
 /** ---------- Operadores relacionales ---------- */
 TOKEN : {
-      < MAYORQ : ">" > { muestraLexico = muestraLexico + "> -> Operador relacional ( 48 - Mayor que )" + "\n";}
-    | < MENORQ: "<" > { muestraLexico = muestraLexico + "< -> Operador relacional ( 49 - Menor que )" + "\n";}
-    | < MAYORI: ">=" > { muestraLexico = muestraLexico + ">= -> Operador relacional ( 50 - Mayor o igual que )" + "\n";}
-    | < MENORI: "<=" > { muestraLexico = muestraLexico + ">= -> Operador relacional ( 51 - Menor o igual que )" + "\n";}
-    | < IGUALI: "==" > { muestraLexico = muestraLexico + "== -> Operador relacional ( 52 - Igual Igual )" + "\n";}
-    | < DIFER: "<>" > { muestraLexico = muestraLexico + "== -> Operador relacional ( 53 - Diferente )" + "\n";}
+      < MAYORQ : ">" > { muestraLexico = muestraLexico + "> -> Operador relacional ( 48 - Mayor que )" + "\n";}  : DEFAULT
+    | < MENORQ: "<" > { muestraLexico = muestraLexico + "< -> Operador relacional ( 49 - Menor que )" + "\n";}  : DEFAULT
+    | < MAYORI: ">=" > { muestraLexico = muestraLexico + ">= -> Operador relacional ( 50 - Mayor o igual que )" + "\n";}  : DEFAULT
+    | < MENORI: "<=" > { muestraLexico = muestraLexico + ">= -> Operador relacional ( 51 - Menor o igual que )" + "\n";}  : DEFAULT
+    | < IGUALI: "==" > { muestraLexico = muestraLexico + "== -> Operador relacional ( 52 - Igual Igual )" + "\n";}  : DEFAULT
+    | < DIFER: "<>" > { muestraLexico = muestraLexico + "== -> Operador relacional ( 53 - Diferente )" + "\n";}  : DEFAULT
 }
 
 
 
 /** ---------- Operadores lógicos ---------- */
 TOKEN : {
-      < AND: "AND" > { muestraLexico = muestraLexico + "AND -> Palabra reservada ( 54 - Y )" + "\n";}
-    | < OR: "OR" > { muestraLexico = muestraLexico + "OR -> Palabra reservada ( 55 - O )" + "\n";}
-    | < NOT: "NOT" > { muestraLexico = muestraLexico + "NOT -> Palabra reservada ( 56 - Negacion )" + "\n";}
+      < AND: "AND" > { muestraLexico = muestraLexico + "AND -> Palabra reservada ( 54 - Y )" + "\n";}  : DEFAULT
+    | < OR: "OR" > { muestraLexico = muestraLexico + "OR -> Palabra reservada ( 55 - O )" + "\n";} : DEFAULT
+    | < NOT: "NOT" > { muestraLexico = muestraLexico + "NOT -> Palabra reservada ( 56 - Negacion )" + "\n";} : DEFAULT
 }
 
 
 
 /** ---------- Operadores incrementales ---------- */
 TOKEN : {
-      < INCRE: "++" > { muestraLexico = muestraLexico + "++ -> Operador incremental ( 57 - Sumando )" + "\n";}
-    | < DECRE: "--" > { muestraLexico = muestraLexico + "-- -> Operador incremental ( 58 - Restando )" + "\n";}
-}
+      < INCRE: "++" > { muestraLexico = muestraLexico + "++ -> Operador incremental ( 57 - Sumando )" + "\n";}  : DEFAULT
+    | < DECRE: "--" > { muestraLexico = muestraLexico + "-- -> Operador incremental ( 58 - Restando )" + "\n";}  : DEFAULT
+} 
 
 
 
 /** ---------- Operadores de asignación ---------- */
 TOKEN : {
-      < ASIG: "=" > { muestraLexico = muestraLexico + "= -> Operador de asignación ( 59 - Es igual a )" + "\n";}
-    | < SUMASIG: "+=" > { muestraLexico = muestraLexico + "+= -> Operador de asignación ( 59 - Suma a )" + "\n";}
-    | < RESASIG: "-=" > { muestraLexico = muestraLexico + "-= -> Operador de asignación ( 60 - Restale a )" + "\n";}
-    | < MULASIG: "*=" > { muestraLexico = muestraLexico + "*= -> Operador de asignación ( 61 - Multiplica a )" + "\n";}
-    | < DIVASIG: "/=" > { muestraLexico = muestraLexico + "/= -> Operador de asignación ( 62 - Divide a )" + "\n";}
-    | < MODASIG: "%=" > { muestraLexico = muestraLexico + "%= -> Operador de asignación ( 63 - Modulo a )" + "\n";}
+      < ASIG: "=" > { muestraLexico = muestraLexico + "= -> Operador de asignación ( 59 - Es igual a )" + "\n";} : DEFAULT
+    | < SUMASIG: "+=" > { muestraLexico = muestraLexico + "+= -> Operador de asignación ( 59 - Suma a )" + "\n";} : DEFAULT
+    | < RESASIG: "-=" > { muestraLexico = muestraLexico + "-= -> Operador de asignación ( 60 - Restale a )" + "\n";} : DEFAULT
+    | < MULASIG: "*=" > { muestraLexico = muestraLexico + "*= -> Operador de asignación ( 61 - Multiplica a )" + "\n";} : DEFAULT
+    | < DIVASIG: "/=" > { muestraLexico = muestraLexico + "/= -> Operador de asignación ( 62 - Divide a )" + "\n";} : DEFAULT
+    | < MODASIG: "%=" > { muestraLexico = muestraLexico + "%= -> Operador de asignación ( 63 - Modulo a )" + "\n";} : DEFAULT
 }
 
 
 
 /** ---------- Operadores aritmeticos ---------- */
 TOKEN : {
-      < SUMA: "+" > { muestraLexico = muestraLexico + "+ -> Operador aritmetico ( 64 - Suma )" + "\n";}
-    | < RESTA: "-" > { muestraLexico = muestraLexico + "- -> Operador aritmetico ( 65 - Resta )" + "\n";}
-    | < DIVIS: "/" > { muestraLexico = muestraLexico + "/ -> Operador aritmetico ( 66 - Division )" + "\n";}
-    | < POTEN: "^" > { muestraLexico = muestraLexico + "^ -> Operador aritmetico ( 67 - Potencia )" + "\n";}
-    | < MODUL: "%" > { muestraLexico = muestraLexico + "% -> Operador aritmetico ( 68 - Modulo )" + "\n";}
-    | < MULTI: "*" > { muestraLexico = muestraLexico + "* -> Operador aritmetico ( 69 - multiplicacion )" + "\n";}
+      < SUMA: "+" > { muestraLexico = muestraLexico + "+ -> Operador aritmetico ( 64 - Suma )" + "\n";} : DEFAULT
+    | < RESTA: "-" > { muestraLexico = muestraLexico + "- -> Operador aritmetico ( 65 - Resta )" + "\n";} : DEFAULT
+    | < DIVIS: "/" > { muestraLexico = muestraLexico + "/ -> Operador aritmetico ( 66 - Division )" + "\n";} : DEFAULT
+    | < POTEN: "^" > { muestraLexico = muestraLexico + "^ -> Operador aritmetico ( 67 - Potencia )" + "\n";} : DEFAULT
+    | < MODUL: "%" > { muestraLexico = muestraLexico + "% -> Operador aritmetico ( 68 - Modulo )" + "\n";} : DEFAULT
+    | < MULTI: "*" > { muestraLexico = muestraLexico + "* -> Operador aritmetico ( 69 - multiplicacion )" + "\n";} : DEFAULT
 }
 
 
@@ -152,27 +147,27 @@ TOKEN : {
     | < #letraMin: ["a"-"z"]  >
     | < #c: ["a"-"z", "A"-"Z", "0"-"9", "|", "'", "/", "(", ")", "{", "}", "[", "]", ",", ".", ";", "_", ":", " "]  >
     | < #digito: ["0"-"9"]  >
-    | < ENTERO: (<digito>)+ > { muestraLexico = muestraLexico + image +" -> Numero entero ( 70 - Numero entero )" + "\n";}
-    | < FLOTANTEDOUBLE: ((<digito>)+ "." (<digito>)+)+ > { muestraLexico = muestraLexico + image + " -> Numero flotante ( 71 - Numero decimal )" + "\n";}
-    | < CLASES: <letraMay>(<letraMin>)+ > { muestraLexico = muestraLexico + image + " -> Nombre de clase ( 72 - Nombre de clase )" + "\n";}
-    | < CARACTER: "'"(< letraMay >|< letraMin >|< digito >)"'" > { muestraLexico = muestraLexico + image + " -> Caracter ( 73 - Caracter )" + "\n";}
-    | < CADENA: "\"" (< c >)+ "\"" > { muestraLexico = muestraLexico + image + " -> Cadena ( 74 - Cadena )" + "\n";}
-    | < PAQUET: (<letraMay>) (<letraMin>)+ ("_" (<letraMay>) (<letraMin>)+)+ > { muestraLexico = muestraLexico + image + " -> Paquete ( 75 - Nombre de paquete )" + "\n";}
-    | < VAR: (<letraMin>)+ > { muestraLexico = muestraLexico + image + " -> Variable ( 76 - Nombre variable )" + "\n";}
-    | < FUNC: (< letraMin >)+ (< letraMay > (< letraMin >)+)+ > { muestraLexico = muestraLexico + image + " -> Nombre de funcion ( 77 - Nombre funcion )" + "\n";}
-    | < LIBR: (< letraMin >)+ ("_"(< letraMin >|< letraMay >)+)+ > { muestraLexico = muestraLexico + image + " -> Nombre de librería ( 78 - Nombre libreria )" + "\n";}
+    | < ENTERO: (<digito>)+ > { muestraLexico = muestraLexico + image +" -> Numero entero ( 70 - Numero entero )" + "\n";} : DEFAULT
+    | < FLOTANTEDOUBLE: ((<digito>)+ "." (<digito>)+)+ > { muestraLexico = muestraLexico + image + " -> Numero flotante ( 71 - Numero decimal )" + "\n";} : DEFAULT
+    | < CLASES: <letraMay>(<letraMin>)+ > { muestraLexico = muestraLexico + image + " -> Nombre de clase ( 72 - Nombre de clase )" + "\n";} : DEFAULT
+    | < CARACTER: "'"(< letraMay >|< letraMin >|< digito >)"'" > { muestraLexico = muestraLexico + image + " -> Caracter ( 73 - Caracter )" + "\n";} : DEFAULT
+    | < CADENA: "\"" (< c >)+ "\"" > { muestraLexico = muestraLexico + image + " -> Cadena ( 74 - Cadena )" + "\n";} : DEFAULT
+    | < PAQUET: (<letraMay>) (<letraMin>)+ ("_" (<letraMay>) (<letraMin>)+)+ > { muestraLexico = muestraLexico + image + " -> Paquete ( 75 - Nombre de paquete )" + "\n";} : DEFAULT
+    | < VAR: (<letraMin>)+ > { muestraLexico = muestraLexico + image + " -> Variable ( 76 - Nombre variable )" + "\n";} : DEFAULT
+    | < FUNC: (< letraMin >)+ (< letraMay > (< letraMin >)+)+ > { muestraLexico = muestraLexico + image + " -> Nombre de funcion ( 77 - Nombre funcion )" + "\n";} : DEFAULT
+    | < LIBR: (< letraMin >)+ ("_"(< letraMin >|< letraMay >)+)+ > { muestraLexico = muestraLexico + image + " -> Nombre de librería ( 78 - Nombre libreria )" + "\n";} : DEFAULT
 }
 
 /** ---------- Caracteres no validos ---------- */
 TOKEN : {
-      < A: "\u00aa" > { muestraLexico = muestraLexico + image + " -> Carácter no valido " + "\n";}
-    | < GRADOS: "\u00ba" > { muestraLexico = muestraLexico + image + " -> Carácter no valido " + "\n";}
-    | < CPOR: "\u00e7" > { muestraLexico = muestraLexico + image + " -> Carácter no valido " + "\n";}
-    | < PUNTOS: "\u00a8" > { muestraLexico = muestraLexico + image + " -> Carácter no valido " + "\n";}
-    | < ACENTOI: "`" > { muestraLexico = muestraLexico + image + " -> Carácter no valido " + "\n";}
-    | < ACENTO: "\u00b4" > { muestraLexico = muestraLexico + image + " -> Carácter no valido " + "\n";}
-    | < BARRAI: "\\" > { muestraLexico = muestraLexico + image + " -> Carácter no valido " + "\n";}
-    | < ARROBA: "\u0040" > {System.out.println(image + " -> Carácter no valido " + "\n");}
+      < A: "\u00aa" > { muestraLexico = muestraLexico + image + " -> Carácter no valido " + "\n";} : DEFAULT
+    | < GRADOS: "\u00ba" > { muestraLexico = muestraLexico + image + " -> Carácter no valido " + "\n";} : DEFAULT
+    | < CPOR: "\u00e7" > { muestraLexico = muestraLexico + image + " -> Carácter no valido " + "\n";} : DEFAULT
+    | < PUNTOS: "\u00a8" > { muestraLexico = muestraLexico + image + " -> Carácter no valido " + "\n";} : DEFAULT
+    | < ACENTOI: "`" > { muestraLexico = muestraLexico + image + " -> Carácter no valido " + "\n";} : DEFAULT
+    | < ACENTO: "\u00b4" > { muestraLexico = muestraLexico + image + " -> Carácter no valido " + "\n";} : DEFAULT
+    | < BARRAI: "\\" > { muestraLexico = muestraLexico + image + " -> Carácter no valido " + "\n";} : DEFAULT
+    | < ARROBA: "\u0040" > {System.out.println(image + " -> Carácter no valido " + "\n");} : DEFAULT
 }
 /** Fin Lexico */
 
@@ -188,7 +183,7 @@ void Inicio() :
     catch(ParseException e)
     {
         Token t=getToken(0);
-            if(t.image==null){
+            if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
            t=getNextToken();
         }
         System.out.println("Error general");
@@ -197,11 +192,11 @@ void Inicio() :
 			{
 				linea = linea + 1;
 			}
-			if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n")
+			if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
 			{
             do{
                 t=getNextToken();
-            }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n");
+            }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
         }
     }
 }
@@ -213,22 +208,22 @@ void Import() :
         (<IMPORT> Import1())?
     }
     catch(ParseException e)
-        {
+    {
             Token t=getToken(0);
-            if(t.image==null){
-                t=getNextToken();
-            }
-            System.out.println("Error en declaracion de import: "+t.beginLine);
+            if(t.image==";"  | t.image=="{" | t.image=="}" | t.image==null){
+           t=getNextToken();
+        }
+            System.out.println("Se esperaba \"import\": "+t.beginLine);
 			la=t.beginLine;
 			if (t.image=="\n")
 			{
 				linea = linea + 1;
 			}
-			if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n")
+			if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
 			{
             do{
                 t=getNextToken();
-            }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n");
+            }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
         }
 		Inicio();
     }
@@ -242,20 +237,20 @@ void Import1() :
     }
     catch(ParseException e){           
             Token t=getToken(0);
-            if(t.image==null){
-                t=getNextToken();
-            }
+            if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
+           t=getNextToken();
+        }
             System.out.println("Error en nombre de libreria: "+t.beginLine);
             la=t.beginLine;
         if (t.image=="\n")
         {
             linea = linea + 1;
         }
-        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n")
+        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
         {
             do{
 				t=getNextToken();
-                }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n");
+                }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}");
             }
 	Import();		
     }
@@ -269,20 +264,20 @@ void Puntoyc():
         }
         catch(ParseException e){           
                 Token t=getToken(0);
-                if(t.image==null){
-                    t=getNextToken();
-                }
+                if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
+           t=getNextToken();
+        }
                 System.out.println("Se esperaba \";\": "+t.beginLine);
                 la=t.beginLine;
 			if (t.image=="\n")
 			{
 				linea = linea + 1;
 			}
-			if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n")
+			if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
 			{
             do{
                 t=getNextToken();
-                    }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n");
+                    }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
                 } 
         }
 }
@@ -291,140 +286,25 @@ void Tipo() :
 {}
 {
     try {
-        <INT>
+        <INT> | <CHAR> | <STRING> | <BOOLEAN> | <FLOAT> | <DOUBLE>
     }
     catch(ParseException e)
     {
         Token t=getToken(0);
-            if(t.image==null){
+            if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
            t=getNextToken();
         }
-        System.out.println("Error en declaracion de entero: "+t.beginLine);
+        System.out.println("Se esperaba tipo de dato: "+t.beginLine);
         la=t.beginLine;
 			if (t.image=="\n")
 			{
 				linea = linea + 1;
 			}
-			if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n")
+			if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
 			{
             do{
                 t=getNextToken();
-            }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n");
-        }
-    }
-    |
-    try {
-        <CHAR>
-    }
-    catch(ParseException e)
-    {
-        Token t=getToken(0);
-            if(t.image==null){
-           t=getNextToken();
-        }
-        System.out.println("Error en declaracion de char: "+t.beginLine);
-        la=t.beginLine;
-			if (t.image=="\n")
-			{
-				linea = linea + 1;
-			}
-			if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n")
-			{
-            do{
-                t=getNextToken();
-            }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n");
-        }
-    }
-    |
-    try {
-        <STRING>
-    }
-    catch(ParseException e)
-    {
-        Token t=getToken(0);
-            if(t.image==null){
-           t=getNextToken();
-        }
-        System.out.println("Error en declaracion de string: "+t.beginLine);
-        la=t.beginLine;
-			if (t.image=="\n")
-			{
-				linea = linea + 1;
-			}
-			if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n")
-			{
-            do{
-                t=getNextToken();
-            }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n");
-        }
-    }
-    |
-    try {
-        <BOOLEAN>
-    }
-    catch(ParseException e)
-    {
-        Token t=getToken(0);
-            if(t.image==null){
-           t=getNextToken();
-        }
-        System.out.println("Error en declaracion de boolean: "+t.beginLine);
-        la=t.beginLine;
-			if (t.image=="\n")
-			{
-				linea = linea + 1;
-			}
-			if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n")
-			{
-            do{
-                t=getNextToken();
-            }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n");
-        }
-    }
-    |
-    try {
-        <FLOAT>
-    }
-    catch(ParseException e)
-    {
-        Token t=getToken(0);
-            if(t.image==null){
-           t=getNextToken();
-        }
-        System.out.println("Error en declaracion de float: "+t.beginLine);
-        la=t.beginLine;
-			if (t.image=="\n")
-			{
-				linea = linea + 1;
-			}
-			if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n")
-			{
-            do{
-                t=getNextToken();
-            }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n");
-        }
-    }
-    |
-    try {
-        <DOUBLE>
-    }
-    catch(ParseException e)
-    {
-        Token t=getToken(0);
-            if(t.image==null){
-           t=getNextToken();
-        }
-        System.out.println("Error en declaracion de double: "+t.beginLine);
-        la=t.beginLine;
-			if (t.image=="\n")
-			{
-				linea = linea + 1;
-			}
-			if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n")
-			{
-            do{
-                t=getNextToken();
-            }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n");
+            }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}");
         }
     }
 }
@@ -433,49 +313,53 @@ void TipoEncapsular() :
 {}
 {
     try {
-      <PUBLIC>  
+      <PUBLIC> | <PRIVATE>
 	}
 	catch(ParseException e)
 	{
         Token t=getToken(0);
-            if(t.image==null){
+            if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
            t=getNextToken();
         }
-		System.out.println("Se espereba \"public\": "+t.beginLine);
+		System.out.println("Se espereba \"public\" o \"private\": "+t.beginLine);
         la=t.beginLine;
 			if (t.image=="\n")
 			{
 				linea = linea + 1;
 			}
-			if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n")
+			if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
 			{
             do{
                 t=getNextToken();
-            }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n");
+            }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
         }
 	}
-    |
+}
+
+void Clasesn():
+{}
+{
 	try {
-		  <PRIVATE>  
+		<CLASES>
 	}
 	catch(ParseException e)
 	{
-			Token t=getToken(0);
-				if(t.image==null){
-			   t=getNextToken();
-			}
-			System.out.println("Se espereba \"private\": "+t.beginLine);
-			la=t.beginLine;
-			if (t.image=="\n")
-			{
-				linea = linea + 1;
-			}
-			if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n")
-			{
-            do{
-                t=getNextToken();
-				}while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n");
-			}
+		Token t=getToken(0);
+		if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
+           t=getNextToken();
+        }
+		System.out.println("Error en nombre de clase: "+t.beginLine);
+		la=t.beginLine;
+		if (t.image=="\n")
+		{
+			linea = linea + 1;
+		}
+		if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+		{
+        do{
+            t=getNextToken();
+		}while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+		}
 	}
 }
 
@@ -483,49 +367,31 @@ void Clases() :
 {}
 {
     try {
-        TipoEncapsular() <CLASS>
-			try {
-				<CLASES> ClasesA()
-			}
-			catch(ParseException e)
-			{
-					Token t=getToken(0);
-						if(t.image==null){
-						t=getNextToken();
-					}
-						System.out.println("Error en nombre de clase: "+t.beginLine);
-					la=t.beginLine;
-			if (t.image=="\n")
-			{
-				linea = linea + 1;
-			}
-			if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n")
-			{
-            do{
-                t=getNextToken();
-				}while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n");
-			}
-			}
+        TipoEncapsular() <CLASS> Clasesn() ClasesA()		
     }
     catch(ParseException e)
     {
             Token t=getToken(0);
-                if(t.image==null){
-                t=getNextToken();
-            }
-                System.out.println("Se esperaba \"class\": "+t.beginLine);
+                if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
+				t=getNextToken();
+			}
+			if(t.beginColumn!=1){
+				System.out.println("Se esperaba \"class\": "+t.beginLine);
+			}
             la=t.beginLine;
 			if (t.image=="\n")
 			{
 				linea = linea + 1;
 			}
-			if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n")
+			if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
 			{
 				do{
 					t=getNextToken();
-				}while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n");
+				}while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}");
             }
-            
+			if(t.kind!=GramaticaTokenManager.EOF){
+				Inicio();
+			}
     }
 }
 
@@ -538,19 +404,19 @@ void Llavea():
 	catch(ParseException e)
 	{
 			Token t=getToken(0);
-				if(t.image==null){
-			   t=getNextToken();
-			}
+				if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
+           t=getNextToken();
+        }
 			System.out.println("Se esperaba \"{\": "+t.beginLine);
 			if (t.image=="\n")
 			{
 				linea = linea + 1;
 			}
-			if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n")
+			if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
 			{
 				do{
 					t=getNextToken();
-				}while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n");
+				}while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}");
 			}
 	}
 }
@@ -564,94 +430,68 @@ void Llavec():
 	catch(ParseException e)
 	{
 			Token t=getToken(0);
-				if(t.image==null){
-			   t=getNextToken();
-			}
+				if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
+           t=getNextToken();
+        }
 			System.out.println("Se esperaba \"}\": "+t.beginLine);
 			if (t.image=="\n")
 			{
 				linea = linea + 1;
 			}
-			if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n")
+			if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
 			{
 				do{
 					t=getNextToken();
-				}while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n");
+				}while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
 			}
 	}
 }
 
-void ClasesA() : 
+void Contenido():
 {}
 {
-			
-	try {
-			Llavea()(TipoEncapsular() (Constructor()|Cuerpo()))? Llavec()
-	}
-		
-	catch(ParseException e)
-	{
-			Token t=getToken(0);
-				if(t.image==null){
+	TipoEncapsular() (Constructor()|Cuerpo())Llavec()
+}
+
+void ClasesA() : 
+{}
+{	
+		try {
+			Llavea()Contenido()
+		}
+		catch(ParseException e)
+		{
+				Token t=getToken(0);
+					if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
 			   t=getNextToken();
 			}
-			System.out.println("Error en declaracion de clase: "+t.beginLine);
-			la=t.beginLine;
-			if (t.image=="\n")
-			{
-				linea = linea + 1;
-			}
-			if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n")
-			{
-				do{
-					t=getNextToken();
-				}while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n");
-			}
-			Clases();
-	}
-    | 
-	try {
-			<DERIVATE> <CLASES> Llavea()Constructor_hijo() Cuerpo()Llavec()
-	}
-		
-	catch(ParseException e)
-	{
-			Token t=getToken(0);
-				if(t.image==null){
-			   t=getNextToken();
-			}
-			System.out.println("Error en declaracion de clase: "+t.beginLine);
-			la=t.beginLine;
-			if (t.image=="\n")
-			{
-				linea = linea + 1;
-			}
-			if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n")
-			{
-				do{
-					t=getNextToken();
-				}while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n");
-			}
-	}
+				System.out.println("Error en contenido de clase: "+t.beginLine);
+				la=t.beginLine;
+				if (t.image=="\n")
+				{
+					linea = linea + 1;
+				}
+				if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
+				{
+					do{
+						t=getNextToken();
+					}while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}");
+				}
+				Contenido();
+		}
 }
 
 
 void Constructor() : 
 {}
 {
-    <CLASES> <PAREA>Argumentos()<PAREC> Llavea()Sentencia()Llavec() ConstructorA()
+    Clasesn() <PAREA>Argumentos()<PAREC> Llavea()Sentencia()Llavec() ConstructorA()
 }
 
 void ConstructorA() : 
 {}
 {
-    TipoEncapsular()(Cuerpo()|(<CLASES> <PAREA>Argumentos()<PAREC> Llavea()Sentencia()Llavec() ConstructorA())?)
-}
-
-void Constructor_hijo() : 
-{}
-{
-    TipoEncapsular() <CLASES> <PAREA>Argumentos()<PAREC> Llavea()Super() Sentencia()Llavec()
+    TipoEncapsular()(Cuerpo()|(Clasesn() <PAREA>Argumentos()<PAREC> Llavea()Sentencia()Llavec() ConstructorA())?)
 }
 
 void Cuerpo() : 
@@ -693,7 +533,7 @@ void Retorno() :
 void Tipo_retorno() : 
 {}
 {
-    Valor()<PYC>
+    Valor()Puntoyc()
 }
 
 void Metodo_void() : 
@@ -717,13 +557,13 @@ void ArgumentosA() :
 void Variables_clase() : 
 {}
 {
-    Declaracion()<PYC> Variables_clase()
+    Declaracion()Puntoyc() Variables_clase()
 }
 
 void Sentencia() : 
 {}
 {
-    (<FOR> Sentencia_ciclofor() Sentencia() | <IF> Sentencia_condicion() Sentencia() | Tipo() Declaracion()<PYC> Sentencia() | <VAR> Sentencia_incremental()<PYC> Sentencia() | <SWITCH> Sentencia_switch() Sentencia() | <TRY> Sentencia_try() Sentencia() | <THIS> Sentencia_this() Sentencia() | Sentencia_ciclowhile() Sentencia() | <FUNC> SentenciaLlamarMetodo() Sentencia())?
+    (<FOR> Sentencia_ciclofor() Sentencia() | <IF> Sentencia_condicion() Sentencia() | Tipo() Declaracion()Puntoyc() Sentencia() | <VAR> Sentencia_incremental()Puntoyc() Sentencia() | <SWITCH> Sentencia_switch() Sentencia() | <TRY> Sentencia_try() Sentencia() | <THIS> Sentencia_this() Sentencia() | Sentencia_ciclowhile() Sentencia() | <FUNC> SentenciaLlamarMetodo() Sentencia())?
 }
 
 void Parametros() : 
@@ -742,7 +582,7 @@ void Parametros2() :
 void SentenciaLlamarMetodo() : 
 {}
 {
-    <PAREA>Parametros()<PAREC><PYC>
+    <PAREA>Parametros()<PAREC>Puntoyc()
 }
 
 void Sentencia_try() : 
@@ -754,13 +594,13 @@ void Sentencia_try() :
 void Sentencia_ciclofor() : 
 {}
 {
-    <PAREA>Declaracionfor()<PYC> Condg()<PYC> Sentencia_incremental()<PAREC> Llavea()Sentencia()Llavec()
+    <PAREA>Declaracionfor()Puntoyc() Condg()Puntoyc() Sentencia_incremental()<PAREC> Llavea()Sentencia()Llavec()
 }
 
 void Sentencia_ciclowhile() : 
 {}
 {
-    <WHILE> <PAREA>Condg()<PAREC> Llavea()Sentencia()Llavec() | <DO> Llavea()Sentencia()Llavec() <WHILE> <PAREA>Condg()<PAREC> <PYC>
+    <WHILE> <PAREA>Condg()<PAREC> Llavea()Sentencia()Llavec() | <DO> Llavea()Sentencia()Llavec() <WHILE> <PAREA>Condg()<PAREC> Puntoyc()
 }
 
 void Sentencia_condicion() : 
@@ -778,25 +618,25 @@ void Sentencia_incremental() :
 void Super() : 
 {}
 {
-    <SUPER> <PAREA>Argumentos()<PAREC><PYC>
+    <SUPER> <PAREA>Argumentos()<PAREC>Puntoyc()
 }
 
 void Sentencia_this() : 
 {}
 {
-    (<VAR> <ASIG> <VAR> (<CORA> ArregloL())? <PYC> Sentencia_this())?
+    (<VAR> <ASIG> <VAR> (<CORA> ArregloL())? Puntoyc() Sentencia_this())?
 }
 
 void Sentencia_switch() : 
 {}
 {
-    <VAR> (<CORA> ArregloL())? Llavea()Case() <DEF><DOSP> Sentencia() <BREAK><PYC>Llavec() 
+    <VAR> (<CORA> ArregloL())? Llavea()Case() <DEF><DOSP> Sentencia() <BREAK>Puntoyc()Llavec() 
 }
 
 void Case() : 
 {}
 {
-    (<CASE> Caso()<DOSP> Sentencia() <BREAK><PYC> Case())?
+    (<CASE> Caso()<DOSP> Sentencia() <BREAK>Puntoyc() Case())?
 }
 
 void Caso() : 
