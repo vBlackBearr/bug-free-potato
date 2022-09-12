@@ -81,7 +81,7 @@ PARSER_END(Gramatica)
     | < COM: "," > {System.out.println(image + " -> Token fijo " + "\n");} : DEFAULT
     | < PUNT: "." > {System.out.println(image + " -> Token fijo " + "\n");} : DEFAULT
     | < GUIONB: "_" > {System.out.println(image + " -> Token fijo " + "\n");} : DEFAULT
-    | < DOSP: ":" > {System.out.println(image + " -> Token fijo " + "\n");} : DEFAULT
+    | < DOSP: ":" > {System.out.println(image + " -> Token fijo " + "\n");} : SALTO
 }
 
 
@@ -560,6 +560,7 @@ void ConstructorA() :
 			}
 			if(t.next!=null){t=getNextToken();}
 			Cuerpo();
+			Argumentos();
 			Sentencia();
 			ConstructorA();
 	}
@@ -595,7 +596,7 @@ void Cuerpo() :
 {}
 {
 	try {
-			Tipo() (Variables_clase() | Metodo()) CuerpoA() | Void() MetodosA()
+			Tipo() (Metodo() | Variables_clase()) CuerpoA() | Void() MetodosA()
 	}
 	catch(ParseException e)
 	{
@@ -689,6 +690,7 @@ void Metodo() :
 				}while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
 			}
 			if(t.next!=null){t=getNextToken();}
+			Argumentos();
 			Sentencia();
 			Retorno();
 	}
@@ -872,16 +874,42 @@ void Sentencia_switch() :
     <VAR> (<CORA> ArregloL())? Llavea()Case() <DEF><DOSP> Sentencia() <BREAK>Puntoyc()Llavec() 
 }
 
+void Cases():
+{}
+{
+	try {
+			<CASE>
+	}
+	catch(ParseException e)
+	{
+			Token t=getToken(0);
+				if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
+           t=getNextToken();
+        }
+			System.out.println("Se esperaba \"Case\": "+t.beginLine);
+			if (t.image=="\n")
+			{
+				linea = linea + 1;
+			}
+			if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
+			{
+				do{
+					t=getNextToken();
+				}while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+			}
+	}
+}
+
 void Case() : 
 {}
 {
-    (<CASE> Caso()<DOSP> Sentencia() <BREAK>Puntoyc() Case())?
+    (Cases() Caso()<DOSP> Sentencia() <BREAK>Puntoyc() Case())?
 }
 
 void Caso() : 
 {}
 {
-    X() | <CADENA> | <CARACTER>
+    <ENTERO> | <CADENA> | <CARACTER> | <VAR>
 }
 
 void Si_e() : 

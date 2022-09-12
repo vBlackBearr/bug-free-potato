@@ -2136,7 +2136,7 @@ public static final String[] lexStateNames = {
 public static final int[] jjnewLexState = {
    -1, -1, -1, -1, -1, -1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 
    1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 
-   1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, -1, 
+   0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, -1, 
    -1, -1, -1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 
 };
 static final long[] jjtoToken = {
@@ -2705,21 +2705,21 @@ void TokenLexicalActions(Token matchedToken)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[57]);
         lengthOfMatch = jjstrLiteralImages[57].length();
-                      System.out.println(image + " -> Operador l\u00c3\u00b3gico " + "\n");
+                      System.out.println(image + " -> Operador l\u00f3gico " + "\n");
          break;
       case 58 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[58]);
         lengthOfMatch = jjstrLiteralImages[58].length();
-                    System.out.println(image + " -> Operador l\u00c3\u00b3gico " + "\n");
+                    System.out.println(image + " -> Operador l\u00f3gico " + "\n");
          break;
       case 59 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[59]);
         lengthOfMatch = jjstrLiteralImages[59].length();
-                      System.out.println(image + " -> Operador l\u00c3\u00b3gico " + "\n");
+                      System.out.println(image + " -> Operador l\u00f3gico " + "\n");
          break;
       case 60 :
         if (image == null)
@@ -2740,42 +2740,42 @@ void TokenLexicalActions(Token matchedToken)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[62]);
         lengthOfMatch = jjstrLiteralImages[62].length();
-                     System.out.println(image + " -> Operador de asignaci\u00c3\u00b3n " + "\n");
+                     System.out.println(image + " -> Operador de asignaci\u00f3n " + "\n");
          break;
       case 63 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[63]);
         lengthOfMatch = jjstrLiteralImages[63].length();
-                         System.out.println(image + " -> Operador de asignaci\u00c3\u00b3n " + "\n");
+                         System.out.println(image + " -> Operador de asignaci\u00f3n " + "\n");
          break;
       case 64 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[64]);
         lengthOfMatch = jjstrLiteralImages[64].length();
-                         System.out.println(image + " -> Operador de asignaci\u00c3\u00b3n " + "\n");
+                         System.out.println(image + " -> Operador de asignaci\u00f3n " + "\n");
          break;
       case 65 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[65]);
         lengthOfMatch = jjstrLiteralImages[65].length();
-                         System.out.println(image + " -> Operador de asignaci\u00c3\u00b3n " + "\n");
+                         System.out.println(image + " -> Operador de asignaci\u00f3n " + "\n");
          break;
       case 66 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[66]);
         lengthOfMatch = jjstrLiteralImages[66].length();
-                         System.out.println(image + " -> Operador de asignaci\u00c3\u00b3n " + "\n");
+                         System.out.println(image + " -> Operador de asignaci\u00f3n " + "\n");
          break;
       case 67 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[67]);
         lengthOfMatch = jjstrLiteralImages[67].length();
-                         System.out.println(image + " -> Operador de asignaci\u00c3\u00b3n " + "\n");
+                         System.out.println(image + " -> Operador de asignaci\u00f3n " + "\n");
          break;
       case 68 :
         if (image == null)
@@ -2865,7 +2865,7 @@ void TokenLexicalActions(Token matchedToken)
         if (image == null)
             image = new StringBuffer();
         image.append(input_stream.GetSuffix(jjimageLen + (lengthOfMatch = jjmatchedPos + 1)));
-                                                                 System.out.println(image + " -> Nombre de funci\u00c3\u00b3n " + "\n");
+                                                                 System.out.println(image + " -> Nombre de funci\u00f3n " + "\n");
          break;
       case 86 :
         if (image == null)
@@ -2878,56 +2878,56 @@ void TokenLexicalActions(Token matchedToken)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[87]);
         lengthOfMatch = jjstrLiteralImages[87].length();
-                       System.out.println(image + " -> Car\u00c3\u00a1cter no valido " + "\n");
+                       System.out.println(image + " -> Car\u00e1cter no valido " + "\n");
          break;
       case 88 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[88]);
         lengthOfMatch = jjstrLiteralImages[88].length();
-                            System.out.println(image + " -> Car\u00c3\u00a1cter no valido " + "\n");
+                            System.out.println(image + " -> Car\u00e1cter no valido " + "\n");
          break;
       case 89 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[89]);
         lengthOfMatch = jjstrLiteralImages[89].length();
-                          System.out.println(image + " -> Car\u00c3\u00a1cter no valido " + "\n");
+                          System.out.println(image + " -> Car\u00e1cter no valido " + "\n");
          break;
       case 90 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[90]);
         lengthOfMatch = jjstrLiteralImages[90].length();
-                            System.out.println(image + " -> Car\u00c3\u00a1cter no valido " + "\n");
+                            System.out.println(image + " -> Car\u00e1cter no valido " + "\n");
          break;
       case 91 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[91]);
         lengthOfMatch = jjstrLiteralImages[91].length();
-                        System.out.println(image + " -> Car\u00c3\u00a1cter no valido " + "\n");
+                        System.out.println(image + " -> Car\u00e1cter no valido " + "\n");
          break;
       case 92 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[92]);
         lengthOfMatch = jjstrLiteralImages[92].length();
-                            System.out.println(image + " -> Car\u00c3\u00a1cter no valido " + "\n");
+                            System.out.println(image + " -> Car\u00e1cter no valido " + "\n");
          break;
       case 93 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[93]);
         lengthOfMatch = jjstrLiteralImages[93].length();
-                        System.out.println(image + " -> Car\u00c3\u00a1cter no valido " + "\n");
+                        System.out.println(image + " -> Car\u00e1cter no valido " + "\n");
          break;
       case 94 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[94]);
         lengthOfMatch = jjstrLiteralImages[94].length();
-                            System.out.println(image + " -> Car\u00c3\u00a1cter no valido " + "\n");
+                            System.out.println(image + " -> Car\u00e1cter no valido " + "\n");
          break;
       default : 
          break;
