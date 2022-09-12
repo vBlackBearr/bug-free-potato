@@ -35,10 +35,7 @@ public class Analizar {
             respuestaLexico=e.getMessage();
             respuestaSintactico="Ocurrió un error léxico...";
         }
-        
-        
-        
-        
+    
     }
     
 }
