@@ -14,10 +14,10 @@ class TokenAsignaciones
 	  private static Hashtable tabla = new Hashtable();
 	  
 	  //Listas que guardaran los tipos compatibles de las variables
-	  private static ArrayList<Integer> intComp = new ArrayList();
-	  private static ArrayList<Integer> decComp = new ArrayList();
-	  private static ArrayList<Integer> strComp = new ArrayList();
-	  private static ArrayList<Integer> chrComp = new ArrayList();
+	  private static ArrayList<Integer> enteroComp = new ArrayList();
+	  private static ArrayList<Integer> flotanteComp = new ArrayList();
+	  private static ArrayList<Integer> stringComp = new ArrayList();
+	  private static ArrayList<Integer> charComp = new ArrayList();
 	  
 												//variable		//tipoDato
 	public static void InsertarSimbolo(Token identificador, int tipo)
@@ -30,23 +30,23 @@ class TokenAsignaciones
 	{
 		/*En este metodo se inicializan las tablas, las cuales almacenaran los tipo de datos compatibles con:		
 		 entero = intComp
-		 decimal = decComp
-		 cadena = strComp
-		 caracter = chrComp
+		 decimal = flotanteComp
+		 cadena = stringComp
+		 caracter = charComp
 		*/
-		intComp.add(44);
-		intComp.add(48);
+		enteroComp.add(82);
+		enteroComp.add(83);
 		
-		decComp.add(44);
-		decComp.add(45);
-		decComp.add(48);
-		decComp.add(50);
+		flotanteComp.add(84);
+		flotanteComp.add(83);
+		flotanteComp.add(21);
+		flotanteComp.add(22);
 		
-		chrComp.add(46);
-		chrComp.add(52);
+		charComp.add(19);
+		charComp.add(86);
 		
-		strComp.add(47);
-		strComp.add(51);
+		stringComp.add(87);
+		stringComp.add(20);
 	}
  
 	public static String checkAsing(Token TokenIzq, Token TokenAsig)
@@ -102,14 +102,14 @@ class TokenAsignaciones
 		if(tipoIdent1 == 44) //Int
 		{
 			//Si la lista de enteros(intComp) contiene el valor de tipoIdent2, entonces es compatible y se puede hacer la asignacion
-			if(intComp.contains(tipoIdent2))
+			if(enteroComp.contains(tipoIdent2))
 				return " ";
 			else //Si el tipo de dato no es compatible manda el error
 				return "Error: No se puede convertir " + TokenAsig.image + " a Entero \r\nLinea: " + TokenIzq.beginLine;
 		}
 		else if(tipoIdent1 == 45) //double
 		{
-			if(decComp.contains(tipoIdent2))
+			if(flotanteComp.contains(tipoIdent2))
 				return " ";
 			else
 				return "Error: No se puede convertir " + TokenAsig.image + " a Decimal \r\nLinea: " + TokenIzq.beginLine;
@@ -122,7 +122,7 @@ class TokenAsignaciones
 			segunda++;
 			if(segunda < 2)
 			{
-				if(chrComp.contains(tipoIdent2))
+				if(charComp.contains(tipoIdent2))
 					return " ";				
 				else
 					return "Error: No se puede convertir " + TokenAsig.image + " a Caracter \r\nLinea: " + TokenIzq.beginLine;	
@@ -133,7 +133,7 @@ class TokenAsignaciones
 		}
 		else if(tipoIdent1 == 47) //string
 		{
-			if(strComp.contains(tipoIdent2))
+			if(stringComp.contains(tipoIdent2))
 				return " ";
 			else
 				return "Error: No se puede convertir " + TokenAsig.image + " a Cadena \r\nLinea: " + TokenIzq.beginLine;
