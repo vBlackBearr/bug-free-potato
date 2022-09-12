@@ -21,7 +21,7 @@ import java.util.logging.Logger;
 public class Analizar {
     public String respuestaLexico ="";
     public String respuestaSintactico ="Sin errores";
-    public void AnalizarCodigo_Lexico(FileReader file){
+    public void AnalizarCodigo(FileReader file){
         respuestaLexico ="";
         respuestaSintactico ="Sin errores";
         try {
@@ -35,6 +35,8 @@ public class Analizar {
             respuestaLexico=e.getMessage();
             respuestaSintactico="Ocurrió un error léxico...";
         }
+        
+        
         
         
     }

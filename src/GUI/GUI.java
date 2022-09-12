@@ -55,14 +55,20 @@ public class GUI extends javax.swing.JFrame {
 
         jScroll_Editor = new javax.swing.JScrollPane();
         txtArea_Editor = new javax.swing.JTextArea();
-        jScroll_Respuesta = new javax.swing.JScrollPane();
-        txtAreaLexico = new javax.swing.JTextArea();
         lbl_Escribiendo = new javax.swing.JLabel();
         lbl_Respuesta = new javax.swing.JLabel();
         lbl_Codigo = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        paneOutput = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtAreaSintactico = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
+        jScroll_Respuesta = new javax.swing.JScrollPane();
+        txtAreaLexico = new javax.swing.JTextArea();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtAreaSintactico1 = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
@@ -73,9 +79,9 @@ public class GUI extends javax.swing.JFrame {
         helpMenu = new javax.swing.JMenu();
         jm_Lexico = new javax.swing.JMenuItem();
         jm_Sintactico = new javax.swing.JMenuItem();
-        jm_Semantico = new javax.swing.JMenuItem();
         jm_CodInter = new javax.swing.JMenuItem();
         jm_Optimizacion1 = new javax.swing.JMenuItem();
+        jm_Semantico = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -84,11 +90,6 @@ public class GUI extends javax.swing.JFrame {
         txtArea_Editor.setColumns(20);
         txtArea_Editor.setRows(5);
         jScroll_Editor.setViewportView(txtArea_Editor);
-
-        txtAreaLexico.setEditable(false);
-        txtAreaLexico.setColumns(20);
-        txtAreaLexico.setRows(5);
-        jScroll_Respuesta.setViewportView(txtAreaLexico);
 
         lbl_Escribiendo.setFont(new java.awt.Font("Microsoft YaHei", 0, 14)); // NOI18N
         lbl_Escribiendo.setText("Escribiendo en:");
@@ -99,11 +100,68 @@ public class GUI extends javax.swing.JFrame {
         lbl_Codigo.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         lbl_Codigo.setText("(Sin Nombre)");
 
+        jButton1.setText("jButton1");
+
         txtAreaSintactico.setColumns(20);
         txtAreaSintactico.setRows(5);
         jScrollPane1.setViewportView(txtAreaSintactico);
 
-        jButton1.setText("jButton1");
+        txtAreaLexico.setEditable(false);
+        txtAreaLexico.setColumns(20);
+        txtAreaLexico.setRows(5);
+        jScroll_Respuesta.setViewportView(txtAreaLexico);
+
+        txtAreaSintactico1.setColumns(20);
+        txtAreaSintactico1.setRows(5);
+        jScrollPane2.setViewportView(txtAreaSintactico1);
+
+        jLabel1.setText("Lexico:");
+
+        jLabel2.setText("Sintactico:");
+
+        jLabel3.setText("Semantico:");
+
+        javax.swing.GroupLayout paneOutputLayout = new javax.swing.GroupLayout(paneOutput);
+        paneOutput.setLayout(paneOutputLayout);
+        paneOutputLayout.setHorizontalGroup(
+            paneOutputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(paneOutputLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(paneOutputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addGroup(paneOutputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addContainerGap())
+            .addGroup(paneOutputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(paneOutputLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jScroll_Respuesta, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(354, Short.MAX_VALUE)))
+        );
+        paneOutputLayout.setVerticalGroup(
+            paneOutputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(paneOutputLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(paneOutputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29))
+            .addGroup(paneOutputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(paneOutputLayout.createSequentialGroup()
+                    .addGap(48, 48, 48)
+                    .addComponent(jScroll_Respuesta, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(320, Short.MAX_VALUE)))
+        );
 
         fileMenu.setMnemonic('f');
         fileMenu.setText("Archivo");
@@ -193,11 +251,6 @@ public class GUI extends javax.swing.JFrame {
         });
         helpMenu.add(jm_Sintactico);
 
-        jm_Semantico.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jm_Semantico.setMnemonic('a');
-        jm_Semantico.setText("Sintactico");
-        helpMenu.add(jm_Semantico);
-
         jm_CodInter.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jm_CodInter.setMnemonic('a');
         jm_CodInter.setText("Código intermedio");
@@ -207,6 +260,16 @@ public class GUI extends javax.swing.JFrame {
         jm_Optimizacion1.setMnemonic('a');
         jm_Optimizacion1.setText("Optimización");
         helpMenu.add(jm_Optimizacion1);
+
+        jm_Semantico.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jm_Semantico.setMnemonic('a');
+        jm_Semantico.setText("Semantico");
+        jm_Semantico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jm_SemanticoActionPerformed(evt);
+            }
+        });
+        helpMenu.add(jm_Semantico);
 
         menuBar.add(helpMenu);
 
@@ -225,17 +288,16 @@ public class GUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lbl_Codigo)))
                 .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbl_Respuesta)
-                    .addComponent(jScrollPane1)
-                    .addComponent(jScroll_Respuesta, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE))
-                .addContainerGap(24, Short.MAX_VALUE))
+                    .addComponent(paneOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lbl_Escribiendo)
@@ -244,11 +306,9 @@ public class GUI extends javax.swing.JFrame {
                         .addComponent(jScroll_Editor, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lbl_Respuesta)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScroll_Respuesta, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1)))
-                .addContainerGap(69, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(paneOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         pack();
@@ -304,7 +364,7 @@ public class GUI extends javax.swing.JFrame {
             String ruta = String.valueOf(seleccionarCodigo.getCurrentDirectory()) + "/" + selectedFile.getName();
             System.out.println(ruta);
             try {
-                an.AnalizarCodigo_Lexico(new FileReader(ruta));
+                an.AnalizarCodigo(new FileReader(ruta));
             } catch (FileNotFoundException ex) {
                 JOptionPane.showMessageDialog(null, "Error al leer el archivo");
             }
@@ -321,7 +381,7 @@ public class GUI extends javax.swing.JFrame {
 
     private void btnCompilarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompilarActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_btnCompilarActionPerformed
 
     private void btnCompilarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCompilarMouseClicked
@@ -330,13 +390,19 @@ public class GUI extends javax.swing.JFrame {
 //        System.out.println(ruta);
         try {
             File file = crearArchivoConTexto(txtArea_Editor.getText());
-            an.AnalizarCodigo_Lexico(new FileReader(file));
+            an.AnalizarCodigo(new FileReader(file));
             txtAreaLexico.setText(an.respuestaLexico);
             txtAreaSintactico.setText(an.respuestaSintactico);
+            analisisSemantico();
         } catch (FileNotFoundException ex) {
             JOptionPane.showMessageDialog(null, "Error al leer el archivo");
         }
     }//GEN-LAST:event_btnCompilarMouseClicked
+
+    private void jm_SemanticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jm_SemanticoActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jm_SemanticoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -379,7 +445,11 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScroll_Editor;
     private javax.swing.JScrollPane jScroll_Respuesta;
     private javax.swing.JMenuItem jm_CodInter;
@@ -392,12 +462,33 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_Respuesta;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem openMenuItem;
+    private javax.swing.JPanel paneOutput;
     private javax.swing.JMenuItem saveAsMenuItem;
     private javax.swing.JMenuItem saveMenuItem;
     private javax.swing.JTextArea txtAreaLexico;
     private javax.swing.JTextArea txtAreaSintactico;
+    private javax.swing.JTextArea txtAreaSintactico1;
     private javax.swing.JTextArea txtArea_Editor;
     // End of variables declaration//GEN-END:variables
+
+    public void analisisLexico() {
+        try {
+            File file = crearArchivoConTexto(txtArea_Editor.getText());
+            an.AnalizarCodigo(new FileReader(file));
+            txtAreaLexico.setText(an.respuestaLexico);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error analisis Lexico: " + ex);
+        }
+    }
+
+    public void analisisSintactico() {
+
+    }
+
+    public void analisisSemantico() {
+
+    }
 
     public File crearArchivoConTexto(String texto) {
 
