@@ -1,4 +1,4 @@
 public class Kk{
-	int a = 0;
-	x= "ddf"
+	int a = "fdfd";
+
 }

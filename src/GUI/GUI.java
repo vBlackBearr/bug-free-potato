@@ -5,6 +5,7 @@
 package GUI;
 
 import Analizador.GramaticaTokenManager;
+import analizador.TokenAsignaciones;
 import java.awt.Color;
 import java.awt.HeadlessException;
 import lenguajee.Analizar;
@@ -36,7 +37,7 @@ public class GUI extends javax.swing.JFrame {
      * Creates new form GUI
      */
     public GUI() {
-        GramaticaTokenManager valores = new GramaticaTokenManager();
+//        GramaticaTokenManager valores = new GramaticaTokenManager();
         initComponents();
         NumeroLinea tln = new NumeroLinea(txtArea_Editor);
         jScroll_Editor.setRowHeaderView(tln);
@@ -65,7 +66,7 @@ public class GUI extends javax.swing.JFrame {
         jScroll_Respuesta = new javax.swing.JScrollPane();
         txtAreaLexico = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
-        txtAreaSintactico1 = new javax.swing.JTextArea();
+        txtAreaSemantico = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -111,9 +112,9 @@ public class GUI extends javax.swing.JFrame {
         txtAreaLexico.setRows(5);
         jScroll_Respuesta.setViewportView(txtAreaLexico);
 
-        txtAreaSintactico1.setColumns(20);
-        txtAreaSintactico1.setRows(5);
-        jScrollPane2.setViewportView(txtAreaSintactico1);
+        txtAreaSemantico.setColumns(20);
+        txtAreaSemantico.setRows(5);
+        jScrollPane2.setViewportView(txtAreaSemantico);
 
         jLabel1.setText("Lexico:");
 
@@ -388,15 +389,7 @@ public class GUI extends javax.swing.JFrame {
         // TODO add your handling code here:
 //        String ruta = String.valueOf(seleccionarCodigo.getCurrentDirectory()) + "/" + selectedFile.getName();
 //        System.out.println(ruta);
-        try {
-            File file = crearArchivoConTexto(txtArea_Editor.getText());
-            an.AnalizarCodigo(new FileReader(file));
-            txtAreaLexico.setText(an.respuestaLexico);
-            txtAreaSintactico.setText(an.respuestaSintactico);
-            analisisSemantico();
-        } catch (FileNotFoundException ex) {
-            JOptionPane.showMessageDialog(null, "Error al leer el archivo");
-        }
+        analisisLexico();
     }//GEN-LAST:event_btnCompilarMouseClicked
 
     private void jm_SemanticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jm_SemanticoActionPerformed
@@ -466,8 +459,8 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem saveAsMenuItem;
     private javax.swing.JMenuItem saveMenuItem;
     private javax.swing.JTextArea txtAreaLexico;
+    private javax.swing.JTextArea txtAreaSemantico;
     private javax.swing.JTextArea txtAreaSintactico;
-    private javax.swing.JTextArea txtAreaSintactico1;
     private javax.swing.JTextArea txtArea_Editor;
     // End of variables declaration//GEN-END:variables
 
@@ -476,6 +469,8 @@ public class GUI extends javax.swing.JFrame {
             File file = crearArchivoConTexto(txtArea_Editor.getText());
             an.AnalizarCodigo(new FileReader(file));
             txtAreaLexico.setText(an.respuestaLexico);
+            txtAreaSintactico.setText(an.respuestaSintactico);
+            txtAreaSemantico.setText(an.respuestaSemantico);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Error analisis Lexico: " + ex);
@@ -487,7 +482,8 @@ public class GUI extends javax.swing.JFrame {
     }
 
     public void analisisSemantico() {
-
+        TokenAsignaciones sem = new TokenAsignaciones();
+//        sem.checkAsing(TokenIzq, TokenAsig)
     }
 
     public File crearArchivoConTexto(String texto) {

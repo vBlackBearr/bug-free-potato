@@ -24,177 +24,173 @@ public interface GramaticaConstants {
   /** RegularExpression Id. */
   int PACK = 10;
   /** RegularExpression Id. */
-  int LIBRARY = 11;
+  int PUBLIC = 11;
   /** RegularExpression Id. */
-  int PUBLIC = 12;
+  int PRIVATE = 12;
   /** RegularExpression Id. */
-  int PRIVATE = 13;
+  int BREAK = 13;
   /** RegularExpression Id. */
-  int BREAK = 14;
+  int DO = 14;
   /** RegularExpression Id. */
-  int DO = 15;
+  int CHAR = 15;
   /** RegularExpression Id. */
-  int CHAR = 16;
+  int STRING = 16;
   /** RegularExpression Id. */
-  int STRING = 17;
+  int INT = 17;
   /** RegularExpression Id. */
-  int INT = 18;
+  int FLOAT = 18;
   /** RegularExpression Id. */
-  int FLOAT = 19;
+  int BOOLEAN = 19;
   /** RegularExpression Id. */
-  int BOOLEAN = 20;
+  int TRY = 20;
   /** RegularExpression Id. */
-  int TRY = 21;
+  int CATCH = 21;
   /** RegularExpression Id. */
-  int CATCH = 22;
+  int SUPER = 22;
   /** RegularExpression Id. */
-  int SUPER = 23;
+  int THIS = 23;
   /** RegularExpression Id. */
-  int THIS = 24;
+  int DERIVATE = 24;
   /** RegularExpression Id. */
-  int DERIVATE = 25;
+  int RETURN = 25;
   /** RegularExpression Id. */
-  int RETURN = 26;
+  int FINAL = 26;
   /** RegularExpression Id. */
-  int FINAL = 27;
+  int VOID = 27;
   /** RegularExpression Id. */
-  int VOID = 28;
+  int NULL = 28;
   /** RegularExpression Id. */
-  int NULL = 29;
+  int IMPORT = 29;
   /** RegularExpression Id. */
-  int IMPORT = 30;
+  int TRUE = 30;
   /** RegularExpression Id. */
-  int TRUE = 31;
+  int FALSE = 31;
   /** RegularExpression Id. */
-  int FALSE = 32;
+  int FOR = 32;
   /** RegularExpression Id. */
-  int FOR = 33;
+  int SWITCH = 33;
   /** RegularExpression Id. */
-  int SWITCH = 34;
+  int CASE = 34;
   /** RegularExpression Id. */
-  int CASE = 35;
+  int PRINMAIN = 35;
   /** RegularExpression Id. */
-  int ARRAY = 36;
+  int DOUBLE = 36;
   /** RegularExpression Id. */
-  int PRINMAIN = 37;
+  int EXCEPT = 37;
   /** RegularExpression Id. */
-  int DOUBLE = 38;
+  int DEF = 38;
   /** RegularExpression Id. */
-  int EXCEPT = 39;
+  int LLAVA = 39;
   /** RegularExpression Id. */
-  int DEF = 40;
+  int LLAVC = 40;
   /** RegularExpression Id. */
-  int LLAVA = 41;
+  int CORA = 41;
   /** RegularExpression Id. */
-  int LLAVC = 42;
+  int CORC = 42;
   /** RegularExpression Id. */
-  int CORA = 43;
+  int PAREA = 43;
   /** RegularExpression Id. */
-  int CORC = 44;
+  int PAREC = 44;
   /** RegularExpression Id. */
-  int PAREA = 45;
+  int PYC = 45;
   /** RegularExpression Id. */
-  int PAREC = 46;
+  int COMSIM = 46;
   /** RegularExpression Id. */
-  int PYC = 47;
+  int COM = 47;
   /** RegularExpression Id. */
-  int COMSIM = 48;
+  int PUNT = 48;
   /** RegularExpression Id. */
-  int COM = 49;
+  int GUIONB = 49;
   /** RegularExpression Id. */
-  int PUNT = 50;
+  int DOSP = 50;
   /** RegularExpression Id. */
-  int GUIONB = 51;
+  int MAYORQ = 51;
   /** RegularExpression Id. */
-  int DOSP = 52;
+  int MENORQ = 52;
   /** RegularExpression Id. */
-  int MAYORQ = 53;
+  int MAYORI = 53;
   /** RegularExpression Id. */
-  int MENORQ = 54;
+  int MENORI = 54;
   /** RegularExpression Id. */
-  int MAYORI = 55;
+  int IGUALI = 55;
   /** RegularExpression Id. */
-  int MENORI = 56;
+  int DIFER = 56;
   /** RegularExpression Id. */
-  int IGUALI = 57;
+  int AND = 57;
   /** RegularExpression Id. */
-  int DIFER = 58;
+  int OR = 58;
   /** RegularExpression Id. */
-  int AND = 59;
+  int NOT = 59;
   /** RegularExpression Id. */
-  int OR = 60;
+  int INCRE = 60;
   /** RegularExpression Id. */
-  int NOT = 61;
+  int DECRE = 61;
   /** RegularExpression Id. */
-  int INCRE = 62;
+  int ASIG = 62;
   /** RegularExpression Id. */
-  int DECRE = 63;
+  int SUMASIG = 63;
   /** RegularExpression Id. */
-  int ASIG = 64;
+  int RESASIG = 64;
   /** RegularExpression Id. */
-  int SUMASIG = 65;
+  int MULASIG = 65;
   /** RegularExpression Id. */
-  int RESASIG = 66;
+  int DIVASIG = 66;
   /** RegularExpression Id. */
-  int MULASIG = 67;
+  int MODASIG = 67;
   /** RegularExpression Id. */
-  int DIVASIG = 68;
+  int SUMA = 68;
   /** RegularExpression Id. */
-  int MODASIG = 69;
+  int RESTA = 69;
   /** RegularExpression Id. */
-  int SUMA = 70;
+  int DIVIS = 70;
   /** RegularExpression Id. */
-  int RESTA = 71;
+  int POTEN = 71;
   /** RegularExpression Id. */
-  int DIVIS = 72;
+  int MODUL = 72;
   /** RegularExpression Id. */
-  int POTEN = 73;
+  int MULTI = 73;
   /** RegularExpression Id. */
-  int MODUL = 74;
+  int letraMay = 74;
   /** RegularExpression Id. */
-  int MULTI = 75;
+  int letraMin = 75;
   /** RegularExpression Id. */
-  int letraMay = 76;
+  int c = 76;
   /** RegularExpression Id. */
-  int letraMin = 77;
+  int digito = 77;
   /** RegularExpression Id. */
-  int c = 78;
+  int ENTERO = 78;
   /** RegularExpression Id. */
-  int digito = 79;
+  int FLOTANTEDOUBLE = 79;
   /** RegularExpression Id. */
-  int ENTERO = 80;
+  int CLASES = 80;
   /** RegularExpression Id. */
-  int FLOTANTEDOUBLE = 81;
+  int CARACTER = 81;
   /** RegularExpression Id. */
-  int CLASES = 82;
+  int CADENA = 82;
   /** RegularExpression Id. */
-  int CARACTER = 83;
+  int PAQUET = 83;
   /** RegularExpression Id. */
-  int CADENA = 84;
+  int VAR = 84;
   /** RegularExpression Id. */
-  int PAQUET = 85;
+  int FUNC = 85;
   /** RegularExpression Id. */
-  int VAR = 86;
+  int LIBR = 86;
   /** RegularExpression Id. */
-  int FUNC = 87;
+  int A = 87;
   /** RegularExpression Id. */
-  int LIBR = 88;
+  int GRADOS = 88;
   /** RegularExpression Id. */
-  int A = 89;
+  int CPOR = 89;
   /** RegularExpression Id. */
-  int GRADOS = 90;
+  int PUNTOS = 90;
   /** RegularExpression Id. */
-  int CPOR = 91;
+  int ACENTOI = 91;
   /** RegularExpression Id. */
-  int PUNTOS = 92;
+  int ACENTO = 92;
   /** RegularExpression Id. */
-  int ACENTOI = 93;
+  int BARRAI = 93;
   /** RegularExpression Id. */
-  int ACENTO = 94;
-  /** RegularExpression Id. */
-  int BARRAI = 95;
-  /** RegularExpression Id. */
-  int ARROBA = 96;
+  int ARROBA = 94;
 
   /** Lexical state. */
   int SALTO = 0;
@@ -214,7 +210,6 @@ public interface GramaticaConstants {
     "\"While\"",
     "\"class\"",
     "\"Pack\"",
-    "\"Library\"",
     "\"public\"",
     "\"private\"",
     "\"break\"",
@@ -227,7 +222,7 @@ public interface GramaticaConstants {
     "\"Try\"",
     "\"Catch\"",
     "\"Super\"",
-    "\"This\"",
+    "\"this\"",
     "\"Derivate\"",
     "\"return\"",
     "\"Final\"",
@@ -239,7 +234,6 @@ public interface GramaticaConstants {
     "\"For\"",
     "\"Switch\"",
     "\"Case\"",
-    "\"Array\"",
     "\"principalMain\"",
     "\"double\"",
     "\"Except\"",
