@@ -7,6 +7,7 @@ options {
 PARSER_BEGIN(Gramatica)
 /** Analizador de expresiones aritmeticas sencillas. */
 package Analizador; 
+import analizador.TokenAsignaciones;
 public class Gramatica {
     TokenAsignaciones TA = new TokenAsignaciones();
     public static int linea=1;
