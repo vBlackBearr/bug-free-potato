@@ -8,8 +8,9 @@ PARSER_BEGIN(Gramatica)
 /** Analizador de expresiones aritmeticas sencillas. */
 package Analizador; 
 public class Gramatica {
+    TokenAsignaciones TA = new TokenAsignaciones();
     public static int linea=1;
-    	public static int la;
+    public static int la;
     String muestraLexico = "";
 }
 PARSER_END(Gramatica)
@@ -173,7 +174,9 @@ PARSER_END(Gramatica)
 /**Inicio sintactico*/
 
 void Inicio() : 
-{}
+{
+    TA.SetTables();
+}
 {
     try {
         Import() Clases() <EOF>
