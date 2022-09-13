@@ -143,7 +143,7 @@ PARSER_END(Gramatica)
 <*>TOKEN : {
       < #letraMay: ["A"-"Z"]  >
     | < #letraMin: ["a"-"z"]  >
-    | < #c: ["a"-"z", "A"-"Z", "0"-"9", "|", "'", "/", "(", ")", "{", "}", "[", "]", ",", ".", ";", "_", ":", " "]  >
+    | < #c: ["a"-"z", "A"-"Z", "0"-"9", "|", "'", "/", "(", ")", "{", "}", "[", "]", ",", ".", ";", "_", ":", " ", "@", "#", "&", "%", "+", "-", "*", "="]  >
     | < #digito: ["0"-"9"]  >
     | < ENTERO: (<digito>)+ > {System.out.println(image + " -> Numero entero " + "\n");} : DEFAULT
     | < FLOTANTEDOUBLE: ((<digito>)+ "." (<digito>)+)+ > {System.out.println(image + " -> Numero flotante " + "\n");} : DEFAULT

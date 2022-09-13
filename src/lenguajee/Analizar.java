@@ -26,11 +26,12 @@ public class Analizar {
     public String respuestaSemantico = "Sin errores";
 
     public void AnalizarCodigo(FileReader file) {
-
+        respuestaSintactico = "Sin errores";
         try {
             Gramatica parser = new Gramatica(new BufferedReader(file));
             parser.Inicio();
-//            respuestaLexico=parser.muestraLexico();
+            respuestaLexico=parser.muestraLexico();
+            respuestaSintactico = parser.muestraSintactico();
         } catch (ParseException e) {
             respuestaLexico = "Ocurrió un error Sintáctico...";
             respuestaSemantico = "Ocurrió un error Sintáctico...";
