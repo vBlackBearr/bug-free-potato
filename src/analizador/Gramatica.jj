@@ -1444,6 +1444,30 @@ void ExpA() :
 	}
 }
 
+void Dato() : 
+{}
+{
+    <ENTERO> | <FLOTANTEDOUBLE> | <CARACTER> | <CADENA> | <VAR>
+}
+
+void Asignacion() :
+{}
+{
+    <VAR> (<ASIG> Expr() | Sentencia_incremental())
+}
+
+void Expr() : 
+{}
+{
+    Dato() Expr2() | <PAREA> Expr() <PAREC> Expr2()
+}
+
+void Expr2() :
+{}
+{
+    (Oper() Expr())?
+}
+
 void Declaracion() : 
 {}
 {
