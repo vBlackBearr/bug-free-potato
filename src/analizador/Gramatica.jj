@@ -174,9 +174,7 @@ PARSER_END(Gramatica)
 /**Inicio sintactico*/
 
 void Inicio() : 
-{
-    TA.SetTables();
-}
+{}
 {
     try {
         Import() Clases() <EOF>
@@ -909,7 +907,7 @@ void Variables_clase() :
 void Sentencia() : 
 {}
 {
-    (<FOR> Sentencia_ciclofor() Sentencia() | <IF> Sentencia_condicion() Sentencia() | Tipo() Declaracion()Puntoyc() Sentencia() | <VAR> Sentencia_incremental()Puntoyc() Sentencia() | <SWITCH> Sentencia_switch() Sentencia() | <TRY> Sentencia_try() Sentencia() | <THIS> Sentencia_this() Sentencia() | Sentencia_ciclowhile() Sentencia() | Func() SentenciaLlamarMetodo() Sentencia())?
+    (<FOR> Sentencia_ciclofor() Sentencia() | <IF> Sentencia_condicion() Sentencia() | Tipo() Declaracion()Puntoyc() Sentencia() | Var() Sentencia_incremental()Puntoyc() Sentencia() | <SWITCH> Sentencia_switch() Sentencia() | <TRY> Sentencia_try() Sentencia() | <THIS> Sentencia_this() Sentencia() | Sentencia_ciclowhile() Sentencia() | Func() SentenciaLlamarMetodo() Sentencia())?
 }
 
 void Parametros() : 
@@ -1009,7 +1007,7 @@ void Sentencia_try() :
 {}
 {
 	try {
-			Llavea()Sentencia()Llavec() Catch() Parea() Except() <VAR>Parec() Llavea()Sentencia()Llavec()
+			Llavea()Sentencia()Llavec() Catch() Parea() Except() Var()Parec() Llavea()Sentencia()Llavec()
 	}
 	catch(ParseException e)
 	{
@@ -1200,14 +1198,40 @@ void Sentencia_incremental() :
 void Sentencia_this() : 
 {}
 {
-    (<VAR> <ASIG> <VAR> (<CORA> ArregloL())? Puntoyc() Sentencia_this())?
+    (<VAR> <ASIG> Var() (<CORA> ArregloL())? Puntoyc() Sentencia_this())?
+}
+
+void Break():
+{}
+{
+	try {
+			<BREAK> 
+	}
+	catch(ParseException e)
+	{
+			Token t=getToken(0);
+				if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
+           t=getNextToken();
+        }
+			System.out.println("Se esperaba \"break\", linea: "+t.beginLine+", columna: "+t.beginColumn);
+			if (t.image=="\n")
+			{
+				linea = linea + 1;
+			}
+			if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
+			{
+				do{
+					t=getNextToken();
+				}while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+			}
+	}
 }
 
 void Sentencia_switch() : 
 {}
 {
 	try {
-			<VAR> (<CORA> ArregloL())? Llavea()Case() <DEF><DOSP> Sentencia() <BREAK>Puntoyc()Llavec() 
+			Var() (<CORA> ArregloL())? Llavea()Case() <DEF><DOSP> Sentencia() Break()Puntoyc()Llavec() 
 	}
 	catch(ParseException e)
 	{
@@ -1227,6 +1251,7 @@ void Sentencia_switch() :
 				}while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
 			}
 		if(t.next!=null){t=getNextToken();}
+		Sentencia_switch();
 		Sentencia();
 	}
 }
@@ -1257,17 +1282,43 @@ void Cases():
 	}
 }
 
+void Dosp():
+{}
+{
+	try {
+			<DOSP>
+	}
+	catch(ParseException e)
+	{
+			Token t=getToken(0);
+				if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
+           t=getNextToken();
+        }
+			System.out.println("Se esperaba \":\", linea: "+t.beginLine+", columna: "+t.beginColumn);
+			if (t.image=="\n")
+			{
+				linea = linea + 1;
+			}
+			if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
+			{
+				do{
+					t=getNextToken();
+				}while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+			}
+	}
+}
+
 void Case() : 
 {}
 {
-    (Cases() Caso()<DOSP> Sentencia() <BREAK>Puntoyc() Case())?
+    (Cases() Caso()Dosp() Sentencia() Break()Puntoyc() Case())?
 }
 
 void Caso() : 
 {}
 {
 	try {
-			<ENTERO> | <CADENA> | <CARACTER> | <VAR>
+			<ENTERO> | <CADENA> | <CARACTER> | Var()
 	}
 	catch(ParseException e)
 	{
@@ -1287,7 +1338,6 @@ void Caso() :
 				}while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
 			}
 	}
-	
 }
 
 void Si_e() : 
@@ -1444,35 +1494,38 @@ void ExpA() :
 	}
 }
 
-void Dato() : 
+void Var():
 {}
 {
-    <ENTERO> | <FLOTANTEDOUBLE> | <CARACTER> | <CADENA> | <VAR>
+	try {
+			<VAR>
+	}
+	catch(ParseException e)
+	{
+			Token t=getToken(0);
+				if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
+           t=getNextToken();
+        }
+			System.out.println("Error en nombre de variable, linea: "+t.beginLine+", columna: "+t.beginColumn);
+			if (t.image=="\n")
+			{
+				linea = linea + 1;
+			}
+			if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
+			{
+				do{
+					t=getNextToken();
+				}while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+			}
+	}	
 }
 
-void Asignacion() :
-{}
-{
-    <VAR> (<ASIG> Expr() | Sentencia_incremental())
-}
-
-void Expr() : 
-{}
-{
-    Dato() Expr2() | <PAREA> Expr() <PAREC> Expr2()
-}
-
-void Expr2() :
-{}
-{
-    (Oper() Expr())?
-}
 
 void Declaracion() : 
 {}
 {
 	try {
-			<VAR> (ArregloD()(<ASIG> Parea()DeclaracionTA()Parec())?|(<ASIG> DeclaracionT())?) 
+			Var() (ArregloD()(<ASIG> Parea()DeclaracionTA()Parec())?|(<ASIG> DeclaracionT())?) 
 	}
 	catch(ParseException e)
 	{
@@ -1614,7 +1667,27 @@ void ArregloL():
 void Valor():
 {}
 {
-    <ENTERO>|<FLOTANTEDOUBLE>|<CHAR>|<CADENA>|<TRUE>|<FALSE>|<VAR> (<CORA>ArregloL())?
+	try {
+			<ENTERO>|<FLOTANTEDOUBLE>|<CHAR>|<CADENA>|<TRUE>|<FALSE>|<VAR> (<CORA>ArregloL())?
+	}
+	catch(ParseException e)
+	{
+			Token t=getToken(0);
+				if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
+           t=getNextToken();
+        }
+			System.out.println("Error en asignacion de valor, linea: "+t.beginLine+", columna: "+t.beginColumn);
+			if (t.image=="\n")
+			{
+				linea = linea + 1;
+			}
+			if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
+			{
+				do{
+					t=getNextToken();
+				}while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+			}
+	}
 }
 
 void Oper():
@@ -1647,13 +1720,13 @@ void Oper():
 void Z() : 
 {}
 {
-    <TRUE> | <FALSE> | <VAR>
+    <TRUE> | <FALSE> | Var()
 }
 
 void X() : 
 {}
 {
-    <ENTERO> X1() | <VAR> X1() | Parea()X()Parec() X1() 
+    <ENTERO> X1() | Var() X1() | Parea()X()Parec() X1() 
 }
 
 void X1() : 
@@ -1665,7 +1738,7 @@ void X1() :
 void Y() : 
 {}
 {
-    <FLOTANTEDOUBLE> Y1() | <VAR> Y1() | Parea()Y() Parec() Y1()
+    <FLOTANTEDOUBLE> Y1() | Var() Y1() | Parea()Y() Parec() Y1()
 }
 
 void Y1() : 
@@ -1678,7 +1751,7 @@ void Declaracionfor() :
 {}
 {
 	try {
-		<INT> <VAR> (<CORA> ArregloL())? <ASIG> X() | <DOUBLE>  <VAR> (<CORA> ArregloL())? <ASIG> Y() | <FLOAT>  <VAR> (<CORA> ArregloL())? <ASIG> Y()
+		<INT> Var() (<CORA> ArregloL())? <ASIG> X() | <DOUBLE>  Var() (<CORA> ArregloL())? <ASIG> Y() | <FLOAT>  Var() (<CORA> ArregloL())? <ASIG> Y()
 	}
 	catch(ParseException e)
 	{
@@ -1686,7 +1759,7 @@ void Declaracionfor() :
 				if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
            t=getNextToken();
         }
-			System.out.println("Error en variable de ciclo for, linea: "+t.beginLine+", columna: "+t.beginColumn);
+			System.out.println("Error en declaracion de variable de ciclo for, linea: "+t.beginLine+", columna: "+t.beginColumn);
 			if (t.image=="\n")
 			{
 				linea = linea + 1;
