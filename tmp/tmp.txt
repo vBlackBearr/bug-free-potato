@@ -2,7 +2,10 @@ import raptor_util_Print;
 public class Miclase{
 public void principalMain(){
 escribirEnConsola("Hola mundo desde Rex Raptor");
+<<<<<<< Updated upstream
 /*Este es un codigo de Raptor*/
+=======
+>>>>>>> Stashed changes
 int x=30;
 string y="hola";
 escribirEnConsola(x);
@@ -19,6 +22,13 @@ public void escribirEnConsola(char variable){
 
 }
 public int sumarNumeros(int x, string y){
+<<<<<<< Updated upstream
 double z=x+y;
 return z;
 }
+=======
+double z=x+y
+return z;
+}
+}
+>>>>>>> Stashed changes
