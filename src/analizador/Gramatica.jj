@@ -13,7 +13,10 @@ public class Gramatica {
     TokenAsignaciones TA = new TokenAsignaciones();
     public static int linea=1;
     public static int la;
-    String muestraLexico = "";
+    //String muestraLexico = "";
+    //public String muestraLexico(){
+    //    return token_source.muestraLexico;
+    //}
 }
 PARSER_END(Gramatica)
 
@@ -1474,7 +1477,9 @@ void Expr2() :
 }
 
 void Declaracion() : 
-{}
+{
+JOptionPane.showMessageDialog(null,"paso por declaracion");
+}
 {
 	try {
 			Tipo() (<CORA><CORC>)? <VAR> (<ASIG> Dato())? 

@@ -2961,9 +2961,5 @@ private void jjCheckNAddStates(int start, int end)
       jjCheckNAdd(jjnextStates[start]);
    } while (start++ != end);
 }
-    public String muestraLexico = "";
 
-    public GramaticaTokenManager() {
-
-    }
 }

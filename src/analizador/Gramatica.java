@@ -7,7 +7,6 @@ public class Gramatica implements GramaticaConstants {
     TokenAsignaciones TA = new TokenAsignaciones();
     public static int linea=1;
     public static int la;
-    String muestraLexico = "";
 
 /** Fin Lexico */
 
@@ -1850,6 +1849,7 @@ public class Gramatica implements GramaticaConstants {
   }
 
   final public void Declaracion() throws ParseException {
+JOptionPane.showMessageDialog(null,"paso por declaracion");
     try {
       Tipo();
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
@@ -2652,7 +2652,9 @@ public class Gramatica implements GramaticaConstants {
   /** Disable tracing. */
   final public void disable_tracing() {
   }
-    public String muestraLexico() {
-        return token_source.muestraLexico;
-    }
+
+    //String muestraLexico = "";
+    //public String muestraLexico(){
+    //    return token_source.muestraLexico;
+    //}
 }
