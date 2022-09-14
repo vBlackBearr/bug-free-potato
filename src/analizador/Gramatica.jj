@@ -7,6 +7,8 @@ options {
 PARSER_BEGIN(Gramatica)
 /** Analizador de expresiones aritmeticas sencillas. */
 package Analizador; 
+import javax.swing.JOptionPane;
+import analizador.TokenAsignaciones;
 public class Gramatica {
     TokenAsignaciones TA = new TokenAsignaciones();
     public static int linea=1;
@@ -176,6 +178,7 @@ PARSER_END(Gramatica)
 void Inicio() : 
 {
     TA.SetTables();
+    JOptionPane.showMessageDialog(null,"hhjkh");
 }
 {
     try {
@@ -909,7 +912,7 @@ void Variables_clase() :
 void Sentencia() : 
 {}
 {
-    (<FOR> Sentencia_ciclofor() Sentencia() | <IF> Sentencia_condicion() Sentencia() | Tipo() Declaracion()Puntoyc() Sentencia() | <VAR> Sentencia_incremental()Puntoyc() Sentencia() | <SWITCH> Sentencia_switch() Sentencia() | <TRY> Sentencia_try() Sentencia() | <THIS> Sentencia_this() Sentencia() | Sentencia_ciclowhile() Sentencia() | Func() SentenciaLlamarMetodo() Sentencia())?
+    (<FOR> Sentencia_ciclofor() Sentencia() | <IF> Sentencia_condicion() Sentencia() | Declaracion()Puntoyc() Sentencia() | Asignacion() Puntoyc() Sentencia()| <SWITCH> Sentencia_switch() Sentencia() | <TRY> Sentencia_try() Sentencia() | <THIS> Sentencia_this() Sentencia() | Sentencia_ciclowhile() Sentencia() | Func() SentenciaLlamarMetodo() Sentencia())?
 }
 
 void Parametros() : 
@@ -1451,7 +1454,9 @@ void Dato() :
 }
 
 void Asignacion() :
-{}
+{
+    JOptionPane.showMessageDialog(null,"analisis sem: ");
+}
 {
     <VAR> (<ASIG> Expr() | Sentencia_incremental())
 }
@@ -1472,7 +1477,7 @@ void Declaracion() :
 {}
 {
 	try {
-			<VAR> (ArregloD()(<ASIG> Parea()DeclaracionTA()Parec())?|(<ASIG> DeclaracionT())?) 
+			Tipo() (<CORA><CORC>)? <VAR> (<ASIG> Dato())? 
 	}
 	catch(ParseException e)
 	{

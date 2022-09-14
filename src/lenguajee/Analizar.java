@@ -31,7 +31,7 @@ public class Analizar {
             Gramatica parser = new Gramatica(new BufferedReader(file));
             parser.Inicio();
             respuestaLexico=parser.muestraLexico();
-            respuestaSintactico = parser.muestraSintactico();
+//            respuestaSintactico = parser.muestraSintactico();
         } catch (ParseException e) {
             respuestaLexico = "Ocurrió un error Sintáctico...";
             respuestaSemantico = "Ocurrió un error Sintáctico...";
