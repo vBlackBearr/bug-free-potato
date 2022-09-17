@@ -6,23 +6,26 @@ import java.util.Hashtable;
 import java.lang.String;
 import java.util.ArrayList;
 
-public class TokenAsignaciones extends Error{
+public class TokenAsignaciones extends Error {
 
-    public TokenAsignaciones(){
-        
+    public TokenAsignaciones() {
+
     }
     //Variable para validar asignaciones a caracteres(ichr)
     public int segunda = 0;
     //Tabla que almacenara los tokens declarados
     private Hashtable tabla = new Hashtable();
 
-    //Listas que guardaran los tipos compatibles de las variables
-    private ArrayList<Integer> enteroComp = new ArrayList();
-    private ArrayList<Integer> flotanteComp = new ArrayList();
-    private ArrayList<Integer> stringComp = new ArrayList();
-    private ArrayList<Integer> charComp = new ArrayList();
+    objTipoDatoCompatible enteroComp;
+    objTipoDatoCompatible flotanteComp;
+    objTipoDatoCompatible stringComp;
+    objTipoDatoCompatible charComp;
 
-    //variable		//tipoDato
+    //Listas que guardaran los tipos compatibles de las variables
+//    private ArrayList<Integer> enteroComp = new ArrayList();
+//    private ArrayList<Integer> flotanteComp = new ArrayList();
+//    private ArrayList<Integer> stringComp = new ArrayList();
+//    private ArrayList<Integer> charComp = new ArrayList();
     public void InsertarSimbolo(Token identificador, int tipo) {
         //En este metodo se agrega a la tabla de tokens el identificador que esta siendo declarado junto con su tipo de dato
         tabla.put(identificador.image, tipo);
@@ -35,19 +38,47 @@ public class TokenAsignaciones extends Error{
 		 cadena = stringComp
 		 caracter = charComp
          */
-        enteroComp.add(17);
-        enteroComp.add(78);
+        ArrayList<Integer> IDs = new ArrayList();
 
-        flotanteComp.add(17);
-        flotanteComp.add(18);
-        flotanteComp.add(78);
-        flotanteComp.add(79);
+        //identificadores de un valor entero (variable o dato)
+        IDs.add(17);//variable entero
+        IDs.add(78);//dato entreo
+        enteroComp = new objTipoDatoCompatible(IDs);
+        enteroComp.addCompatible(17);//se agrega compatibilidad con una variable tipo entero
+        enteroComp.addCompatible(78);//se agrega compatibildad con un dato tipo entero
 
-        charComp.add(15);
-        charComp.add(81);
+        //identificadores de un valor flotante (variable o dato)
+        IDs.add(18);
+        IDs.add(79);
+        flotanteComp = new objTipoDatoCompatible(IDs);
+        flotanteComp.addCompatible(18);
+        flotanteComp.addCompatible(79);
 
-        stringComp.add(16);
-        stringComp.add(82);
+        IDs.add(15);
+        IDs.add(81);
+        stringComp = new objTipoDatoCompatible(IDs);
+        stringComp.addCompatible(15);
+        stringComp.addCompatible(81);
+
+        IDs.add(16);
+        IDs.add(82);
+        charComp = new objTipoDatoCompatible(IDs);
+        charComp.addCompatible(16);
+        charComp.addCompatible(82);
+
+//        enteroComp.add(17);//variable tipo entero
+//        enteroComp.add(78);//dato entero
+//
+//        flotanteComp.add(17);//variable tipo entero
+//        flotanteComp.add(18);//variable tipo flotante
+//        flotanteComp.add(78);//dato entero
+//        flotanteComp.add(79);//dato flotante
+//
+//        charComp.add(15);//vaiable tipo caracter
+//        charComp.add(81);//dato caracter
+//
+//        stringComp.add(16);//variable tipo cadena
+//        stringComp.add(82);//dato cadena
     }
 
     public String checkAsing(Token TokenIzq, Token TokenAsig) {
@@ -55,9 +86,9 @@ public class TokenAsignaciones extends Error{
         int tipoIdent1;
         int tipoIdent2;
         /* De la tabla obtenemos el tipo de dato del identificador  
-								asi como, si el token enviado es diferente a algun tipo que no se declara como los numeros(78), los decimales(79),
-								caracteres(81) y cadenas(82)
-								entonces tipoIdent1 = tipo_de_dato, ya que TokenAsig es un dato*/
+                            asi como, si el token enviado es diferente a algun tipo que no se declara como los numeros(78), los decimales(79),
+                            caracteres(81) y cadenas(82)
+                            entonces tipoIdent1 = tipo_de_dato, ya que TokenAsig es un dato*/
         if (TokenIzq.kind != 78 && TokenIzq.kind != 79) {
             try {
                 //Si el TokenIzq.image existe dentro de la tabla de tokens, entonces tipoIdent1 toma el tipo de dato con el que TokenIzq.image fue declarado
@@ -92,7 +123,7 @@ public class TokenAsignaciones extends Error{
         if (tipoIdent1 == 17) //Int
         {
             //Si la lista de enteros(intComp) contiene el valor de tipoIdent2, entonces es compatible y se puede hacer la asignacion
-            if (enteroComp.contains(tipoIdent2)) {
+            if (enteroComp.getTiposCompatibles().contains(tipoIdent2)) {
                 return " ";
             } else //Si el tipo de dato no es compatible manda el error
             {
@@ -100,7 +131,7 @@ public class TokenAsignaciones extends Error{
             }
         } else if (tipoIdent1 == 18) //double
         {
-            if (flotanteComp.contains(tipoIdent2)) {
+            if (flotanteComp.getTiposCompatibles().contains(tipoIdent2)) {
                 return " ";
             } else {
                 return "Error: No se puede convertir " + TokenAsig.image + " a Decimal \r\nLinea: " + TokenIzq.beginLine;
@@ -112,7 +143,7 @@ public class TokenAsignaciones extends Error{
 				NOTA: no se utiliza un booleano ya que entraria en asignaciones pares o impares*/
             segunda++;
             if (segunda < 2) {
-                if (charComp.contains(tipoIdent2)) {
+                if (charComp.getTiposCompatibles().contains(tipoIdent2)) {
                     return " ";
                 } else {
                     return "Error: No se puede convertir " + TokenAsig.image + " a Caracter \r\nLinea: " + TokenIzq.beginLine;
@@ -124,7 +155,7 @@ public class TokenAsignaciones extends Error{
 
         } else if (tipoIdent1 == 16) //string
         {
-            if (stringComp.contains(tipoIdent2)) {
+            if (stringComp.getTiposCompatibles().contains(tipoIdent2)) {
                 return " ";
             } else {
                 return "Error: No se puede convertir " + TokenAsig.image + " a Cadena \r\nLinea: " + TokenIzq.beginLine;
