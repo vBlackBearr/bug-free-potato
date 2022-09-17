@@ -108,28 +108,172 @@ public class Gramatica implements GramaticaConstants {
     try {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case INT:
-        jj_consume_token(INT);
+        DeclararInt();
         break;
       case CHAR:
-        jj_consume_token(CHAR);
+        DeclararChar();
         break;
       case STRING:
-        jj_consume_token(STRING);
+        DeclararString();
         break;
       case BOOLEAN:
-        jj_consume_token(BOOLEAN);
+        DeclararBool();
         break;
       case FLOAT:
-        jj_consume_token(FLOAT);
+        DeclararFloat();
         break;
       case DOUBLE:
-        jj_consume_token(DOUBLE);
+        DeclararDouble();
         break;
       default:
         jj_la1[1] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
+    } catch (ParseException e) {
+        Token t=getToken(0);
+            if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
+           t=getNextToken();
+        }
+        System.out.println("Se esperaba tipo de dato, linea: "+t.beginLine+", columna: "+t.beginColumn);
+        la=t.beginLine;
+                        if (t.image=="\n")
+                        {
+                                linea = linea + 1;
+                        }
+                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
+                        {
+            do{
+                t=getNextToken();
+            }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}");
+        }
+    }
+  }
+
+  final public void DeclararInt() throws ParseException {
+ TA.InsertarSimbolo(token, GramaticaConstants.INT);
+    try {
+      jj_consume_token(INT);
+    } catch (ParseException e) {
+        Token t=getToken(0);
+            if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
+           t=getNextToken();
+        }
+        System.out.println("Se esperaba tipo de dato, linea: "+t.beginLine+", columna: "+t.beginColumn);
+        la=t.beginLine;
+                        if (t.image=="\n")
+                        {
+                                linea = linea + 1;
+                        }
+                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
+                        {
+            do{
+                t=getNextToken();
+            }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}");
+        }
+    }
+  }
+
+  final public void DeclararChar() throws ParseException {
+ TA.InsertarSimbolo(token.next, GramaticaConstants.CHAR);
+    try {
+      jj_consume_token(CHAR);
+    } catch (ParseException e) {
+        Token t=getToken(0);
+            if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
+           t=getNextToken();
+        }
+        System.out.println("Se esperaba tipo de dato, linea: "+t.beginLine+", columna: "+t.beginColumn);
+        la=t.beginLine;
+                        if (t.image=="\n")
+                        {
+                                linea = linea + 1;
+                        }
+                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
+                        {
+            do{
+                t=getNextToken();
+            }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}");
+        }
+    }
+  }
+
+  final public void DeclararString() throws ParseException {
+ TA.InsertarSimbolo(token.next, GramaticaConstants.STRING);
+    try {
+      jj_consume_token(STRING);
+    } catch (ParseException e) {
+        Token t=getToken(0);
+            if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
+           t=getNextToken();
+        }
+        System.out.println("Se esperaba tipo de dato, linea: "+t.beginLine+", columna: "+t.beginColumn);
+        la=t.beginLine;
+                        if (t.image=="\n")
+                        {
+                                linea = linea + 1;
+                        }
+                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
+                        {
+            do{
+                t=getNextToken();
+            }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}");
+        }
+    }
+  }
+
+  final public void DeclararBool() throws ParseException {
+ TA.InsertarSimbolo(token.next, GramaticaConstants.BOOLEAN);
+    try {
+      jj_consume_token(BOOLEAN);
+    } catch (ParseException e) {
+        Token t=getToken(0);
+            if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
+           t=getNextToken();
+        }
+        System.out.println("Se esperaba tipo de dato, linea: "+t.beginLine+", columna: "+t.beginColumn);
+        la=t.beginLine;
+                        if (t.image=="\n")
+                        {
+                                linea = linea + 1;
+                        }
+                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
+                        {
+            do{
+                t=getNextToken();
+            }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}");
+        }
+    }
+  }
+
+  final public void DeclararFloat() throws ParseException {
+ TA.InsertarSimbolo(token.next, GramaticaConstants.FLOAT);
+    try {
+      jj_consume_token(FLOAT);
+    } catch (ParseException e) {
+        Token t=getToken(0);
+            if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
+           t=getNextToken();
+        }
+        System.out.println("Se esperaba tipo de dato, linea: "+t.beginLine+", columna: "+t.beginColumn);
+        la=t.beginLine;
+                        if (t.image=="\n")
+                        {
+                                linea = linea + 1;
+                        }
+                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
+                        {
+            do{
+                t=getNextToken();
+            }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}");
+        }
+    }
+  }
+
+  final public void DeclararDouble() throws ParseException {
+ TA.InsertarSimbolo(token.next, GramaticaConstants.DOUBLE);
+    try {
+      jj_consume_token(DOUBLE);
     } catch (ParseException e) {
         Token t=getToken(0);
             if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
@@ -212,7 +356,9 @@ public class Gramatica implements GramaticaConstants {
       TipoEncapsular();
       jj_consume_token(CLASS);
       Clasesn();
-      ClasesA();
+      Llavea();
+      ContenidoClase();
+      Llavec();
     } catch (ParseException e) {
             Token t=getToken(0);
                 if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
@@ -234,7 +380,7 @@ public class Gramatica implements GramaticaConstants {
             }
                         if(t.next!=null){t=getNextToken();}
                         if(t.kind != GramaticaTokenManager.EOF){
-                        ClasesA();      }
+                        ContenidoClase();       }
     }
   }
 
@@ -282,29 +428,61 @@ public class Gramatica implements GramaticaConstants {
     }
   }
 
-  final public void ClasesA() throws ParseException {
+  final public void ContenidoClase() throws ParseException {
     try {
-      Llavea();
-      TipoEncapsular();
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-      case CLASES:
-        Constructor();
-        break;
+      case PUBLIC:
+      case PRIVATE:
       case CHAR:
       case STRING:
       case INT:
       case FLOAT:
       case BOOLEAN:
-      case VOID:
       case DOUBLE:
-        Cuerpo();
+        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+        case PUBLIC:
+        case PRIVATE:
+          TipoEncapsular();
+          switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+          case CHAR:
+          case STRING:
+          case INT:
+          case FLOAT:
+          case BOOLEAN:
+          case DOUBLE:
+            Declaracion();
+            break;
+          case FUNC:
+            Metodo();
+            break;
+          case CLASES:
+            Constructor();
+            break;
+          default:
+            jj_la1[3] = jj_gen;
+            jj_consume_token(-1);
+            throw new ParseException();
+          }
+          break;
+        case CHAR:
+        case STRING:
+        case INT:
+        case FLOAT:
+        case BOOLEAN:
+        case DOUBLE:
+          Declaracion();
+          break;
+        default:
+          jj_la1[4] = jj_gen;
+          jj_consume_token(-1);
+          throw new ParseException();
+        }
+        ContenidoClase();
         break;
       default:
-        jj_la1[3] = jj_gen;
-        jj_consume_token(-1);
-        throw new ParseException();
+        jj_la1[5] = jj_gen;
+        ;
       }
-      Llavec();
     } catch (ParseException e) {
                                 Token t=getToken(0);
                                         if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
@@ -420,7 +598,7 @@ public class Gramatica implements GramaticaConstants {
         Cuerpo();
         break;
       default:
-        jj_la1[5] = jj_gen;
+        jj_la1[7] = jj_gen;
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
         case CLASES:
           Clasesn();
@@ -433,7 +611,7 @@ public class Gramatica implements GramaticaConstants {
           ConstructorA();
           break;
         default:
-          jj_la1[4] = jj_gen;
+          jj_la1[6] = jj_gen;
           ;
         }
       }
@@ -499,7 +677,7 @@ public class Gramatica implements GramaticaConstants {
           Metodo();
           break;
         default:
-          jj_la1[6] = jj_gen;
+          jj_la1[8] = jj_gen;
           Variables_clase();
         }
         CuerpoA();
@@ -509,7 +687,7 @@ public class Gramatica implements GramaticaConstants {
         MetodosA();
         break;
       default:
-        jj_la1[7] = jj_gen;
+        jj_la1[9] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
@@ -554,7 +732,7 @@ public class Gramatica implements GramaticaConstants {
           Metodo();
           break;
         default:
-          jj_la1[8] = jj_gen;
+          jj_la1[10] = jj_gen;
           Variables_clase();
         }
         break;
@@ -563,13 +741,13 @@ public class Gramatica implements GramaticaConstants {
         MetodosA();
         break;
       default:
-        jj_la1[9] = jj_gen;
+        jj_la1[11] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
       break;
     default:
-      jj_la1[10] = jj_gen;
+      jj_la1[12] = jj_gen;
       ;
     }
   }
@@ -587,7 +765,7 @@ public class Gramatica implements GramaticaConstants {
         CuerpoA();
         break;
       default:
-        jj_la1[11] = jj_gen;
+        jj_la1[13] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
@@ -847,7 +1025,7 @@ public class Gramatica implements GramaticaConstants {
       Argumentos();
       break;
     default:
-      jj_la1[12] = jj_gen;
+      jj_la1[14] = jj_gen;
       ;
     }
   }
@@ -866,7 +1044,7 @@ public class Gramatica implements GramaticaConstants {
         Variables_clase();
         break;
       default:
-        jj_la1[13] = jj_gen;
+        jj_la1[15] = jj_gen;
         ;
       }
     } catch (ParseException e) {
@@ -961,13 +1139,13 @@ public class Gramatica implements GramaticaConstants {
           Sentencia();
           break;
         default:
-          jj_la1[14] = jj_gen;
+          jj_la1[16] = jj_gen;
           jj_consume_token(-1);
           throw new ParseException();
         }
         break;
       default:
-        jj_la1[15] = jj_gen;
+        jj_la1[17] = jj_gen;
         ;
       }
     } catch (ParseException e) {
@@ -1010,7 +1188,7 @@ public class Gramatica implements GramaticaConstants {
             ArregloL();
             break;
           default:
-            jj_la1[16] = jj_gen;
+            jj_la1[18] = jj_gen;
             ;
           }
           Parametros2();
@@ -1029,13 +1207,13 @@ public class Gramatica implements GramaticaConstants {
           Parametros2();
           break;
         default:
-          jj_la1[17] = jj_gen;
+          jj_la1[19] = jj_gen;
           jj_consume_token(-1);
           throw new ParseException();
         }
         break;
       default:
-        jj_la1[18] = jj_gen;
+        jj_la1[20] = jj_gen;
         ;
       }
     } catch (ParseException e) {
@@ -1074,7 +1252,7 @@ public class Gramatica implements GramaticaConstants {
             ArregloL();
             break;
           default:
-            jj_la1[19] = jj_gen;
+            jj_la1[21] = jj_gen;
             ;
           }
           Parametros2();
@@ -1093,13 +1271,13 @@ public class Gramatica implements GramaticaConstants {
           Parametros2();
           break;
         default:
-          jj_la1[20] = jj_gen;
+          jj_la1[22] = jj_gen;
           jj_consume_token(-1);
           throw new ParseException();
         }
         break;
       default:
-        jj_la1[21] = jj_gen;
+        jj_la1[23] = jj_gen;
         ;
       }
     } catch (ParseException e) {
@@ -1334,7 +1512,7 @@ public class Gramatica implements GramaticaConstants {
         Puntoyc();
         break;
       default:
-        jj_la1[22] = jj_gen;
+        jj_la1[24] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
@@ -1402,7 +1580,7 @@ public class Gramatica implements GramaticaConstants {
         jj_consume_token(DECRE);
         break;
       default:
-        jj_la1[23] = jj_gen;
+        jj_la1[25] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
@@ -1438,14 +1616,14 @@ public class Gramatica implements GramaticaConstants {
           ArregloL();
           break;
         default:
-          jj_la1[24] = jj_gen;
+          jj_la1[26] = jj_gen;
           ;
         }
         Puntoyc();
         Sentencia_this();
         break;
       default:
-        jj_la1[25] = jj_gen;
+        jj_la1[27] = jj_gen;
         ;
       }
     } catch (ParseException e) {
@@ -1501,7 +1679,7 @@ public class Gramatica implements GramaticaConstants {
         ArregloL();
         break;
       default:
-        jj_la1[26] = jj_gen;
+        jj_la1[28] = jj_gen;
         ;
       }
       Llavea();
@@ -1591,7 +1769,7 @@ public class Gramatica implements GramaticaConstants {
       Case();
       break;
     default:
-      jj_la1[27] = jj_gen;
+      jj_la1[29] = jj_gen;
       ;
     }
   }
@@ -1612,7 +1790,7 @@ public class Gramatica implements GramaticaConstants {
         Var();
         break;
       default:
-        jj_la1[28] = jj_gen;
+        jj_la1[30] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
@@ -1642,7 +1820,7 @@ public class Gramatica implements GramaticaConstants {
       Si_EA();
       break;
     default:
-      jj_la1[29] = jj_gen;
+      jj_la1[31] = jj_gen;
       ;
     }
   }
@@ -1659,7 +1837,7 @@ public class Gramatica implements GramaticaConstants {
         Sentencia_condicion();
         break;
       default:
-        jj_la1[30] = jj_gen;
+        jj_la1[32] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
@@ -1706,7 +1884,7 @@ public class Gramatica implements GramaticaConstants {
         Condg();
         break;
       default:
-        jj_la1[31] = jj_gen;
+        jj_la1[33] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
@@ -1757,13 +1935,13 @@ public class Gramatica implements GramaticaConstants {
           CondgA();
           break;
         default:
-          jj_la1[32] = jj_gen;
+          jj_la1[34] = jj_gen;
           jj_consume_token(-1);
           throw new ParseException();
         }
         break;
       default:
-        jj_la1[33] = jj_gen;
+        jj_la1[35] = jj_gen;
         ;
       }
     } catch (ParseException e) {
@@ -1816,7 +1994,7 @@ public class Gramatica implements GramaticaConstants {
           jj_consume_token(DIFER);
           break;
         default:
-          jj_la1[34] = jj_gen;
+          jj_la1[36] = jj_gen;
           jj_consume_token(-1);
           throw new ParseException();
         }
@@ -1829,7 +2007,7 @@ public class Gramatica implements GramaticaConstants {
         jj_consume_token(FALSE);
         break;
       default:
-        jj_la1[35] = jj_gen;
+        jj_la1[37] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
@@ -1872,7 +2050,7 @@ public class Gramatica implements GramaticaConstants {
           ArregloL();
           break;
         default:
-          jj_la1[36] = jj_gen;
+          jj_la1[38] = jj_gen;
           ;
         }
         ExpA();
@@ -1886,7 +2064,7 @@ public class Gramatica implements GramaticaConstants {
         ExpA();
         break;
       default:
-        jj_la1[37] = jj_gen;
+        jj_la1[39] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
@@ -1936,7 +2114,7 @@ public class Gramatica implements GramaticaConstants {
         Exp();
         break;
       default:
-        jj_la1[38] = jj_gen;
+        jj_la1[40] = jj_gen;
         Parametros();
       }
     } catch (ParseException e) {
@@ -1996,7 +2174,7 @@ public class Gramatica implements GramaticaConstants {
       Sentencia_incremental();
       break;
     default:
-      jj_la1[39] = jj_gen;
+      jj_la1[41] = jj_gen;
       jj_consume_token(-1);
       throw new ParseException();
     }
@@ -2020,7 +2198,7 @@ public class Gramatica implements GramaticaConstants {
       Expr2();
       break;
     default:
-      jj_la1[40] = jj_gen;
+      jj_la1[42] = jj_gen;
       jj_consume_token(-1);
       throw new ParseException();
     }
@@ -2038,7 +2216,7 @@ public class Gramatica implements GramaticaConstants {
       Expr();
       break;
     default:
-      jj_la1[41] = jj_gen;
+      jj_la1[43] = jj_gen;
       ;
     }
   }
@@ -2052,7 +2230,7 @@ public class Gramatica implements GramaticaConstants {
         jj_consume_token(CORC);
         break;
       default:
-        jj_la1[42] = jj_gen;
+        jj_la1[44] = jj_gen;
         ;
       }
       jj_consume_token(VAR);
@@ -2061,7 +2239,7 @@ public class Gramatica implements GramaticaConstants {
         DeclaracionAsignacion();
         break;
       default:
-        jj_la1[43] = jj_gen;
+        jj_la1[45] = jj_gen;
         ;
       }
     } catch (ParseException e) {
@@ -2142,7 +2320,7 @@ JOptionPane.showMessageDialog(null, TA.checkAsing(token, tokenSigDato));
             ;
             break;
           default:
-            jj_la1[44] = jj_gen;
+            jj_la1[46] = jj_gen;
             break label_1;
           }
           Oper();
@@ -2164,7 +2342,7 @@ JOptionPane.showMessageDialog(null, TA.checkAsing(token, tokenSigDato));
             ;
             break;
           default:
-            jj_la1[45] = jj_gen;
+            jj_la1[47] = jj_gen;
             break label_2;
           }
           Oper();
@@ -2173,7 +2351,7 @@ JOptionPane.showMessageDialog(null, TA.checkAsing(token, tokenSigDato));
         Parec();
         break;
       default:
-        jj_la1[46] = jj_gen;
+        jj_la1[48] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
@@ -2219,7 +2397,7 @@ JOptionPane.showMessageDialog(null, TA.checkAsing(token, tokenSigDato));
             ;
             break;
           default:
-            jj_la1[47] = jj_gen;
+            jj_la1[49] = jj_gen;
             break label_3;
           }
           Oper();
@@ -2241,7 +2419,7 @@ JOptionPane.showMessageDialog(null, TA.checkAsing(token, tokenSigDato));
             ;
             break;
           default:
-            jj_la1[48] = jj_gen;
+            jj_la1[50] = jj_gen;
             break label_4;
           }
           Oper();
@@ -2250,7 +2428,7 @@ JOptionPane.showMessageDialog(null, TA.checkAsing(token, tokenSigDato));
         Parec();
         break;
       default:
-        jj_la1[49] = jj_gen;
+        jj_la1[51] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
@@ -2298,7 +2476,7 @@ JOptionPane.showMessageDialog(null, TA.checkAsing(token, tokenSigDato));
               ;
               break;
             default:
-              jj_la1[50] = jj_gen;
+              jj_la1[52] = jj_gen;
               break label_5;
             }
             Oper();
@@ -2320,7 +2498,7 @@ JOptionPane.showMessageDialog(null, TA.checkAsing(token, tokenSigDato));
               ;
               break;
             default:
-              jj_la1[51] = jj_gen;
+              jj_la1[53] = jj_gen;
               break label_6;
             }
             Oper();
@@ -2330,13 +2508,13 @@ JOptionPane.showMessageDialog(null, TA.checkAsing(token, tokenSigDato));
           DeclaracionTA1();
           break;
         default:
-          jj_la1[52] = jj_gen;
+          jj_la1[54] = jj_gen;
           jj_consume_token(-1);
           throw new ParseException();
         }
         break;
       default:
-        jj_la1[53] = jj_gen;
+        jj_la1[55] = jj_gen;
         ;
       }
     } catch (ParseException e) {
@@ -2394,7 +2572,7 @@ JOptionPane.showMessageDialog(null, TA.checkAsing(token, tokenSigDato));
         jj_consume_token(VAR);
         break;
       default:
-        jj_la1[54] = jj_gen;
+        jj_la1[56] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
@@ -2447,12 +2625,12 @@ JOptionPane.showMessageDialog(null, TA.checkAsing(token, tokenSigDato));
           ArregloL();
           break;
         default:
-          jj_la1[55] = jj_gen;
+          jj_la1[57] = jj_gen;
           ;
         }
         break;
       default:
-        jj_la1[56] = jj_gen;
+        jj_la1[58] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
@@ -2497,7 +2675,7 @@ JOptionPane.showMessageDialog(null, TA.checkAsing(token, tokenSigDato));
         jj_consume_token(MULTI);
         break;
       default:
-        jj_la1[57] = jj_gen;
+        jj_la1[59] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
@@ -2532,7 +2710,7 @@ JOptionPane.showMessageDialog(null, TA.checkAsing(token, tokenSigDato));
       Var();
       break;
     default:
-      jj_la1[58] = jj_gen;
+      jj_la1[60] = jj_gen;
       jj_consume_token(-1);
       throw new ParseException();
     }
@@ -2555,7 +2733,7 @@ JOptionPane.showMessageDialog(null, TA.checkAsing(token, tokenSigDato));
       X1();
       break;
     default:
-      jj_la1[59] = jj_gen;
+      jj_la1[61] = jj_gen;
       jj_consume_token(-1);
       throw new ParseException();
     }
@@ -2595,13 +2773,13 @@ JOptionPane.showMessageDialog(null, TA.checkAsing(token, tokenSigDato));
         X1();
         break;
       default:
-        jj_la1[60] = jj_gen;
+        jj_la1[62] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
       break;
     default:
-      jj_la1[61] = jj_gen;
+      jj_la1[63] = jj_gen;
       ;
     }
   }
@@ -2623,7 +2801,7 @@ JOptionPane.showMessageDialog(null, TA.checkAsing(token, tokenSigDato));
       Y1();
       break;
     default:
-      jj_la1[62] = jj_gen;
+      jj_la1[64] = jj_gen;
       jj_consume_token(-1);
       throw new ParseException();
     }
@@ -2657,7 +2835,7 @@ JOptionPane.showMessageDialog(null, TA.checkAsing(token, tokenSigDato));
       Y1();
       break;
     default:
-      jj_la1[63] = jj_gen;
+      jj_la1[65] = jj_gen;
       jj_consume_token(-1);
       throw new ParseException();
     }
@@ -2675,7 +2853,7 @@ JOptionPane.showMessageDialog(null, TA.checkAsing(token, tokenSigDato));
           ArregloL();
           break;
         default:
-          jj_la1[64] = jj_gen;
+          jj_la1[66] = jj_gen;
           ;
         }
         jj_consume_token(ASIG);
@@ -2690,7 +2868,7 @@ JOptionPane.showMessageDialog(null, TA.checkAsing(token, tokenSigDato));
           ArregloL();
           break;
         default:
-          jj_la1[65] = jj_gen;
+          jj_la1[67] = jj_gen;
           ;
         }
         jj_consume_token(ASIG);
@@ -2705,14 +2883,14 @@ JOptionPane.showMessageDialog(null, TA.checkAsing(token, tokenSigDato));
           ArregloL();
           break;
         default:
-          jj_la1[66] = jj_gen;
+          jj_la1[68] = jj_gen;
           ;
         }
         jj_consume_token(ASIG);
         Y();
         break;
       default:
-        jj_la1[67] = jj_gen;
+        jj_la1[69] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
@@ -2744,7 +2922,7 @@ JOptionPane.showMessageDialog(null, TA.checkAsing(token, tokenSigDato));
   public Token jj_nt;
   private int jj_ntk;
   private int jj_gen;
-  final private int[] jj_la1 = new int[68];
+  final private int[] jj_la1 = new int[70];
   static private int[] jj_la1_0;
   static private int[] jj_la1_1;
   static private int[] jj_la1_2;
@@ -2756,16 +2934,16 @@ JOptionPane.showMessageDialog(null, TA.checkAsing(token, tokenSigDato));
       jj_la1_init_3();
    }
    private static void jj_la1_init_0() {
-      jj_la1_0 = new int[] {0x20000000,0xf8000,0x1800,0x80f8000,0x0,0x80f8000,0x0,0x80f8000,0x0,0x80f8000,0x1800,0x0,0x0,0xf8000,0x9fc140,0x9fc140,0x0,0x0,0x0,0x0,0x0,0x0,0x4100,0x0,0x0,0x0,0x0,0x0,0x0,0x80,0x0,0xc0000000,0x0,0x0,0x0,0xc0000000,0x0,0x0,0x0,0x0,0xf8000,0x0,0x0,0x0,0x0,0x0,0xc0008000,0x0,0x0,0xc0008000,0x0,0x0,0x0,0x0,0x0,0x0,0xc0008000,0x0,0xc0000000,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x60000,};
+      jj_la1_0 = new int[] {0x20000000,0xf8000,0x1800,0xf8000,0xf9800,0xf9800,0x0,0x80f8000,0x0,0x80f8000,0x0,0x80f8000,0x1800,0x0,0x0,0xf8000,0x9fc140,0x9fc140,0x0,0x0,0x0,0x0,0x0,0x0,0x4100,0x0,0x0,0x0,0x0,0x0,0x0,0x80,0x0,0xc0000000,0x0,0x0,0x0,0xc0000000,0x0,0x0,0x0,0x0,0xf8000,0x0,0x0,0x0,0x0,0x0,0xc0008000,0x0,0x0,0xc0008000,0x0,0x0,0x0,0x0,0x0,0x0,0xc0008000,0x0,0xc0000000,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x60000,};
    }
    private static void jj_la1_init_1() {
-      jj_la1_1 = new int[] {0x0,0x10,0x0,0x10,0x0,0x10,0x0,0x10,0x0,0x10,0x0,0x8,0x8000,0x10,0x13,0x13,0x200,0x800,0x800,0x200,0x800,0x8000,0x0,0x30000000,0x200,0x0,0x200,0x4,0x0,0x0,0x880,0x8000800,0xe000000,0xe000000,0x1f80000,0x800,0x200,0x800,0x0,0x70000000,0x810,0x0,0x200,0x40000000,0x0,0x0,0x800,0x0,0x0,0x800,0x0,0x0,0x8800,0x8800,0x0,0x200,0x0,0x0,0x0,0x800,0x0,0x0,0x800,0x0,0x200,0x200,0x200,0x10,};
+      jj_la1_1 = new int[] {0x0,0x10,0x0,0x10,0x10,0x10,0x0,0x10,0x0,0x10,0x0,0x10,0x0,0x8,0x8000,0x10,0x13,0x13,0x200,0x800,0x800,0x200,0x800,0x8000,0x0,0x30000000,0x200,0x0,0x200,0x4,0x0,0x0,0x880,0x8000800,0xe000000,0xe000000,0x1f80000,0x800,0x200,0x800,0x0,0x70000000,0x810,0x0,0x200,0x40000000,0x0,0x0,0x800,0x0,0x0,0x800,0x0,0x0,0x8800,0x8800,0x0,0x200,0x0,0x0,0x0,0x800,0x0,0x0,0x800,0x0,0x200,0x200,0x200,0x10,};
    }
    private static void jj_la1_init_2() {
-      jj_la1_2 = new int[] {0x0,0x0,0x0,0x20000,0x20000,0x0,0x400000,0x0,0x400000,0x0,0x0,0x400000,0x0,0x0,0x600000,0x600000,0x0,0x2d8000,0x2d8000,0x0,0x2d8000,0x0,0x0,0x0,0x0,0x200000,0x0,0x0,0x2c8000,0x0,0x0,0x218000,0x0,0x0,0x0,0x218000,0x0,0x218000,0x1f0,0x0,0x0,0x3f0,0x0,0x0,0x3f0,0x3f0,0x298000,0x3f0,0x3f0,0x298000,0x3f0,0x3f0,0x0,0x0,0x208000,0x0,0x298000,0x3f0,0x200000,0x208000,0x1f0,0x1f0,0x210000,0x1f0,0x0,0x0,0x0,0x0,};
+      jj_la1_2 = new int[] {0x0,0x0,0x0,0x420000,0x0,0x0,0x20000,0x0,0x400000,0x0,0x400000,0x0,0x0,0x400000,0x0,0x0,0x600000,0x600000,0x0,0x2d8000,0x2d8000,0x0,0x2d8000,0x0,0x0,0x0,0x0,0x200000,0x0,0x0,0x2c8000,0x0,0x0,0x218000,0x0,0x0,0x0,0x218000,0x0,0x218000,0x1f0,0x0,0x0,0x3f0,0x0,0x0,0x3f0,0x3f0,0x298000,0x3f0,0x3f0,0x298000,0x3f0,0x3f0,0x0,0x0,0x208000,0x0,0x298000,0x3f0,0x200000,0x208000,0x1f0,0x1f0,0x210000,0x1f0,0x0,0x0,0x0,0x0,};
    }
    private static void jj_la1_init_3() {
-      jj_la1_3 = new int[] {0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,};
+      jj_la1_3 = new int[] {0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,};
    }
 
   /** Constructor with InputStream. */
@@ -2779,7 +2957,7 @@ JOptionPane.showMessageDialog(null, TA.checkAsing(token, tokenSigDato));
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 68; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 70; i++) jj_la1[i] = -1;
   }
 
   /** Reinitialise. */
@@ -2793,7 +2971,7 @@ JOptionPane.showMessageDialog(null, TA.checkAsing(token, tokenSigDato));
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 68; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 70; i++) jj_la1[i] = -1;
   }
 
   /** Constructor. */
@@ -2803,7 +2981,7 @@ JOptionPane.showMessageDialog(null, TA.checkAsing(token, tokenSigDato));
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 68; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 70; i++) jj_la1[i] = -1;
   }
 
   /** Reinitialise. */
@@ -2813,7 +2991,7 @@ JOptionPane.showMessageDialog(null, TA.checkAsing(token, tokenSigDato));
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 68; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 70; i++) jj_la1[i] = -1;
   }
 
   /** Constructor with generated Token Manager. */
@@ -2822,7 +3000,7 @@ JOptionPane.showMessageDialog(null, TA.checkAsing(token, tokenSigDato));
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 68; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 70; i++) jj_la1[i] = -1;
   }
 
   /** Reinitialise. */
@@ -2831,7 +3009,7 @@ JOptionPane.showMessageDialog(null, TA.checkAsing(token, tokenSigDato));
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 68; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 70; i++) jj_la1[i] = -1;
   }
 
   private Token jj_consume_token(int kind) throws ParseException {
@@ -2887,7 +3065,7 @@ JOptionPane.showMessageDialog(null, TA.checkAsing(token, tokenSigDato));
       la1tokens[jj_kind] = true;
       jj_kind = -1;
     }
-    for (int i = 0; i < 68; i++) {
+    for (int i = 0; i < 70; i++) {
       if (jj_la1[i] == jj_gen) {
         for (int j = 0; j < 32; j++) {
           if ((jj_la1_0[i] & (1<<j)) != 0) {
