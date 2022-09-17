@@ -156,41 +156,49 @@ public interface GramaticaConstants {
   /** RegularExpression Id. */
   int c = 76;
   /** RegularExpression Id. */
-  int digito = 77;
+  int c2 = 77;
   /** RegularExpression Id. */
-  int ENTERO = 78;
+  int digito = 78;
   /** RegularExpression Id. */
-  int FLOTANTEDOUBLE = 79;
+  int ENTERO = 79;
   /** RegularExpression Id. */
-  int CLASES = 80;
+  int FLOTANTEDOUBLE = 80;
   /** RegularExpression Id. */
-  int CARACTER = 81;
+  int CLASES = 81;
   /** RegularExpression Id. */
-  int CADENA = 82;
+  int CARACTER = 82;
   /** RegularExpression Id. */
-  int PAQUET = 83;
+  int CADENA = 83;
   /** RegularExpression Id. */
-  int VAR = 84;
+  int PAQUET = 84;
   /** RegularExpression Id. */
-  int FUNC = 85;
+  int VAR = 85;
   /** RegularExpression Id. */
-  int LIBR = 86;
+  int FUNC = 86;
   /** RegularExpression Id. */
-  int A = 87;
+  int LIBR = 87;
   /** RegularExpression Id. */
-  int GRADOS = 88;
+  int ENTEROINV = 88;
   /** RegularExpression Id. */
-  int CPOR = 89;
+  int FLOTDOBINV = 89;
   /** RegularExpression Id. */
-  int PUNTOS = 90;
+  int CADENAINV = 90;
   /** RegularExpression Id. */
-  int ACENTOI = 91;
+  int A = 91;
   /** RegularExpression Id. */
-  int ACENTO = 92;
+  int GRADOS = 92;
   /** RegularExpression Id. */
-  int BARRAI = 93;
+  int CPOR = 93;
   /** RegularExpression Id. */
-  int ARROBA = 94;
+  int PUNTOS = 94;
+  /** RegularExpression Id. */
+  int ACENTOI = 95;
+  /** RegularExpression Id. */
+  int ACENTO = 96;
+  /** RegularExpression Id. */
+  int BARRAI = 97;
+  /** RegularExpression Id. */
+  int ARROBA = 98;
 
   /** Lexical state. */
   int SALTO = 0;
@@ -276,6 +284,7 @@ public interface GramaticaConstants {
     "<letraMay>",
     "<letraMin>",
     "<c>",
+    "<c2>",
     "<digito>",
     "<ENTERO>",
     "<FLOTANTEDOUBLE>",
@@ -286,6 +295,9 @@ public interface GramaticaConstants {
     "<VAR>",
     "<FUNC>",
     "<LIBR>",
+    "<ENTEROINV>",
+    "<FLOTDOBINV>",
+    "<CADENAINV>",
     "\"\\u00aa\"",
     "\"\\u00ba\"",
     "\"\\u00e7\"",
