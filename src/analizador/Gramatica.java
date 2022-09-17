@@ -105,28 +105,168 @@ public class Gramatica implements GramaticaConstants {
     try {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case INT:
-        jj_consume_token(INT);
+        DeclararInt();
         break;
       case CHAR:
-        jj_consume_token(CHAR);
+        DeclararChar();
         break;
       case STRING:
-        jj_consume_token(STRING);
+        DeclararString();
         break;
       case BOOLEAN:
-        jj_consume_token(BOOLEAN);
+        DeclararBool();
         break;
       case FLOAT:
-        jj_consume_token(FLOAT);
+        DeclararFloat();
         break;
       case DOUBLE:
-        jj_consume_token(DOUBLE);
+        DeclararDouble();
         break;
       default:
         jj_la1[1] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
+    } catch (ParseException e) {
+        Token t=getToken(0);
+            if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
+           t=getNextToken();
+        }
+        System.out.println("Se esperaba tipo de dato, linea: "+t.beginLine+", columna: "+t.beginColumn);
+        la=t.beginLine;
+                        if (t.image=="\n")
+                        {
+                                linea = linea + 1;
+                        }
+                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
+                        {
+            do{
+                t=getNextToken();
+            }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}");
+        }
+    }
+  }
+
+  final public void DeclararInt() throws ParseException {
+JOptionPane.showMessageDialog(null,"declaracion int");
+TA.InsertarSimbolo(token.next, GramaticaConstants.INT);
+    try {
+      jj_consume_token(INT);
+    } catch (ParseException e) {
+        Token t=getToken(0);
+            if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
+           t=getNextToken();
+        }
+        System.out.println("Se esperaba tipo de dato, linea: "+t.beginLine+", columna: "+t.beginColumn);
+        la=t.beginLine;
+                        if (t.image=="\n")
+                        {
+                                linea = linea + 1;
+                        }
+                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
+                        {
+            do{
+                t=getNextToken();
+            }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}");
+        }
+    }
+  }
+
+  final public void DeclararChar() throws ParseException {
+    try {
+      jj_consume_token(CHAR);
+    } catch (ParseException e) {
+        Token t=getToken(0);
+            if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
+           t=getNextToken();
+        }
+        System.out.println("Se esperaba tipo de dato, linea: "+t.beginLine+", columna: "+t.beginColumn);
+        la=t.beginLine;
+                        if (t.image=="\n")
+                        {
+                                linea = linea + 1;
+                        }
+                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
+                        {
+            do{
+                t=getNextToken();
+            }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}");
+        }
+    }
+  }
+
+  final public void DeclararString() throws ParseException {
+    try {
+      jj_consume_token(STRING);
+    } catch (ParseException e) {
+        Token t=getToken(0);
+            if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
+           t=getNextToken();
+        }
+        System.out.println("Se esperaba tipo de dato, linea: "+t.beginLine+", columna: "+t.beginColumn);
+        la=t.beginLine;
+                        if (t.image=="\n")
+                        {
+                                linea = linea + 1;
+                        }
+                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
+                        {
+            do{
+                t=getNextToken();
+            }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}");
+        }
+    }
+  }
+
+  final public void DeclararBool() throws ParseException {
+    try {
+      jj_consume_token(BOOLEAN);
+    } catch (ParseException e) {
+        Token t=getToken(0);
+            if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
+           t=getNextToken();
+        }
+        System.out.println("Se esperaba tipo de dato, linea: "+t.beginLine+", columna: "+t.beginColumn);
+        la=t.beginLine;
+                        if (t.image=="\n")
+                        {
+                                linea = linea + 1;
+                        }
+                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
+                        {
+            do{
+                t=getNextToken();
+            }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}");
+        }
+    }
+  }
+
+  final public void DeclararFloat() throws ParseException {
+    try {
+      jj_consume_token(FLOAT);
+    } catch (ParseException e) {
+        Token t=getToken(0);
+            if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
+           t=getNextToken();
+        }
+        System.out.println("Se esperaba tipo de dato, linea: "+t.beginLine+", columna: "+t.beginColumn);
+        la=t.beginLine;
+                        if (t.image=="\n")
+                        {
+                                linea = linea + 1;
+                        }
+                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
+                        {
+            do{
+                t=getNextToken();
+            }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}");
+        }
+    }
+  }
+
+  final public void DeclararDouble() throws ParseException {
+    try {
+      jj_consume_token(DOUBLE);
     } catch (ParseException e) {
         Token t=getToken(0);
             if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
@@ -1882,7 +2022,6 @@ JOptionPane.showMessageDialog(null,"Paso por sentencia");
   }
 
   final public void Declaracion() throws ParseException {
-JOptionPane.showMessageDialog(null,"paso por declaracion");
     try {
       Tipo();
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
@@ -1897,13 +2036,44 @@ JOptionPane.showMessageDialog(null,"paso por declaracion");
       jj_consume_token(VAR);
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case ASIG:
-        jj_consume_token(ASIG);
-        Dato();
+        DeclaracionAsignacion();
         break;
       default:
         jj_la1[46] = jj_gen;
         ;
       }
+    } catch (ParseException e) {
+                        Token t=getToken(0);
+                                if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
+           t=getNextToken();
+        }
+                        System.out.println("Error en declaracion, linea: "+t.beginLine+", columna: "+t.beginColumn);
+                        if (t.image=="\n")
+                        {
+                                linea = linea + 1;
+                        }
+                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
+                        {
+                                do{
+                                        t=getNextToken();
+                                }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+                        }
+                if(t.next!=null){t=getNextToken();}
+                DeclaracionTA();
+                DeclaracionT();
+    }
+  }
+
+  final public void DeclaracionAsignacion() throws ParseException {
+int tipo;
+Token tokenSigDato;
+if(token.next.image.equals("=")){
+    tokenSigDato = token.next.next;
+    int kindSigDato = token.next.next.kind;
+}
+    try {
+      jj_consume_token(ASIG);
+      Dato();
     } catch (ParseException e) {
                         Token t=getToken(0);
                                 if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){

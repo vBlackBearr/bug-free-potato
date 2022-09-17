@@ -35,19 +35,19 @@ public class TokenAsignaciones extends Error{
 		 cadena = stringComp
 		 caracter = charComp
          */
-        enteroComp.add(17);
-        enteroComp.add(78);
+        enteroComp.add(17);//variable tipo entero
+        enteroComp.add(78);//dato entero
 
-        flotanteComp.add(17);
-        flotanteComp.add(18);
-        flotanteComp.add(78);
-        flotanteComp.add(79);
+        flotanteComp.add(17);//variable tipo entero
+        flotanteComp.add(18);//dato entero
+        flotanteComp.add(78);//variable tipo flotante
+        flotanteComp.add(79);//dato flotante
 
-        charComp.add(15);
-        charComp.add(81);
+        charComp.add(15);//vaiable tipo caracter
+        charComp.add(81);//dato caracter
 
-        stringComp.add(16);
-        stringComp.add(82);
+        stringComp.add(16);//variable tipo cadena
+        stringComp.add(82);//dato cadena
     }
 
     public String checkAsing(Token TokenIzq, Token TokenAsig) {

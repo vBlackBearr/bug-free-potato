@@ -469,12 +469,12 @@ public class GUI extends javax.swing.JFrame {
             File file = crearArchivoConTexto(txtArea_Editor.getText());
             an.AnalizarCodigo(new FileReader(file));
             txtAreaLexico.setText(an.respuestaLexico);
-            if(an.respuestaSintactico.equals("")){
+            if (an.respuestaSintactico.equals("")) {
                 txtAreaSintactico.setText("Sin errores sintacticos");
-            }else{
+            } else {
                 txtAreaSintactico.setText(an.respuestaSintactico);
             }
-            
+
             txtAreaSemantico.setText(an.respuestaSemantico);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
