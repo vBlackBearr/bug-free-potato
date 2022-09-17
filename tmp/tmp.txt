@@ -1,3 +1,4 @@
 public class Ss{
-int a = 2;
+	int a;
+	char s = a;
 }

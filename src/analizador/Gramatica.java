@@ -148,8 +148,7 @@ public class Gramatica implements GramaticaConstants {
   }
 
   final public void DeclararInt() throws ParseException {
-JOptionPane.showMessageDialog(null,"declaracion int");
-TA.InsertarSimbolo(token.next, GramaticaConstants.INT);
+TA.InsertarSimbolo(token, GramaticaConstants.INT);
     try {
       jj_consume_token(INT);
     } catch (ParseException e) {
@@ -173,6 +172,7 @@ TA.InsertarSimbolo(token.next, GramaticaConstants.INT);
   }
 
   final public void DeclararChar() throws ParseException {
+ TA.InsertarSimbolo(token.next, GramaticaConstants.CHAR);
     try {
       jj_consume_token(CHAR);
     } catch (ParseException e) {
@@ -196,6 +196,7 @@ TA.InsertarSimbolo(token.next, GramaticaConstants.INT);
   }
 
   final public void DeclararString() throws ParseException {
+ TA.InsertarSimbolo(token.next, GramaticaConstants.STRING);
     try {
       jj_consume_token(STRING);
     } catch (ParseException e) {
@@ -219,6 +220,7 @@ TA.InsertarSimbolo(token.next, GramaticaConstants.INT);
   }
 
   final public void DeclararBool() throws ParseException {
+ TA.InsertarSimbolo(token.next, GramaticaConstants.BOOLEAN);
     try {
       jj_consume_token(BOOLEAN);
     } catch (ParseException e) {
@@ -242,6 +244,7 @@ TA.InsertarSimbolo(token.next, GramaticaConstants.INT);
   }
 
   final public void DeclararFloat() throws ParseException {
+ TA.InsertarSimbolo(token.next, GramaticaConstants.FLOAT);
     try {
       jj_consume_token(FLOAT);
     } catch (ParseException e) {
@@ -265,6 +268,7 @@ TA.InsertarSimbolo(token.next, GramaticaConstants.INT);
   }
 
   final public void DeclararDouble() throws ParseException {
+ TA.InsertarSimbolo(token.next, GramaticaConstants.DOUBLE);
     try {
       jj_consume_token(DOUBLE);
     } catch (ParseException e) {
@@ -2065,12 +2069,12 @@ JOptionPane.showMessageDialog(null,"Paso por sentencia");
   }
 
   final public void DeclaracionAsignacion() throws ParseException {
-int tipo;
-Token tokenSigDato;
-if(token.next.image.equals("=")){
-    tokenSigDato = token.next.next;
-    int kindSigDato = token.next.next.kind;
+//JOptionPane.showMessageDialog(null, token + " " + token.next + " " + token.next.next);
+Token tokenSigDato = null;
+if (getNextToken().image.equals("=")) {
+    tokenSigDato = getNextToken();
 }
+JOptionPane.showMessageDialog(null, TA.checkAsing(token, tokenSigDato));
     try {
       jj_consume_token(ASIG);
       Dato();

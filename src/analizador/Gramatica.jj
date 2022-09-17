@@ -296,10 +296,7 @@ void Tipo() :
 }
 
 void DeclararInt() : 
-{
-JOptionPane.showMessageDialog(null,"declaracion int");
-TA.InsertarSimbolo(token.next, GramaticaConstants.INT);
-}
+{TA.InsertarSimbolo(token, GramaticaConstants.INT);}
 {
     try {
         <INT>
@@ -326,7 +323,7 @@ TA.InsertarSimbolo(token.next, GramaticaConstants.INT);
 }
 
 void DeclararChar() : 
-{}
+{TA.InsertarSimbolo(token.next, GramaticaConstants.CHAR);}
 {
     try {
         <CHAR>
@@ -353,7 +350,7 @@ void DeclararChar() :
 }
 
 void DeclararString() : 
-{}
+{TA.InsertarSimbolo(token.next, GramaticaConstants.STRING);}
 {
     try {
         <STRING>
@@ -380,7 +377,7 @@ void DeclararString() :
 }
 
 void DeclararBool() : 
-{}
+{TA.InsertarSimbolo(token.next, GramaticaConstants.BOOLEAN);}
 {
     try {
         <BOOLEAN>
@@ -407,7 +404,7 @@ void DeclararBool() :
 }
 
 void DeclararFloat() : 
-{}
+{TA.InsertarSimbolo(token.next, GramaticaConstants.FLOAT);}
 {
     try {
         <FLOAT>
@@ -434,7 +431,7 @@ void DeclararFloat() :
 }
 
 void DeclararDouble() : 
-{}
+{TA.InsertarSimbolo(token.next, GramaticaConstants.DOUBLE);}
 {
     try {
         <DOUBLE>
@@ -1675,16 +1672,12 @@ void Declaracion() :
 
 void DeclaracionAsignacion() : 
 {
-int tipo;
-Token tokenSigDato;
-if(token.next.image.equals("=")){
-    tokenSigDato = token.next.next;
-    int kindSigDato = token.next.next.kind;
+//JOptionPane.showMessageDialog(null, token + " " + token.next + " " + token.next.next);
+Token tokenSigDato = null;
+if (getNextToken().image.equals("=")) {
+    tokenSigDato = getNextToken();
 }
-
-
-//TA.InsertarSimbolo(token,);
-//JOptionPane.showMessageDialog(null, TA.checkAsing(token, token.next));
+JOptionPane.showMessageDialog(null, TA.checkAsing(token, tokenSigDato));
 }
 {
 	try {
