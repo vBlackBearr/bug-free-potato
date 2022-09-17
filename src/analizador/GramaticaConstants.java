@@ -156,6 +156,7 @@ public interface GramaticaConstants {
   /** RegularExpression Id. */
   int letraMay = 76;
   /** RegularExpression Id. */
+<<<<<<< Updated upstream
   int letraMin = 77;
   /** RegularExpression Id. */
   int c = 78;
@@ -195,6 +196,51 @@ public interface GramaticaConstants {
   int BARRAI = 95;
   /** RegularExpression Id. */
   int ARROBA = 96;
+=======
+  int c2 = 77;
+  /** RegularExpression Id. */
+  int digito = 78;
+  /** RegularExpression Id. */
+  int ENTERO = 79;
+  /** RegularExpression Id. */
+  int FLOTANTEDOUBLE = 80;
+  /** RegularExpression Id. */
+  int CLASES = 81;
+  /** RegularExpression Id. */
+  int CARACTER = 82;
+  /** RegularExpression Id. */
+  int CADENA = 83;
+  /** RegularExpression Id. */
+  int PAQUET = 84;
+  /** RegularExpression Id. */
+  int VAR = 85;
+  /** RegularExpression Id. */
+  int FUNC = 86;
+  /** RegularExpression Id. */
+  int LIBR = 87;
+  /** RegularExpression Id. */
+  int ENTEROINV = 88;
+  /** RegularExpression Id. */
+  int FLOTDOBINV = 89;
+  /** RegularExpression Id. */
+  int CADENAINV = 90;
+  /** RegularExpression Id. */
+  int A = 91;
+  /** RegularExpression Id. */
+  int GRADOS = 92;
+  /** RegularExpression Id. */
+  int CPOR = 93;
+  /** RegularExpression Id. */
+  int PUNTOS = 94;
+  /** RegularExpression Id. */
+  int ACENTOI = 95;
+  /** RegularExpression Id. */
+  int ACENTO = 96;
+  /** RegularExpression Id. */
+  int BARRAI = 97;
+  /** RegularExpression Id. */
+  int ARROBA = 98;
+>>>>>>> Stashed changes
 
   /** Lexical state. */
   int SALTO = 0;
@@ -282,6 +328,7 @@ public interface GramaticaConstants {
     "<letraMay>",
     "<letraMin>",
     "<c>",
+    "<c2>",
     "<digito>",
     "<ENTERO>",
     "<FLOTANTEDOUBLE>",
@@ -292,6 +339,9 @@ public interface GramaticaConstants {
     "<VAR>",
     "<FUNC>",
     "<LIBR>",
+    "<ENTEROINV>",
+    "<FLOTDOBINV>",
+    "<CADENAINV>",
     "\"\\u00aa\"",
     "\"\\u00ba\"",
     "\"\\u00e7\"",

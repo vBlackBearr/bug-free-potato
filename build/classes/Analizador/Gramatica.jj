@@ -145,7 +145,12 @@ TOKEN : {
 TOKEN : {
       < #letraMay: ["A"-"Z"]  >
     | < #letraMin: ["a"-"z"]  >
+<<<<<<< Updated upstream
     | < #c: ["a"-"z", "A"-"Z", "0"-"9", "|", "'", "/", "(", ")", "{", "}", "[", "]", ",", ".", ";", "_", ":", " "]  >
+=======
+    | < #c: ["a"-"z", "A"-"Z", "0"-"9", "|", "'", "/", "(", ")", "{", "}", "[", "]", ",", ".", ";", "_", ":", " ", "<", ">", "+", "-", "*", "="]  >
+    | < #c2: ["@", "#", "&", "%"]  >
+>>>>>>> Stashed changes
     | < #digito: ["0"-"9"]  >
     | < ENTERO: (<digito>)+ > { muestraLexico = muestraLexico + image +" -> Numero entero ( 70 - Numero entero )" + "\n";} : DEFAULT
     | < FLOTANTEDOUBLE: ((<digito>)+ "." (<digito>)+)+ > { muestraLexico = muestraLexico + image + " -> Numero flotante ( 71 - Numero decimal )" + "\n";} : DEFAULT
