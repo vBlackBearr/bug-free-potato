@@ -181,7 +181,6 @@ PARSER_END(Gramatica)
 void Inicio() : 
 {
     TA.SetTables();
-    JOptionPane.showMessageDialog(null,"hhjkh");
 }
 {
     try {
@@ -437,7 +436,7 @@ void ClasesA() :
 {}
 {	
 		try {
-			Llavea()TipoEncapsular() (Constructor()|Cuerpo())Llavec()
+			Llavea() ((TipoEncapsular()  (Declaracion() | Metodo() | Constructor())) | Declaracion())? Llavec()
 		}
 		catch(ParseException e)
 		{
@@ -755,7 +754,7 @@ void Metodo() :
 {}
 {
 	try {
-			Func() Parea()Argumentos()Parec() Llavea()Sentencia() Retorno()Llavec()
+			Func() Parea()Argumentos()Parec() Llavea() Sentencia() Retorno()Llavec()
 	}
 	catch(ParseException e)
 	{
@@ -913,9 +912,11 @@ void Variables_clase() :
 }
 
 void Sentencia() : 
-{}
 {
-    (<FOR> Sentencia_ciclofor() Sentencia() | <IF> Sentencia_condicion() Sentencia() | Declaracion()Puntoyc() Sentencia() | Asignacion() Puntoyc() Sentencia()| <SWITCH> Sentencia_switch() Sentencia() | <TRY> Sentencia_try() Sentencia() | <THIS> Sentencia_this() Sentencia() | Sentencia_ciclowhile() Sentencia() | Func() SentenciaLlamarMetodo() Sentencia())?
+JOptionPane.showMessageDialog(null,"Paso por sentencia");
+}
+{
+    (<FOR> Sentencia_ciclofor() Sentencia() | <IF> Sentencia_condicion() Sentencia() | Declaracion() Puntoyc() Sentencia() | Asignacion() Puntoyc() Sentencia()| <SWITCH> Sentencia_switch() Sentencia() | <TRY> Sentencia_try() Sentencia() | <THIS> Sentencia_this() Sentencia() | Sentencia_ciclowhile() Sentencia() | Func() SentenciaLlamarMetodo() Sentencia())?
 }
 
 void Parametros() : 

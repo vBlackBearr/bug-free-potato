@@ -1,5 +1,3 @@
-import raptor_util_Print;
-public class Miclase{
-  int a=0;
-      }
+public class Kk{
+int a;
 }
