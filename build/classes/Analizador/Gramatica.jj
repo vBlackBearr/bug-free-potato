@@ -1073,9 +1073,7 @@ void Variables_clase() :
 }
 
 void Sentencia() : 
-{
-JOptionPane.showMessageDialog(null,"Paso por sentencia");
-}
+{}
 {
     (<FOR> Sentencia_ciclofor() Sentencia() | <IF> Sentencia_condicion() Sentencia() | Declaracion() Puntoyc() Sentencia() | Asignacion() Puntoyc() Sentencia()| <SWITCH> Sentencia_switch() Sentencia() | <TRY> Sentencia_try() Sentencia() | <THIS> Sentencia_this() Sentencia() | Sentencia_ciclowhile() Sentencia() | Func() SentenciaLlamarMetodo() Sentencia())?
 }
@@ -1612,15 +1610,9 @@ void ExpA() :
 	}
 }
 
-void Dato() : 
-{}
-{
-    <ENTERO> | <FLOTANTEDOUBLE> | <CARACTER> | <CADENA> | <VAR>
-}
-
 void Asignacion() :
 {
-    JOptionPane.showMessageDialog(null,"analisis sem: ");
+    JOptionPane.showMessageDialog(null,"Analisis sem: ");
 }
 {
     <VAR> (<ASIG> Expr() | Sentencia_incremental())
@@ -1629,7 +1621,7 @@ void Asignacion() :
 void Expr() : 
 {}
 {
-    Dato() Expr2() | <PAREA> Expr() <PAREC> Expr2()
+    Tipo() Expr2() | <PAREA> Expr() <PAREC> Expr2()
 }
 
 void Expr2() :
@@ -1672,16 +1664,16 @@ void Declaracion() :
 
 void DeclaracionAsignacion() : 
 {
-//JOptionPane.showMessageDialog(null, token + " " + token.next + " " + token.next.next);
 Token tokenSigDato = null;
 if (getNextToken().image.equals("=")) {
     tokenSigDato = getNextToken();
 }
+JOptionPane.showMessageDialog(null, tokenSigDato + " " + tokenSigDato.kind);
 JOptionPane.showMessageDialog(null, TA.checkAsing(token, tokenSigDato));
 }
 {
 	try {
-			<ASIG> Dato()
+			<ASIG> Expr()
 	}
 	catch(ParseException e)
 	{
