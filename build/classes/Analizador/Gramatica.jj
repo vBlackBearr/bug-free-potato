@@ -951,8 +951,8 @@ void Sentencia() :
 {}
 {
 	try {
-			(<FOR> Sentencia_ciclofor() Sentencia() | <IF> Sentencia_condicion() Sentencia() | Tipo() Declaracion()Puntoyc() Sentencia() | Var() Sentencia_incremental()Puntoyc() Sentencia() | <SWITCH> Sentencia_switch() Sentencia() | <TRY> Sentencia_try() Sentencia() | <THIS> Sentencia_this() Sentencia() | Sentencia_ciclowhile() Sentencia() | Func() SentenciaLlamarMetodo() Sentencia())?
-	}
+			(<FOR> Sentencia_ciclofor() Sentencia() | <IF> Sentencia_condicion() Sentencia() | Declaracion() Puntoyc() Sentencia() | Asignacion() Puntoyc() Sentencia()| <SWITCH> Sentencia_switch() Sentencia() | <TRY> Sentencia_try() Sentencia() | <THIS> Sentencia_this() Sentencia() | Sentencia_ciclowhile() Sentencia() | Func() SentenciaLlamarMetodo() Sentencia())?
+        }
 	catch(ParseException e)
 	{
 			Token t=getToken(0);
@@ -1691,12 +1691,31 @@ void Var():
 	}	
 }
 
+void Asignacion() :
+{
+    JOptionPane.showMessageDialog(null,"Analisis sem: ");
+}
+{
+    <VAR> (<ASIG> Expr() | Sentencia_incremental())
+}
+
+void Expr() : 
+{}
+{
+    Tipo() Expr2() | <PAREA> Expr() <PAREC> Expr2()
+}
+
+void Expr2() :
+{}
+{
+    (Oper() Expr())?
+}
 
 void Declaracion() : 
 {}
 {
 	try {
-			Var() (ArregloD()(<ASIG> Parea()DeclaracionTA()Parec())?|(<ASIG> DeclaracionT())?) 
+			Tipo() (<CORA><CORC>)? <VAR> (DeclaracionAsignacion())? 
 	}
 	catch(ParseException e)
 	{
@@ -1719,6 +1738,42 @@ void Declaracion() :
 		if(t.kind != GramaticaTokenManager.EOF){
 		DeclaracionTA();
 		DeclaracionT();}
+	}	
+}
+
+void DeclaracionAsignacion() : 
+{
+Token tokenSigDato = null;
+if (getNextToken().image.equals("=")) {
+    tokenSigDato = getNextToken();
+}
+JOptionPane.showMessageDialog(null, tokenSigDato + " " + tokenSigDato.kind);
+JOptionPane.showMessageDialog(null, TA.checkAsing(token, tokenSigDato));
+}
+{
+	try {
+			<ASIG> Expr()
+	}
+	catch(ParseException e)
+	{
+			Token t=getToken(0);
+				if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
+           t=getNextToken();
+        }
+			System.out.println("Error en declaracion, linea: "+t.beginLine+", columna: "+t.beginColumn);
+			if (t.image=="\n")
+			{
+				linea = linea + 1;
+			}
+			if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
+			{
+				do{
+					t=getNextToken();
+				}while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+			}
+		if(t.next!=null){t=getNextToken();}
+		DeclaracionTA();
+		DeclaracionT();
 	}	
 }
 
