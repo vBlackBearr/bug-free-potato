@@ -198,6 +198,9 @@ void Inicio() :
                 t=getNextToken();
             }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
         }
+		if(t.next!=null){t=getNextToken();}
+		if(t.kind != GramaticaTokenManager.EOF){
+		Cuerpo();}
     }
 }
 
@@ -370,7 +373,8 @@ void Clases() :
 				}while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}");
             }
 			if(t.next!=null){t=getNextToken();}
-			ClasesA();	
+			if(t.kind != GramaticaTokenManager.EOF){
+			ClasesA();	}
     }
 }
 
@@ -451,8 +455,9 @@ void ClasesA() :
 					}while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}");
 				}
 				if(t.next!=null){t=getNextToken();}
+				if(t.kind != GramaticaTokenManager.EOF){
 				Constructor();
-				Cuerpo();
+				Cuerpo();}
 		}
 }
 
@@ -532,8 +537,9 @@ void Constructor() :
 				}while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
 			}
 			if(t.next!=null){t=getNextToken();}
+			if(t.kind != GramaticaTokenManager.EOF){
 			Sentencia();
-			ConstructorA();
+			ConstructorA();}
 	}
 }
 
@@ -561,10 +567,11 @@ void ConstructorA() :
 				}while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
 			}
 			if(t.next!=null){t=getNextToken();}
+			if(t.kind != GramaticaTokenManager.EOF){
 			Cuerpo();
 			Argumentos();
 			Sentencia();
-			ConstructorA();
+			ConstructorA();}
 	}
 }
 
@@ -618,8 +625,9 @@ void Cuerpo() :
 				}while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
 			}
 			if(t.next!=null){t=getNextToken();}
+			if(t.kind != GramaticaTokenManager.EOF){
 			Metodo();
-			MetodosA();
+			MetodosA();}
 	}
 }
 
@@ -654,10 +662,11 @@ void MetodosA() :
 				}while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
 			}
 			if(t.next!=null){t=getNextToken();}
+			if(t.kind != GramaticaTokenManager.EOF){
 			Metodo_void();
 			CuerpoA();
 			Principal();
-			CuerpoA();
+			CuerpoA();}
 	}
 }
 
@@ -685,10 +694,11 @@ void Prinmain():
 				}while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
 			}
 			if(t.next!=null){t=getNextToken();}
+			if(t.kind != GramaticaTokenManager.EOF){
 			Metodo_void();
 			CuerpoA();
 			Principal();
-			CuerpoA();
+			CuerpoA();}
 	}
 }
 
@@ -768,9 +778,10 @@ void Metodo() :
 				}while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
 			}
 			if(t.next!=null){t=getNextToken();}
+			if(t.kind != GramaticaTokenManager.EOF){
 			Argumentos();
 			Sentencia();
-			Retorno();
+			Retorno();}
 	}
 	
 }
@@ -825,7 +836,8 @@ void Retorno() :
 				}while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
 			}
 			if(t.next!=null){t=getNextToken();}
-			Tipo_retorno();			
+			if(t.kind != GramaticaTokenManager.EOF){
+			Tipo_retorno();			}
 	}
 }
 
@@ -859,8 +871,10 @@ void Metodo_void() :
 				}while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
 			}
 			if(t.next!=null){t=getNextToken();}
+			if(t.kind != GramaticaTokenManager.EOF){
 			Argumentos();	
 			Sentencia();
+			Cuerpo();}
 	}
 }
 
@@ -888,8 +902,9 @@ void Argumentos() :
 				}while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
 			}
 			if(t.next!=null){t=getNextToken();}
+			if(t.kind != GramaticaTokenManager.EOF){
 			Declaracion();
-			ArgumentosA();
+			ArgumentosA();}
 	}
 }
 
@@ -923,7 +938,8 @@ void Variables_clase() :
 				}while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
 			}
 			if(t.next!=null){t=getNextToken();}
-			Variables_clase();
+			if(t.kind != GramaticaTokenManager.EOF){
+			Variables_clase();}
 	}
 }
 
@@ -951,7 +967,8 @@ void Sentencia() :
 				}while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
 			}
 			if(t.next!=null){t=getNextToken();}
-			Sentencia();
+			if(t.kind != GramaticaTokenManager.EOF){
+			Sentencia();}
 	}
 }
 
@@ -981,7 +998,8 @@ void Parametros() :
 				}while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
 			}
 			if(t.next!=null){t=getNextToken();}
-			Parametros2();
+			if(t.kind != GramaticaTokenManager.EOF){
+			Parametros2();}
 	}
 }
 
@@ -1009,7 +1027,8 @@ void Parametros2() :
 				}while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
 			}
 			if(t.next!=null){t=getNextToken();}
-			Parametros2();
+			if(t.kind != GramaticaTokenManager.EOF){
+			Parametros2();}
 	}
 }
 
@@ -1038,7 +1057,8 @@ void SentenciaLlamarMetodo() :
 				}while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
 			}
 		if(t.next!=null){t=getNextToken();}
-		Parametros();
+		if(t.kind != GramaticaTokenManager.EOF){
+		Parametros();}
 	}
 }
 
@@ -1118,8 +1138,9 @@ void Sentencia_try() :
 				}while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
 			}
 		if(t.next!=null){t=getNextToken();}
-		Sentencia();
-		Sentencia();
+		if(t.kind != GramaticaTokenManager.EOF){
+		Catch();
+		Sentencia();}
 	}
 }
 
@@ -1147,7 +1168,8 @@ void Sentencia_ciclofor() :
 				}while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
 			}
 		if(t.next!=null){t=getNextToken();}
-		Sentencia();
+		if(t.kind != GramaticaTokenManager.EOF){
+		Sentencia();}
 	}
 }
 
@@ -1227,7 +1249,8 @@ void Sentencia_ciclowhile() :
 				}while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
 			}
 		if(t.next!=null){t=getNextToken();}
-		Sentencia();
+		if(t.kind != GramaticaTokenManager.EOF){
+		Sentencia();}
 	}
 }
 
@@ -1255,8 +1278,9 @@ void Sentencia_condicion() :
 				}while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
 			}
 		if(t.next!=null){t=getNextToken();}
+		if(t.kind != GramaticaTokenManager.EOF){
 		Sentencia();
-		Si_e();
+		Si_e();}
 	}
 }
 
@@ -1310,7 +1334,8 @@ void Sentencia_this() :
 				}while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
 			}
 		if(t.next!=null){t=getNextToken();}
-		Sentencia_this();
+		if(t.kind != GramaticaTokenManager.EOF){
+		Sentencia_this();}
 	}
 }
 
@@ -1364,8 +1389,9 @@ void Sentencia_switch() :
 				}while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
 			}
 		if(t.next!=null){t=getNextToken();}
+		if(t.kind != GramaticaTokenManager.EOF){
 		Sentencia_switch();
-		Sentencia();
+		Sentencia();}
 	}
 }
 
@@ -1483,8 +1509,9 @@ void Si_EA() :
 				}while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
 			}
 		if(t.next!=null){t=getNextToken();}
+		if(t.kind != GramaticaTokenManager.EOF){
 		Sentencia();
-		Sentencia_condicion();
+		Sentencia_condicion();}
 	}
 }
 
@@ -1512,8 +1539,9 @@ void Condg() :
 				}while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
 			}
 		if(t.next!=null){t=getNextToken();}
+		if(t.kind != GramaticaTokenManager.EOF){
 		Condg();
-		Cond();
+		Cond();}
 	}
 }
 
@@ -1541,7 +1569,8 @@ void CondgA() :
 				}while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
 			}
 		if(t.next!=null){t=getNextToken();}
-		Exp();
+		if(t.kind != GramaticaTokenManager.EOF){
+		Exp();}
 	}
 }
 
@@ -1569,7 +1598,8 @@ void Cond() :
 				}while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
 			}
 		if(t.next!=null){t=getNextToken();}
-		Exp();
+		if(t.kind != GramaticaTokenManager.EOF){
+		Exp();}
 	}
 }
 
@@ -1597,7 +1627,8 @@ void Exp() :
 				}while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
 			}
 		if(t.next!=null){t=getNextToken();}
-		ExpA();
+		if(t.kind != GramaticaTokenManager.EOF){
+		ExpA();}
 	}
 }
 
@@ -1625,7 +1656,8 @@ void ExpA() :
 				}while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
 			}
 		if(t.next!=null){t=getNextToken();}
-		Parametros();
+		if(t.kind != GramaticaTokenManager.EOF){
+		Parametros();}
 	}
 }
 
@@ -1680,8 +1712,9 @@ void Declaracion() :
 				}while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
 			}
 		if(t.next!=null){t=getNextToken();}
+		if(t.kind != GramaticaTokenManager.EOF){
 		DeclaracionTA();
-		DeclaracionT();
+		DeclaracionT();}
 	}	
 }
 
@@ -1735,7 +1768,8 @@ void DeclaracionTA() :
 				}while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
 			}
 			if(t.next!=null){t=getNextToken();}
-			DeclaracionTA1();
+			if(t.kind != GramaticaTokenManager.EOF){
+			DeclaracionTA1();}
 	}
 }
 
@@ -1763,7 +1797,8 @@ void DeclaracionTA1() :
 				}while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
 			}
 			if(t.next!=null){t=getNextToken();}
-			DeclaracionTA1();
+			if(t.kind != GramaticaTokenManager.EOF){
+			DeclaracionTA1();}
 	}
 }
 
