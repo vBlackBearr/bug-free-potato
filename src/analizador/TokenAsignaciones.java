@@ -5,7 +5,9 @@ import java.io.PrintStream;
 import java.util.Hashtable;
 import java.lang.String;
 import java.util.ArrayList;
-//import analizador.GramaticaConstants;
+import javax.swing.JOptionPane;
+import objects.GramaticaConstantsNames;
+import Analizador.GramaticaConstants;
 
 public class TokenAsignaciones extends Error {
 
@@ -15,7 +17,7 @@ public class TokenAsignaciones extends Error {
     //Variable para validar asignaciones a caracteres(ichr)
     public int segunda = 0;
     //Tabla que almacenara los tokens declarados
-    private Hashtable tabla = new Hashtable();
+    private Hashtable<String, Integer> tabla = new Hashtable();
 
     ArrayList<objTipoDatoCompatible> tiposVariablesComp;
     objTipoDatoCompatible enteroComp;
@@ -23,7 +25,6 @@ public class TokenAsignaciones extends Error {
     objTipoDatoCompatible stringComp;
     objTipoDatoCompatible charComp;
 
-    ArrayList<Integer> tiposDeDatos = new ArrayList<>();
 
     //Listas que guardaran los tipos compatibles de las variables
 //    private ArrayList<Integer> enteroComp = new ArrayList();
@@ -77,10 +78,6 @@ public class TokenAsignaciones extends Error {
         charComp.addCompatible(82);
         tiposVariablesComp.add(charComp);
 
-        tiposDeDatos.add(GramaticaConstants.ENTERO);
-        tiposDeDatos.add(GramaticaConstants.FLOTANTEDOUBLE);
-        tiposDeDatos.add(GramaticaConstants.CARACTER);
-        tiposDeDatos.add(GramaticaConstants.CADENA);
 
 //        enteroComp.add(17);//variable tipo entero
 //        enteroComp.add(78);//dato entero
@@ -98,43 +95,47 @@ public class TokenAsignaciones extends Error {
     }
 
     public String checkAsing(Token TokenIzq, Token TokenAsig) {
-        //variables en las cuales se almacenara el tipo de dato del identificador y de las asignaciones (ejemplo: n1(tipoIdent1) = 2(tipoIdent2) + 3(tipoIdent2))
-        int tipoIdent1;
-        int tipoIdent2;
-
-        if (!tiposDeDatos.contains(TokenIzq.kind)) {
+//        JOptionPane.showMessageDialog(null, TokenIzq.image + " " + TokenIzq.kind + "    " + TokenAsig.image + " " + TokenAsig.kind);
+        int tipoVar1 = 0;
+        int tipoVar2 = 0;
+        if (TokenIzq.kind == GramaticaConstants.VAR) {
             if (!checkVariable(TokenIzq)) {
                 return "Error: El identificador " + TokenIzq.image + " No ha sido declarado \r\nLinea: " + TokenIzq.beginLine;
+            }else{
+                tipoVar1 = getTipoVariable(TokenIzq);
+//                JOptionPane.showMessageDialog(null,tipoVar1);
             }
+                
         }
 
-        if (!tiposDeDatos.contains(TokenAsig.kind)) {
+        if (TokenIzq.kind == GramaticaConstants.VAR) {
             if (!checkVariable(TokenAsig)) {
                 return "Error: El identificador " + TokenIzq.image + " No ha sido declarado \r\nLinea: " + TokenIzq.beginLine;
+            }else{
+                tipoVar2 = getTipoVariable(TokenAsig);
             }
         }
 
         objTipoDatoCompatible tipo = null;
         for (objTipoDatoCompatible var : tiposVariablesComp) {
-            for(Integer ID: var.getIDs()){
-                if(ID.equals(TokenIzq.kind)){
+            for (Integer ID : var.getIDs()) {
+                if (ID.equals(tipoVar1)) {
                     tipo = var;
                     break;
                 }
             }
-            if (tipo != null){
+            if (tipo != null) {
                 break;
             }
         }
-        if(tipo == null){
+        if (tipo == null) {
             return "Error: Problema con el identificador " + TokenIzq.image + "\r\nLinea: " + TokenIzq.beginLine;
         }
-        
-        if(!tipo.getTiposCompatibles().contains(TokenAsig.kind)){
-            return "Error: No se puede convertir " + TokenAsig.image + " a Entero \r\nLinea: " + TokenIzq.beginLine;
+
+        GramaticaConstantsNames names = new GramaticaConstantsNames();
+        if (!tipo.getTiposCompatibles().contains(tipoVar2)) {
+            return "Error: No se puede convertir " + TokenAsig.image + " a " + names.getNameFromToken(tipoVar1) + " \r\nLinea: " + TokenIzq.beginLine;
         }
-        
-        
 
         //        int ENTERO = GramaticaConstants.ENTERO;
         //        if () {
@@ -190,10 +191,24 @@ public class TokenAsignaciones extends Error {
 		ej cuando se declaran las asignaciones: i++, i--)*/
     public boolean checkVariable(Token checkTok) {
         try {
-            tabla.get(checkTok.image);
+//            JOptionPane.showMessageDialog(null, checkTok.image);
+
+//            JOptionPane.showMessageDialog(null, "Tabla: " + tabla);
+            int kind = (Integer) tabla.get(checkTok.image);
+
             return true;
         } catch (Exception e) {
             return false;
+        }
+    }
+    
+    public int getTipoVariable(Token token){
+        try {
+            int kind = (Integer) tabla.get(token.image);
+            return kind;
+        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(null, "fsdsvvse");
+            return 0;
         }
     }
 

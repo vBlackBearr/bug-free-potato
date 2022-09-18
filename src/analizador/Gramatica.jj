@@ -14,6 +14,7 @@ public class Gramatica {
     public static int linea=1;
     public static int la;
     String muestraLexico = "";
+    int kindParaDeclarar = 0;
 }
 PARSER_END(Gramatica)
 
@@ -181,7 +182,7 @@ PARSER_END(Gramatica)
 /**Inicio sintactico*/
 
 void Inicio() : 
-{}
+{TA.SetTables();}
 {
     try {
         Import() Clases() <EOF>
@@ -299,7 +300,11 @@ void Tipo() :
 }
 
 void DeclararInt() : 
-{TA.InsertarSimbolo(token, GramaticaConstants.INT);}
+{
+//.showMessageDialog(null,token + " " + GramaticaConstants.INT);
+//TA.InsertarSimbolo(token, GramaticaConstants.INT);
+kindParaDeclarar = GramaticaConstants.INT;
+}
 {
     try {
         <INT>
@@ -602,7 +607,7 @@ void ContenidoClase() :
 {}
 {	
 		try {
-			(((TipoEncapsular() (Declaracion() | Metodo() | Constructor())) | Declaracion()) ContenidoClase())?
+			(((TipoEncapsular() (Declaracion() Puntoyc() | Metodo() | Constructor())) | Declaracion() Puntoyc()) ContenidoClase())?
 		}
 		catch(ParseException e)
 		{
@@ -1857,7 +1862,7 @@ void Var():
 
 void Asignacion() :
 {
-    JOptionPane.showMessageDialog(null,"Analisis sem: ");
+
 }
 {
     <VAR> (<ASIG> Expr() | Sentencia_incremental())
@@ -1866,7 +1871,7 @@ void Asignacion() :
 void Expr() : 
 {}
 {
-    Tipo() Expr2() | <PAREA> Expr() <PAREC> Expr2()
+    TipoDato() Expr2() | <PAREA> Expr() <PAREC> Expr2()
 }
 
 void Expr2() :
@@ -1875,11 +1880,19 @@ void Expr2() :
     (Oper() Expr())?
 }
 
+void TipoDato() :
+{
+}
+{
+    <ENTERO> | <FLOTANTEDOUBLE> | <CARACTER> | <CADENA> | <TRUE> | <FALSE> 
+}
 void Declaracion() : 
-{}
+{
+
+}
 {
 	try {
-			Tipo() (<CORA><CORC>)? <VAR> (DeclaracionAsignacion())? 
+			Tipo() (<CORA><CORC>)? Declarando() (DeclaracionAsignacion())? 
 	}
 	catch(ParseException e)
 	{
@@ -1905,14 +1918,20 @@ void Declaracion() :
 	}	
 }
 
+void Declarando() :
+{TA.InsertarSimbolo(token.next, kindParaDeclarar);}
+{
+    <VAR>
+}
+
 void DeclaracionAsignacion() : 
 {
 Token tokenSigDato = null;
+Token tokenOld = token;
 if (getNextToken().image.equals("=")) {
     tokenSigDato = getNextToken();
 }
-JOptionPane.showMessageDialog(null, tokenSigDato + " " + tokenSigDato.kind);
-JOptionPane.showMessageDialog(null, TA.checkAsing(token, tokenSigDato));
+JOptionPane.showMessageDialog(null, TA.checkAsing(tokenOld, tokenSigDato));
 }
 {
 	try {

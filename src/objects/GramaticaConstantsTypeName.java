@@ -4,7 +4,7 @@
  */
 package objects;
 
-import analizador.GramaticaConstants;
+import Analizador.GramaticaConstants;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -20,6 +20,7 @@ public interface GramaticaConstantsTypeName {
     final namenumobj CADENA = new namenumobj(GramaticaConstants.CADENA, "CADENA");
     final namenumobj BOOLEAN = new namenumobj(GramaticaConstants.BOOLEAN, "BOOLEAN");
 
-    ArrayList<namenumobj> TIPOS = List.of(3, 1, 4);
+    final namenumobj[] AllTypes = {ENTERO, FLOTANTEDOUBLE, CARACTER, CADENA, BOOLEAN};
+    
     
 }
