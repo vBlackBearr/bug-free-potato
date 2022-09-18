@@ -3,17 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Luisp/OneDrive/Documentos/NetBeansProjects/LenguajeE/bug-free-potato/src/analizador/Gramatica.jj</file>
             <file>file:/C:/Users/Luisp/OneDrive/Documentos/NetBeansProjects/LenguajeE/bug-free-potato/src/analizador/TokenAsignaciones.java</file>
+            <file>file:/C:/Users/Luisp/OneDrive/Documentos/NetBeansProjects/LenguajeE/bug-free-potato/src/analizador/Gramatica.jj</file>
             <file>file:/C:/Users/Luisp/OneDrive/Documentos/NetBeansProjects/LenguajeE/bug-free-potato/src/objects/namenumobj.java</file>
-            <file>file:/C:/Users/Luisp/OneDrive/Documentos/NetBeansProjects/LenguajeE/bug-free-potato/src/analizador/Token.java</file>
             <file>file:/C:/Users/Luisp/OneDrive/Documentos/NetBeansProjects/LenguajeE/bug-free-potato/src/objects/GramaticaConstantsTypeName.java</file>
             <file>file:/C:/Users/Luisp/OneDrive/Documentos/NetBeansProjects/LenguajeE/bug-free-potato/src/analizador/Gramatica.java</file>
-            <file>file:/C:/Users/Luisp/OneDrive/Documentos/NetBeansProjects/LenguajeE/bug-free-potato/src/analizador/GramaticaTokenManager.java</file>
             <file>file:/C:/Users/Luisp/OneDrive/Documentos/NetBeansProjects/LenguajeE/bug-free-potato/src/analizador/GramaticaConstants.java</file>
-            <file>file:/C:/Users/Luisp/OneDrive/Documentos/NetBeansProjects/LenguajeE/bug-free-potato/src/lenguajee/Analizar.java</file>
-            <file>file:/C:/Users/Luisp/OneDrive/Documentos/NetBeansProjects/LenguajeE/bug-free-potato/src/GUI/GUI.java</file>
-            <file>file:/C:/Users/Luisp/OneDrive/Documentos/NetBeansProjects/LenguajeE/bug-free-potato/src/objects/CramaticaConstantsNames.java</file>
+            <file>file:/C:/Users/Luisp/OneDrive/Documentos/NetBeansProjects/LenguajeE/bug-free-potato/src/objects/GramaticaConstantsNames.java</file>
+            <file>file:/C:/Users/Luisp/OneDrive/Documentos/NetBeansProjects/LenguajeE/bug-free-potato/src/analizador/objTipoDatoCompatible.java</file>
         </group>
     </open-files>
 </project-private>

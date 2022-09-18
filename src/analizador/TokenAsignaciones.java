@@ -46,38 +46,41 @@ public class TokenAsignaciones extends Error {
 
         tiposVariablesComp = new ArrayList<>();
 
-        ArrayList<Integer> IDs = new ArrayList();
+        ArrayList<Integer> IDsEntero = new ArrayList();
 
         //identificadores de un valor entero (variable o dato)
-        IDs.add(GramaticaConstants.INT);//variable entero
-        IDs.add(GramaticaConstants.ENTERO);//dato entreo
-        enteroComp = new objTipoDatoCompatible(IDs);
+        IDsEntero.add(GramaticaConstants.INT);//variable entero
+        IDsEntero.add(GramaticaConstants.ENTERO);//dato entreo
+        enteroComp = new objTipoDatoCompatible(IDsEntero);
         enteroComp.addCompatible(GramaticaConstants.INT);//se agrega compatibilidad con una variable tipo entero
         enteroComp.addCompatible(GramaticaConstants.ENTERO);//se agrega compatibildad con un dato tipo entero
         tiposVariablesComp.add(enteroComp);
 
         //identificadores de un valor flotante (variable o dato)
-        IDs.add(GramaticaConstants.FLOAT);
-        IDs.add(GramaticaConstants.FLOTANTEDOUBLE);
-        flotanteComp = new objTipoDatoCompatible(IDs);
+        ArrayList<Integer> IDsFlotante = new ArrayList();
+        IDsFlotante.add(GramaticaConstants.FLOAT);
+        IDsFlotante.add(GramaticaConstants.FLOTANTEDOUBLE);
+        flotanteComp = new objTipoDatoCompatible(IDsFlotante);
         flotanteComp.addCompatible(GramaticaConstants.INT);
         flotanteComp.addCompatible(GramaticaConstants.ENTERO);
         flotanteComp.addCompatible(GramaticaConstants.FLOAT);
         flotanteComp.addCompatible(GramaticaConstants.FLOTANTEDOUBLE);
         tiposVariablesComp.add(flotanteComp);
 
-        IDs.add(15);
-        IDs.add(81);
-        stringComp = new objTipoDatoCompatible(IDs);
-        stringComp.addCompatible(15);
-        stringComp.addCompatible(81);
+        ArrayList<Integer> IDsString = new ArrayList();
+        IDsString.add(GramaticaConstants.STRING);
+        IDsString.add(GramaticaConstants.CADENA);
+        stringComp = new objTipoDatoCompatible(IDsString);
+        stringComp.addCompatible(GramaticaConstants.STRING);
+        stringComp.addCompatible(GramaticaConstants.CADENA);
         tiposVariablesComp.add(stringComp);
 
-        IDs.add(16);
-        IDs.add(82);
-        charComp = new objTipoDatoCompatible(IDs);
-        charComp.addCompatible(16);
-        charComp.addCompatible(82);
+        ArrayList<Integer> IDsChar = new ArrayList();
+        IDsChar.add(GramaticaConstants.CHAR);
+        IDsChar.add(GramaticaConstants.CARACTER);
+        charComp = new objTipoDatoCompatible(IDsChar);
+        charComp.addCompatible(GramaticaConstants.CHAR);
+        charComp.addCompatible(GramaticaConstants.CARACTER);
         tiposVariablesComp.add(charComp);
 
 
@@ -126,6 +129,7 @@ public class TokenAsignaciones extends Error {
 
         objTipoDatoCompatible tipo = null;
         for (objTipoDatoCompatible var : tiposVariablesComp) {
+//            JOptionPane.showMessageDialog(null, var.getIDs() + " : " + var.getTiposCompatibles());
             for (Integer ID : var.getIDs()) {
                 if (ID.equals(tipoVar1)) {
                     tipo = var;
