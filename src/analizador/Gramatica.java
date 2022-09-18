@@ -10,8 +10,8 @@ public class Gramatica implements GramaticaConstants {
     String muestraLexico = "";
     int kindParaDeclarar = 0;
 
-    Token valor1Comp = null;
-    Token valor2Comp = null;
+    Token valor1CompAsig = null;
+    Token valor2CompAsig = null;
 
 /** Fin Lexico */
 
@@ -156,8 +156,6 @@ public class Gramatica implements GramaticaConstants {
   }
 
   final public void DeclararInt() throws ParseException {
-//.showMessageDialog(null,token + " " + GramaticaConstants.INT);
-//TA.InsertarSimbolo(token, GramaticaConstants.INT);
 kindParaDeclarar = GramaticaConstants.INT;
     try {
       jj_consume_token(INT);
@@ -182,7 +180,7 @@ kindParaDeclarar = GramaticaConstants.INT;
   }
 
   final public void DeclararChar() throws ParseException {
- TA.InsertarSimbolo(token.next, GramaticaConstants.CHAR);
+ kindParaDeclarar = GramaticaConstants.CHAR;
     try {
       jj_consume_token(CHAR);
     } catch (ParseException e) {
@@ -206,7 +204,7 @@ kindParaDeclarar = GramaticaConstants.INT;
   }
 
   final public void DeclararString() throws ParseException {
- TA.InsertarSimbolo(token.next, GramaticaConstants.STRING);
+ kindParaDeclarar = GramaticaConstants.STRING;
     try {
       jj_consume_token(STRING);
     } catch (ParseException e) {
@@ -230,7 +228,7 @@ kindParaDeclarar = GramaticaConstants.INT;
   }
 
   final public void DeclararBool() throws ParseException {
- TA.InsertarSimbolo(token.next, GramaticaConstants.BOOLEAN);
+ kindParaDeclarar = GramaticaConstants.BOOLEAN;
     try {
       jj_consume_token(BOOLEAN);
     } catch (ParseException e) {
@@ -254,7 +252,7 @@ kindParaDeclarar = GramaticaConstants.INT;
   }
 
   final public void DeclararFloat() throws ParseException {
- TA.InsertarSimbolo(token.next, GramaticaConstants.FLOAT);
+ kindParaDeclarar = GramaticaConstants.FLOAT;
     try {
       jj_consume_token(FLOAT);
     } catch (ParseException e) {
@@ -278,7 +276,7 @@ kindParaDeclarar = GramaticaConstants.INT;
   }
 
   final public void DeclararDouble() throws ParseException {
- TA.InsertarSimbolo(token.next, GramaticaConstants.DOUBLE);
+ kindParaDeclarar = GramaticaConstants.DOUBLE;
     try {
       jj_consume_token(DOUBLE);
     } catch (ParseException e) {
@@ -2199,10 +2197,7 @@ kindParaDeclarar = GramaticaConstants.INT;
       PonerDato();
       break;
     case PAREA:
-      jj_consume_token(PAREA);
-      Expr();
-      jj_consume_token(PAREC);
-      Expr2();
+      ParentesisExpr();
       break;
     default:
       jj_la1[42] = jj_gen;
@@ -2211,14 +2206,8 @@ kindParaDeclarar = GramaticaConstants.INT;
     }
   }
 
-  final public void PonerDato() throws ParseException {
-    valor2Comp = token.next;
-    JOptionPane.showMessageDialog(null,TA.checkAsing(valor1Comp,valor2Comp));
-    TipoDato();
-    Expr2();
-  }
-
   final public void Expr2() throws ParseException {
+JOptionPane.showMessageDialog(null,TA.checkAsing(valor1CompAsig,valor2CompAsig));
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case SUMA:
     case RESTA:
@@ -2233,6 +2222,19 @@ kindParaDeclarar = GramaticaConstants.INT;
       jj_la1[43] = jj_gen;
       ;
     }
+  }
+
+  final public void PonerDato() throws ParseException {
+    valor2CompAsig = token.next;
+    TipoDato();
+    Expr2();
+  }
+
+  final public void ParentesisExpr() throws ParseException {
+    jj_consume_token(PAREA);
+    Expr();
+    jj_consume_token(PAREC);
+    Expr2();
   }
 
   final public void TipoDato() throws ParseException {
@@ -2312,7 +2314,7 @@ kindParaDeclarar = GramaticaConstants.INT;
   }
 
   final public void DeclaracionAsignacion() throws ParseException {
-valor1Comp = token;
+ valor1CompAsig = token;
     try {
       jj_consume_token(ASIG);
       Expr();
@@ -2321,7 +2323,7 @@ valor1Comp = token;
                                 if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
            t=getNextToken();
         }
-                        System.out.println("Error en declaracion, linea: "+t.beginLine+", columna: "+t.beginColumn);
+                        System.out.println("Error en Inicializacion de variable, linea: "+t.beginLine+", columna: "+t.beginColumn);
                         if (t.image=="\n")
                         {
                                 linea = linea + 1;

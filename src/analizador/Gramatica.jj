@@ -16,8 +16,8 @@ public class Gramatica {
     String muestraLexico = "";
     int kindParaDeclarar = 0;
 
-    Token valor1Comp = null;
-    Token valor2Comp = null;
+    Token valor1CompAsig = null;
+    Token valor2CompAsig = null;
 }
 PARSER_END(Gramatica)
 
@@ -151,14 +151,14 @@ PARSER_END(Gramatica)
       < #letraMay: ["A"-"Z"]  >
     | < #letraMin: ["a"-"z"]  >
     | < #c: ["a"-"z", "A"-"Z", "0"-"9", "|", "'", "/", "(", ")", "{", "}", "[", "]", ",", ".", ";", "_", ":", " ", "<", ">", "+", "-", "*", "="]  >
-    | < #cinv: ["a"-"z", "A"-"Z", "0"-"9", "|", "'", "/", "(", ")", "{", "}", "[", "]", ",", ".", "_", ":", "<", ">", "+", "-", "*", "="] >
+    | < #cinv: ["a"-"z", "A"-"Z", "0"-"9", "|", "'", "/", "(", ")", "{", "}", "[", "]", ",", ".", "_", ":", "<", ">", "-", "*", "="] >
     | < #c2: ["@", "#", "&", "%"] >
     | < #digito: ["0"-"9"]  >
     | < ENTERO: (<digito>)+ > {System.out.println(image + " -> Numero entero " + "\n");} : DEFAULT
     | < FLOTANTEDOUBLE: ((<digito>)+ "." (<digito>)+)+ > {System.out.println(image + " -> Numero flotante " + "\n");} : DEFAULT
     | < CLASES: <letraMay>(<letraMin>)+ > {System.out.println(image + " -> Nombre de clase " + "\n");} : DEFAULT
     | < CARACTER: "'"(< letraMay >|< letraMin >|< digito >)"'" > {System.out.println(image + " -> Caracter " + "\n");} : DEFAULT
-    | < CADENA: "\"" (< c >)+ "\"" > {System.out.println(image + " -> Cadena " + "\n");} : DEFAULT
+    | < CADENA: "\"" (< c >)* "\"" > {System.out.println(image + " -> Cadena " + "\n");} : DEFAULT
     | < PAQUET: (<letraMay>) (<letraMin>)+ ("_" (<letraMay>) (<letraMin>)+)+ > {System.out.println(image + " -> Nombre de paquete " + "\n");} : DEFAULT
     | < VAR: (<letraMin>)+ > {System.out.println(image + " -> Nombre de variable " + "\n");} : DEFAULT
     | < FUNC: (< letraMin >)+ (< letraMay > (< letraMin >)+)+ > {System.out.println(image + " -> Nombre de función " + "\n");} : DEFAULT
@@ -304,8 +304,6 @@ void Tipo() :
 
 void DeclararInt() : 
 {
-//.showMessageDialog(null,token + " " + GramaticaConstants.INT);
-//TA.InsertarSimbolo(token, GramaticaConstants.INT);
 kindParaDeclarar = GramaticaConstants.INT;
 }
 {
@@ -334,7 +332,7 @@ kindParaDeclarar = GramaticaConstants.INT;
 }
 
 void DeclararChar() : 
-{TA.InsertarSimbolo(token.next, GramaticaConstants.CHAR);}
+{kindParaDeclarar = GramaticaConstants.CHAR;}
 {
     try {
         <CHAR>
@@ -361,7 +359,7 @@ void DeclararChar() :
 }
 
 void DeclararString() : 
-{TA.InsertarSimbolo(token.next, GramaticaConstants.STRING);}
+{kindParaDeclarar = GramaticaConstants.STRING;}
 {
     try {
         <STRING>
@@ -388,7 +386,7 @@ void DeclararString() :
 }
 
 void DeclararBool() : 
-{TA.InsertarSimbolo(token.next, GramaticaConstants.BOOLEAN);}
+{kindParaDeclarar = GramaticaConstants.BOOLEAN;}
 {
     try {
         <BOOLEAN>
@@ -415,7 +413,7 @@ void DeclararBool() :
 }
 
 void DeclararFloat() : 
-{TA.InsertarSimbolo(token.next, GramaticaConstants.FLOAT);}
+{kindParaDeclarar = GramaticaConstants.FLOAT;}
 {
     try {
         <FLOAT>
@@ -442,7 +440,7 @@ void DeclararFloat() :
 }
 
 void DeclararDouble() : 
-{TA.InsertarSimbolo(token.next, GramaticaConstants.DOUBLE);}
+{kindParaDeclarar = GramaticaConstants.DOUBLE;}
 {
     try {
         <DOUBLE>
@@ -1874,25 +1872,31 @@ void Asignacion() :
 void Expr() : 
 {
 
-
 }
 {
-    PonerDato() | <PAREA> Expr() <PAREC> Expr2()
+    PonerDato() | ParentesisExpr()
+}
+
+void Expr2() :
+{
+JOptionPane.showMessageDialog(null,TA.checkAsing(valor1CompAsig,valor2CompAsig));
+}
+{
+    (Oper() Expr())?
 }
 
 void PonerDato() : 
 {
-    valor2Comp = token.next;
-    JOptionPane.showMessageDialog(null,TA.checkAsing(valor1Comp,valor2Comp));
+    valor2CompAsig = token.next;
 }
 {
     TipoDato() Expr2()
 }
 
-void Expr2() :
+void ParentesisExpr() :
 {}
 {
-    (Oper() Expr())?
+    <PAREA> Expr() <PAREC> Expr2()
 }
 
 void TipoDato() :
@@ -1940,15 +1944,7 @@ void Declarando() :
 }
 
 void DeclaracionAsignacion() : 
-{
-valor1Comp = token;
-//Token tokenSigDato = null;
-//Token tokenOld = token;
-//if (getNextToken().image.equals("=")) {
-//    tokenSigDato = getNextToken();
-//}
-//JOptionPane.showMessageDialog(null, TA.checkAsing(tokenOld, tokenSigDato));
-}
+{valor1CompAsig = token;}
 {
 	try {
 			<ASIG> Expr()
@@ -1959,7 +1955,7 @@ valor1Comp = token;
 				if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
            t=getNextToken();
         }
-			System.out.println("Error en declaracion, linea: "+t.beginLine+", columna: "+t.beginColumn);
+			System.out.println("Error en Inicializacion de variable, linea: "+t.beginLine+", columna: "+t.beginColumn);
 			if (t.image=="\n")
 			{
 				linea = linea + 1;
