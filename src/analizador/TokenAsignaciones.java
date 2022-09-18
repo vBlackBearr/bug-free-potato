@@ -5,6 +5,7 @@ import java.io.PrintStream;
 import java.util.Hashtable;
 import java.lang.String;
 import java.util.ArrayList;
+//import analizador.GramaticaConstants;
 
 public class TokenAsignaciones extends Error {
 
@@ -16,10 +17,13 @@ public class TokenAsignaciones extends Error {
     //Tabla que almacenara los tokens declarados
     private Hashtable tabla = new Hashtable();
 
+    ArrayList<objTipoDatoCompatible> tiposVariablesComp;
     objTipoDatoCompatible enteroComp;
     objTipoDatoCompatible flotanteComp;
     objTipoDatoCompatible stringComp;
     objTipoDatoCompatible charComp;
+
+    ArrayList<Integer> tiposDeDatos = new ArrayList<>();
 
     //Listas que guardaran los tipos compatibles de las variables
 //    private ArrayList<Integer> enteroComp = new ArrayList();
@@ -38,6 +42,9 @@ public class TokenAsignaciones extends Error {
 		 cadena = stringComp
 		 caracter = charComp
          */
+
+        tiposVariablesComp = new ArrayList<>();
+
         ArrayList<Integer> IDs = new ArrayList();
 
         //identificadores de un valor entero (variable o dato)
@@ -46,6 +53,7 @@ public class TokenAsignaciones extends Error {
         enteroComp = new objTipoDatoCompatible(IDs);
         enteroComp.addCompatible(17);//se agrega compatibilidad con una variable tipo entero
         enteroComp.addCompatible(78);//se agrega compatibildad con un dato tipo entero
+        tiposVariablesComp.add(enteroComp);
 
         //identificadores de un valor flotante (variable o dato)
         IDs.add(18);
@@ -53,18 +61,26 @@ public class TokenAsignaciones extends Error {
         flotanteComp = new objTipoDatoCompatible(IDs);
         flotanteComp.addCompatible(18);
         flotanteComp.addCompatible(79);
+        tiposVariablesComp.add(flotanteComp);
 
         IDs.add(15);
         IDs.add(81);
         stringComp = new objTipoDatoCompatible(IDs);
         stringComp.addCompatible(15);
         stringComp.addCompatible(81);
+        tiposVariablesComp.add(stringComp);
 
         IDs.add(16);
         IDs.add(82);
         charComp = new objTipoDatoCompatible(IDs);
         charComp.addCompatible(16);
         charComp.addCompatible(82);
+        tiposVariablesComp.add(charComp);
+
+        tiposDeDatos.add(GramaticaConstants.ENTERO);
+        tiposDeDatos.add(GramaticaConstants.FLOTANTEDOUBLE);
+        tiposDeDatos.add(GramaticaConstants.CARACTER);
+        tiposDeDatos.add(GramaticaConstants.CADENA);
 
 //        enteroComp.add(17);//variable tipo entero
 //        enteroComp.add(78);//dato entero
@@ -85,96 +101,99 @@ public class TokenAsignaciones extends Error {
         //variables en las cuales se almacenara el tipo de dato del identificador y de las asignaciones (ejemplo: n1(tipoIdent1) = 2(tipoIdent2) + 3(tipoIdent2))
         int tipoIdent1;
         int tipoIdent2;
-        /* De la tabla obtenemos el tipo de dato del identificador  
-                            asi como, si el token enviado es diferente a algun tipo que no se declara como los numeros(78), los decimales(79),
-                            caracteres(81) y cadenas(82)
-                            entonces tipoIdent1 = tipo_de_dato, ya que TokenAsig es un dato*/
-        if (TokenIzq.kind != 78 && TokenIzq.kind != 79) {
-            try {
-                //Si el TokenIzq.image existe dentro de la tabla de tokens, entonces tipoIdent1 toma el tipo de dato con el que TokenIzq.image fue declarado
-                tipoIdent1 = (Integer) tabla.get(TokenIzq.image);
-            } catch (Exception e) {
-                //Si TokenIzq.image no se encuentra en la tabla en la cual se agregan los tokens, el token no ha sido declarado, y se manda un error
+
+        if (!tiposDeDatos.contains(TokenIzq.kind)) {
+            if (!checkVariable(TokenIzq)) {
                 return "Error: El identificador " + TokenIzq.image + " No ha sido declarado \r\nLinea: " + TokenIzq.beginLine;
             }
-        } else {
-            tipoIdent1 = 0;
         }
 
-        //TokenAsig.kind != 78 && TokenAsig.kind != 79 && TokenAsig.kind != 82 && TokenAsig.kind != 81
-        if (TokenAsig.kind == 49) {
-            /*Si el tipo de dato que se esta asignando, es algun identificador(kind == 49) 
-			se obtiene su tipo de la tabla de tokens para poder hacer las comparaciones*/
-            try {
-                tipoIdent2 = (Integer) tabla.get(TokenAsig.image);
-            } catch (Exception e) {
-                //si el identificador no existe manda el error
-                return "Error: El identificador " + TokenAsig.image + " No ha sido declarado \r\nLinea: " + TokenIzq.beginLine;
+        if (!tiposDeDatos.contains(TokenAsig.kind)) {
+            if (!checkVariable(TokenAsig)) {
+                return "Error: El identificador " + TokenIzq.image + " No ha sido declarado \r\nLinea: " + TokenIzq.beginLine;
             }
-        } //Si el dato es entero(78) o decimal(79) o caracter(82) o cadena(81)
-        //tipoIdent2 = tipo_del_dato
-        else if (TokenAsig.kind == 78 || TokenAsig.kind == 79 || TokenAsig.kind == 82 || TokenAsig.kind == 81) {
-            tipoIdent2 = TokenAsig.kind;
-        } else //Si no, se inicializa en algun valor "sin significado(con respecto a los tokens)", para que la variable este inicializada y no marque error al comparar
-        {
-            tipoIdent2 = 0;
         }
 
-        if (tipoIdent1 == 17) //Int
-        {
-            //Si la lista de enteros(intComp) contiene el valor de tipoIdent2, entonces es compatible y se puede hacer la asignacion
-            if (enteroComp.getTiposCompatibles().contains(tipoIdent2)) {
-                return " ";
-            } else //Si el tipo de dato no es compatible manda el error
-            {
-                return "Error: No se puede convertir " + TokenAsig.image + " a Entero \r\nLinea: " + TokenIzq.beginLine;
-            }
-        } else if (tipoIdent1 == 18) //double
-        {
-            if (flotanteComp.getTiposCompatibles().contains(tipoIdent2)) {
-                return " ";
-            } else {
-                return "Error: No se puede convertir " + TokenAsig.image + " a Decimal \r\nLinea: " + TokenIzq.beginLine;
-            }
-        } else if (tipoIdent1 == 15) //char
-        {
-            /*variable segunda: cuenta cuantos datos se van a asignar al caracter: 
-				si a el caracter se le asigna mas de un dato (ej: 'a' + 'b') marca error 
-				NOTA: no se utiliza un booleano ya que entraria en asignaciones pares o impares*/
-            segunda++;
-            if (segunda < 2) {
-                if (charComp.getTiposCompatibles().contains(tipoIdent2)) {
-                    return " ";
-                } else {
-                    return "Error: No se puede convertir " + TokenAsig.image + " a Caracter \r\nLinea: " + TokenIzq.beginLine;
+        objTipoDatoCompatible tipo = null;
+        for (objTipoDatoCompatible var : tiposVariablesComp) {
+            for(Integer ID: var.getIDs()){
+                if(ID.equals(TokenIzq.kind)){
+                    tipo = var;
+                    break;
                 }
-            } else //Si se esta asignando mas de un caracter manda el error 			
-            {
-                return "Error: No se puede asignar mas de un valor a un caracter \r\nLinea: " + TokenIzq.beginLine;
             }
-
-        } else if (tipoIdent1 == 16) //string
-        {
-            if (stringComp.getTiposCompatibles().contains(tipoIdent2)) {
-                return " ";
-            } else {
-                return "Error: No se puede convertir " + TokenAsig.image + " a Cadena \r\nLinea: " + TokenIzq.beginLine;
+            if (tipo != null){
+                break;
             }
-        } else {
-            return "El Identificador " + TokenIzq.image + " no ha sido declarado" + " Linea: " + TokenIzq.beginLine;
         }
+        if(tipo == null){
+            return "Error: Problema con el identificador " + TokenIzq.image + "\r\nLinea: " + TokenIzq.beginLine;
+        }
+        
+        if(!tipo.getTiposCompatibles().contains(TokenAsig.kind)){
+            return "Error: No se puede convertir " + TokenAsig.image + " a Entero \r\nLinea: " + TokenIzq.beginLine;
+        }
+        
+        
+
+        //        int ENTERO = GramaticaConstants.ENTERO;
+        //        if () {
+        //            
+        //        }
+        //        if (tipoIdent1 == 17) {
+        //
+        //            if (enteroComp.getTiposCompatibles().contains(tipoIdent2)) {
+        //                return " ";
+        //            } else {
+        //                return "Error: No se puede convertir " + TokenAsig.image + " a Entero \r\nLinea: " + TokenIzq.beginLine;
+        //            }
+        //        } else if (tipoIdent1 == 18) {
+        //            if (flotanteComp.getTiposCompatibles().contains(tipoIdent2)) {
+        //                return " ";
+        //            } else {
+        //                return "Error: No se puede convertir " + TokenAsig.image + " a Decimal \r\nLinea: " + TokenIzq.beginLine;
+        //            }
+        //        } else if (tipoIdent1 == 15) //char
+        //        {
+        //            /*variable segunda: cuenta cuantos datos se van a asignar al caracter: 
+        //				si a el caracter se le asigna mas de un dato (ej: 'a' + 'b') marca error 
+        //				NOTA: no se utiliza un booleano ya que entraria en asignaciones pares o impares*/
+        //            segunda++;
+        //            if (segunda < 2) {
+        //                if (charComp.getTiposCompatibles().contains(tipoIdent2)) {
+        //                    return " ";
+        //                } else {
+        //                    return "Error: No se puede convertir " + TokenAsig.image + " a Caracter \r\nLinea: " + TokenIzq.beginLine;
+        //                }
+        //            } else //Si se esta asignando mas de un caracter manda el error 			
+        //            {
+        //                return "Error: No se puede asignar mas de un valor a un caracter \r\nLinea: " + TokenIzq.beginLine;
+        //            }
+        //
+        //        } else if (tipoIdent1 == 16) //string
+        //        {
+        //            if (stringComp.getTiposCompatibles().contains(tipoIdent2)) {
+        //                return " ";
+        //            } else {
+        //                return "Error: No se puede convertir " + TokenAsig.image + " a Cadena \r\nLinea: " + TokenIzq.beginLine;
+        //            }
+        //        } else {
+        //            return "El Identificador " + TokenIzq.image + " no ha sido declarado" + " Linea: " + TokenIzq.beginLine;
+        //        }
+        {
+            return null;
+        }
+
     }
 
     /*Metodo que verifica si un identificador ha sido declarado, 
 		ej cuando se declaran las asignaciones: i++, i--)*/
-    public String checkVariable(Token checkTok) {
+    public boolean checkVariable(Token checkTok) {
         try {
-            //Intenta obtener el token a verificar(checkTok) de la tabla de los tokens
-            int tipoIdent1 = (Integer) tabla.get(checkTok.image);
-            return " ";
+            tabla.get(checkTok.image);
+            return true;
         } catch (Exception e) {
-            //Si no lo puede obtener, manda el error
-            return "Error: El identificador " + checkTok.image + " No ha sido declarado \r\nLinea: " + checkTok.beginLine;
+            return false;
         }
     }
 
