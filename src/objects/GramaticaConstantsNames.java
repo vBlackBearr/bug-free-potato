@@ -4,22 +4,22 @@
  */
 package objects;
 
+import Analizador.GramaticaConstants;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Luisp
  */
-public class GramaticaConstantsNames implements GramaticaConstantsTypeName{
-    
-    
-    
-    public String getNameFromToken(int TokenKind){
-        for (int i = 0; i < AllTypes.length; i++) {
-            namenumobj obj = AllTypes[i];
-            if (obj.token == TokenKind){
+public class GramaticaConstantsNames implements GramaticaConstantsTypeName {
+
+    public String getNameFromToken(int TokenKind) {
+        for (namenumobj obj : AllTypes) {
+            if (obj.token == TokenKind) {
                 return obj.name;
             }
         }
         return "null";
-               
+
     }
 }

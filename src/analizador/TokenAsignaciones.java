@@ -49,19 +49,21 @@ public class TokenAsignaciones extends Error {
         ArrayList<Integer> IDs = new ArrayList();
 
         //identificadores de un valor entero (variable o dato)
-        IDs.add(17);//variable entero
-        IDs.add(78);//dato entreo
+        IDs.add(GramaticaConstants.INT);//variable entero
+        IDs.add(GramaticaConstants.ENTERO);//dato entreo
         enteroComp = new objTipoDatoCompatible(IDs);
-        enteroComp.addCompatible(17);//se agrega compatibilidad con una variable tipo entero
-        enteroComp.addCompatible(78);//se agrega compatibildad con un dato tipo entero
+        enteroComp.addCompatible(GramaticaConstants.INT);//se agrega compatibilidad con una variable tipo entero
+        enteroComp.addCompatible(GramaticaConstants.ENTERO);//se agrega compatibildad con un dato tipo entero
         tiposVariablesComp.add(enteroComp);
 
         //identificadores de un valor flotante (variable o dato)
-        IDs.add(18);
-        IDs.add(79);
+        IDs.add(GramaticaConstants.FLOAT);
+        IDs.add(GramaticaConstants.FLOTANTEDOUBLE);
         flotanteComp = new objTipoDatoCompatible(IDs);
-        flotanteComp.addCompatible(18);
-        flotanteComp.addCompatible(79);
+        flotanteComp.addCompatible(GramaticaConstants.INT);
+        flotanteComp.addCompatible(GramaticaConstants.ENTERO);
+        flotanteComp.addCompatible(GramaticaConstants.FLOAT);
+        flotanteComp.addCompatible(GramaticaConstants.FLOTANTEDOUBLE);
         tiposVariablesComp.add(flotanteComp);
 
         IDs.add(15);
@@ -98,6 +100,8 @@ public class TokenAsignaciones extends Error {
 //        JOptionPane.showMessageDialog(null, TokenIzq.image + " " + TokenIzq.kind + "    " + TokenAsig.image + " " + TokenAsig.kind);
         int tipoVar1 = 0;
         int tipoVar2 = 0;
+        
+//        JOptionPane.showMessageDialog(null, TokenIzq.image + " - " + TokenIzq.kind + "  |  " + TokenAsig.image + " - " + TokenAsig.kind);
         if (TokenIzq.kind == GramaticaConstants.VAR) {
             if (!checkVariable(TokenIzq)) {
                 return "Error: El identificador " + TokenIzq.image + " No ha sido declarado \r\nLinea: " + TokenIzq.beginLine;
@@ -106,14 +110,18 @@ public class TokenAsignaciones extends Error {
 //                JOptionPane.showMessageDialog(null,tipoVar1);
             }
                 
+        }else{
+            tipoVar1 = TokenIzq.kind;
         }
 
-        if (TokenIzq.kind == GramaticaConstants.VAR) {
+        if (TokenAsig.kind == GramaticaConstants.VAR) {
             if (!checkVariable(TokenAsig)) {
                 return "Error: El identificador " + TokenIzq.image + " No ha sido declarado \r\nLinea: " + TokenIzq.beginLine;
             }else{
                 tipoVar2 = getTipoVariable(TokenAsig);
             }
+        }else{
+            tipoVar2 = TokenAsig.kind;
         }
 
         objTipoDatoCompatible tipo = null;
@@ -133,10 +141,11 @@ public class TokenAsignaciones extends Error {
         }
 
         GramaticaConstantsNames names = new GramaticaConstantsNames();
+//        JOptionPane.showMessageDialog(null, tipoVar1);
         if (!tipo.getTiposCompatibles().contains(tipoVar2)) {
             return "Error: No se puede convertir " + TokenAsig.image + " a " + names.getNameFromToken(tipoVar1) + " \r\nLinea: " + TokenIzq.beginLine;
         }
-
+        return "Sin errores semanticos";
         //        int ENTERO = GramaticaConstants.ENTERO;
         //        if () {
         //            
@@ -181,9 +190,6 @@ public class TokenAsignaciones extends Error {
         //        } else {
         //            return "El Identificador " + TokenIzq.image + " no ha sido declarado" + " Linea: " + TokenIzq.beginLine;
         //        }
-        {
-            return null;
-        }
 
     }
 

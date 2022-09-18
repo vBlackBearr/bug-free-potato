@@ -14,13 +14,19 @@ import java.util.Arrays;
  */
 public interface GramaticaConstantsTypeName {
 
-    final namenumobj ENTERO = new namenumobj(GramaticaConstants.ENTERO, "ENTERO");
-    final namenumobj FLOTANTEDOUBLE = new namenumobj(GramaticaConstants.FLOTANTEDOUBLE, "FLOTANTEDOUBLE");
-    final namenumobj CARACTER = new namenumobj(GramaticaConstants.CARACTER, "CARACTER");
-    final namenumobj CADENA = new namenumobj(GramaticaConstants.CADENA, "CADENA");
-    final namenumobj BOOLEAN = new namenumobj(GramaticaConstants.BOOLEAN, "BOOLEAN");
+    
+    namenumobj INT = new namenumobj(GramaticaConstants.INT, "ENTERO");
+    namenumobj FLOAT = new namenumobj(GramaticaConstants.FLOAT, "FLOTANTE");
+    namenumobj CHAR = new namenumobj(GramaticaConstants.CHAR, "CARACTER");
+    namenumobj STRING = new namenumobj(GramaticaConstants.STRING, "CADENA");
+    
+    namenumobj ENTERO = new namenumobj(GramaticaConstants.ENTERO, "ENTERO");
+    namenumobj FLOTANTEDOUBLE = new namenumobj(GramaticaConstants.FLOTANTEDOUBLE, "FLOTANTEDOUBLE");
+    namenumobj CARACTER = new namenumobj(GramaticaConstants.CARACTER, "CARACTER");
+    namenumobj CADENA = new namenumobj(GramaticaConstants.CADENA, "CADENA");
+    namenumobj BOOLEAN = new namenumobj(GramaticaConstants.BOOLEAN, "BOOLEAN");
 
-    final namenumobj[] AllTypes = {ENTERO, FLOTANTEDOUBLE, CARACTER, CADENA, BOOLEAN};
+    namenumobj[] AllTypes = {ENTERO, FLOTANTEDOUBLE, CARACTER, CADENA, BOOLEAN,INT,FLOAT,CHAR,STRING};
     
     
 }

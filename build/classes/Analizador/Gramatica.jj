@@ -15,6 +15,9 @@ public class Gramatica {
     public static int la;
     String muestraLexico = "";
     int kindParaDeclarar = 0;
+
+    Token valor1Comp = null;
+    Token valor2Comp = null;
 }
 PARSER_END(Gramatica)
 
@@ -1869,9 +1872,21 @@ void Asignacion() :
 }
 
 void Expr() : 
-{}
 {
-    TipoDato() Expr2() | <PAREA> Expr() <PAREC> Expr2()
+
+
+}
+{
+    PonerDato() | <PAREA> Expr() <PAREC> Expr2()
+}
+
+void PonerDato() : 
+{
+    valor2Comp = token.next;
+    JOptionPane.showMessageDialog(null,TA.checkAsing(valor1Comp,valor2Comp));
+}
+{
+    TipoDato() Expr2()
 }
 
 void Expr2() :
@@ -1926,12 +1941,13 @@ void Declarando() :
 
 void DeclaracionAsignacion() : 
 {
-Token tokenSigDato = null;
-Token tokenOld = token;
-if (getNextToken().image.equals("=")) {
-    tokenSigDato = getNextToken();
-}
-JOptionPane.showMessageDialog(null, TA.checkAsing(tokenOld, tokenSigDato));
+valor1Comp = token;
+//Token tokenSigDato = null;
+//Token tokenOld = token;
+//if (getNextToken().image.equals("=")) {
+//    tokenSigDato = getNextToken();
+//}
+//JOptionPane.showMessageDialog(null, TA.checkAsing(tokenOld, tokenSigDato));
 }
 {
 	try {
