@@ -116,7 +116,7 @@ public class TokenAsignaciones extends Error {
 
         if (TokenAsig.kind == GramaticaConstants.VAR) {
             if (!checkVariable(TokenAsig)) {
-                return "Error: El identificador " + TokenIzq.image + " No ha sido declarado \r\nLinea: " + TokenIzq.beginLine;
+                return "Error: El identificador " + TokenIzq.image + " No ha sido declarado \r\nLinea: " + TokenIzq.beginLine; 
             }else{
                 tipoVar2 = getTipoVariable(TokenAsig);
             }
