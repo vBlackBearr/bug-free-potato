@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import raptor_util_Print;
 public class Miclase{
 public void principalMain(){
@@ -31,4 +32,7 @@ double z=x+y
 return z;
 }
 }
+>>>>>>> Stashed changes
+=======
+2.5
 >>>>>>> Stashed changes
