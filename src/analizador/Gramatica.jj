@@ -158,8 +158,8 @@ PARSER_END(Gramatica)
     | < VAR: (<letraMin>)+ > {System.out.println(image + " -> Nombre de variable " + "\n");} : DEFAULT
     | < FUNC: (< letraMin >)+ (< letraMay > (< letraMin >)+)+ > {System.out.println(image + " -> Nombre de función " + "\n");} : DEFAULT
     | < LIBR: (< letraMin >)+ ("_"(< letraMin >|< letraMay >)+)+ > {System.out.println(image + " -> Nombre de libreria " + "\n");} : DEFAULT
-    | < ENTEROINV: (<digito>|<c>)+ > {System.out.println(image + " -> Numero entero invalido " + "\n");} : DEFAULT
-    | < FLOTDOBINV: ((<digito>|<c>)+ "." (<digito><c>))+ > {System.out.println(image + " -> Numero flotante/decimal invalido " + "\n");} : DEFAULT
+    | < ENTEROINV: <digito> (<digito>|<c>)+ > {System.out.println(image + " -> Numero entero invalido " + "\n");} : DEFAULT
+    | < FLOTDOBINV: <digito>((<digito>|<c>)+ "." <digito>(<digito><c>))+ > {System.out.println(image + " -> Numero flotante/decimal invalido " + "\n");} : DEFAULT
     | < CADENAINV: "\"" (< c >|<c2>)+ "\"" > {System.out.println(image + " -> Cadena invalida " + "\n");} : DEFAULT  
 }
 
