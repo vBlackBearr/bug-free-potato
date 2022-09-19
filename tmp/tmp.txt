@@ -7,20 +7,25 @@ public class Miclase{
   public void principalMain(){
      escribirEnConsola("Hola mundo desde Rex Raptor");
      int x=30;
+x = 2;
      string y="hola";
      escribirEnConsola(x);
+     int sss;
+     sss = 2 / true;
+     abc = false;
      escribirEnConsola(y);
      escribirEnConsola(z);
      int z=x+y;
      int [2] arreglo=("hola");
+     boolean ssy = 2;
      escribirEnConsola(z);
-     If(x>=y){
+     If(x>=y AND true OR x==y){
            While(true){
 
             }
             escribirEnConsola("X es mayor");
             If(true){
-                  For(int i =0; i<=5;++){
+                  For(int i =0; i<=5;i++){
                         escribirEnConsola(z);
                   }
 

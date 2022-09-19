@@ -1,26 +1,26 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package analizador;
 
-import extraObjects.objTipoDatoCompatible;
-import Analizador.Token;
-import java.io.PrintStream;
-import java.util.Hashtable;
-import java.lang.String;
-import java.util.ArrayList;
-import javax.swing.JOptionPane;
-import extraObjects.GramaticaConstantsNames;
 import Analizador.GramaticaConstants;
+import Analizador.Token;
+import extraObjects.GramaticaConstantsNames;
 import extraObjects.logsAcumulatorInstance;
+import extraObjects.objTipoDatoCompatible;
 import extraObjects.typeTableInstance;
+import java.util.ArrayList;
+import java.util.Hashtable;
 
-public class TokenAsignaciones extends Error {
-
-    public TokenAsignaciones() {
-
-    }
+/**
+ *
+ * @author Luisp
+ */
+public class TokenComparaciones {
     //Variable para validar asignaciones a caracteres(ichr)
     public int segunda = 0;
     //Tabla que almacenara los tokens declarados
-
 
     ArrayList<objTipoDatoCompatible> tiposVariablesComp;
     objTipoDatoCompatible enteroComp;
@@ -32,7 +32,7 @@ public class TokenAsignaciones extends Error {
     public void InsertarSimbolo(Token identificador, int tipo) {
         if (!checkVariable(identificador)) {
             typeTableInstance.getInstance().put(identificador.image, tipo);
-        }else{
+        } else {
             logsAcumulatorInstance.getInstance().addSemanticLog("Error: El identificador " + identificador.image + " Ya fue declarado \r\nLinea: " + identificador.beginLine);
         }
     }
@@ -43,15 +43,15 @@ public class TokenAsignaciones extends Error {
 
         ArrayList<Integer> IDsEntero = new ArrayList();
 
-        //identificadores de un valor entero (variable o dato)
-        IDsEntero.add(GramaticaConstants.INT);//variable entero
-        IDsEntero.add(GramaticaConstants.ENTERO);//dato entreo
+        IDsEntero.add(GramaticaConstants.INT);
+        IDsEntero.add(GramaticaConstants.ENTERO);
         enteroComp = new objTipoDatoCompatible(IDsEntero);
-        enteroComp.addCompatible(GramaticaConstants.INT);//se agrega compatibilidad con una variable tipo entero
-        enteroComp.addCompatible(GramaticaConstants.ENTERO);//se agrega compatibildad con un dato tipo entero
+        enteroComp.addCompatible(GramaticaConstants.INT);
+        enteroComp.addCompatible(GramaticaConstants.ENTERO);
+        enteroComp.addCompatible(GramaticaConstants.FLOAT);
+        enteroComp.addCompatible(GramaticaConstants.FLOTANTEDOUBLE);
         tiposVariablesComp.add(enteroComp);
 
-        //identificadores de un valor flotante (variable o dato)
         ArrayList<Integer> IDsFlotante = new ArrayList();
         IDsFlotante.add(GramaticaConstants.FLOAT);
         IDsFlotante.add(GramaticaConstants.FLOTANTEDOUBLE);
@@ -77,7 +77,7 @@ public class TokenAsignaciones extends Error {
         charComp.addCompatible(GramaticaConstants.CHAR);
         charComp.addCompatible(GramaticaConstants.CARACTER);
         tiposVariablesComp.add(charComp);
-        
+
         ArrayList<Integer> IDsBoolean = new ArrayList();
         IDsBoolean.add(GramaticaConstants.BOOLEAN);
         IDsBoolean.add(GramaticaConstants.TRUE);
@@ -149,6 +149,7 @@ public class TokenAsignaciones extends Error {
 
 //            JOptionPane.showMessageDialog(null, "Tabla: " + tabla);
             int kind = (Integer) typeTableInstance.getInstance().get(checkTok.image);
+
             return true;
         } catch (Exception e) {
             return false;

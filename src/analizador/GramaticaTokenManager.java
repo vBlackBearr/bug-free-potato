@@ -877,28 +877,28 @@ private int jjMoveNfa_1(int startState, int curPos)
                      jjCheckNAddTwoStates(11, 12);
                   break;
                case 12:
-                  if ((0x73ff738000000000L & l) == 0L)
+                  if ((0x73ff718000000000L & l) == 0L)
                      break;
                   if (kind > 88)
                      kind = 88;
                   jjCheckNAdd(13);
                   break;
                case 13:
-                  if ((0x73ff738000000000L & l) == 0L)
+                  if ((0x73ff718000000000L & l) == 0L)
                      break;
                   if (kind > 88)
                      kind = 88;
                   jjCheckNAddTwoStates(14, 13);
                   break;
                case 14:
-                  if ((0x73ff738000000000L & l) == 0L)
+                  if ((0x73ff718000000000L & l) == 0L)
                      break;
                   if (kind > 88)
                      kind = 88;
                   jjCheckNAdd(14);
                   break;
                case 15:
-                  if ((0x73ff738000000000L & l) != 0L)
+                  if ((0x73ff718000000000L & l) != 0L)
                      jjCheckNAddTwoStates(15, 16);
                   break;
                case 16:
@@ -1972,28 +1972,28 @@ private int jjMoveNfa_0(int startState, int curPos)
                      jjCheckNAddTwoStates(11, 12);
                   break;
                case 12:
-                  if ((0x73ff738000000000L & l) == 0L)
+                  if ((0x73ff718000000000L & l) == 0L)
                      break;
                   if (kind > 88)
                      kind = 88;
                   jjCheckNAdd(13);
                   break;
                case 13:
-                  if ((0x73ff738000000000L & l) == 0L)
+                  if ((0x73ff718000000000L & l) == 0L)
                      break;
                   if (kind > 88)
                      kind = 88;
                   jjCheckNAddTwoStates(14, 13);
                   break;
                case 14:
-                  if ((0x73ff738000000000L & l) == 0L)
+                  if ((0x73ff718000000000L & l) == 0L)
                      break;
                   if (kind > 88)
                      kind = 88;
                   jjCheckNAdd(14);
                   break;
                case 15:
-                  if ((0x73ff738000000000L & l) != 0L)
+                  if ((0x73ff718000000000L & l) != 0L)
                      jjCheckNAddTwoStates(15, 16);
                   break;
                case 16:

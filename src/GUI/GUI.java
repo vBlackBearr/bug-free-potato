@@ -22,6 +22,7 @@ import javafx.stage.FileChooser;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import extraObjects.logsAcumulatorInstance;
+import extraObjects.typeTableInstance;
 
 /**
  *
@@ -372,33 +373,27 @@ public class GUI extends javax.swing.JFrame {
             } catch (FileNotFoundException ex) {
                 JOptionPane.showMessageDialog(null, "Error al leer el archivo");
             }
-            //            valores.muestraR();
-            txtAreaLexico.setText(an.respuestaLexico);
-            //            System.out.println("Mostrando: " + valores.muestraLexico);
+
         }
     }//GEN-LAST:event_jm_LexicoActionPerformed
 
     private void jm_SintacticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jm_SintacticoActionPerformed
         // TODO add your handling code here:
-        txtAreaSintactico.setText(an.respuestaSintactico);
     }//GEN-LAST:event_jm_SintacticoActionPerformed
 
     private void btnCompilarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompilarActionPerformed
         // TODO add your handling code here:
-
     }//GEN-LAST:event_btnCompilarActionPerformed
 
     private void btnCompilarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCompilarMouseClicked
         // TODO add your handling code here:
-//        String ruta = String.valueOf(seleccionarCodigo.getCurrentDirectory()) + "/" + selectedFile.getName();
-//        System.out.println(ruta);
         logsAcumulatorInstance.getInstance().resetLogs();
+        typeTableInstance.getInstance().clearTable();
         analisis();
     }//GEN-LAST:event_btnCompilarMouseClicked
 
     private void jm_SemanticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jm_SemanticoActionPerformed
         // TODO add your handling code here:
-
     }//GEN-LAST:event_jm_SemanticoActionPerformed
 
     public void setTxtAreaLexico(String texto){

@@ -454,7 +454,7 @@ TOKEN :
   < #letraMay : [ "A"-"Z" ] >
 | < #letraMin : [ "a"-"z" ] >
 | < #c : [ "a"-"z", "A"-"Z", "0"-"9", "|", "'", "/", "(", ")", "{", "}", "[", "]", ",", ".", ";", "_", ":", " ", "<", ">", "+", "-", "*", "=" ] >
-| < #cinv : [ "a"-"z", "A"-"Z", "0"-"9", "|", "'", "(", ")", "{", "}", "[", ",", ".", "_", "<", ">", "-", "=" ] >
+| < #cinv : [ "a"-"z", "A"-"Z", "0"-"9", "|", "'", "(", "{", "}", "[", ",", ".", "_", "<", ">", "-", "=" ] >
 | < #c2 : [ "@", "#", "&", "%" ] >
 | < #digito : [ "0"-"9" ] >
 | < ENTERO : (< digito >)+ >
@@ -1328,7 +1328,7 @@ void Constructor() :
 {
   try
   {
-    Clasesn() Parea() Argumentos() Parec() Llavea() Sentencia() Llavec()
+    Clasesn() Parea() (Argumentos())? Parec() Llavea() Sentencia() Llavec()
   }
   catch (ParseException e)
   {
@@ -2206,7 +2206,7 @@ void Sentencia_ciclofor() :
 {
   try
   {
-    Parea() Declaracionfor() Puntoyc() Condg() Puntoyc() Sentencia_incremental() Parec() Llavea() Sentencia() Llavec()
+    Parea() (Declaracion() | Asignacion()) Puntoyc() ExpresionBooleana() Puntoyc() Asignacion() Parec() Llavea() Sentencia() Llavec()
   }
   catch (ParseException e)
   {
@@ -2313,8 +2313,8 @@ void Sentencia_ciclowhile() :
 {
   try
   {
-    While() Parea() Condg() Parec() Llavea() Sentencia() Llavec()
-  | Do() Llavea() Sentencia() Llavec() While() Parea() Condg() Parec() Puntoyc()
+    While() Parea() ExpresionBooleana() Parec() Llavea() Sentencia() Llavec()
+  | Do() Llavea() Sentencia() Llavec() While() Parea() ExpresionBooleana() Parec() Puntoyc()
   }
   catch (ParseException e)
   {
@@ -2355,7 +2355,7 @@ void Sentencia_condicion() :
 {
   try
   {
-    Parea() Condg() Parec() Llavea() Sentencia() Llavec() Si_e()
+    Parea() ExpresionBooleana() Parec() Llavea() Sentencia() Llavec() Si_e()
   }
   catch (ParseException e)
   {
@@ -2703,14 +2703,12 @@ void Si_EA() :
   }
 }
 
-void Condg() :
+void ExpresionBooleana() :
 {}
 {
   try
   {
-    (Parea() Condg() Parec()
-  | Cond()
-  | < NOT > Condg()) CondgA()
+    (Parea() ExpresionBooleana() Parec() ExpresionBooleana2() | TipoDato() ExpresionBooleana2() | < NOT > ExpresionBooleana()) CondgA()
   }
   catch (ParseException e)
   {
@@ -2741,8 +2739,50 @@ void Condg() :
     }
     if (t.kind != GramaticaTokenManager.EOF)
     {
-      Condg();
-      Cond();
+      ExpresionBooleana();
+      OperadoresRelacionales();
+    }
+  }
+}
+
+void ExpresionBooleana2() :
+{}
+{
+  try
+  {
+    (OperadoresRelacionales() TipoDato() )?
+  }
+  catch (ParseException e)
+  {
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en condicion, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
+    if (t.next != null)
+    {
+      t = getNextToken();
+    }
+    if (t.kind != GramaticaTokenManager.EOF)
+    {
+      ExpresionBooleana();
+      OperadoresRelacionales();
     }
   }
 }
@@ -2752,9 +2792,7 @@ void CondgA() :
 {
   try
   {
-    (< AND > Condg() CondgA()
-  | < OR > Condg() CondgA()
-  | < NOT > Condg() CondgA()) ?
+    (< AND > ExpresionBooleana() CondgA() | < OR > ExpresionBooleana() CondgA()) ?
   }
   catch (ParseException e)
   {
@@ -2790,19 +2828,17 @@ void CondgA() :
   }
 }
 
-void Cond() :
+void OperadoresRelacionales() :
 {}
 {
   try
   {
-    Exp() (< MAYORQ >
+    < MAYORQ >
   | < MENORQ >
   | < MAYORI >
   | < MENORI >
   | < IGUALI >
-  | < DIFER >) Exp()
-  | < TRUE >
-  | < FALSE >
+  | < DIFER >
   }
   catch (ParseException e)
   {
@@ -2965,11 +3001,20 @@ void Asignacion() :
 {
 }
 {
-  < VAR >
+  < VAR > verificarExistencia()
   (
-    < ASIG > Expr()
+    Asignacion2()
   | Sentencia_incremental()
   )
+}
+
+void Asignacion2() :
+{
+valor1CompAsig = token;
+}
+{
+  
+    < ASIG > Expr()
 }
 
 void Expr() :
@@ -2982,7 +3027,7 @@ void Expr() :
 
 void Expr2() :
 {
-  logsAcumulatorInstance.getInstance().addSemanticLog(TA.checkAsing(valor1CompAsig, valor2CompAsig));
+  //logsAcumulatorInstance.getInstance().addSemanticLog(TA.checkAsing(valor1CompAsig, valor2CompAsig));
 }
 {
   (
@@ -3008,6 +3053,13 @@ void seleccionarValor2()
 valor2CompAsig = token;
 }
 
+JAVACODE
+void verificarExistencia()
+{
+if(!TA.checkVariable(token)){
+    logsAcumulatorInstance.getInstance().addSemanticLog("Error: El identificador " + token.image + " No ha sido declarado \r\nLinea: " + token.beginLine);
+}
+}
 
 void ParentesisExpr() :
 {}

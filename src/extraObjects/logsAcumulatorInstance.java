@@ -14,11 +14,12 @@ import javax.swing.JOptionPane;
 public class logsAcumulatorInstance {
 
     private GUI guiInstance;
-    
+
     private static logsAcumulatorInstance INSTANCE = null;
-    
-    private logsAcumulatorInstance(){}
-    
+
+    private logsAcumulatorInstance() {
+    }
+
     private String lexicLogs = "";
 
     private String sintacticLogs = "";
@@ -30,34 +31,46 @@ public class logsAcumulatorInstance {
             INSTANCE = new logsAcumulatorInstance();
         }
     }
-    
+
     public static logsAcumulatorInstance getInstance() {
-        if (INSTANCE == null) createInstance();
+        if (INSTANCE == null) {
+            createInstance();
+        }
         return INSTANCE;
     }
-    
-    
+
     public void addlexicLog(String log) {
-        setLexicLogs(getLexicLogs() + "\n" + log);
-        guiInstance.setTxtAreaLexico(lexicLogs);
-    }
-    
-    public void addSintacticLog(String log) {
-        setSintacticLogs(getSintacticLogs() + "\n" + log);
-        guiInstance.setTxtAreaSintactico(sintacticLogs);
-    }
-    
-    public void addSemanticLog(String log) {
-        setSemanticLogs(getSemanticLogs() + "\n" + log);
-        guiInstance.setTxtAreaSemantico(semanticLogs);
+        if (!"".equals(log)) {
+            setLexicLogs(getLexicLogs() + log + "\n");
+            guiInstance.setTxtAreaLexico(lexicLogs);
+        }
+
     }
 
-    public void resetLogs(){
+    public void addSintacticLog(String log) {
+        if (!"".equals(log)) {
+            setSintacticLogs(getSintacticLogs() + log + "\n");
+            guiInstance.setTxtAreaSintactico(sintacticLogs);
+        }
+    }
+
+    public void addSemanticLog(String log) {
+        if (!"".equals(log)) {
+            setSemanticLogs(getSemanticLogs() + log + "\n");
+            guiInstance.setTxtAreaSemantico(semanticLogs);
+        }
+
+    }
+
+    public void resetLogs() {
         setLexicLogs("");
         setSintacticLogs("");
         setSemanticLogs("");
+        guiInstance.setTxtAreaLexico(lexicLogs);
+        guiInstance.setTxtAreaSintactico(sintacticLogs);
+        guiInstance.setTxtAreaSemantico(semanticLogs);
     }
-    
+
     /**
      * @return the lexicLogs
      */
