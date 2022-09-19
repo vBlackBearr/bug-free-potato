@@ -10,6 +10,7 @@ PARSER_BEGIN(Gramatica)
 package Analizador;
 import analizador.TokenAsignaciones;
 import javax.swing.JOptionPane;
+import extraObjects.logsAcumulatorInstance;
 
 public class Gramatica
 {
@@ -68,167 +69,167 @@ TOKEN :
 {
   < IF : "If" >
   {
-    System.out.println(image + " -> Palabra reservada " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Palabra reservada " + "\n");
   }
   : DEFAULT
 | < ELSE : "Else" >
   {
-    System.out.println(image + " -> Palabra reservada " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Palabra reservada " + "\n");
   }
   : DEFAULT
 | < WHILE : "While" >
   {
-    System.out.println(image + " -> Palabra reservada " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Palabra reservada " + "\n");
   }
   : DEFAULT
 | < CLASS : "class" >
   {
-    System.out.println(image + " -> Palabra reservada " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Palabra reservada " + "\n");
   }
   : DEFAULT
 | < PACK : "Pack" >
   {
-    System.out.println(image + " -> Palabra reservada " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Palabra reservada " + "\n");
   }
   : DEFAULT
 | < PUBLIC : "public" >
   {
-    System.out.println(image + " -> Palabra reservada " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Palabra reservada " + "\n");
   }
   : DEFAULT
 | < PRIVATE : "private" >
   {
-    System.out.println(image + " -> Palabra reservada " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Palabra reservada " + "\n");
   }
   : DEFAULT
 | < BREAK : "break" >
   {
-    System.out.println(image + " -> Palabra reservada " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Palabra reservada " + "\n");
   }
   : DEFAULT
 | < DO : "do" >
   {
-    System.out.println(image + " -> Palabra reservada " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Palabra reservada " + "\n");
   }
   : DEFAULT
 | < CHAR : "char" >
   {
-    System.out.println(image + " -> Palabra reservada " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Palabra reservada " + "\n");
   }
   : DEFAULT
 | < STRING : "string" >
   {
-    System.out.println(image + " -> Palabra reservada " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Palabra reservada " + "\n");
   }
   : DEFAULT
 | < INT : "int" >
   {
-    System.out.println(image + " -> Palabra reservada " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Palabra reservada " + "\n");
   }
   : DEFAULT
 | < FLOAT : "float" >
   {
-    System.out.println(image + " -> Palabra reservada " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Palabra reservada " + "\n");
   }
   : DEFAULT
 | < BOOLEAN : "boolean" >
   {
-    System.out.println(image + " -> Palabra reservada " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Palabra reservada " + "\n");
   }
   : DEFAULT
 | < TRY : "Try" >
   {
-    System.out.println(image + " -> Palabra reservada " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Palabra reservada " + "\n");
   }
   : DEFAULT
 | < CATCH : "Catch" >
   {
-    System.out.println(image + " -> Palabra reservada " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Palabra reservada " + "\n");
   }
   : DEFAULT
 | < SUPER : "Super" >
   {
-    System.out.println(image + " -> Palabra reservada " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Palabra reservada " + "\n");
   }
   : DEFAULT
 | < THIS : "this" >
   {
-    System.out.println(image + " -> Palabra reservada " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Palabra reservada " + "\n");
   }
   : DEFAULT
 | < DERIVATE : "Derivate" >
   {
-    System.out.println(image + " -> Palabra reservada " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Palabra reservada " + "\n");
   }
   : DEFAULT
 | < RETURN : "return" >
   {
-    System.out.println(image + " -> Palabra reservada " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Palabra reservada " + "\n");
   }
   : DEFAULT
 | < FINAL : "Final" >
   {
-    System.out.println(image + " -> Palabra reservada " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Palabra reservada " + "\n");
   }
   : DEFAULT
 | < VOID : "void" >
   {
-    System.out.println(image + " -> Palabra reservada " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Palabra reservada " + "\n");
   }
   : DEFAULT
 | < NULL : "null" >
   {
-    System.out.println(image + " -> Palabra reservada " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Palabra reservada " + "\n");
   }
   : DEFAULT
 | < IMPORT : "import" >
   {
-    System.out.println(image + " -> Palabra reservada " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Palabra reservada " + "\n");
   }
   : DEFAULT
 | < TRUE : "true" >
   {
-    System.out.println(image + " -> Palabra reservada " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Palabra reservada " + "\n");
   }
   : DEFAULT
 | < FALSE : "false" >
   {
-    System.out.println(image + " -> Palabra reservada " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Palabra reservada " + "\n");
   }
   : DEFAULT
 | < FOR : "For" >
   {
-    System.out.println(image + " -> Palabra reservada " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Palabra reservada " + "\n");
   }
   : DEFAULT
 | < SWITCH : "Switch" >
   {
-    System.out.println(image + " -> Palabra reservada " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Palabra reservada " + "\n");
   }
   : DEFAULT
 | < CASE : "Case" >
   {
-    System.out.println(image + " -> Palabra reservada " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Palabra reservada " + "\n");
   }
   : DEFAULT
 | < PRINMAIN : "principalMain" >
   {
-    System.out.println(image + " -> Palabra reservada " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Palabra reservada " + "\n");
   }
   : DEFAULT
 | < DOUBLE : "double" >
   {
-    System.out.println(image + " -> Palabra reservada " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Palabra reservada " + "\n");
   }
   : DEFAULT
 | < EXCEPT : "Except" >
   {
-    System.out.println(image + " -> Palabra reservada " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Palabra reservada " + "\n");
   }
   : DEFAULT
 | < DEF : "Default" >
   {
-    System.out.println(image + " -> Palabra reservada " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Palabra reservada " + "\n");
   }
   : DEFAULT
 }
@@ -239,62 +240,62 @@ TOKEN :
 {
   < LLAVA : "{" >
   {
-    System.out.println(image + " -> Token fijo " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Token fijo " + "\n");
   }
   : SALTO
 | < LLAVC : "}" >
   {
-    System.out.println(image + " -> Token fijo " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Token fijo " + "\n");
   }
   : SALTO
 | < CORA : "[" >
   {
-    System.out.println(image + " -> Token fijo " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Token fijo " + "\n");
   }
   : DEFAULT
 | < CORC : "]" >
   {
-    System.out.println(image + " -> Token fijo " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Token fijo " + "\n");
   }
   : DEFAULT
 | < PAREA : "(" >
   {
-    System.out.println(image + " -> Token fijo " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Token fijo " + "\n");
   }
   : DEFAULT
 | < PAREC : ")" >
   {
-    System.out.println(image + " -> Token fijo " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Token fijo " + "\n");
   }
   : DEFAULT
 | < PYC : ";" >
   {
-    System.out.println(image + " -> Token fijo " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Token fijo " + "\n");
   }
   : SALTO
 | < COMSIM : "'" >
   {
-    System.out.println(image + " -> Token fijo " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Token fijo " + "\n");
   }
   : DEFAULT
 | < COM : "," >
   {
-    System.out.println(image + " -> Token fijo " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Token fijo " + "\n");
   }
   : DEFAULT
 | < PUNT : "." >
   {
-    System.out.println(image + " -> Token fijo " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Token fijo " + "\n");
   }
   : DEFAULT
 | < GUIONB : "_" >
   {
-    System.out.println(image + " -> Token fijo " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Token fijo " + "\n");
   }
   : DEFAULT
 | < DOSP : ":" >
   {
-    System.out.println(image + " -> Token fijo " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Token fijo " + "\n");
   }
   : SALTO
 }
@@ -305,32 +306,32 @@ TOKEN :
 {
   < MAYORQ : ">" >
   {
-    System.out.println(image + " -> Operador relacional " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Operador relacional " + "\n");
   }
   : DEFAULT
 | < MENORQ : "<" >
   {
-    System.out.println(image + " -> Operador relacional " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Operador relacional " + "\n");
   }
   : DEFAULT
 | < MAYORI : ">=" >
   {
-    System.out.println(image + " -> Operador relacional " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Operador relacional " + "\n");
   }
   : DEFAULT
 | < MENORI : "<=" >
   {
-    System.out.println(image + " -> Operador relacional " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Operador relacional " + "\n");
   }
   : DEFAULT
 | < IGUALI : "==" >
   {
-    System.out.println(image + " -> Operador relacional " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Operador relacional " + "\n");
   }
   : DEFAULT
 | < DIFER : "<>" >
   {
-    System.out.println(image + " -> Operador relacional " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Operador relacional " + "\n");
   }
   : DEFAULT
 }
@@ -341,17 +342,17 @@ TOKEN :
 {
   < AND : "AND" >
   {
-    System.out.println(image + " -> Operador l\u00f3gico " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Operador l\u00f3gico " + "\n");
   }
   : DEFAULT
 | < OR : "OR" >
   {
-    System.out.println(image + " -> Operador l\u00f3gico " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Operador l\u00f3gico " + "\n");
   }
   : DEFAULT
 | < NOT : "NOT" >
   {
-    System.out.println(image + " -> Operador l\u00f3gico " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Operador l\u00f3gico " + "\n");
   }
   : DEFAULT
 }
@@ -362,12 +363,12 @@ TOKEN :
 {
   < INCRE : "++" >
   {
-    System.out.println(image + " -> Operador incremental " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Operador incremental " + "\n");
   }
   : DEFAULT
 | < DECRE : "--" >
   {
-    System.out.println(image + " -> Operador incremental " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Operador incremental " + "\n");
   }
   : DEFAULT
 }
@@ -378,32 +379,32 @@ TOKEN :
 {
   < ASIG : "=" >
   {
-    System.out.println(image + " -> Operador de asignaci\u00f3n " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Operador de asignaci\u00f3n " + "\n");
   }
   : DEFAULT
 | < SUMASIG : "+=" >
   {
-    System.out.println(image + " -> Operador de asignaci\u00f3n " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Operador de asignaci\u00f3n " + "\n");
   }
   : DEFAULT
 | < RESASIG : "-=" >
   {
-    System.out.println(image + " -> Operador de asignaci\u00f3n " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Operador de asignaci\u00f3n " + "\n");
   }
   : DEFAULT
 | < MULASIG : "*=" >
   {
-    System.out.println(image + " -> Operador de asignaci\u00f3n " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Operador de asignaci\u00f3n " + "\n");
   }
   : DEFAULT
 | < DIVASIG : "/=" >
   {
-    System.out.println(image + " -> Operador de asignaci\u00f3n " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Operador de asignaci\u00f3n " + "\n");
   }
   : DEFAULT
 | < MODASIG : "%=" >
   {
-    System.out.println(image + " -> Operador de asignaci\u00f3n " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Operador de asignaci\u00f3n " + "\n");
   }
   : DEFAULT
 }
@@ -414,32 +415,32 @@ TOKEN :
 {
   < SUMA : "+" >
   {
-    System.out.println(image + " -> Operador aritmetico " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Operador aritmetico " + "\n");
   }
   : DEFAULT
 | < RESTA : "-" >
   {
-    System.out.println(image + " -> Operador aritmetico " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Operador aritmetico " + "\n");
   }
   : DEFAULT
 | < DIVIS : "/" >
   {
-    System.out.println(image + " -> Operador aritmetico " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Operador aritmetico " + "\n");
   }
   : DEFAULT
 | < POTEN : "^" >
   {
-    System.out.println(image + " -> Operador aritmetico " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Operador aritmetico " + "\n");
   }
   : DEFAULT
 | < MODUL : "%" >
   {
-    System.out.println(image + " -> Operador aritmetico " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Operador aritmetico " + "\n");
   }
   : DEFAULT
 | < MULTI : "*" >
   {
-    System.out.println(image + " -> Operador aritmetico " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Operador aritmetico " + "\n");
   }
   : DEFAULT
 }
@@ -456,7 +457,7 @@ TOKEN :
 | < #digito : [ "0"-"9" ] >
 | < ENTERO : (< digito >)+ >
   {
-    System.out.println(image + " -> Numero entero " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Numero entero " + "\n");
   }
   : DEFAULT
 | < FLOTANTEDOUBLE :
@@ -464,12 +465,12 @@ TOKEN :
       (< digito >)+ "." (< digito >)+
     )+ >
   {
-    System.out.println(image + " -> Numero flotante " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Numero flotante " + "\n");
   }
   : DEFAULT
 | < CLASES : < letraMay > (< letraMin >)+ >
   {
-    System.out.println(image + " -> Nombre de clase " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Nombre de clase " + "\n");
   }
   : DEFAULT
 | < CARACTER :
@@ -481,17 +482,17 @@ TOKEN :
     )
     "'" >
   {
-    System.out.println(image + " -> Caracter " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Caracter " + "\n");
   }
   : DEFAULT
 | < CADENA : "\"" (< c >)* "\"" >
   {
-    System.out.println(image + " -> Cadena " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Cadena " + "\n");
   }
   : DEFAULT
 | < VAR : (< letraMin >)+ >
   {
-    System.out.println(image + " -> Nombre de variable " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Nombre de variable " + "\n");
   }
   : DEFAULT
 | < FUNC :
@@ -500,7 +501,7 @@ TOKEN :
       < letraMay > (< letraMin >)+
     )+ >
   {
-    System.out.println(image + " -> Nombre de funci\u00f3n " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Nombre de funci\u00f3n " + "\n");
   }
   : DEFAULT
 | < LIBR :
@@ -513,7 +514,7 @@ TOKEN :
       )+
     )+ >
   {
-    System.out.println(image + " -> Nombre de libreria " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Nombre de libreria " + "\n");
   }
   : DEFAULT
 | < ENTEROINV :
@@ -523,7 +524,7 @@ TOKEN :
     | < digito >
     )* >
   {
-    System.out.println(image + " -> Numero entero invalido " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Numero entero invalido " + "\n");
   }
   : DEFAULT
 | < FLOTDOBINV :
@@ -536,7 +537,7 @@ TOKEN :
       "." < digito > (< digito > < c >)
     )+ >
   {
-    System.out.println(image + " -> Numero flotante/decimal invalido " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Numero flotante/decimal invalido " + "\n");
   }
   : DEFAULT
 | < CADENAINV :
@@ -547,7 +548,7 @@ TOKEN :
     )+
     "\"" >
   {
-    System.out.println(image + " -> Cadena invalida " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Cadena invalida " + "\n");
   }
   : DEFAULT
 }
@@ -558,42 +559,42 @@ TOKEN :
 {
   < A : "\u00aa" >
   {
-    System.out.println(image + " -> Car\u00e1cter no valido " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Car\u00e1cter no valido " + "\n");
   }
   : DEFAULT
 | < GRADOS : "\u00ba" >
   {
-    System.out.println(image + " -> Car\u00e1cter no valido " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Car\u00e1cter no valido " + "\n");
   }
   : DEFAULT
 | < CPOR : "\u00e7" >
   {
-    System.out.println(image + " -> Car\u00e1cter no valido " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Car\u00e1cter no valido " + "\n");
   }
   : DEFAULT
 | < PUNTOS : "\u00a8" >
   {
-    System.out.println(image + " -> Car\u00e1cter no valido " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Car\u00e1cter no valido " + "\n");
   }
   : DEFAULT
 | < ACENTOI : "`" >
   {
-    System.out.println(image + " -> Car\u00e1cter no valido " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Car\u00e1cter no valido " + "\n");
   }
   : DEFAULT
 | < ACENTO : "\u00b4" >
   {
-    System.out.println(image + " -> Car\u00e1cter no valido " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Car\u00e1cter no valido " + "\n");
   }
   : DEFAULT
 | < BARRAI : "\\" >
   {
-    System.out.println(image + " -> Car\u00e1cter no valido " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Car\u00e1cter no valido " + "\n");
   }
   : DEFAULT
 | < ARROBA : "@" >
   {
-    System.out.println(image + " -> Car\u00e1cter no valido " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Car\u00e1cter no valido " + "\n");
   }
   : DEFAULT
 }
@@ -622,7 +623,7 @@ void Inicio() :
     {
       t = getNextToken();
     }
-    System.out.println("Error en definicion de import o clase general");
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en definicion de import o clase general");
     la = t.beginLine;
     if (t.image == "\n")
     {
@@ -672,7 +673,7 @@ void Import1() :
     {
       t = getNextToken();
     }
-    System.out.println("Error en nombre de libreria, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en nombre de libreria, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     la = t.beginLine;
     if (t.image == "\n")
     {
@@ -693,7 +694,7 @@ void Import1() :
     if (t.kind != GramaticaTokenManager.EOF)
     {
       Import();
-    }			
+    }     
   }
 }
 
@@ -714,7 +715,7 @@ void Puntoyc() :
     {
       t = getNextToken();
     }
-    System.out.println("Se esperaba \";\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Se esperaba \";\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
     la = t.beginLine;
     if (t.image == "\n")
     {
@@ -753,7 +754,7 @@ void Tipo() :
     {
       t = getNextToken();
     }
-    System.out.println("Se esperaba tipo de dato, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Se esperaba tipo de dato, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     la = t.beginLine;
     if (t.image == "\n")
     {
@@ -789,7 +790,7 @@ void DeclararInt() :
     {
       t = getNextToken();
     }
-    System.out.println("Se esperaba tipo de dato, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Se esperaba tipo de dato, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     la = t.beginLine;
     if (t.image == "\n")
     {
@@ -825,7 +826,7 @@ void DeclararChar() :
     {
       t = getNextToken();
     }
-    System.out.println("Se esperaba tipo de dato, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Se esperaba tipo de dato, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     la = t.beginLine;
     if (t.image == "\n")
     {
@@ -861,7 +862,7 @@ void DeclararString() :
     {
       t = getNextToken();
     }
-    System.out.println("Se esperaba tipo de dato, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Se esperaba tipo de dato, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     la = t.beginLine;
     if (t.image == "\n")
     {
@@ -897,7 +898,7 @@ void DeclararBool() :
     {
       t = getNextToken();
     }
-    System.out.println("Se esperaba tipo de dato, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Se esperaba tipo de dato, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     la = t.beginLine;
     if (t.image == "\n")
     {
@@ -933,7 +934,7 @@ void DeclararFloat() :
     {
       t = getNextToken();
     }
-    System.out.println("Se esperaba tipo de dato, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Se esperaba tipo de dato, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     la = t.beginLine;
     if (t.image == "\n")
     {
@@ -969,7 +970,7 @@ void DeclararDouble() :
     {
       t = getNextToken();
     }
-    System.out.println("Se esperaba tipo de dato, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Se esperaba tipo de dato, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     la = t.beginLine;
     if (t.image == "\n")
     {
@@ -1004,7 +1005,7 @@ void TipoEncapsular() :
     {
       t = getNextToken();
     }
-    System.out.println("Se espereba \"public\" o \"private\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Se espereba \"public\" o \"private\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
     la = t.beginLine;
     if (t.image == "\n")
     {
@@ -1038,7 +1039,7 @@ void Clasesn() :
     {
       t = getNextToken();
     }
-    System.out.println("Error en nombre de clase, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en nombre de clase, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     la = t.beginLine;
     if (t.image == "\n")
     {
@@ -1060,7 +1061,7 @@ void Clases() :
 {
   try
   {
-    TipoEncapsular() < CLASS > Clasesn() Llavea() ContenidoClase() Llavec()	
+    TipoEncapsular() < CLASS > Clasesn() Llavea() ContenidoClase() Llavec() 
   }
   catch (ParseException e)
   {
@@ -1074,7 +1075,7 @@ void Clases() :
     }
     if (t.beginColumn != 1)
     {
-      System.out.println("Se esperaba \"class\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
+      logsAcumulatorInstance.getInstance().addSintacticLog("Se esperaba \"class\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
     }
     la = t.beginLine;
     if (t.image == "\n")
@@ -1095,7 +1096,7 @@ void Clases() :
     }
     if (t.kind != GramaticaTokenManager.EOF)
     {
-      ContenidoClase();	
+      ContenidoClase(); 
     }
   }
 }
@@ -1117,7 +1118,7 @@ void Llavea() :
     {
       t = getNextToken();
     }
-    System.out.println("Se esperaba \"{\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Se esperaba \"{\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -1150,7 +1151,7 @@ void Llavec() :
     {
       t = getNextToken();
     }
-    System.out.println("Se esperaba \"}\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Se esperaba \"}\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -1168,7 +1169,7 @@ void Llavec() :
 
 void ContenidoClase() :
 {}
-{	
+{ 
   try
   {
     (((TipoEncapsular() (Declaracion() Puntoyc()
@@ -1186,7 +1187,7 @@ void ContenidoClase() :
     {
       t = getNextToken();
     }
-    System.out.println("Error en contenido de clase, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en contenido de clase, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     la = t.beginLine;
     if (t.image == "\n")
     {
@@ -1229,7 +1230,7 @@ void Parea() :
     {
       t = getNextToken();
     }
-    System.out.println("Se esperaba \"(\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Se esperaba \"(\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -1262,7 +1263,7 @@ void Parec() :
     {
       t = getNextToken();
     }
-    System.out.println("Se esperaba \")\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Se esperaba \")\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -1295,7 +1296,7 @@ void Constructor() :
     {
       t = getNextToken();
     }
-    System.out.println("Error en constructor, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en constructor, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -1338,7 +1339,7 @@ void ConstructorA() :
     {
       t = getNextToken();
     }
-    System.out.println("Error en constructor, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en constructor, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -1382,7 +1383,7 @@ void Void() :
     {
       t = getNextToken();
     }
-    System.out.println("Se esperaba \"void\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Se esperaba \"void\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -1417,7 +1418,7 @@ void Cuerpo() :
     {
       t = getNextToken();
     }
-    System.out.println("Se esperaba \"void\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Se esperaba \"void\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -1476,7 +1477,7 @@ void MetodosA() :
     {
       t = getNextToken();
     }
-    System.out.println("Error en metodo, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en metodo, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -1520,7 +1521,7 @@ void Prinmain() :
     {
       t = getNextToken();
     }
-    System.out.println("Se esperaba \"principalMain\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Se esperaba \"principalMain\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -1564,7 +1565,7 @@ void Principal() :
     {
       t = getNextToken();
     }
-    System.out.println("Error en metodo principal, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en metodo principal, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -1597,7 +1598,7 @@ void Func() :
     {
       t = getNextToken();
     }
-    System.out.println("Error en nombre de funcion, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en nombre de funcion, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -1630,7 +1631,7 @@ void Metodo() :
     {
       t = getNextToken();
     }
-    System.out.println("Error en metodo, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en metodo, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -1673,7 +1674,7 @@ void Return() :
     {
       t = getNextToken();
     }
-    System.out.println("Se esperaba \"return\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Se esperaba \"return\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -1706,7 +1707,7 @@ void Retorno() :
     {
       t = getNextToken();
     }
-    System.out.println("Error en retorno, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en retorno, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -1725,7 +1726,7 @@ void Retorno() :
     }
     if (t.kind != GramaticaTokenManager.EOF)
     {
-      Tipo_retorno();			
+      Tipo_retorno();     
     }
   }
 }
@@ -1753,7 +1754,7 @@ void Metodo_void() :
     {
       t = getNextToken();
     }
-    System.out.println("Error en metodo, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en metodo, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -1772,7 +1773,7 @@ void Metodo_void() :
     }
     if (t.kind != GramaticaTokenManager.EOF)
     {
-      Argumentos();	
+      Argumentos(); 
       Sentencia();
       Cuerpo();
     }
@@ -1796,7 +1797,7 @@ void Argumentos() :
     {
       t = getNextToken();
     }
-    System.out.println("Error en argumentos, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en argumentos, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -1846,7 +1847,7 @@ void Variables_clase() :
     {
       t = getNextToken();
     }
-    System.out.println("Error en variables de clase, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en variables de clase, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -1895,7 +1896,7 @@ void Sentencia() :
     {
       t = getNextToken();
     }
-    System.out.println("Error en sentencia, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en sentencia, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -1939,7 +1940,7 @@ void Parametros() :
     {
       t = getNextToken();
     }
-    System.out.println("Error en parametros, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en parametros, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -1983,7 +1984,7 @@ void Parametros2() :
     {
       t = getNextToken();
     }
-    System.out.println("Error en parametros, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en parametros, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -2024,7 +2025,7 @@ void SentenciaLlamarMetodo() :
     {
       t = getNextToken();
     }
-    System.out.println("Error en llamado de metodo, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en llamado de metodo, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -2065,7 +2066,7 @@ void Except() :
     {
       t = getNextToken();
     }
-    System.out.println("Se esperaba \"Except\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Se esperaba \"Except\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -2098,7 +2099,7 @@ void Catch() :
     {
       t = getNextToken();
     }
-    System.out.println("Se esperaba \"Catch\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Se esperaba \"Catch\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -2131,7 +2132,7 @@ void Sentencia_try() :
     {
       t = getNextToken();
     }
-    System.out.println("Error en try-catch, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en try-catch, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -2173,7 +2174,7 @@ void Sentencia_ciclofor() :
     {
       t = getNextToken();
     }
-    System.out.println("Error en ciclo for, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en ciclo for, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -2214,7 +2215,7 @@ void While() :
     {
       t = getNextToken();
     }
-    System.out.println("Se esperaba \"While\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Se esperaba \"While\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -2247,7 +2248,7 @@ void Do() :
     {
       t = getNextToken();
     }
-    System.out.println("Se esperaba \"Do\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Se esperaba \"Do\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -2281,7 +2282,7 @@ void Sentencia_ciclowhile() :
     {
       t = getNextToken();
     }
-    System.out.println("Error en ciclo while, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en ciclo while, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -2322,7 +2323,7 @@ void Sentencia_condicion() :
     {
       t = getNextToken();
     }
-    System.out.println("Error en condicion, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en condicion, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -2365,7 +2366,7 @@ void Sentencia_incremental() :
     {
       t = getNextToken();
     }
-    System.out.println("Se esperaba \"++\" o \"--\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Se esperaba \"++\" o \"--\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -2398,7 +2399,7 @@ void Sentencia_this() :
     {
       t = getNextToken();
     }
-    System.out.println("Error en condicion, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en condicion, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -2439,7 +2440,7 @@ void Break() :
     {
       t = getNextToken();
     }
-    System.out.println("Se esperaba \"break\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Se esperaba \"break\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -2472,7 +2473,7 @@ void Sentencia_switch() :
     {
       t = getNextToken();
     }
-    System.out.println("Error en sentencia switch, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en sentencia switch, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -2514,7 +2515,7 @@ void Cases() :
     {
       t = getNextToken();
     }
-    System.out.println("Se esperaba \"Case\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Se esperaba \"Case\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -2547,7 +2548,7 @@ void Dosp() :
     {
       t = getNextToken();
     }
-    System.out.println("Se esperaba \":\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Se esperaba \":\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -2591,7 +2592,7 @@ void Caso() :
     {
       t = getNextToken();
     }
-    System.out.println("Error en sentencia caso, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en sentencia caso, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -2633,7 +2634,7 @@ void Si_EA() :
     {
       t = getNextToken();
     }
-    System.out.println("Error en else, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en else, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -2677,7 +2678,7 @@ void Condg() :
     {
       t = getNextToken();
     }
-    System.out.println("Error en condicion, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en condicion, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -2721,7 +2722,7 @@ void CondgA() :
     {
       t = getNextToken();
     }
-    System.out.println("Error en condicion, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en condicion, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -2769,7 +2770,7 @@ void Cond() :
     {
       t = getNextToken();
     }
-    System.out.println("Error en condicion, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en condicion, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -2813,7 +2814,7 @@ void Exp() :
     {
       t = getNextToken();
     }
-    System.out.println("Error en condicion, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en condicion, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -2859,7 +2860,7 @@ void ExpA() :
     {
       t = getNextToken();
     }
-    System.out.println("Error en condicion, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en condicion, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -2900,7 +2901,7 @@ void Var() :
     {
       t = getNextToken();
     }
-    System.out.println("Error en nombre de variable, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en nombre de variable, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -2913,7 +2914,7 @@ void Var() :
       }
       while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
     }
-  }	
+  } 
 }
 
 void Asignacion() :
@@ -2937,11 +2938,7 @@ void Expr() :
 
 void Expr2() :
 {
-  JOptionPane.showMessageDialog
-  (
-    null, TA.checkAsing(valor1CompAsig, valor2CompAsig)
-  )
-  ;
+  logsAcumulatorInstance.getInstance().addSemanticLog(TA.checkAsing(valor1CompAsig, valor2CompAsig));
 }
 {
   (
@@ -2982,7 +2979,7 @@ void Declaracion() :
 {
   try
   {
-    Tipo() (< CORA > < ENTERO > < CORC >) ? Declarando() (DeclaracionAsignacion()) ?
+    Tipo() (< CORA > < ENTERO > < CORC >)? Declarando() (DeclaracionAsignacion())?
   }
   catch (ParseException e)
   {
@@ -2994,7 +2991,7 @@ void Declaracion() :
     {
       t = getNextToken();
     }
-    System.out.println("Error en declaracion, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en declaracion, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -3016,7 +3013,7 @@ void Declaracion() :
       DeclaracionTA();
       DeclaracionT();
     }
-  }	
+  } 
 }
 
 void Declarando() :
@@ -3048,7 +3045,7 @@ void DeclaracionAsignacion() :
     {
       t = getNextToken();
     }
-    System.out.println("Error en Inicializacion de variable, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en Inicializacion de variable, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -3067,7 +3064,7 @@ void DeclaracionAsignacion() :
     }
     DeclaracionTA();
     DeclaracionT();
-  }	
+  } 
 }
 
 void DeclaracionT() :
@@ -3088,7 +3085,7 @@ void DeclaracionT() :
     {
       t = getNextToken();
     }
-    System.out.println("Error en declaracion, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en declaracion, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -3122,7 +3119,7 @@ void DeclaracionTA() :
     {
       t = getNextToken();
     }
-    System.out.println("Error en declaracion, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en declaracion, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -3164,7 +3161,7 @@ void DeclaracionTA1() :
     {
       t = getNextToken();
     }
-    System.out.println("Error en declaracion, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en declaracion, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -3205,7 +3202,7 @@ void ArregloD() :
     {
       t = getNextToken();
     }
-    System.out.println("Se esperaba \"[]\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Se esperaba \"[]\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -3240,7 +3237,7 @@ void ArregloL() :
     {
       t = getNextToken();
     }
-    System.out.println("Error en declaracion de arreglo, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en declaracion de arreglo, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -3279,7 +3276,7 @@ void Valor() :
     {
       t = getNextToken();
     }
-    System.out.println("Error en asignacion de valor, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en asignacion de valor, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -3317,7 +3314,7 @@ void Oper() :
     {
       t = getNextToken();
     }
-    System.out.println("Se esperaba un operador, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Se esperaba un operador, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -3398,7 +3395,7 @@ void Declaracionfor() :
     {
       t = getNextToken();
     }
-    System.out.println("Error en declaracion de variable de ciclo for, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en declaracion de variable de ciclo for, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;

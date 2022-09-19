@@ -3,6 +3,7 @@
 package Analizador;
 import analizador.TokenAsignaciones;
 import javax.swing.JOptionPane;
+import extraObjects.logsAcumulatorInstance;
 
 /** Token Manager. */
 public class GramaticaTokenManager implements GramaticaConstants
@@ -2453,598 +2454,598 @@ void TokenLexicalActions(Token matchedToken)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[6]);
         lengthOfMatch = jjstrLiteralImages[6].length();
-    System.out.println(image + " -> Palabra reservada " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Palabra reservada " + "\n");
          break;
       case 7 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[7]);
         lengthOfMatch = jjstrLiteralImages[7].length();
-    System.out.println(image + " -> Palabra reservada " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Palabra reservada " + "\n");
          break;
       case 8 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[8]);
         lengthOfMatch = jjstrLiteralImages[8].length();
-    System.out.println(image + " -> Palabra reservada " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Palabra reservada " + "\n");
          break;
       case 9 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[9]);
         lengthOfMatch = jjstrLiteralImages[9].length();
-    System.out.println(image + " -> Palabra reservada " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Palabra reservada " + "\n");
          break;
       case 10 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[10]);
         lengthOfMatch = jjstrLiteralImages[10].length();
-    System.out.println(image + " -> Palabra reservada " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Palabra reservada " + "\n");
          break;
       case 11 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[11]);
         lengthOfMatch = jjstrLiteralImages[11].length();
-    System.out.println(image + " -> Palabra reservada " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Palabra reservada " + "\n");
          break;
       case 12 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[12]);
         lengthOfMatch = jjstrLiteralImages[12].length();
-    System.out.println(image + " -> Palabra reservada " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Palabra reservada " + "\n");
          break;
       case 13 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[13]);
         lengthOfMatch = jjstrLiteralImages[13].length();
-    System.out.println(image + " -> Palabra reservada " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Palabra reservada " + "\n");
          break;
       case 14 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[14]);
         lengthOfMatch = jjstrLiteralImages[14].length();
-    System.out.println(image + " -> Palabra reservada " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Palabra reservada " + "\n");
          break;
       case 15 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[15]);
         lengthOfMatch = jjstrLiteralImages[15].length();
-    System.out.println(image + " -> Palabra reservada " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Palabra reservada " + "\n");
          break;
       case 16 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[16]);
         lengthOfMatch = jjstrLiteralImages[16].length();
-    System.out.println(image + " -> Palabra reservada " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Palabra reservada " + "\n");
          break;
       case 17 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[17]);
         lengthOfMatch = jjstrLiteralImages[17].length();
-    System.out.println(image + " -> Palabra reservada " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Palabra reservada " + "\n");
          break;
       case 18 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[18]);
         lengthOfMatch = jjstrLiteralImages[18].length();
-    System.out.println(image + " -> Palabra reservada " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Palabra reservada " + "\n");
          break;
       case 19 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[19]);
         lengthOfMatch = jjstrLiteralImages[19].length();
-    System.out.println(image + " -> Palabra reservada " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Palabra reservada " + "\n");
          break;
       case 20 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[20]);
         lengthOfMatch = jjstrLiteralImages[20].length();
-    System.out.println(image + " -> Palabra reservada " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Palabra reservada " + "\n");
          break;
       case 21 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[21]);
         lengthOfMatch = jjstrLiteralImages[21].length();
-    System.out.println(image + " -> Palabra reservada " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Palabra reservada " + "\n");
          break;
       case 22 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[22]);
         lengthOfMatch = jjstrLiteralImages[22].length();
-    System.out.println(image + " -> Palabra reservada " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Palabra reservada " + "\n");
          break;
       case 23 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[23]);
         lengthOfMatch = jjstrLiteralImages[23].length();
-    System.out.println(image + " -> Palabra reservada " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Palabra reservada " + "\n");
          break;
       case 24 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[24]);
         lengthOfMatch = jjstrLiteralImages[24].length();
-    System.out.println(image + " -> Palabra reservada " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Palabra reservada " + "\n");
          break;
       case 25 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[25]);
         lengthOfMatch = jjstrLiteralImages[25].length();
-    System.out.println(image + " -> Palabra reservada " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Palabra reservada " + "\n");
          break;
       case 26 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[26]);
         lengthOfMatch = jjstrLiteralImages[26].length();
-    System.out.println(image + " -> Palabra reservada " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Palabra reservada " + "\n");
          break;
       case 27 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[27]);
         lengthOfMatch = jjstrLiteralImages[27].length();
-    System.out.println(image + " -> Palabra reservada " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Palabra reservada " + "\n");
          break;
       case 28 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[28]);
         lengthOfMatch = jjstrLiteralImages[28].length();
-    System.out.println(image + " -> Palabra reservada " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Palabra reservada " + "\n");
          break;
       case 29 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[29]);
         lengthOfMatch = jjstrLiteralImages[29].length();
-    System.out.println(image + " -> Palabra reservada " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Palabra reservada " + "\n");
          break;
       case 30 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[30]);
         lengthOfMatch = jjstrLiteralImages[30].length();
-    System.out.println(image + " -> Palabra reservada " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Palabra reservada " + "\n");
          break;
       case 31 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[31]);
         lengthOfMatch = jjstrLiteralImages[31].length();
-    System.out.println(image + " -> Palabra reservada " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Palabra reservada " + "\n");
          break;
       case 32 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[32]);
         lengthOfMatch = jjstrLiteralImages[32].length();
-    System.out.println(image + " -> Palabra reservada " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Palabra reservada " + "\n");
          break;
       case 33 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[33]);
         lengthOfMatch = jjstrLiteralImages[33].length();
-    System.out.println(image + " -> Palabra reservada " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Palabra reservada " + "\n");
          break;
       case 34 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[34]);
         lengthOfMatch = jjstrLiteralImages[34].length();
-    System.out.println(image + " -> Palabra reservada " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Palabra reservada " + "\n");
          break;
       case 35 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[35]);
         lengthOfMatch = jjstrLiteralImages[35].length();
-    System.out.println(image + " -> Palabra reservada " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Palabra reservada " + "\n");
          break;
       case 36 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[36]);
         lengthOfMatch = jjstrLiteralImages[36].length();
-    System.out.println(image + " -> Palabra reservada " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Palabra reservada " + "\n");
          break;
       case 37 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[37]);
         lengthOfMatch = jjstrLiteralImages[37].length();
-    System.out.println(image + " -> Palabra reservada " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Palabra reservada " + "\n");
          break;
       case 38 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[38]);
         lengthOfMatch = jjstrLiteralImages[38].length();
-    System.out.println(image + " -> Palabra reservada " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Palabra reservada " + "\n");
          break;
       case 39 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[39]);
         lengthOfMatch = jjstrLiteralImages[39].length();
-    System.out.println(image + " -> Token fijo " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Token fijo " + "\n");
          break;
       case 40 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[40]);
         lengthOfMatch = jjstrLiteralImages[40].length();
-    System.out.println(image + " -> Token fijo " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Token fijo " + "\n");
          break;
       case 41 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[41]);
         lengthOfMatch = jjstrLiteralImages[41].length();
-    System.out.println(image + " -> Token fijo " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Token fijo " + "\n");
          break;
       case 42 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[42]);
         lengthOfMatch = jjstrLiteralImages[42].length();
-    System.out.println(image + " -> Token fijo " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Token fijo " + "\n");
          break;
       case 43 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[43]);
         lengthOfMatch = jjstrLiteralImages[43].length();
-    System.out.println(image + " -> Token fijo " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Token fijo " + "\n");
          break;
       case 44 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[44]);
         lengthOfMatch = jjstrLiteralImages[44].length();
-    System.out.println(image + " -> Token fijo " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Token fijo " + "\n");
          break;
       case 45 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[45]);
         lengthOfMatch = jjstrLiteralImages[45].length();
-    System.out.println(image + " -> Token fijo " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Token fijo " + "\n");
          break;
       case 46 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[46]);
         lengthOfMatch = jjstrLiteralImages[46].length();
-    System.out.println(image + " -> Token fijo " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Token fijo " + "\n");
          break;
       case 47 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[47]);
         lengthOfMatch = jjstrLiteralImages[47].length();
-    System.out.println(image + " -> Token fijo " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Token fijo " + "\n");
          break;
       case 48 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[48]);
         lengthOfMatch = jjstrLiteralImages[48].length();
-    System.out.println(image + " -> Token fijo " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Token fijo " + "\n");
          break;
       case 49 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[49]);
         lengthOfMatch = jjstrLiteralImages[49].length();
-    System.out.println(image + " -> Token fijo " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Token fijo " + "\n");
          break;
       case 50 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[50]);
         lengthOfMatch = jjstrLiteralImages[50].length();
-    System.out.println(image + " -> Token fijo " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Token fijo " + "\n");
          break;
       case 51 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[51]);
         lengthOfMatch = jjstrLiteralImages[51].length();
-    System.out.println(image + " -> Operador relacional " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Operador relacional " + "\n");
          break;
       case 52 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[52]);
         lengthOfMatch = jjstrLiteralImages[52].length();
-    System.out.println(image + " -> Operador relacional " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Operador relacional " + "\n");
          break;
       case 53 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[53]);
         lengthOfMatch = jjstrLiteralImages[53].length();
-    System.out.println(image + " -> Operador relacional " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Operador relacional " + "\n");
          break;
       case 54 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[54]);
         lengthOfMatch = jjstrLiteralImages[54].length();
-    System.out.println(image + " -> Operador relacional " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Operador relacional " + "\n");
          break;
       case 55 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[55]);
         lengthOfMatch = jjstrLiteralImages[55].length();
-    System.out.println(image + " -> Operador relacional " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Operador relacional " + "\n");
          break;
       case 56 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[56]);
         lengthOfMatch = jjstrLiteralImages[56].length();
-    System.out.println(image + " -> Operador relacional " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Operador relacional " + "\n");
          break;
       case 57 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[57]);
         lengthOfMatch = jjstrLiteralImages[57].length();
-    System.out.println(image + " -> Operador l\u00f3gico " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Operador l\u00f3gico " + "\n");
          break;
       case 58 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[58]);
         lengthOfMatch = jjstrLiteralImages[58].length();
-    System.out.println(image + " -> Operador l\u00f3gico " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Operador l\u00f3gico " + "\n");
          break;
       case 59 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[59]);
         lengthOfMatch = jjstrLiteralImages[59].length();
-    System.out.println(image + " -> Operador l\u00f3gico " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Operador l\u00f3gico " + "\n");
          break;
       case 60 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[60]);
         lengthOfMatch = jjstrLiteralImages[60].length();
-    System.out.println(image + " -> Operador incremental " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Operador incremental " + "\n");
          break;
       case 61 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[61]);
         lengthOfMatch = jjstrLiteralImages[61].length();
-    System.out.println(image + " -> Operador incremental " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Operador incremental " + "\n");
          break;
       case 62 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[62]);
         lengthOfMatch = jjstrLiteralImages[62].length();
-    System.out.println(image + " -> Operador de asignaci\u00f3n " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Operador de asignaci\u00f3n " + "\n");
          break;
       case 63 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[63]);
         lengthOfMatch = jjstrLiteralImages[63].length();
-    System.out.println(image + " -> Operador de asignaci\u00f3n " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Operador de asignaci\u00f3n " + "\n");
          break;
       case 64 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[64]);
         lengthOfMatch = jjstrLiteralImages[64].length();
-    System.out.println(image + " -> Operador de asignaci\u00f3n " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Operador de asignaci\u00f3n " + "\n");
          break;
       case 65 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[65]);
         lengthOfMatch = jjstrLiteralImages[65].length();
-    System.out.println(image + " -> Operador de asignaci\u00f3n " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Operador de asignaci\u00f3n " + "\n");
          break;
       case 66 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[66]);
         lengthOfMatch = jjstrLiteralImages[66].length();
-    System.out.println(image + " -> Operador de asignaci\u00f3n " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Operador de asignaci\u00f3n " + "\n");
          break;
       case 67 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[67]);
         lengthOfMatch = jjstrLiteralImages[67].length();
-    System.out.println(image + " -> Operador de asignaci\u00f3n " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Operador de asignaci\u00f3n " + "\n");
          break;
       case 68 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[68]);
         lengthOfMatch = jjstrLiteralImages[68].length();
-    System.out.println(image + " -> Operador aritmetico " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Operador aritmetico " + "\n");
          break;
       case 69 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[69]);
         lengthOfMatch = jjstrLiteralImages[69].length();
-    System.out.println(image + " -> Operador aritmetico " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Operador aritmetico " + "\n");
          break;
       case 70 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[70]);
         lengthOfMatch = jjstrLiteralImages[70].length();
-    System.out.println(image + " -> Operador aritmetico " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Operador aritmetico " + "\n");
          break;
       case 71 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[71]);
         lengthOfMatch = jjstrLiteralImages[71].length();
-    System.out.println(image + " -> Operador aritmetico " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Operador aritmetico " + "\n");
          break;
       case 72 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[72]);
         lengthOfMatch = jjstrLiteralImages[72].length();
-    System.out.println(image + " -> Operador aritmetico " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Operador aritmetico " + "\n");
          break;
       case 73 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[73]);
         lengthOfMatch = jjstrLiteralImages[73].length();
-    System.out.println(image + " -> Operador aritmetico " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Operador aritmetico " + "\n");
          break;
       case 80 :
         if (image == null)
             image = new StringBuffer();
         image.append(input_stream.GetSuffix(jjimageLen + (lengthOfMatch = jjmatchedPos + 1)));
-    System.out.println(image + " -> Numero entero " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Numero entero " + "\n");
          break;
       case 81 :
         if (image == null)
             image = new StringBuffer();
         image.append(input_stream.GetSuffix(jjimageLen + (lengthOfMatch = jjmatchedPos + 1)));
-    System.out.println(image + " -> Numero flotante " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Numero flotante " + "\n");
          break;
       case 82 :
         if (image == null)
             image = new StringBuffer();
         image.append(input_stream.GetSuffix(jjimageLen + (lengthOfMatch = jjmatchedPos + 1)));
-    System.out.println(image + " -> Nombre de clase " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Nombre de clase " + "\n");
          break;
       case 83 :
         if (image == null)
             image = new StringBuffer();
         image.append(input_stream.GetSuffix(jjimageLen + (lengthOfMatch = jjmatchedPos + 1)));
-    System.out.println(image + " -> Caracter " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Caracter " + "\n");
          break;
       case 84 :
         if (image == null)
             image = new StringBuffer();
         image.append(input_stream.GetSuffix(jjimageLen + (lengthOfMatch = jjmatchedPos + 1)));
-    System.out.println(image + " -> Cadena " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Cadena " + "\n");
          break;
       case 85 :
         if (image == null)
             image = new StringBuffer();
         image.append(input_stream.GetSuffix(jjimageLen + (lengthOfMatch = jjmatchedPos + 1)));
-    System.out.println(image + " -> Nombre de variable " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Nombre de variable " + "\n");
          break;
       case 86 :
         if (image == null)
             image = new StringBuffer();
         image.append(input_stream.GetSuffix(jjimageLen + (lengthOfMatch = jjmatchedPos + 1)));
-    System.out.println(image + " -> Nombre de funci\u00f3n " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Nombre de funci\u00f3n " + "\n");
          break;
       case 87 :
         if (image == null)
             image = new StringBuffer();
         image.append(input_stream.GetSuffix(jjimageLen + (lengthOfMatch = jjmatchedPos + 1)));
-    System.out.println(image + " -> Nombre de libreria " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Nombre de libreria " + "\n");
          break;
       case 88 :
         if (image == null)
             image = new StringBuffer();
         image.append(input_stream.GetSuffix(jjimageLen + (lengthOfMatch = jjmatchedPos + 1)));
-    System.out.println(image + " -> Numero entero invalido " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Numero entero invalido " + "\n");
          break;
       case 89 :
         if (image == null)
             image = new StringBuffer();
         image.append(input_stream.GetSuffix(jjimageLen + (lengthOfMatch = jjmatchedPos + 1)));
-    System.out.println(image + " -> Numero flotante/decimal invalido " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Numero flotante/decimal invalido " + "\n");
          break;
       case 90 :
         if (image == null)
             image = new StringBuffer();
         image.append(input_stream.GetSuffix(jjimageLen + (lengthOfMatch = jjmatchedPos + 1)));
-    System.out.println(image + " -> Cadena invalida " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Cadena invalida " + "\n");
          break;
       case 91 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[91]);
         lengthOfMatch = jjstrLiteralImages[91].length();
-    System.out.println(image + " -> Car\u00e1cter no valido " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Car\u00e1cter no valido " + "\n");
          break;
       case 92 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[92]);
         lengthOfMatch = jjstrLiteralImages[92].length();
-    System.out.println(image + " -> Car\u00e1cter no valido " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Car\u00e1cter no valido " + "\n");
          break;
       case 93 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[93]);
         lengthOfMatch = jjstrLiteralImages[93].length();
-    System.out.println(image + " -> Car\u00e1cter no valido " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Car\u00e1cter no valido " + "\n");
          break;
       case 94 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[94]);
         lengthOfMatch = jjstrLiteralImages[94].length();
-    System.out.println(image + " -> Car\u00e1cter no valido " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Car\u00e1cter no valido " + "\n");
          break;
       case 95 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[95]);
         lengthOfMatch = jjstrLiteralImages[95].length();
-    System.out.println(image + " -> Car\u00e1cter no valido " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Car\u00e1cter no valido " + "\n");
          break;
       case 96 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[96]);
         lengthOfMatch = jjstrLiteralImages[96].length();
-    System.out.println(image + " -> Car\u00e1cter no valido " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Car\u00e1cter no valido " + "\n");
          break;
       case 97 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[97]);
         lengthOfMatch = jjstrLiteralImages[97].length();
-    System.out.println(image + " -> Car\u00e1cter no valido " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Car\u00e1cter no valido " + "\n");
          break;
       case 98 :
         if (image == null)
             image = new StringBuffer();
         image.append(jjstrLiteralImages[98]);
         lengthOfMatch = jjstrLiteralImages[98].length();
-    System.out.println(image + " -> Car\u00e1cter no valido " + "\n");
+    logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Car\u00e1cter no valido " + "\n");
          break;
       default : 
          break;

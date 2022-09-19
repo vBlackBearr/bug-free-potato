@@ -6,7 +6,7 @@ import java.util.Hashtable;
 import java.lang.String;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import objects.GramaticaConstantsNames;
+import extraObjects.GramaticaConstantsNames;
 import Analizador.GramaticaConstants;
 
 public class TokenAsignaciones extends Error {

@@ -21,6 +21,7 @@ import java.util.logging.Logger;
 import javafx.stage.FileChooser;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import extraObjects.logsAcumulatorInstance;
 
 /**
  *
@@ -43,6 +44,8 @@ public class GUI extends javax.swing.JFrame {
         jScroll_Editor.setRowHeaderView(tln);
         txtArea_Editor.setText("");
         setLocationRelativeTo(null);
+        logsAcumulatorInstance.getInstance().setGuiInstance(this);
+//        logsAcumulatorInstance.getInstance().addlexicLog
     }
 
     /**
@@ -389,7 +392,8 @@ public class GUI extends javax.swing.JFrame {
         // TODO add your handling code here:
 //        String ruta = String.valueOf(seleccionarCodigo.getCurrentDirectory()) + "/" + selectedFile.getName();
 //        System.out.println(ruta);
-        analisisLexico();
+        logsAcumulatorInstance.getInstance().resetLogs();
+        analisis();
     }//GEN-LAST:event_btnCompilarMouseClicked
 
     private void jm_SemanticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jm_SemanticoActionPerformed
@@ -397,6 +401,16 @@ public class GUI extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jm_SemanticoActionPerformed
 
+    public void setTxtAreaLexico(String texto){
+        txtAreaLexico.setText(texto);
+    }
+    public void setTxtAreaSintactico(String texto){
+        txtAreaSintactico.setText(texto);
+    }
+    public void setTxtAreaSemantico(String texto){
+        txtAreaSemantico.setText(texto);
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -464,21 +478,21 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JTextArea txtArea_Editor;
     // End of variables declaration//GEN-END:variables
 
-    public void analisisLexico() {
+    public void analisis() {
         try {
             File file = crearArchivoConTexto(txtArea_Editor.getText());
             an.AnalizarCodigo(new FileReader(file));
-            txtAreaLexico.setText(an.respuestaLexico);
-            if(an.respuestaSintactico.equals("")){
-                txtAreaSintactico.setText("Sin errores sintacticos");
-            }else{
-                txtAreaSintactico.setText(an.respuestaSintactico);
-            }
-            
-            txtAreaSemantico.setText(an.respuestaSemantico);
+//            txtAreaLexico.setText(an.respuestaLexico);
+//            if(an.respuestaSintactico.equals("")){
+//                txtAreaSintactico.setText("Sin errores sintacticos");
+//            }else{
+//                txtAreaSintactico.setText(an.respuestaSintactico);
+//            }
+//            
+//            txtAreaSemantico.setText(an.respuestaSemantico);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Error analisis Lexico: " + ex);
+            JOptionPane.showMessageDialog(null, "Error de analisis: " + ex);
         }
     }
 
@@ -487,7 +501,7 @@ public class GUI extends javax.swing.JFrame {
     }
 
     public void analisisSemantico() {
-        TokenAsignaciones sem = new TokenAsignaciones();
+//        TokenAsignaciones sem = new TokenAsignaciones();
 //        sem.checkAsing(TokenIzq, TokenAsig)
     }
 

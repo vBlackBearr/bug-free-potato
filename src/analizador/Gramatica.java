@@ -3,6 +3,7 @@
 package Analizador;
 import analizador.TokenAsignaciones;
 import javax.swing.JOptionPane;
+import extraObjects.logsAcumulatorInstance;
 
 public class Gramatica implements GramaticaConstants {
   TokenAsignaciones TA = new TokenAsignaciones();
@@ -43,7 +44,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Error en definicion de import o clase general");
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en definicion de import o clase general");
     la = t.beginLine;
     if (t.image == "\n")
     {
@@ -94,7 +95,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Error en nombre de libreria, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en nombre de libreria, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     la = t.beginLine;
     if (t.image == "\n")
     {
@@ -131,7 +132,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Se esperaba \";\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Se esperaba \";\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
     la = t.beginLine;
     if (t.image == "\n")
     {
@@ -183,7 +184,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Se esperaba tipo de dato, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Se esperaba tipo de dato, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     la = t.beginLine;
     if (t.image == "\n")
     {
@@ -213,7 +214,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Se esperaba tipo de dato, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Se esperaba tipo de dato, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     la = t.beginLine;
     if (t.image == "\n")
     {
@@ -243,7 +244,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Se esperaba tipo de dato, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Se esperaba tipo de dato, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     la = t.beginLine;
     if (t.image == "\n")
     {
@@ -273,7 +274,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Se esperaba tipo de dato, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Se esperaba tipo de dato, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     la = t.beginLine;
     if (t.image == "\n")
     {
@@ -303,7 +304,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Se esperaba tipo de dato, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Se esperaba tipo de dato, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     la = t.beginLine;
     if (t.image == "\n")
     {
@@ -333,7 +334,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Se esperaba tipo de dato, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Se esperaba tipo de dato, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     la = t.beginLine;
     if (t.image == "\n")
     {
@@ -363,7 +364,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Se esperaba tipo de dato, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Se esperaba tipo de dato, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     la = t.beginLine;
     if (t.image == "\n")
     {
@@ -403,7 +404,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Se espereba \"public\" o \"private\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Se espereba \"public\" o \"private\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
     la = t.beginLine;
     if (t.image == "\n")
     {
@@ -432,7 +433,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Error en nombre de clase, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en nombre de clase, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     la = t.beginLine;
     if (t.image == "\n")
     {
@@ -468,7 +469,7 @@ public class Gramatica implements GramaticaConstants {
     }
     if (t.beginColumn != 1)
     {
-      System.out.println("Se esperaba \"class\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
+      logsAcumulatorInstance.getInstance().addSintacticLog("Se esperaba \"class\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
     }
     la = t.beginLine;
     if (t.image == "\n")
@@ -506,7 +507,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Se esperaba \"{\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Se esperaba \"{\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -534,7 +535,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Se esperaba \"}\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Se esperaba \"}\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -619,7 +620,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Error en contenido de clase, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en contenido de clase, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     la = t.beginLine;
     if (t.image == "\n")
     {
@@ -657,7 +658,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Se esperaba \"(\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Se esperaba \"(\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -685,7 +686,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Se esperaba \")\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Se esperaba \")\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -719,7 +720,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Error en constructor, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en constructor, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -784,7 +785,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Error en constructor, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en constructor, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -823,7 +824,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Se esperaba \"void\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Se esperaba \"void\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -877,7 +878,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Se esperaba \"void\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Se esperaba \"void\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -966,7 +967,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Error en metodo, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en metodo, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -1005,7 +1006,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Se esperaba \"principalMain\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Se esperaba \"principalMain\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -1050,7 +1051,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Error en metodo principal, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en metodo principal, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -1078,7 +1079,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Error en nombre de funcion, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en nombre de funcion, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -1125,7 +1126,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Error en metodo, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en metodo, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -1163,7 +1164,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Se esperaba \"return\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Se esperaba \"return\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -1192,7 +1193,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Error en retorno, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en retorno, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -1264,7 +1265,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Error en metodo, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en metodo, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -1303,7 +1304,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Error en argumentos, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en argumentos, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -1378,7 +1379,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Error en variables de clase, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en variables de clase, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -1490,7 +1491,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Error en sentencia, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en sentencia, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -1569,7 +1570,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Error en parametros, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en parametros, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -1644,7 +1645,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Error en parametros, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en parametros, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -1683,7 +1684,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Error en llamado de metodo, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en llamado de metodo, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -1719,7 +1720,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Se esperaba \"Except\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Se esperaba \"Except\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -1747,7 +1748,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Se esperaba \"Catch\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Se esperaba \"Catch\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -1785,7 +1786,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Error en try-catch, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en try-catch, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -1831,7 +1832,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Error en ciclo for, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en ciclo for, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -1867,7 +1868,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Se esperaba \"While\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Se esperaba \"While\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -1895,7 +1896,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Se esperaba \"Do\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Se esperaba \"Do\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -1948,7 +1949,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Error en ciclo while, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en ciclo while, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -1990,7 +1991,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Error en condicion, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en condicion, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -2038,7 +2039,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Se esperaba \"++\" o \"--\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Se esperaba \"++\" o \"--\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -2086,7 +2087,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Error en condicion, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en condicion, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -2122,7 +2123,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Se esperaba \"break\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Se esperaba \"break\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -2167,7 +2168,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Error en sentencia switch, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en sentencia switch, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -2204,7 +2205,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Se esperaba \"Case\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Se esperaba \"Case\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -2232,7 +2233,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Se esperaba \":\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Se esperaba \":\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -2294,7 +2295,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Error en sentencia caso, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en sentencia caso, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -2347,7 +2348,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Error en else, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en else, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -2406,7 +2407,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Error en condicion, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en condicion, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -2472,7 +2473,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Error en condicion, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en condicion, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -2550,7 +2551,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Error en condicion, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en condicion, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -2618,7 +2619,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Error en condicion, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en condicion, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -2678,7 +2679,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Error en condicion, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en condicion, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -2714,7 +2715,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Error en nombre de variable, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en nombre de variable, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -2770,11 +2771,7 @@ public class Gramatica implements GramaticaConstants {
   }
 
   final public void Expr2() throws ParseException {
-  JOptionPane.showMessageDialog
-  (
-    null, TA.checkAsing(valor1CompAsig, valor2CompAsig)
-  )
-  ;
+  logsAcumulatorInstance.getInstance().addSemanticLog(TA.checkAsing(valor1CompAsig, valor2CompAsig));
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case SUMA:
     case RESTA:
@@ -2865,7 +2862,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Error en declaracion, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en declaracion, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -2910,7 +2907,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Error en Inicializacion de variable, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en Inicializacion de variable, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -2999,7 +2996,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Error en declaracion, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en declaracion, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -3083,7 +3080,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Error en declaracion, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en declaracion, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -3178,7 +3175,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Error en declaracion, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en declaracion, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -3215,7 +3212,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Se esperaba \"[]\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Se esperaba \"[]\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -3255,7 +3252,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Error en declaracion de arreglo, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en declaracion de arreglo, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -3318,7 +3315,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Error en asignacion de valor, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en asignacion de valor, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -3369,7 +3366,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Se esperaba un operador, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Se esperaba un operador, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
@@ -3590,7 +3587,7 @@ public class Gramatica implements GramaticaConstants {
     {
       t = getNextToken();
     }
-    System.out.println("Error en declaracion de variable de ciclo for, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en declaracion de variable de ciclo for, linea: " + t.beginLine + ", columna: " + t.beginColumn);
     if (t.image == "\n")
     {
       linea = linea + 1;
