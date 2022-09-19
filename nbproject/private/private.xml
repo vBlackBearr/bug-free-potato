@@ -5,6 +5,7 @@
         <group>
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             <file>file:/C:/Users/JuanO/Documents/GitHub/bug-free-potato/src/lenguajee/Analizar.java</file>
             <file>file:/C:/Users/JuanO/Documents/GitHub/bug-free-potato/src/analizador/Gramatica.java</file>
             <file>file:/C:/Users/JuanO/Documents/GitHub/bug-free-potato/src/lenguajee/LenguajeE.java</file>
@@ -18,6 +19,8 @@
             <file>file:/C:/Users/JuanO/Documents/GitHub/bug-free-potato/src/analizador/Gramatica.java</file>
 >>>>>>> Stashed changes
 =======
+=======
+>>>>>>> Stashed changes
             <file>file:/C:/Users/JuanO/Documents/GitHub/bug-free-potato/src/lenguajee/Analizar.java</file>
             <file>file:/C:/Users/JuanO/Documents/GitHub/bug-free-potato/src/analizador/Gramatica.java</file>
             <file>file:/C:/Users/JuanO/Documents/GitHub/bug-free-potato/src/analizador/JavaCharStream.java</file>
@@ -25,6 +28,9 @@
             <file>file:/C:/Users/JuanO/Documents/GitHub/bug-free-potato/src/analizador/GramaticaTokenManager.java</file>
             <file>file:/C:/Users/JuanO/Documents/GitHub/bug-free-potato/src/analizador/GramaticaConstants.java</file>
             <file>file:/C:/Users/JuanO/Documents/GitHub/bug-free-potato/src/GUI/GUI.java</file>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         </group>
     </open-files>
