@@ -22,6 +22,15 @@ public class Gramatica
   int kindParaDeclarar = 0;
   Token valor1CompAsig = null;
   Token valor2CompAsig = null;
+ 
+  final public Token getNextTokenWithoutIncrease() {
+    if (token.next != null) token = token.next;
+    else{
+        GramaticaTokenManager token_source2 = token_source;
+        token = token.next = token_source2.getNextToken();
+    }
+    return token;
+  }
 }
 
 PARSER_END(Gramatica)
@@ -442,7 +451,7 @@ TOKEN :
   < #letraMay : [ "A"-"Z" ] >
 | < #letraMin : [ "a"-"z" ] >
 | < #c : [ "a"-"z", "A"-"Z", "0"-"9", "|", "'", "/", "(", ")", "{", "}", "[", "]", ",", ".", ";", "_", ":", " ", "<", ">", "+", "-", "*", "=" ] >
-| < #cinv : [ "a"-"z", "A"-"Z", "0"-"9", "|", "'", "/", "(", ")", "{", "}", "[", "]", ",", ".", "_", ":", "<", ">", "-", "*", "=" ] >
+| < #cinv : [ "a"-"z", "A"-"Z", "0"-"9", "|", "'", "/", "(", ")", "{", "}", "[", ",", ".", "_", ":", "<", ">", "-", "*", "=" ] >
 | < #c2 : [ "@", "#", "&", "%" ] >
 | < #digito : [ "0"-"9" ] >
 | < ENTERO : (< digito >)+ >
@@ -480,15 +489,6 @@ TOKEN :
     System.out.println(image + " -> Cadena " + "\n");
   }
   : DEFAULT
-| < PAQUET :
-    (< letraMay >) (< letraMin >)+
-    (
-      "_" (< letraMay >) (< letraMin >)+
-    )+ >
-  {
-    System.out.println(image + " -> Nombre de paquete " + "\n");
-  }
-  : DEFAULT
 | < VAR : (< letraMin >)+ >
   {
     System.out.println(image + " -> Nombre de variable " + "\n");
@@ -505,7 +505,7 @@ TOKEN :
   : DEFAULT
 | < LIBR :
     (< letraMin >)+
-    (
+    (  
       "_"
       (
         < letraMin >
@@ -1172,7 +1172,7 @@ void ContenidoClase() :
   try
   {
     (((TipoEncapsular() (Declaracion() Puntoyc()
-  | Metodo()
+  | Metodo() | Metodo_void()
   | Constructor()))
   | Declaracion() Puntoyc()) ContenidoClase()) ?
   }
@@ -1283,7 +1283,7 @@ void Constructor() :
 {
   try
   {
-    Clasesn() Parea() Argumentos() Parec() Llavea() Sentencia() Llavec() ConstructorA()
+    Clasesn() Parea() Argumentos() Parec() Llavea() Sentencia() Llavec()
   }
   catch (ParseException e)
   {
@@ -1552,7 +1552,7 @@ void Principal() :
 {
   try
   {
-    Prinmain() Parea() Parec() Llavea() Sentencia() Llavec()
+    Void() Prinmain() Parea() Parec() Llavea() Sentencia() Llavec()
   }
   catch (ParseException e)
   {
@@ -1618,7 +1618,7 @@ void Metodo() :
 {
   try
   {
-    Func() Parea() Argumentos() Parec() Llavea() Sentencia() Retorno() Llavec()
+    Func() Parea() (Argumentos())? Parec() Llavea() Sentencia() Retorno() Llavec()
   }
   catch (ParseException e)
   {
@@ -1741,7 +1741,7 @@ void Metodo_void() :
 {
   try
   {
-    Parea() Argumentos() Parec() Llavea() Sentencia() Llavec()
+     Void() (Func() Parea() (Argumentos())? | Prinmain() Parea()) Parec() Llavea() Sentencia() Llavec()
   }
   catch (ParseException e)
   {
@@ -1784,7 +1784,7 @@ void Argumentos() :
 {
   try
   {
-    (Tipo() Declaracion()) ArgumentosA()
+    Declaracion() ArgumentosA()
   }
   catch (ParseException e)
   {
@@ -1825,7 +1825,7 @@ void ArgumentosA() :
 {}
 {
   (
-    < COM > Argumentos()
+    < COM > (Argumentos())?
   )?
 }
 
@@ -2973,6 +2973,7 @@ void TipoDato() :
 | < CADENA >
 | < TRUE >
 | < FALSE >
+| < VAR >
 }
 
 void Declaracion() :
@@ -2981,7 +2982,7 @@ void Declaracion() :
 {
   try
   {
-    Tipo() (< CORA > < CORC >) ? Declarando() (DeclaracionAsignacion()) ?
+    Tipo() (< CORA > < ENTERO > < CORC >) ? Declarando() (DeclaracionAsignacion()) ?
   }
   catch (ParseException e)
   {
@@ -3020,7 +3021,9 @@ void Declaracion() :
 
 void Declarando() :
 {
-  TA.InsertarSimbolo(token.next, kindParaDeclarar);
+
+  //JOptionPane.showMessageDialog(null,"Declarando: " + getNextTokenWithoutIncrease() + kindParaDeclarar);
+  TA.InsertarSimbolo(getNextTokenWithoutIncrease(), kindParaDeclarar);
 }
 {
   < VAR >

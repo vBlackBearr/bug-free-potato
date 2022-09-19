@@ -3,46 +3,68 @@
 package Analizador;
 import analizador.TokenAsignaciones;
 import javax.swing.JOptionPane;
-public class Gramatica implements GramaticaConstants {
-    TokenAsignaciones TA = new TokenAsignaciones();
-    public static int linea=1;
-    public static int la;
-    String muestraLexico = "";
-    int kindParaDeclarar = 0;
 
-    Token valor1CompAsig = null;
-    Token valor2CompAsig = null;
+public class Gramatica implements GramaticaConstants {
+  TokenAsignaciones TA = new TokenAsignaciones();
+
+  public static int linea = 1;
+
+  public static int la;
+  String muestraLexico = "";
+  int kindParaDeclarar = 0;
+  Token valor1CompAsig = null;
+  Token valor2CompAsig = null;
+
+  final public Token getNextTokenWithoutIncrease() {
+    if (token.next != null) token = token.next;
+    else{
+        GramaticaTokenManager token_source2 = token_source;
+        token = token.next = token_source2.getNextToken();
+    }
+    return token;
+  }
 
 /** Fin Lexico */
 
 
 /**Inicio sintactico*/
   final public void Inicio() throws ParseException {
- TA.SetTables();
+  TA.SetTables();
     try {
       Import();
       Clases();
       jj_consume_token(0);
     } catch (ParseException e) {
-        Token t=getToken(0);
-            if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-           t=getNextToken();
-        }
-        System.out.println("Error en definicion de import o clase general");
-        la=t.beginLine;
-                        if (t.image=="\n")
-                        {
-                                linea = linea + 1;
-                        }
-                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
-                        {
-            do{
-                t=getNextToken();
-            }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
-        }
-                if(t.next!=null){t=getNextToken();}
-                if(t.kind != GramaticaTokenManager.EOF){
-                Cuerpo();}
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Error en definicion de import o clase general");
+    la = t.beginLine;
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
+    if (t.next != null)
+    {
+      t = getNextToken();
+    }
+    if (t.kind != GramaticaTokenManager.EOF)
+    {
+      Cuerpo();
+    }
     }
   }
 
@@ -64,25 +86,36 @@ public class Gramatica implements GramaticaConstants {
       Puntoyc();
       Import();
     } catch (ParseException e) {
-            Token t=getToken(0);
-            if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-           t=getNextToken();
-        }
-            System.out.println("Error en nombre de libreria, linea: "+t.beginLine+", columna: "+t.beginColumn);
-            la=t.beginLine;
-        if (t.image=="\n")
-        {
-            linea = linea + 1;
-        }
-        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
-        {
-            do{
-                                t=getNextToken();
-                }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}");
-            }
-
-                if(t.next!=null){t=getNextToken();}
-                if(t.kind != GramaticaTokenManager.EOF){Import();}
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Error en nombre de libreria, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    la = t.beginLine;
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
+    if (t.next != null)
+    {
+      t = getNextToken();
+    }
+    if (t.kind != GramaticaTokenManager.EOF)
+    {
+      Import();
+    }
     }
   }
 
@@ -90,22 +123,28 @@ public class Gramatica implements GramaticaConstants {
     try {
       jj_consume_token(PYC);
     } catch (ParseException e) {
-                Token t=getToken(0);
-                if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-           t=getNextToken();
-        }
-                System.out.println("Se esperaba \";\", linea: "+t.beginLine+", columna: "+t.beginColumn);
-                la=t.beginLine;
-                        if (t.image=="\n")
-                        {
-                                linea = linea + 1;
-                        }
-                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
-                        {
-            do{
-                t=getNextToken();
-                    }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
-                }
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Se esperaba \";\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    la = t.beginLine;
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
     }
   }
 
@@ -136,166 +175,208 @@ public class Gramatica implements GramaticaConstants {
         throw new ParseException();
       }
     } catch (ParseException e) {
-        Token t=getToken(0);
-            if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-           t=getNextToken();
-        }
-        System.out.println("Se esperaba tipo de dato, linea: "+t.beginLine+", columna: "+t.beginColumn);
-        la=t.beginLine;
-                        if (t.image=="\n")
-                        {
-                                linea = linea + 1;
-                        }
-                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
-                        {
-            do{
-                t=getNextToken();
-            }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}");
-        }
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Se esperaba tipo de dato, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    la = t.beginLine;
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
     }
   }
 
   final public void DeclararInt() throws ParseException {
-kindParaDeclarar = GramaticaConstants.INT;
+  kindParaDeclarar = GramaticaConstants.INT;
     try {
       jj_consume_token(INT);
     } catch (ParseException e) {
-        Token t=getToken(0);
-            if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-           t=getNextToken();
-        }
-        System.out.println("Se esperaba tipo de dato, linea: "+t.beginLine+", columna: "+t.beginColumn);
-        la=t.beginLine;
-                        if (t.image=="\n")
-                        {
-                                linea = linea + 1;
-                        }
-                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
-                        {
-            do{
-                t=getNextToken();
-            }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}");
-        }
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Se esperaba tipo de dato, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    la = t.beginLine;
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
     }
   }
 
   final public void DeclararChar() throws ParseException {
- kindParaDeclarar = GramaticaConstants.CHAR;
+  kindParaDeclarar = GramaticaConstants.CHAR;
     try {
       jj_consume_token(CHAR);
     } catch (ParseException e) {
-        Token t=getToken(0);
-            if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-           t=getNextToken();
-        }
-        System.out.println("Se esperaba tipo de dato, linea: "+t.beginLine+", columna: "+t.beginColumn);
-        la=t.beginLine;
-                        if (t.image=="\n")
-                        {
-                                linea = linea + 1;
-                        }
-                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
-                        {
-            do{
-                t=getNextToken();
-            }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}");
-        }
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Se esperaba tipo de dato, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    la = t.beginLine;
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
     }
   }
 
   final public void DeclararString() throws ParseException {
- kindParaDeclarar = GramaticaConstants.STRING;
+  kindParaDeclarar = GramaticaConstants.STRING;
     try {
       jj_consume_token(STRING);
     } catch (ParseException e) {
-        Token t=getToken(0);
-            if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-           t=getNextToken();
-        }
-        System.out.println("Se esperaba tipo de dato, linea: "+t.beginLine+", columna: "+t.beginColumn);
-        la=t.beginLine;
-                        if (t.image=="\n")
-                        {
-                                linea = linea + 1;
-                        }
-                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
-                        {
-            do{
-                t=getNextToken();
-            }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}");
-        }
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Se esperaba tipo de dato, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    la = t.beginLine;
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
     }
   }
 
   final public void DeclararBool() throws ParseException {
- kindParaDeclarar = GramaticaConstants.BOOLEAN;
+  kindParaDeclarar = GramaticaConstants.BOOLEAN;
     try {
       jj_consume_token(BOOLEAN);
     } catch (ParseException e) {
-        Token t=getToken(0);
-            if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-           t=getNextToken();
-        }
-        System.out.println("Se esperaba tipo de dato, linea: "+t.beginLine+", columna: "+t.beginColumn);
-        la=t.beginLine;
-                        if (t.image=="\n")
-                        {
-                                linea = linea + 1;
-                        }
-                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
-                        {
-            do{
-                t=getNextToken();
-            }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}");
-        }
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Se esperaba tipo de dato, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    la = t.beginLine;
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
     }
   }
 
   final public void DeclararFloat() throws ParseException {
- kindParaDeclarar = GramaticaConstants.FLOAT;
+  kindParaDeclarar = GramaticaConstants.FLOAT;
     try {
       jj_consume_token(FLOAT);
     } catch (ParseException e) {
-        Token t=getToken(0);
-            if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-           t=getNextToken();
-        }
-        System.out.println("Se esperaba tipo de dato, linea: "+t.beginLine+", columna: "+t.beginColumn);
-        la=t.beginLine;
-                        if (t.image=="\n")
-                        {
-                                linea = linea + 1;
-                        }
-                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
-                        {
-            do{
-                t=getNextToken();
-            }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}");
-        }
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Se esperaba tipo de dato, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    la = t.beginLine;
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
     }
   }
 
   final public void DeclararDouble() throws ParseException {
- kindParaDeclarar = GramaticaConstants.DOUBLE;
+  kindParaDeclarar = GramaticaConstants.DOUBLE;
     try {
       jj_consume_token(DOUBLE);
     } catch (ParseException e) {
-        Token t=getToken(0);
-            if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-           t=getNextToken();
-        }
-        System.out.println("Se esperaba tipo de dato, linea: "+t.beginLine+", columna: "+t.beginColumn);
-        la=t.beginLine;
-                        if (t.image=="\n")
-                        {
-                                linea = linea + 1;
-                        }
-                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
-                        {
-            do{
-                t=getNextToken();
-            }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}");
-        }
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Se esperaba tipo de dato, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    la = t.beginLine;
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
     }
   }
 
@@ -314,22 +395,28 @@ kindParaDeclarar = GramaticaConstants.INT;
         throw new ParseException();
       }
     } catch (ParseException e) {
-        Token t=getToken(0);
-            if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-           t=getNextToken();
-        }
-                System.out.println("Se espereba \"public\" o \"private\", linea: "+t.beginLine+", columna: "+t.beginColumn);
-        la=t.beginLine;
-                        if (t.image=="\n")
-                        {
-                                linea = linea + 1;
-                        }
-                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
-                        {
-            do{
-                t=getNextToken();
-            }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
-        }
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Se espereba \"public\" o \"private\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    la = t.beginLine;
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
     }
   }
 
@@ -337,22 +424,28 @@ kindParaDeclarar = GramaticaConstants.INT;
     try {
       jj_consume_token(CLASES);
     } catch (ParseException e) {
-                Token t=getToken(0);
-                if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-           t=getNextToken();
-        }
-                System.out.println("Error en nombre de clase, linea: "+t.beginLine+", columna: "+t.beginColumn);
-                la=t.beginLine;
-                if (t.image=="\n")
-                {
-                        linea = linea + 1;
-                }
-                if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
-                {
-        do{
-            t=getNextToken();
-                }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
-                }
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Error en nombre de clase, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    la = t.beginLine;
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
     }
   }
 
@@ -365,27 +458,39 @@ kindParaDeclarar = GramaticaConstants.INT;
       ContenidoClase();
       Llavec();
     } catch (ParseException e) {
-            Token t=getToken(0);
-                if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-                                t=getNextToken();
-                        }
-                        if(t.beginColumn!=1){
-                                System.out.println("Se esperaba \"class\", linea: "+t.beginLine+", columna: "+t.beginColumn);
-                        }
-            la=t.beginLine;
-                        if (t.image=="\n")
-                        {
-                                linea = linea + 1;
-                        }
-                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
-                        {
-                                do{
-                                        t=getNextToken();
-                                }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}");
-            }
-                        if(t.next!=null){t=getNextToken();}
-                        if(t.kind != GramaticaTokenManager.EOF){
-                        ContenidoClase();       }
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    if (t.beginColumn != 1)
+    {
+      System.out.println("Se esperaba \"class\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    }
+    la = t.beginLine;
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
+    if (t.next != null)
+    {
+      t = getNextToken();
+    }
+    if (t.kind != GramaticaTokenManager.EOF)
+    {
+      ContenidoClase();
+    }
     }
   }
 
@@ -393,21 +498,27 @@ kindParaDeclarar = GramaticaConstants.INT;
     try {
       jj_consume_token(LLAVA);
     } catch (ParseException e) {
-                        Token t=getToken(0);
-                                if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-           t=getNextToken();
-        }
-                        System.out.println("Se esperaba \"{\", linea: "+t.beginLine+", columna: "+t.beginColumn);
-                        if (t.image=="\n")
-                        {
-                                linea = linea + 1;
-                        }
-                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
-                        {
-                                do{
-                                        t=getNextToken();
-                                }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}");
-                        }
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Se esperaba \"{\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
     }
   }
 
@@ -415,21 +526,27 @@ kindParaDeclarar = GramaticaConstants.INT;
     try {
       jj_consume_token(LLAVC);
     } catch (ParseException e) {
-                        Token t=getToken(0);
-                                if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-           t=getNextToken();
-        }
-                        System.out.println("Se esperaba \"}\", linea: "+t.beginLine+", columna: "+t.beginColumn);
-                        if (t.image=="\n")
-                        {
-                                linea = linea + 1;
-                        }
-                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
-                        {
-                                do{
-                                        t=getNextToken();
-                                }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
-                        }
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Se esperaba \"}\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
     }
   }
 
@@ -461,6 +578,9 @@ kindParaDeclarar = GramaticaConstants.INT;
           case FUNC:
             Metodo();
             break;
+          case VOID:
+            Metodo_void();
+            break;
           case CLASES:
             Constructor();
             break;
@@ -491,26 +611,37 @@ kindParaDeclarar = GramaticaConstants.INT;
         ;
       }
     } catch (ParseException e) {
-                                Token t=getToken(0);
-                                        if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-                           t=getNextToken();
-                        }
-                                System.out.println("Error en contenido de clase, linea: "+t.beginLine+", columna: "+t.beginColumn);
-                                la=t.beginLine;
-                                if (t.image=="\n")
-                                {
-                                        linea = linea + 1;
-                                }
-                                if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
-                                {
-                                        do{
-                                                t=getNextToken();
-                                        }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}");
-                                }
-                                if(t.next!=null){t=getNextToken();}
-                                if(t.kind != GramaticaTokenManager.EOF){
-                                Constructor();
-                                Cuerpo();}
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Error en contenido de clase, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    la = t.beginLine;
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
+    if (t.next != null)
+    {
+      t = getNextToken();
+    }
+    if (t.kind != GramaticaTokenManager.EOF)
+    {
+      Constructor();
+      Cuerpo();
+    }
     }
   }
 
@@ -518,21 +649,27 @@ kindParaDeclarar = GramaticaConstants.INT;
     try {
       jj_consume_token(PAREA);
     } catch (ParseException e) {
-                        Token t=getToken(0);
-                                if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-           t=getNextToken();
-        }
-                        System.out.println("Se esperaba \"(\", linea: "+t.beginLine+", columna: "+t.beginColumn);
-                        if (t.image=="\n")
-                        {
-                                linea = linea + 1;
-                        }
-                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
-                        {
-                                do{
-                                        t=getNextToken();
-                                }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
-                        }
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Se esperaba \"(\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
     }
   }
 
@@ -540,21 +677,27 @@ kindParaDeclarar = GramaticaConstants.INT;
     try {
       jj_consume_token(PAREC);
     } catch (ParseException e) {
-                        Token t=getToken(0);
-                                if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-           t=getNextToken();
-        }
-                        System.out.println("Se esperaba \")\", linea: "+t.beginLine+", columna: "+t.beginColumn);
-                        if (t.image=="\n")
-                        {
-                                linea = linea + 1;
-                        }
-                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
-                        {
-                                do{
-                                        t=getNextToken();
-                                }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
-                        }
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Se esperaba \")\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
     }
   }
 
@@ -567,27 +710,37 @@ kindParaDeclarar = GramaticaConstants.INT;
       Llavea();
       Sentencia();
       Llavec();
-      ConstructorA();
     } catch (ParseException e) {
-                        Token t=getToken(0);
-                                if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-           t=getNextToken();
-        }
-                        System.out.println("Error en constructor, linea: "+t.beginLine+", columna: "+t.beginColumn);
-                        if (t.image=="\n")
-                        {
-                                linea = linea + 1;
-                        }
-                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
-                        {
-                                do{
-                                        t=getNextToken();
-                                }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
-                        }
-                        if(t.next!=null){t=getNextToken();}
-                        if(t.kind != GramaticaTokenManager.EOF){
-                        Sentencia();
-                        ConstructorA();}
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Error en constructor, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
+    if (t.next != null)
+    {
+      t = getNextToken();
+    }
+    if (t.kind != GramaticaTokenManager.EOF)
+    {
+      Sentencia();
+      ConstructorA();
+    }
     }
   }
 
@@ -623,27 +776,38 @@ kindParaDeclarar = GramaticaConstants.INT;
         }
       }
     } catch (ParseException e) {
-                        Token t=getToken(0);
-                                if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-           t=getNextToken();
-        }
-                        System.out.println("Error en constructor, linea: "+t.beginLine+", columna: "+t.beginColumn);
-                        if (t.image=="\n")
-                        {
-                                linea = linea + 1;
-                        }
-                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
-                        {
-                                do{
-                                        t=getNextToken();
-                                }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
-                        }
-                        if(t.next!=null){t=getNextToken();}
-                        if(t.kind != GramaticaTokenManager.EOF){
-                        Cuerpo();
-                        Argumentos();
-                        Sentencia();
-                        ConstructorA();}
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Error en constructor, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
+    if (t.next != null)
+    {
+      t = getNextToken();
+    }
+    if (t.kind != GramaticaTokenManager.EOF)
+    {
+      Cuerpo();
+      Argumentos();
+      Sentencia();
+      ConstructorA();
+    }
     }
   }
 
@@ -651,21 +815,27 @@ kindParaDeclarar = GramaticaConstants.INT;
     try {
       jj_consume_token(VOID);
     } catch (ParseException e) {
-                        Token t=getToken(0);
-                                if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-           t=getNextToken();
-        }
-                        System.out.println("Se esperaba \"void\", linea: "+t.beginLine+", columna: "+t.beginColumn);
-                        if (t.image=="\n")
-                        {
-                                linea = linea + 1;
-                        }
-                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
-                        {
-                                do{
-                                        t=getNextToken();
-                                }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
-                        }
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Se esperaba \"void\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
     }
   }
 
@@ -699,25 +869,36 @@ kindParaDeclarar = GramaticaConstants.INT;
         throw new ParseException();
       }
     } catch (ParseException e) {
-                        Token t=getToken(0);
-                                if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-           t=getNextToken();
-        }
-                        System.out.println("Se esperaba \"void\", linea: "+t.beginLine+", columna: "+t.beginColumn);
-                        if (t.image=="\n")
-                        {
-                                linea = linea + 1;
-                        }
-                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
-                        {
-                                do{
-                                        t=getNextToken();
-                                }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
-                        }
-                        if(t.next!=null){t=getNextToken();}
-                        if(t.kind != GramaticaTokenManager.EOF){
-                        Metodo();
-                        MetodosA();}
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Se esperaba \"void\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
+    if (t.next != null)
+    {
+      t = getNextToken();
+    }
+    if (t.kind != GramaticaTokenManager.EOF)
+    {
+      Metodo();
+      MetodosA();
+    }
     }
   }
 
@@ -767,7 +948,7 @@ kindParaDeclarar = GramaticaConstants.INT;
         Metodo_void();
         CuerpoA();
         break;
-      case PRINMAIN:
+      case VOID:
         Principal();
         CuerpoA();
         break;
@@ -777,27 +958,38 @@ kindParaDeclarar = GramaticaConstants.INT;
         throw new ParseException();
       }
     } catch (ParseException e) {
-                        Token t=getToken(0);
-                                if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-           t=getNextToken();
-        }
-                        System.out.println("Error en metodo, linea: "+t.beginLine+", columna: "+t.beginColumn);
-                        if (t.image=="\n")
-                        {
-                                linea = linea + 1;
-                        }
-                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
-                        {
-                                do{
-                                        t=getNextToken();
-                                }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
-                        }
-                        if(t.next!=null){t=getNextToken();}
-                        if(t.kind != GramaticaTokenManager.EOF){
-                        Metodo_void();
-                        CuerpoA();
-                        Principal();
-                        CuerpoA();}
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Error en metodo, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
+    if (t.next != null)
+    {
+      t = getNextToken();
+    }
+    if (t.kind != GramaticaTokenManager.EOF)
+    {
+      Metodo_void();
+      CuerpoA();
+      Principal();
+      CuerpoA();
+    }
     }
   }
 
@@ -805,32 +997,44 @@ kindParaDeclarar = GramaticaConstants.INT;
     try {
       jj_consume_token(PRINMAIN);
     } catch (ParseException e) {
-                        Token t=getToken(0);
-                                if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-           t=getNextToken();
-        }
-                        System.out.println("Se esperaba \"principalMain\", linea: "+t.beginLine+", columna: "+t.beginColumn);
-                        if (t.image=="\n")
-                        {
-                                linea = linea + 1;
-                        }
-                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
-                        {
-                                do{
-                                        t=getNextToken();
-                                }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
-                        }
-                        if(t.next!=null){t=getNextToken();}
-                        if(t.kind != GramaticaTokenManager.EOF){
-                        Metodo_void();
-                        CuerpoA();
-                        Principal();
-                        CuerpoA();}
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Se esperaba \"principalMain\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
+    if (t.next != null)
+    {
+      t = getNextToken();
+    }
+    if (t.kind != GramaticaTokenManager.EOF)
+    {
+      Metodo_void();
+      CuerpoA();
+      Principal();
+      CuerpoA();
+    }
     }
   }
 
   final public void Principal() throws ParseException {
     try {
+      Void();
       Prinmain();
       Parea();
       Parec();
@@ -838,21 +1042,27 @@ kindParaDeclarar = GramaticaConstants.INT;
       Sentencia();
       Llavec();
     } catch (ParseException e) {
-                        Token t=getToken(0);
-                                if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-           t=getNextToken();
-        }
-                        System.out.println("Error en metodo principal, linea: "+t.beginLine+", columna: "+t.beginColumn);
-                        if (t.image=="\n")
-                        {
-                                linea = linea + 1;
-                        }
-                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
-                        {
-                                do{
-                                        t=getNextToken();
-                                }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
-                        }
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Error en metodo principal, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
     }
   }
 
@@ -860,21 +1070,27 @@ kindParaDeclarar = GramaticaConstants.INT;
     try {
       jj_consume_token(FUNC);
     } catch (ParseException e) {
-                        Token t=getToken(0);
-                                if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-           t=getNextToken();
-        }
-                        System.out.println("Error en nombre de funcion, linea: "+t.beginLine+", columna: "+t.beginColumn);
-                        if (t.image=="\n")
-                        {
-                                linea = linea + 1;
-                        }
-                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
-                        {
-                                do{
-                                        t=getNextToken();
-                                }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
-                        }
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Error en nombre de funcion, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
     }
   }
 
@@ -882,33 +1098,56 @@ kindParaDeclarar = GramaticaConstants.INT;
     try {
       Func();
       Parea();
-      Argumentos();
+      switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+      case CHAR:
+      case STRING:
+      case INT:
+      case FLOAT:
+      case BOOLEAN:
+      case DOUBLE:
+        Argumentos();
+        break;
+      default:
+        jj_la1[14] = jj_gen;
+        ;
+      }
       Parec();
       Llavea();
       Sentencia();
       Retorno();
       Llavec();
     } catch (ParseException e) {
-                        Token t=getToken(0);
-                                if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-           t=getNextToken();
-        }
-                        System.out.println("Error en metodo, linea: "+t.beginLine+", columna: "+t.beginColumn);
-                        if (t.image=="\n")
-                        {
-                                linea = linea + 1;
-                        }
-                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
-                        {
-                                do{
-                                        t=getNextToken();
-                                }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
-                        }
-                        if(t.next!=null){t=getNextToken();}
-                        if(t.kind != GramaticaTokenManager.EOF){
-                        Argumentos();
-                        Sentencia();
-                        Retorno();}
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Error en metodo, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
+    if (t.next != null)
+    {
+      t = getNextToken();
+    }
+    if (t.kind != GramaticaTokenManager.EOF)
+    {
+      Argumentos();
+      Sentencia();
+      Retorno();
+    }
     }
   }
 
@@ -916,21 +1155,27 @@ kindParaDeclarar = GramaticaConstants.INT;
     try {
       jj_consume_token(RETURN);
     } catch (ParseException e) {
-                        Token t=getToken(0);
-                                if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-           t=getNextToken();
-        }
-                        System.out.println("Se esperaba \"return\", linea: "+t.beginLine+", columna: "+t.beginColumn);
-                        if (t.image=="\n")
-                        {
-                                linea = linea + 1;
-                        }
-                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
-                        {
-                                do{
-                                        t=getNextToken();
-                                }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
-                        }
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Se esperaba \"return\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
     }
   }
 
@@ -939,24 +1184,35 @@ kindParaDeclarar = GramaticaConstants.INT;
       Return();
       Tipo_retorno();
     } catch (ParseException e) {
-                        Token t=getToken(0);
-                                if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-           t=getNextToken();
-        }
-                        System.out.println("Error en retorno, linea: "+t.beginLine+", columna: "+t.beginColumn);
-                        if (t.image=="\n")
-                        {
-                                linea = linea + 1;
-                        }
-                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
-                        {
-                                do{
-                                        t=getNextToken();
-                                }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
-                        }
-                        if(t.next!=null){t=getNextToken();}
-                        if(t.kind != GramaticaTokenManager.EOF){
-                        Tipo_retorno();                 }
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Error en retorno, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
+    if (t.next != null)
+    {
+      t = getNextToken();
+    }
+    if (t.kind != GramaticaTokenManager.EOF)
+    {
+      Tipo_retorno();
+    }
     }
   }
 
@@ -967,61 +1223,108 @@ kindParaDeclarar = GramaticaConstants.INT;
 
   final public void Metodo_void() throws ParseException {
     try {
-      Parea();
-      Argumentos();
+      Void();
+      switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+      case FUNC:
+        Func();
+        Parea();
+        switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+        case CHAR:
+        case STRING:
+        case INT:
+        case FLOAT:
+        case BOOLEAN:
+        case DOUBLE:
+          Argumentos();
+          break;
+        default:
+          jj_la1[15] = jj_gen;
+          ;
+        }
+        break;
+      case PRINMAIN:
+        Prinmain();
+        Parea();
+        break;
+      default:
+        jj_la1[16] = jj_gen;
+        jj_consume_token(-1);
+        throw new ParseException();
+      }
       Parec();
       Llavea();
       Sentencia();
       Llavec();
     } catch (ParseException e) {
-                        Token t=getToken(0);
-                                if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-           t=getNextToken();
-        }
-                        System.out.println("Error en metodo, linea: "+t.beginLine+", columna: "+t.beginColumn);
-                        if (t.image=="\n")
-                        {
-                                linea = linea + 1;
-                        }
-                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
-                        {
-                                do{
-                                        t=getNextToken();
-                                }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
-                        }
-                        if(t.next!=null){t=getNextToken();}
-                        if(t.kind != GramaticaTokenManager.EOF){
-                        Argumentos();
-                        Sentencia();
-                        Cuerpo();}
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Error en metodo, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
+    if (t.next != null)
+    {
+      t = getNextToken();
+    }
+    if (t.kind != GramaticaTokenManager.EOF)
+    {
+      Argumentos();
+      Sentencia();
+      Cuerpo();
+    }
     }
   }
 
   final public void Argumentos() throws ParseException {
     try {
-      Tipo();
       Declaracion();
       ArgumentosA();
     } catch (ParseException e) {
-                        Token t=getToken(0);
-                                if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-           t=getNextToken();
-        }
-                        System.out.println("Error en argumentos, linea: "+t.beginLine+", columna: "+t.beginColumn);
-                        if (t.image=="\n")
-                        {
-                                linea = linea + 1;
-                        }
-                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
-                        {
-                                do{
-                                        t=getNextToken();
-                                }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
-                        }
-                        if(t.next!=null){t=getNextToken();}
-                        if(t.kind != GramaticaTokenManager.EOF){
-                        Declaracion();
-                        ArgumentosA();}
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Error en argumentos, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
+    if (t.next != null)
+    {
+      t = getNextToken();
+    }
+    if (t.kind != GramaticaTokenManager.EOF)
+    {
+      Declaracion();
+      ArgumentosA();
+    }
     }
   }
 
@@ -1029,10 +1332,22 @@ kindParaDeclarar = GramaticaConstants.INT;
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case COM:
       jj_consume_token(COM);
-      Argumentos();
+      switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
+      case CHAR:
+      case STRING:
+      case INT:
+      case FLOAT:
+      case BOOLEAN:
+      case DOUBLE:
+        Argumentos();
+        break;
+      default:
+        jj_la1[17] = jj_gen;
+        ;
+      }
       break;
     default:
-      jj_la1[14] = jj_gen;
+      jj_la1[18] = jj_gen;
       ;
     }
   }
@@ -1051,28 +1366,39 @@ kindParaDeclarar = GramaticaConstants.INT;
         Variables_clase();
         break;
       default:
-        jj_la1[15] = jj_gen;
+        jj_la1[19] = jj_gen;
         ;
       }
     } catch (ParseException e) {
-                        Token t=getToken(0);
-                                if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-           t=getNextToken();
-        }
-                        System.out.println("Error en variables de clase, linea: "+t.beginLine+", columna: "+t.beginColumn);
-                        if (t.image=="\n")
-                        {
-                                linea = linea + 1;
-                        }
-                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
-                        {
-                                do{
-                                        t=getNextToken();
-                                }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
-                        }
-                        if(t.next!=null){t=getNextToken();}
-                        if(t.kind != GramaticaTokenManager.EOF){
-                        Variables_clase();}
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Error en variables de clase, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
+    if (t.next != null)
+    {
+      t = getNextToken();
+    }
+    if (t.kind != GramaticaTokenManager.EOF)
+    {
+      Variables_clase();
+    }
     }
   }
 
@@ -1146,34 +1472,45 @@ kindParaDeclarar = GramaticaConstants.INT;
           Sentencia();
           break;
         default:
-          jj_la1[16] = jj_gen;
+          jj_la1[20] = jj_gen;
           jj_consume_token(-1);
           throw new ParseException();
         }
         break;
       default:
-        jj_la1[17] = jj_gen;
+        jj_la1[21] = jj_gen;
         ;
       }
     } catch (ParseException e) {
-                        Token t=getToken(0);
-                                if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-           t=getNextToken();
-        }
-                        System.out.println("Error en sentencia, linea: "+t.beginLine+", columna: "+t.beginColumn);
-                        if (t.image=="\n")
-                        {
-                                linea = linea + 1;
-                        }
-                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
-                        {
-                                do{
-                                        t=getNextToken();
-                                }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
-                        }
-                        if(t.next!=null){t=getNextToken();}
-                        if(t.kind != GramaticaTokenManager.EOF){
-                        Sentencia();}
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Error en sentencia, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
+    if (t.next != null)
+    {
+      t = getNextToken();
+    }
+    if (t.kind != GramaticaTokenManager.EOF)
+    {
+      Sentencia();
+    }
     }
   }
 
@@ -1195,7 +1532,7 @@ kindParaDeclarar = GramaticaConstants.INT;
             ArregloL();
             break;
           default:
-            jj_la1[18] = jj_gen;
+            jj_la1[22] = jj_gen;
             ;
           }
           Parametros2();
@@ -1214,34 +1551,45 @@ kindParaDeclarar = GramaticaConstants.INT;
           Parametros2();
           break;
         default:
-          jj_la1[19] = jj_gen;
+          jj_la1[23] = jj_gen;
           jj_consume_token(-1);
           throw new ParseException();
         }
         break;
       default:
-        jj_la1[20] = jj_gen;
+        jj_la1[24] = jj_gen;
         ;
       }
     } catch (ParseException e) {
-                        Token t=getToken(0);
-                                if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-           t=getNextToken();
-        }
-                        System.out.println("Error en parametros, linea: "+t.beginLine+", columna: "+t.beginColumn);
-                        if (t.image=="\n")
-                        {
-                                linea = linea + 1;
-                        }
-                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
-                        {
-                                do{
-                                        t=getNextToken();
-                                }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
-                        }
-                        if(t.next!=null){t=getNextToken();}
-                        if(t.kind != GramaticaTokenManager.EOF){
-                        Parametros2();}
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Error en parametros, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
+    if (t.next != null)
+    {
+      t = getNextToken();
+    }
+    if (t.kind != GramaticaTokenManager.EOF)
+    {
+      Parametros2();
+    }
     }
   }
 
@@ -1259,7 +1607,7 @@ kindParaDeclarar = GramaticaConstants.INT;
             ArregloL();
             break;
           default:
-            jj_la1[21] = jj_gen;
+            jj_la1[25] = jj_gen;
             ;
           }
           Parametros2();
@@ -1278,34 +1626,45 @@ kindParaDeclarar = GramaticaConstants.INT;
           Parametros2();
           break;
         default:
-          jj_la1[22] = jj_gen;
+          jj_la1[26] = jj_gen;
           jj_consume_token(-1);
           throw new ParseException();
         }
         break;
       default:
-        jj_la1[23] = jj_gen;
+        jj_la1[27] = jj_gen;
         ;
       }
     } catch (ParseException e) {
-                        Token t=getToken(0);
-                                if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-           t=getNextToken();
-        }
-                        System.out.println("Error en parametros, linea: "+t.beginLine+", columna: "+t.beginColumn);
-                        if (t.image=="\n")
-                        {
-                                linea = linea + 1;
-                        }
-                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
-                        {
-                                do{
-                                        t=getNextToken();
-                                }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
-                        }
-                        if(t.next!=null){t=getNextToken();}
-                        if(t.kind != GramaticaTokenManager.EOF){
-                        Parametros2();}
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Error en parametros, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
+    if (t.next != null)
+    {
+      t = getNextToken();
+    }
+    if (t.kind != GramaticaTokenManager.EOF)
+    {
+      Parametros2();
+    }
     }
   }
 
@@ -1316,24 +1675,35 @@ kindParaDeclarar = GramaticaConstants.INT;
       Parec();
       Puntoyc();
     } catch (ParseException e) {
-                        Token t=getToken(0);
-                                if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-           t=getNextToken();
-        }
-                        System.out.println("Error en llamado de metodo, linea: "+t.beginLine+", columna: "+t.beginColumn);
-                        if (t.image=="\n")
-                        {
-                                linea = linea + 1;
-                        }
-                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
-                        {
-                                do{
-                                        t=getNextToken();
-                                }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
-                        }
-                if(t.next!=null){t=getNextToken();}
-                if(t.kind != GramaticaTokenManager.EOF){
-                Parametros();}
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Error en llamado de metodo, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
+    if (t.next != null)
+    {
+      t = getNextToken();
+    }
+    if (t.kind != GramaticaTokenManager.EOF)
+    {
+      Parametros();
+    }
     }
   }
 
@@ -1341,21 +1711,27 @@ kindParaDeclarar = GramaticaConstants.INT;
     try {
       jj_consume_token(EXCEPT);
     } catch (ParseException e) {
-                        Token t=getToken(0);
-                                if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-           t=getNextToken();
-        }
-                        System.out.println("Se esperaba \"Except\", linea: "+t.beginLine+", columna: "+t.beginColumn);
-                        if (t.image=="\n")
-                        {
-                                linea = linea + 1;
-                        }
-                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
-                        {
-                                do{
-                                        t=getNextToken();
-                                }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
-                        }
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Se esperaba \"Except\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
     }
   }
 
@@ -1363,21 +1739,27 @@ kindParaDeclarar = GramaticaConstants.INT;
     try {
       jj_consume_token(CATCH);
     } catch (ParseException e) {
-                        Token t=getToken(0);
-                                if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-           t=getNextToken();
-        }
-                        System.out.println("Se esperaba \"Catch\", linea: "+t.beginLine+", columna: "+t.beginColumn);
-                        if (t.image=="\n")
-                        {
-                                linea = linea + 1;
-                        }
-                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
-                        {
-                                do{
-                                        t=getNextToken();
-                                }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
-                        }
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Se esperaba \"Catch\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
     }
   }
 
@@ -1395,25 +1777,36 @@ kindParaDeclarar = GramaticaConstants.INT;
       Sentencia();
       Llavec();
     } catch (ParseException e) {
-                        Token t=getToken(0);
-                                if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-           t=getNextToken();
-        }
-                        System.out.println("Error en try-catch, linea: "+t.beginLine+", columna: "+t.beginColumn);
-                        if (t.image=="\n")
-                        {
-                                linea = linea + 1;
-                        }
-                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
-                        {
-                                do{
-                                        t=getNextToken();
-                                }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
-                        }
-                if(t.next!=null){t=getNextToken();}
-                if(t.kind != GramaticaTokenManager.EOF){
-                Catch();
-                Sentencia();}
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Error en try-catch, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
+    if (t.next != null)
+    {
+      t = getNextToken();
+    }
+    if (t.kind != GramaticaTokenManager.EOF)
+    {
+      Catch();
+      Sentencia();
+    }
     }
   }
 
@@ -1430,24 +1823,35 @@ kindParaDeclarar = GramaticaConstants.INT;
       Sentencia();
       Llavec();
     } catch (ParseException e) {
-                        Token t=getToken(0);
-                                if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-           t=getNextToken();
-        }
-                        System.out.println("Error en ciclo for, linea: "+t.beginLine+", columna: "+t.beginColumn);
-                        if (t.image=="\n")
-                        {
-                                linea = linea + 1;
-                        }
-                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
-                        {
-                                do{
-                                        t=getNextToken();
-                                }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
-                        }
-                if(t.next!=null){t=getNextToken();}
-                if(t.kind != GramaticaTokenManager.EOF){
-                Sentencia();}
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Error en ciclo for, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
+    if (t.next != null)
+    {
+      t = getNextToken();
+    }
+    if (t.kind != GramaticaTokenManager.EOF)
+    {
+      Sentencia();
+    }
     }
   }
 
@@ -1455,21 +1859,27 @@ kindParaDeclarar = GramaticaConstants.INT;
     try {
       jj_consume_token(WHILE);
     } catch (ParseException e) {
-                        Token t=getToken(0);
-                                if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-           t=getNextToken();
-        }
-                        System.out.println("Se esperaba \"While\", linea: "+t.beginLine+", columna: "+t.beginColumn);
-                        if (t.image=="\n")
-                        {
-                                linea = linea + 1;
-                        }
-                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
-                        {
-                                do{
-                                        t=getNextToken();
-                                }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
-                        }
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Se esperaba \"While\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
     }
   }
 
@@ -1477,21 +1887,27 @@ kindParaDeclarar = GramaticaConstants.INT;
     try {
       jj_consume_token(DO);
     } catch (ParseException e) {
-                        Token t=getToken(0);
-                                if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-           t=getNextToken();
-        }
-                        System.out.println("Se esperaba \"Do\", linea: "+t.beginLine+", columna: "+t.beginColumn);
-                        if (t.image=="\n")
-                        {
-                                linea = linea + 1;
-                        }
-                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
-                        {
-                                do{
-                                        t=getNextToken();
-                                }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
-                        }
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Se esperaba \"Do\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
     }
   }
 
@@ -1519,29 +1935,40 @@ kindParaDeclarar = GramaticaConstants.INT;
         Puntoyc();
         break;
       default:
-        jj_la1[24] = jj_gen;
+        jj_la1[28] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
     } catch (ParseException e) {
-                        Token t=getToken(0);
-                                if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-           t=getNextToken();
-        }
-                        System.out.println("Error en ciclo while, linea: "+t.beginLine+", columna: "+t.beginColumn);
-                        if (t.image=="\n")
-                        {
-                                linea = linea + 1;
-                        }
-                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
-                        {
-                                do{
-                                        t=getNextToken();
-                                }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
-                        }
-                if(t.next!=null){t=getNextToken();}
-                if(t.kind != GramaticaTokenManager.EOF){
-                Sentencia();}
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Error en ciclo while, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
+    if (t.next != null)
+    {
+      t = getNextToken();
+    }
+    if (t.kind != GramaticaTokenManager.EOF)
+    {
+      Sentencia();
+    }
     }
   }
 
@@ -1555,25 +1982,36 @@ kindParaDeclarar = GramaticaConstants.INT;
       Llavec();
       Si_e();
     } catch (ParseException e) {
-                        Token t=getToken(0);
-                                if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-           t=getNextToken();
-        }
-                        System.out.println("Error en condicion, linea: "+t.beginLine+", columna: "+t.beginColumn);
-                        if (t.image=="\n")
-                        {
-                                linea = linea + 1;
-                        }
-                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
-                        {
-                                do{
-                                        t=getNextToken();
-                                }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
-                        }
-                if(t.next!=null){t=getNextToken();}
-                if(t.kind != GramaticaTokenManager.EOF){
-                Sentencia();
-                Si_e();}
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Error en condicion, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
+    if (t.next != null)
+    {
+      t = getNextToken();
+    }
+    if (t.kind != GramaticaTokenManager.EOF)
+    {
+      Sentencia();
+      Si_e();
+    }
     }
   }
 
@@ -1587,26 +2025,32 @@ kindParaDeclarar = GramaticaConstants.INT;
         jj_consume_token(DECRE);
         break;
       default:
-        jj_la1[25] = jj_gen;
+        jj_la1[29] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
     } catch (ParseException e) {
-                        Token t=getToken(0);
-                                if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-           t=getNextToken();
-        }
-                        System.out.println("Se esperaba \"++\" o \"--\", linea: "+t.beginLine+", columna: "+t.beginColumn);
-                        if (t.image=="\n")
-                        {
-                                linea = linea + 1;
-                        }
-                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
-                        {
-                                do{
-                                        t=getNextToken();
-                                }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
-                        }
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Se esperaba \"++\" o \"--\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
     }
   }
 
@@ -1623,35 +2067,46 @@ kindParaDeclarar = GramaticaConstants.INT;
           ArregloL();
           break;
         default:
-          jj_la1[26] = jj_gen;
+          jj_la1[30] = jj_gen;
           ;
         }
         Puntoyc();
         Sentencia_this();
         break;
       default:
-        jj_la1[27] = jj_gen;
+        jj_la1[31] = jj_gen;
         ;
       }
     } catch (ParseException e) {
-                        Token t=getToken(0);
-                                if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-           t=getNextToken();
-        }
-                        System.out.println("Error en condicion, linea: "+t.beginLine+", columna: "+t.beginColumn);
-                        if (t.image=="\n")
-                        {
-                                linea = linea + 1;
-                        }
-                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
-                        {
-                                do{
-                                        t=getNextToken();
-                                }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
-                        }
-                if(t.next!=null){t=getNextToken();}
-                if(t.kind != GramaticaTokenManager.EOF){
-                Sentencia_this();}
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Error en condicion, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
+    if (t.next != null)
+    {
+      t = getNextToken();
+    }
+    if (t.kind != GramaticaTokenManager.EOF)
+    {
+      Sentencia_this();
+    }
     }
   }
 
@@ -1659,21 +2114,27 @@ kindParaDeclarar = GramaticaConstants.INT;
     try {
       jj_consume_token(BREAK);
     } catch (ParseException e) {
-                        Token t=getToken(0);
-                                if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-           t=getNextToken();
-        }
-                        System.out.println("Se esperaba \"break\", linea: "+t.beginLine+", columna: "+t.beginColumn);
-                        if (t.image=="\n")
-                        {
-                                linea = linea + 1;
-                        }
-                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
-                        {
-                                do{
-                                        t=getNextToken();
-                                }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
-                        }
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Se esperaba \"break\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
     }
   }
 
@@ -1686,7 +2147,7 @@ kindParaDeclarar = GramaticaConstants.INT;
         ArregloL();
         break;
       default:
-        jj_la1[28] = jj_gen;
+        jj_la1[32] = jj_gen;
         ;
       }
       Llavea();
@@ -1698,25 +2159,36 @@ kindParaDeclarar = GramaticaConstants.INT;
       Puntoyc();
       Llavec();
     } catch (ParseException e) {
-                        Token t=getToken(0);
-                                if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-           t=getNextToken();
-        }
-                        System.out.println("Error en sentencia switch, linea: "+t.beginLine+", columna: "+t.beginColumn);
-                        if (t.image=="\n")
-                        {
-                                linea = linea + 1;
-                        }
-                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
-                        {
-                                do{
-                                        t=getNextToken();
-                                }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
-                        }
-                if(t.next!=null){t=getNextToken();}
-                if(t.kind != GramaticaTokenManager.EOF){
-                Sentencia_switch();
-                Sentencia();}
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Error en sentencia switch, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
+    if (t.next != null)
+    {
+      t = getNextToken();
+    }
+    if (t.kind != GramaticaTokenManager.EOF)
+    {
+      Sentencia_switch();
+      Sentencia();
+    }
     }
   }
 
@@ -1724,21 +2196,27 @@ kindParaDeclarar = GramaticaConstants.INT;
     try {
       jj_consume_token(CASE);
     } catch (ParseException e) {
-                        Token t=getToken(0);
-                                if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-           t=getNextToken();
-        }
-                        System.out.println("Se esperaba \"Case\", linea: "+t.beginLine+", columna: "+t.beginColumn);
-                        if (t.image=="\n")
-                        {
-                                linea = linea + 1;
-                        }
-                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
-                        {
-                                do{
-                                        t=getNextToken();
-                                }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
-                        }
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Se esperaba \"Case\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
     }
   }
 
@@ -1746,21 +2224,27 @@ kindParaDeclarar = GramaticaConstants.INT;
     try {
       jj_consume_token(DOSP);
     } catch (ParseException e) {
-                        Token t=getToken(0);
-                                if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-           t=getNextToken();
-        }
-                        System.out.println("Se esperaba \":\", linea: "+t.beginLine+", columna: "+t.beginColumn);
-                        if (t.image=="\n")
-                        {
-                                linea = linea + 1;
-                        }
-                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
-                        {
-                                do{
-                                        t=getNextToken();
-                                }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
-                        }
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Se esperaba \":\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
     }
   }
 
@@ -1776,7 +2260,7 @@ kindParaDeclarar = GramaticaConstants.INT;
       Case();
       break;
     default:
-      jj_la1[29] = jj_gen;
+      jj_la1[33] = jj_gen;
       ;
     }
   }
@@ -1797,26 +2281,32 @@ kindParaDeclarar = GramaticaConstants.INT;
         Var();
         break;
       default:
-        jj_la1[30] = jj_gen;
+        jj_la1[34] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
     } catch (ParseException e) {
-                        Token t=getToken(0);
-                                if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-           t=getNextToken();
-        }
-                        System.out.println("Error en sentencia caso, linea: "+t.beginLine+", columna: "+t.beginColumn);
-                        if (t.image=="\n")
-                        {
-                                linea = linea + 1;
-                        }
-                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
-                        {
-                                do{
-                                        t=getNextToken();
-                                }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
-                        }
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Error en sentencia caso, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
     }
   }
 
@@ -1827,7 +2317,7 @@ kindParaDeclarar = GramaticaConstants.INT;
       Si_EA();
       break;
     default:
-      jj_la1[31] = jj_gen;
+      jj_la1[35] = jj_gen;
       ;
     }
   }
@@ -1844,30 +2334,41 @@ kindParaDeclarar = GramaticaConstants.INT;
         Sentencia_condicion();
         break;
       default:
-        jj_la1[32] = jj_gen;
+        jj_la1[36] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
     } catch (ParseException e) {
-                        Token t=getToken(0);
-                                if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-           t=getNextToken();
-        }
-                        System.out.println("Error en else, linea: "+t.beginLine+", columna: "+t.beginColumn);
-                        if (t.image=="\n")
-                        {
-                                linea = linea + 1;
-                        }
-                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
-                        {
-                                do{
-                                        t=getNextToken();
-                                }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
-                        }
-                if(t.next!=null){t=getNextToken();}
-                if(t.kind != GramaticaTokenManager.EOF){
-                Sentencia();
-                Sentencia_condicion();}
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Error en else, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
+    if (t.next != null)
+    {
+      t = getNextToken();
+    }
+    if (t.kind != GramaticaTokenManager.EOF)
+    {
+      Sentencia();
+      Sentencia_condicion();
+    }
     }
   }
 
@@ -1891,31 +2392,42 @@ kindParaDeclarar = GramaticaConstants.INT;
         Condg();
         break;
       default:
-        jj_la1[33] = jj_gen;
+        jj_la1[37] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
       CondgA();
     } catch (ParseException e) {
-                        Token t=getToken(0);
-                                if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-           t=getNextToken();
-        }
-                        System.out.println("Error en condicion, linea: "+t.beginLine+", columna: "+t.beginColumn);
-                        if (t.image=="\n")
-                        {
-                                linea = linea + 1;
-                        }
-                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
-                        {
-                                do{
-                                        t=getNextToken();
-                                }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
-                        }
-                if(t.next!=null){t=getNextToken();}
-                if(t.kind != GramaticaTokenManager.EOF){
-                Condg();
-                Cond();}
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Error en condicion, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
+    if (t.next != null)
+    {
+      t = getNextToken();
+    }
+    if (t.kind != GramaticaTokenManager.EOF)
+    {
+      Condg();
+      Cond();
+    }
     }
   }
 
@@ -1942,34 +2454,45 @@ kindParaDeclarar = GramaticaConstants.INT;
           CondgA();
           break;
         default:
-          jj_la1[34] = jj_gen;
+          jj_la1[38] = jj_gen;
           jj_consume_token(-1);
           throw new ParseException();
         }
         break;
       default:
-        jj_la1[35] = jj_gen;
+        jj_la1[39] = jj_gen;
         ;
       }
     } catch (ParseException e) {
-                        Token t=getToken(0);
-                                if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-           t=getNextToken();
-        }
-                        System.out.println("Error en condicion, linea: "+t.beginLine+", columna: "+t.beginColumn);
-                        if (t.image=="\n")
-                        {
-                                linea = linea + 1;
-                        }
-                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
-                        {
-                                do{
-                                        t=getNextToken();
-                                }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
-                        }
-                if(t.next!=null){t=getNextToken();}
-                if(t.kind != GramaticaTokenManager.EOF){
-                Exp();}
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Error en condicion, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
+    if (t.next != null)
+    {
+      t = getNextToken();
+    }
+    if (t.kind != GramaticaTokenManager.EOF)
+    {
+      Exp();
+    }
     }
   }
 
@@ -2001,7 +2524,7 @@ kindParaDeclarar = GramaticaConstants.INT;
           jj_consume_token(DIFER);
           break;
         default:
-          jj_la1[36] = jj_gen;
+          jj_la1[40] = jj_gen;
           jj_consume_token(-1);
           throw new ParseException();
         }
@@ -2014,29 +2537,40 @@ kindParaDeclarar = GramaticaConstants.INT;
         jj_consume_token(FALSE);
         break;
       default:
-        jj_la1[37] = jj_gen;
+        jj_la1[41] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
     } catch (ParseException e) {
-                        Token t=getToken(0);
-                                if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-           t=getNextToken();
-        }
-                        System.out.println("Error en condicion, linea: "+t.beginLine+", columna: "+t.beginColumn);
-                        if (t.image=="\n")
-                        {
-                                linea = linea + 1;
-                        }
-                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
-                        {
-                                do{
-                                        t=getNextToken();
-                                }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
-                        }
-                if(t.next!=null){t=getNextToken();}
-                if(t.kind != GramaticaTokenManager.EOF){
-                Exp();}
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Error en condicion, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
+    if (t.next != null)
+    {
+      t = getNextToken();
+    }
+    if (t.kind != GramaticaTokenManager.EOF)
+    {
+      Exp();
+    }
     }
   }
 
@@ -2057,7 +2591,7 @@ kindParaDeclarar = GramaticaConstants.INT;
           ArregloL();
           break;
         default:
-          jj_la1[38] = jj_gen;
+          jj_la1[42] = jj_gen;
           ;
         }
         ExpA();
@@ -2071,29 +2605,40 @@ kindParaDeclarar = GramaticaConstants.INT;
         ExpA();
         break;
       default:
-        jj_la1[39] = jj_gen;
+        jj_la1[43] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
     } catch (ParseException e) {
-                        Token t=getToken(0);
-                                if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-           t=getNextToken();
-        }
-                        System.out.println("Error en condicion, linea: "+t.beginLine+", columna: "+t.beginColumn);
-                        if (t.image=="\n")
-                        {
-                                linea = linea + 1;
-                        }
-                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
-                        {
-                                do{
-                                        t=getNextToken();
-                                }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
-                        }
-                if(t.next!=null){t=getNextToken();}
-                if(t.kind != GramaticaTokenManager.EOF){
-                ExpA();}
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Error en condicion, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
+    if (t.next != null)
+    {
+      t = getNextToken();
+    }
+    if (t.kind != GramaticaTokenManager.EOF)
+    {
+      ExpA();
+    }
     }
   }
 
@@ -2121,28 +2666,39 @@ kindParaDeclarar = GramaticaConstants.INT;
         Exp();
         break;
       default:
-        jj_la1[40] = jj_gen;
+        jj_la1[44] = jj_gen;
         Parametros();
       }
     } catch (ParseException e) {
-                        Token t=getToken(0);
-                                if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-           t=getNextToken();
-        }
-                        System.out.println("Error en condicion, linea: "+t.beginLine+", columna: "+t.beginColumn);
-                        if (t.image=="\n")
-                        {
-                                linea = linea + 1;
-                        }
-                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
-                        {
-                                do{
-                                        t=getNextToken();
-                                }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
-                        }
-                if(t.next!=null){t=getNextToken();}
-                if(t.kind != GramaticaTokenManager.EOF){
-                Parametros();}
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Error en condicion, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
+    if (t.next != null)
+    {
+      t = getNextToken();
+    }
+    if (t.kind != GramaticaTokenManager.EOF)
+    {
+      Parametros();
+    }
     }
   }
 
@@ -2150,21 +2706,27 @@ kindParaDeclarar = GramaticaConstants.INT;
     try {
       jj_consume_token(VAR);
     } catch (ParseException e) {
-                        Token t=getToken(0);
-                                if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-           t=getNextToken();
-        }
-                        System.out.println("Error en nombre de variable, linea: "+t.beginLine+", columna: "+t.beginColumn);
-                        if (t.image=="\n")
-                        {
-                                linea = linea + 1;
-                        }
-                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
-                        {
-                                do{
-                                        t=getNextToken();
-                                }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
-                        }
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Error en nombre de variable, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
     }
   }
 
@@ -2180,7 +2742,7 @@ kindParaDeclarar = GramaticaConstants.INT;
       Sentencia_incremental();
       break;
     default:
-      jj_la1[41] = jj_gen;
+      jj_la1[45] = jj_gen;
       jj_consume_token(-1);
       throw new ParseException();
     }
@@ -2194,20 +2756,25 @@ kindParaDeclarar = GramaticaConstants.INT;
     case FLOTANTEDOUBLE:
     case CARACTER:
     case CADENA:
+    case VAR:
       PonerDato();
       break;
     case PAREA:
       ParentesisExpr();
       break;
     default:
-      jj_la1[42] = jj_gen;
+      jj_la1[46] = jj_gen;
       jj_consume_token(-1);
       throw new ParseException();
     }
   }
 
   final public void Expr2() throws ParseException {
-JOptionPane.showMessageDialog(null,TA.checkAsing(valor1CompAsig,valor2CompAsig));
+  JOptionPane.showMessageDialog
+  (
+    null, TA.checkAsing(valor1CompAsig, valor2CompAsig)
+  )
+  ;
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case SUMA:
     case RESTA:
@@ -2219,13 +2786,13 @@ JOptionPane.showMessageDialog(null,TA.checkAsing(valor1CompAsig,valor2CompAsig))
       Expr();
       break;
     default:
-      jj_la1[43] = jj_gen;
+      jj_la1[47] = jj_gen;
       ;
     }
   }
 
   final public void PonerDato() throws ParseException {
-    valor2CompAsig = token.next;
+  valor2CompAsig = token.next;
     TipoDato();
     Expr2();
   }
@@ -2257,8 +2824,11 @@ JOptionPane.showMessageDialog(null,TA.checkAsing(valor1CompAsig,valor2CompAsig))
     case FALSE:
       jj_consume_token(FALSE);
       break;
+    case VAR:
+      jj_consume_token(VAR);
+      break;
     default:
-      jj_la1[44] = jj_gen;
+      jj_la1[48] = jj_gen;
       jj_consume_token(-1);
       throw new ParseException();
     }
@@ -2270,10 +2840,11 @@ JOptionPane.showMessageDialog(null,TA.checkAsing(valor1CompAsig,valor2CompAsig))
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case CORA:
         jj_consume_token(CORA);
+        jj_consume_token(ENTERO);
         jj_consume_token(CORC);
         break;
       default:
-        jj_la1[45] = jj_gen;
+        jj_la1[49] = jj_gen;
         ;
       }
       Declarando();
@@ -2282,61 +2853,82 @@ JOptionPane.showMessageDialog(null,TA.checkAsing(valor1CompAsig,valor2CompAsig))
         DeclaracionAsignacion();
         break;
       default:
-        jj_la1[46] = jj_gen;
+        jj_la1[50] = jj_gen;
         ;
       }
     } catch (ParseException e) {
-                        Token t=getToken(0);
-                                if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-           t=getNextToken();
-        }
-                        System.out.println("Error en declaracion, linea: "+t.beginLine+", columna: "+t.beginColumn);
-                        if (t.image=="\n")
-                        {
-                                linea = linea + 1;
-                        }
-                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
-                        {
-                                do{
-                                        t=getNextToken();
-                                }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
-                        }
-                if(t.next!=null){t=getNextToken();}
-                if(t.kind != GramaticaTokenManager.EOF){
-                DeclaracionTA();
-                DeclaracionT();}
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Error en declaracion, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
+    if (t.next != null)
+    {
+      t = getNextToken();
+    }
+    if (t.kind != GramaticaTokenManager.EOF)
+    {
+      DeclaracionTA();
+      DeclaracionT();
+    }
     }
   }
 
   final public void Declarando() throws ParseException {
- TA.InsertarSimbolo(token.next, kindParaDeclarar);
+  //JOptionPane.showMessageDialog(null,"Declarando: " + getNextTokenWithoutIncrease() + kindParaDeclarar);
+  TA.InsertarSimbolo(getNextTokenWithoutIncrease(), kindParaDeclarar);
     jj_consume_token(VAR);
   }
 
   final public void DeclaracionAsignacion() throws ParseException {
- valor1CompAsig = token;
+  valor1CompAsig = token;
     try {
       jj_consume_token(ASIG);
       Expr();
     } catch (ParseException e) {
-                        Token t=getToken(0);
-                                if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-           t=getNextToken();
-        }
-                        System.out.println("Error en Inicializacion de variable, linea: "+t.beginLine+", columna: "+t.beginColumn);
-                        if (t.image=="\n")
-                        {
-                                linea = linea + 1;
-                        }
-                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
-                        {
-                                do{
-                                        t=getNextToken();
-                                }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
-                        }
-                if(t.next!=null){t=getNextToken();}
-                DeclaracionTA();
-                DeclaracionT();
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Error en Inicializacion de variable, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
+    if (t.next != null)
+    {
+      t = getNextToken();
+    }
+    DeclaracionTA();
+    DeclaracionT();
     }
   }
 
@@ -2363,7 +2955,7 @@ JOptionPane.showMessageDialog(null,TA.checkAsing(valor1CompAsig,valor2CompAsig))
             ;
             break;
           default:
-            jj_la1[47] = jj_gen;
+            jj_la1[51] = jj_gen;
             break label_1;
           }
           Oper();
@@ -2385,7 +2977,7 @@ JOptionPane.showMessageDialog(null,TA.checkAsing(valor1CompAsig,valor2CompAsig))
             ;
             break;
           default:
-            jj_la1[48] = jj_gen;
+            jj_la1[52] = jj_gen;
             break label_2;
           }
           Oper();
@@ -2394,26 +2986,32 @@ JOptionPane.showMessageDialog(null,TA.checkAsing(valor1CompAsig,valor2CompAsig))
         Parec();
         break;
       default:
-        jj_la1[49] = jj_gen;
+        jj_la1[53] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
     } catch (ParseException e) {
-                        Token t=getToken(0);
-                                if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-           t=getNextToken();
-        }
-                        System.out.println("Error en declaracion, linea: "+t.beginLine+", columna: "+t.beginColumn);
-                        if (t.image=="\n")
-                        {
-                                linea = linea + 1;
-                        }
-                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
-                        {
-                                do{
-                                        t=getNextToken();
-                                }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
-                        }
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Error en declaracion, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
     }
   }
 
@@ -2440,7 +3038,7 @@ JOptionPane.showMessageDialog(null,TA.checkAsing(valor1CompAsig,valor2CompAsig))
             ;
             break;
           default:
-            jj_la1[50] = jj_gen;
+            jj_la1[54] = jj_gen;
             break label_3;
           }
           Oper();
@@ -2462,7 +3060,7 @@ JOptionPane.showMessageDialog(null,TA.checkAsing(valor1CompAsig,valor2CompAsig))
             ;
             break;
           default:
-            jj_la1[51] = jj_gen;
+            jj_la1[55] = jj_gen;
             break label_4;
           }
           Oper();
@@ -2471,30 +3069,41 @@ JOptionPane.showMessageDialog(null,TA.checkAsing(valor1CompAsig,valor2CompAsig))
         Parec();
         break;
       default:
-        jj_la1[52] = jj_gen;
+        jj_la1[56] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
       DeclaracionTA1();
     } catch (ParseException e) {
-                        Token t=getToken(0);
-                                if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-           t=getNextToken();
-        }
-                        System.out.println("Error en declaracion, linea: "+t.beginLine+", columna: "+t.beginColumn);
-                        if (t.image=="\n")
-                        {
-                                linea = linea + 1;
-                        }
-                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
-                        {
-                                do{
-                                        t=getNextToken();
-                                }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
-                        }
-                        if(t.next!=null){t=getNextToken();}
-                        if(t.kind != GramaticaTokenManager.EOF){
-                        DeclaracionTA1();}
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Error en declaracion, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
+    if (t.next != null)
+    {
+      t = getNextToken();
+    }
+    if (t.kind != GramaticaTokenManager.EOF)
+    {
+      DeclaracionTA1();
+    }
     }
   }
 
@@ -2519,7 +3128,7 @@ JOptionPane.showMessageDialog(null,TA.checkAsing(valor1CompAsig,valor2CompAsig))
               ;
               break;
             default:
-              jj_la1[53] = jj_gen;
+              jj_la1[57] = jj_gen;
               break label_5;
             }
             Oper();
@@ -2541,7 +3150,7 @@ JOptionPane.showMessageDialog(null,TA.checkAsing(valor1CompAsig,valor2CompAsig))
               ;
               break;
             default:
-              jj_la1[54] = jj_gen;
+              jj_la1[58] = jj_gen;
               break label_6;
             }
             Oper();
@@ -2551,34 +3160,45 @@ JOptionPane.showMessageDialog(null,TA.checkAsing(valor1CompAsig,valor2CompAsig))
           DeclaracionTA1();
           break;
         default:
-          jj_la1[55] = jj_gen;
+          jj_la1[59] = jj_gen;
           jj_consume_token(-1);
           throw new ParseException();
         }
         break;
       default:
-        jj_la1[56] = jj_gen;
+        jj_la1[60] = jj_gen;
         ;
       }
     } catch (ParseException e) {
-                        Token t=getToken(0);
-                                if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-           t=getNextToken();
-        }
-                        System.out.println("Error en declaracion, linea: "+t.beginLine+", columna: "+t.beginColumn);
-                        if (t.image=="\n")
-                        {
-                                linea = linea + 1;
-                        }
-                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
-                        {
-                                do{
-                                        t=getNextToken();
-                                }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
-                        }
-                        if(t.next!=null){t=getNextToken();}
-                        if(t.kind != GramaticaTokenManager.EOF){
-                        DeclaracionTA1();}
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Error en declaracion, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
+    if (t.next != null)
+    {
+      t = getNextToken();
+    }
+    if (t.kind != GramaticaTokenManager.EOF)
+    {
+      DeclaracionTA1();
+    }
     }
   }
 
@@ -2587,21 +3207,27 @@ JOptionPane.showMessageDialog(null,TA.checkAsing(valor1CompAsig,valor2CompAsig))
       jj_consume_token(CORA);
       jj_consume_token(CORC);
     } catch (ParseException e) {
-                        Token t=getToken(0);
-                                if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-           t=getNextToken();
-        }
-                        System.out.println("Se esperaba \"[]\", linea: "+t.beginLine+", columna: "+t.beginColumn);
-                        if (t.image=="\n")
-                        {
-                                linea = linea + 1;
-                        }
-                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
-                        {
-                                do{
-                                        t=getNextToken();
-                                }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
-                        }
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Se esperaba \"[]\", linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
     }
   }
 
@@ -2615,27 +3241,33 @@ JOptionPane.showMessageDialog(null,TA.checkAsing(valor1CompAsig,valor2CompAsig))
         jj_consume_token(VAR);
         break;
       default:
-        jj_la1[57] = jj_gen;
+        jj_la1[61] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
       jj_consume_token(CORC);
     } catch (ParseException e) {
-                        Token t=getToken(0);
-                                if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-           t=getNextToken();
-        }
-                        System.out.println("Error en declaracion de arreglo, linea: "+t.beginLine+", columna: "+t.beginColumn);
-                        if (t.image=="\n")
-                        {
-                                linea = linea + 1;
-                        }
-                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
-                        {
-                                do{
-                                        t=getNextToken();
-                                }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
-                        }
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Error en declaracion de arreglo, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
     }
   }
 
@@ -2668,31 +3300,37 @@ JOptionPane.showMessageDialog(null,TA.checkAsing(valor1CompAsig,valor2CompAsig))
           ArregloL();
           break;
         default:
-          jj_la1[58] = jj_gen;
+          jj_la1[62] = jj_gen;
           ;
         }
         break;
       default:
-        jj_la1[59] = jj_gen;
+        jj_la1[63] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
     } catch (ParseException e) {
-                        Token t=getToken(0);
-                                if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-           t=getNextToken();
-        }
-                        System.out.println("Error en asignacion de valor, linea: "+t.beginLine+", columna: "+t.beginColumn);
-                        if (t.image=="\n")
-                        {
-                                linea = linea + 1;
-                        }
-                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
-                        {
-                                do{
-                                        t=getNextToken();
-                                }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
-                        }
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Error en asignacion de valor, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
     }
   }
 
@@ -2718,26 +3356,32 @@ JOptionPane.showMessageDialog(null,TA.checkAsing(valor1CompAsig,valor2CompAsig))
         jj_consume_token(MULTI);
         break;
       default:
-        jj_la1[60] = jj_gen;
+        jj_la1[64] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
     } catch (ParseException e) {
-                        Token t=getToken(0);
-                                if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-           t=getNextToken();
-        }
-                        System.out.println("Se esperaba un operador, linea: "+t.beginLine+", columna: "+t.beginColumn);
-                        if (t.image=="\n")
-                        {
-                                linea = linea + 1;
-                        }
-                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
-                        {
-                                do{
-                                        t=getNextToken();
-                                }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
-                        }
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Se esperaba un operador, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
     }
   }
 
@@ -2753,7 +3397,7 @@ JOptionPane.showMessageDialog(null,TA.checkAsing(valor1CompAsig,valor2CompAsig))
       Var();
       break;
     default:
-      jj_la1[61] = jj_gen;
+      jj_la1[65] = jj_gen;
       jj_consume_token(-1);
       throw new ParseException();
     }
@@ -2776,7 +3420,7 @@ JOptionPane.showMessageDialog(null,TA.checkAsing(valor1CompAsig,valor2CompAsig))
       X1();
       break;
     default:
-      jj_la1[62] = jj_gen;
+      jj_la1[66] = jj_gen;
       jj_consume_token(-1);
       throw new ParseException();
     }
@@ -2816,13 +3460,13 @@ JOptionPane.showMessageDialog(null,TA.checkAsing(valor1CompAsig,valor2CompAsig))
         X1();
         break;
       default:
-        jj_la1[63] = jj_gen;
+        jj_la1[67] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
       break;
     default:
-      jj_la1[64] = jj_gen;
+      jj_la1[68] = jj_gen;
       ;
     }
   }
@@ -2844,7 +3488,7 @@ JOptionPane.showMessageDialog(null,TA.checkAsing(valor1CompAsig,valor2CompAsig))
       Y1();
       break;
     default:
-      jj_la1[65] = jj_gen;
+      jj_la1[69] = jj_gen;
       jj_consume_token(-1);
       throw new ParseException();
     }
@@ -2878,7 +3522,7 @@ JOptionPane.showMessageDialog(null,TA.checkAsing(valor1CompAsig,valor2CompAsig))
       Y1();
       break;
     default:
-      jj_la1[66] = jj_gen;
+      jj_la1[70] = jj_gen;
       jj_consume_token(-1);
       throw new ParseException();
     }
@@ -2896,7 +3540,7 @@ JOptionPane.showMessageDialog(null,TA.checkAsing(valor1CompAsig,valor2CompAsig))
           ArregloL();
           break;
         default:
-          jj_la1[67] = jj_gen;
+          jj_la1[71] = jj_gen;
           ;
         }
         jj_consume_token(ASIG);
@@ -2911,7 +3555,7 @@ JOptionPane.showMessageDialog(null,TA.checkAsing(valor1CompAsig,valor2CompAsig))
           ArregloL();
           break;
         default:
-          jj_la1[68] = jj_gen;
+          jj_la1[72] = jj_gen;
           ;
         }
         jj_consume_token(ASIG);
@@ -2926,33 +3570,39 @@ JOptionPane.showMessageDialog(null,TA.checkAsing(valor1CompAsig,valor2CompAsig))
           ArregloL();
           break;
         default:
-          jj_la1[69] = jj_gen;
+          jj_la1[73] = jj_gen;
           ;
         }
         jj_consume_token(ASIG);
         Y();
         break;
       default:
-        jj_la1[70] = jj_gen;
+        jj_la1[74] = jj_gen;
         jj_consume_token(-1);
         throw new ParseException();
       }
     } catch (ParseException e) {
-                        Token t=getToken(0);
-                                if(t.image==";" | t.image=="{" | t.image=="}" | t.image==null){
-           t=getNextToken();
-        }
-                        System.out.println("Error en declaracion de variable de ciclo for, linea: "+t.beginLine+", columna: "+t.beginColumn);
-                        if (t.image=="\n")
-                        {
-                                linea = linea + 1;
-                        }
-                        if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n"& t.image != "{" & t.image != "}")
-                        {
-                                do{
-                                        t=getNextToken();
-                                }while(t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
-                        }
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    System.out.println("Error en declaracion de variable de ciclo for, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
     }
   }
 
@@ -2965,7 +3615,7 @@ JOptionPane.showMessageDialog(null,TA.checkAsing(valor1CompAsig,valor2CompAsig))
   public Token jj_nt;
   private int jj_ntk;
   private int jj_gen;
-  final private int[] jj_la1 = new int[71];
+  final private int[] jj_la1 = new int[75];
   static private int[] jj_la1_0;
   static private int[] jj_la1_1;
   static private int[] jj_la1_2;
@@ -2977,16 +3627,16 @@ JOptionPane.showMessageDialog(null,TA.checkAsing(valor1CompAsig,valor2CompAsig))
       jj_la1_init_3();
    }
    private static void jj_la1_init_0() {
-      jj_la1_0 = new int[] {0x20000000,0xf8000,0x1800,0xf8000,0xf9800,0xf9800,0x0,0x80f8000,0x0,0x80f8000,0x0,0x80f8000,0x1800,0x0,0x0,0xf8000,0x9fc140,0x9fc140,0x0,0x0,0x0,0x0,0x0,0x0,0x4100,0x0,0x0,0x0,0x0,0x0,0x0,0x80,0x0,0xc0000000,0x0,0x0,0x0,0xc0000000,0x0,0x0,0x0,0x0,0xc0000000,0x0,0xc0000000,0x0,0x0,0x0,0x0,0xc0008000,0x0,0x0,0xc0008000,0x0,0x0,0x0,0x0,0x0,0x0,0xc0008000,0x0,0xc0000000,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x60000,};
+      jj_la1_0 = new int[] {0x20000000,0xf8000,0x1800,0x80f8000,0xf9800,0xf9800,0x0,0x80f8000,0x0,0x80f8000,0x0,0x80f8000,0x1800,0x8000000,0xf8000,0xf8000,0x0,0xf8000,0x0,0xf8000,0x9fc140,0x9fc140,0x0,0x0,0x0,0x0,0x0,0x0,0x4100,0x0,0x0,0x0,0x0,0x0,0x0,0x80,0x0,0xc0000000,0x0,0x0,0x0,0xc0000000,0x0,0x0,0x0,0x0,0xc0000000,0x0,0xc0000000,0x0,0x0,0x0,0x0,0xc0008000,0x0,0x0,0xc0008000,0x0,0x0,0x0,0x0,0x0,0x0,0xc0008000,0x0,0xc0000000,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x60000,};
    }
    private static void jj_la1_init_1() {
-      jj_la1_1 = new int[] {0x0,0x10,0x0,0x10,0x10,0x10,0x0,0x10,0x0,0x10,0x0,0x10,0x0,0x8,0x8000,0x10,0x13,0x13,0x200,0x800,0x800,0x200,0x800,0x8000,0x0,0x30000000,0x200,0x0,0x200,0x4,0x0,0x0,0x880,0x8000800,0xe000000,0xe000000,0x1f80000,0x800,0x200,0x800,0x0,0x70000000,0x800,0x0,0x0,0x200,0x40000000,0x0,0x0,0x800,0x0,0x0,0x800,0x0,0x0,0x8800,0x8800,0x0,0x200,0x0,0x0,0x0,0x800,0x0,0x0,0x800,0x0,0x200,0x200,0x200,0x10,};
+      jj_la1_1 = new int[] {0x0,0x10,0x0,0x10,0x10,0x10,0x0,0x10,0x0,0x10,0x0,0x10,0x0,0x0,0x10,0x10,0x8,0x10,0x8000,0x10,0x13,0x13,0x200,0x800,0x800,0x200,0x800,0x8000,0x0,0x30000000,0x200,0x0,0x200,0x4,0x0,0x0,0x880,0x8000800,0xe000000,0xe000000,0x1f80000,0x800,0x200,0x800,0x0,0x70000000,0x800,0x0,0x0,0x200,0x40000000,0x0,0x0,0x800,0x0,0x0,0x800,0x0,0x0,0x8800,0x8800,0x0,0x200,0x0,0x0,0x0,0x800,0x0,0x0,0x800,0x0,0x200,0x200,0x200,0x10,};
    }
    private static void jj_la1_init_2() {
-      jj_la1_2 = new int[] {0x0,0x0,0x0,0x840000,0x0,0x0,0x40000,0x0,0x800000,0x0,0x800000,0x0,0x0,0x800000,0x0,0x0,0xc00000,0xc00000,0x0,0x5b0000,0x5b0000,0x0,0x5b0000,0x0,0x0,0x0,0x0,0x400000,0x0,0x0,0x590000,0x0,0x0,0x430000,0x0,0x0,0x0,0x430000,0x0,0x430000,0x1f0,0x0,0x1b0000,0x3f0,0x1b0000,0x0,0x0,0x3f0,0x3f0,0x530000,0x3f0,0x3f0,0x530000,0x3f0,0x3f0,0x0,0x0,0x410000,0x0,0x530000,0x3f0,0x400000,0x410000,0x1f0,0x1f0,0x420000,0x1f0,0x0,0x0,0x0,0x0,};
+      jj_la1_2 = new int[] {0x0,0x0,0x0,0x440000,0x0,0x0,0x40000,0x0,0x400000,0x0,0x400000,0x0,0x0,0x400000,0x0,0x0,0x400000,0x0,0x0,0x0,0x600000,0x600000,0x0,0x3b0000,0x3b0000,0x0,0x3b0000,0x0,0x0,0x0,0x0,0x200000,0x0,0x0,0x390000,0x0,0x0,0x230000,0x0,0x0,0x0,0x230000,0x0,0x230000,0x1f0,0x0,0x3b0000,0x3f0,0x3b0000,0x0,0x0,0x3f0,0x3f0,0x330000,0x3f0,0x3f0,0x330000,0x3f0,0x3f0,0x0,0x0,0x210000,0x0,0x330000,0x3f0,0x200000,0x210000,0x1f0,0x1f0,0x220000,0x1f0,0x0,0x0,0x0,0x0,};
    }
    private static void jj_la1_init_3() {
-      jj_la1_3 = new int[] {0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,};
+      jj_la1_3 = new int[] {0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,};
    }
 
   /** Constructor with InputStream. */
@@ -3000,7 +3650,7 @@ JOptionPane.showMessageDialog(null,TA.checkAsing(valor1CompAsig,valor2CompAsig))
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 71; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 75; i++) jj_la1[i] = -1;
   }
 
   /** Reinitialise. */
@@ -3014,7 +3664,7 @@ JOptionPane.showMessageDialog(null,TA.checkAsing(valor1CompAsig,valor2CompAsig))
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 71; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 75; i++) jj_la1[i] = -1;
   }
 
   /** Constructor. */
@@ -3024,7 +3674,7 @@ JOptionPane.showMessageDialog(null,TA.checkAsing(valor1CompAsig,valor2CompAsig))
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 71; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 75; i++) jj_la1[i] = -1;
   }
 
   /** Reinitialise. */
@@ -3034,7 +3684,7 @@ JOptionPane.showMessageDialog(null,TA.checkAsing(valor1CompAsig,valor2CompAsig))
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 71; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 75; i++) jj_la1[i] = -1;
   }
 
   /** Constructor with generated Token Manager. */
@@ -3043,7 +3693,7 @@ JOptionPane.showMessageDialog(null,TA.checkAsing(valor1CompAsig,valor2CompAsig))
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 71; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 75; i++) jj_la1[i] = -1;
   }
 
   /** Reinitialise. */
@@ -3052,7 +3702,7 @@ JOptionPane.showMessageDialog(null,TA.checkAsing(valor1CompAsig,valor2CompAsig))
     token = new Token();
     jj_ntk = -1;
     jj_gen = 0;
-    for (int i = 0; i < 71; i++) jj_la1[i] = -1;
+    for (int i = 0; i < 75; i++) jj_la1[i] = -1;
   }
 
   private Token jj_consume_token(int kind) throws ParseException {
@@ -3103,12 +3753,12 @@ JOptionPane.showMessageDialog(null,TA.checkAsing(valor1CompAsig,valor2CompAsig))
   /** Generate ParseException. */
   public ParseException generateParseException() {
     jj_expentries.clear();
-    boolean[] la1tokens = new boolean[100];
+    boolean[] la1tokens = new boolean[99];
     if (jj_kind >= 0) {
       la1tokens[jj_kind] = true;
       jj_kind = -1;
     }
-    for (int i = 0; i < 71; i++) {
+    for (int i = 0; i < 75; i++) {
       if (jj_la1[i] == jj_gen) {
         for (int j = 0; j < 32; j++) {
           if ((jj_la1_0[i] & (1<<j)) != 0) {
@@ -3126,7 +3776,7 @@ JOptionPane.showMessageDialog(null,TA.checkAsing(valor1CompAsig,valor2CompAsig))
         }
       }
     }
-    for (int i = 0; i < 100; i++) {
+    for (int i = 0; i < 99; i++) {
       if (la1tokens[i]) {
         jj_expentry = new int[1];
         jj_expentry[0] = i;

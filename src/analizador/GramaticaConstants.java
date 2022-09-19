@@ -172,35 +172,33 @@ public interface GramaticaConstants {
   /** RegularExpression Id. */
   int CADENA = 84;
   /** RegularExpression Id. */
-  int PAQUET = 85;
+  int VAR = 85;
   /** RegularExpression Id. */
-  int VAR = 86;
+  int FUNC = 86;
   /** RegularExpression Id. */
-  int FUNC = 87;
+  int LIBR = 87;
   /** RegularExpression Id. */
-  int LIBR = 88;
+  int ENTEROINV = 88;
   /** RegularExpression Id. */
-  int ENTEROINV = 89;
+  int FLOTDOBINV = 89;
   /** RegularExpression Id. */
-  int FLOTDOBINV = 90;
+  int CADENAINV = 90;
   /** RegularExpression Id. */
-  int CADENAINV = 91;
+  int A = 91;
   /** RegularExpression Id. */
-  int A = 92;
+  int GRADOS = 92;
   /** RegularExpression Id. */
-  int GRADOS = 93;
+  int CPOR = 93;
   /** RegularExpression Id. */
-  int CPOR = 94;
+  int PUNTOS = 94;
   /** RegularExpression Id. */
-  int PUNTOS = 95;
+  int ACENTOI = 95;
   /** RegularExpression Id. */
-  int ACENTOI = 96;
+  int ACENTO = 96;
   /** RegularExpression Id. */
-  int ACENTO = 97;
+  int BARRAI = 97;
   /** RegularExpression Id. */
-  int BARRAI = 98;
-  /** RegularExpression Id. */
-  int ARROBA = 99;
+  int ARROBA = 98;
 
   /** Lexical state. */
   int SALTO = 0;
@@ -294,7 +292,6 @@ public interface GramaticaConstants {
     "<CLASES>",
     "<CARACTER>",
     "<CADENA>",
-    "<PAQUET>",
     "<VAR>",
     "<FUNC>",
     "<LIBR>",
