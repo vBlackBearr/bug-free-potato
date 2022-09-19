@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import extraObjects.GramaticaConstantsNames;
 import Analizador.GramaticaConstants;
+import extraObjects.logsAcumulatorInstance;
 
 public class TokenAsignaciones extends Error {
 
@@ -26,11 +27,14 @@ public class TokenAsignaciones extends Error {
     objTipoDatoCompatible charComp;
 
     public void InsertarSimbolo(Token identificador, int tipo) {
-        tabla.put(identificador.image, tipo);
+        if (!checkVariable(identificador)) {
+            tabla.put(identificador.image, tipo);
+        }else{
+            logsAcumulatorInstance.getInstance().addSemanticLog("Error: El identificador " + identificador.image + " Ya fue declarado \r\nLinea: " + identificador.beginLine);
+        }
     }
 
     public void SetTables() {
-
 
         tiposVariablesComp = new ArrayList<>();
 
@@ -76,27 +80,27 @@ public class TokenAsignaciones extends Error {
 //        JOptionPane.showMessageDialog(null, TokenIzq.image + " " + TokenIzq.kind + "    " + TokenAsig.image + " " + TokenAsig.kind);
         int tipoVar1 = 0;
         int tipoVar2 = 0;
-        
+
 //        JOptionPane.showMessageDialog(null, TokenIzq.image + " - " + TokenIzq.kind + "  |  " + TokenAsig.image + " - " + TokenAsig.kind);
         if (TokenIzq.kind == GramaticaConstants.VAR) {
             if (!checkVariable(TokenIzq)) {
                 return "Error: El identificador " + TokenIzq.image + " No ha sido declarado \r\nLinea: " + TokenIzq.beginLine;
-            }else{
+            } else {
                 tipoVar1 = getTipoVariable(TokenIzq);
 //                JOptionPane.showMessageDialog(null,tipoVar1);
             }
-                
-        }else{
+
+        } else {
             tipoVar1 = TokenIzq.kind;
         }
 
         if (TokenAsig.kind == GramaticaConstants.VAR) {
             if (!checkVariable(TokenAsig)) {
-                return "Error: El identificador " + TokenIzq.image + " No ha sido declarado \r\nLinea: " + TokenIzq.beginLine; 
-            }else{
+                return "Error: El identificador " + TokenIzq.image + " No ha sido declarado \r\nLinea: " + TokenIzq.beginLine;
+            } else {
                 tipoVar2 = getTipoVariable(TokenAsig);
             }
-        }else{
+        } else {
             tipoVar2 = TokenAsig.kind;
         }
 
@@ -122,7 +126,8 @@ public class TokenAsignaciones extends Error {
         if (!tipo.getTiposCompatibles().contains(tipoVar2)) {
             return "Error: No se puede convertir " + TokenAsig.image + " a " + names.getNameFromToken(tipoVar1) + " \r\nLinea: " + TokenIzq.beginLine;
         }
-        return "Sin errores semanticos";
+//        return "Sin errores semanticos";
+        return "";
     }
 
     public boolean checkVariable(Token checkTok) {
@@ -137,8 +142,8 @@ public class TokenAsignaciones extends Error {
             return false;
         }
     }
-    
-    public int getTipoVariable(Token token){
+
+    public int getTipoVariable(Token token) {
         try {
             int kind = (Integer) tabla.get(token.image);
             return kind;

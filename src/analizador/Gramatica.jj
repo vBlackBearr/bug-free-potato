@@ -32,6 +32,8 @@ public class Gramatica
     }
     return token;
   }
+
+  
 }
 
 PARSER_END(Gramatica)
@@ -452,7 +454,7 @@ TOKEN :
   < #letraMay : [ "A"-"Z" ] >
 | < #letraMin : [ "a"-"z" ] >
 | < #c : [ "a"-"z", "A"-"Z", "0"-"9", "|", "'", "/", "(", ")", "{", "}", "[", "]", ",", ".", ";", "_", ":", " ", "<", ">", "+", "-", "*", "=" ] >
-| < #cinv : [ "a"-"z", "A"-"Z", "0"-"9", "|", "'", "/", "(", ")", "{", "}", "[", ",", ".", "_", ":", "<", ">", "-", "*", "=" ] >
+| < #cinv : [ "a"-"z", "A"-"Z", "0"-"9", "|", "'", "(", ")", "{", "}", "[", ",", ".", "_", "<", ">", "-", "=" ] >
 | < #c2 : [ "@", "#", "&", "%" ] >
 | < #digito : [ "0"-"9" ] >
 | < ENTERO : (< digito >)+ >
@@ -951,6 +953,8 @@ void DeclararFloat() :
   }
 }
 
+
+
 void DeclararDouble() :
 {
   kindParaDeclarar = GramaticaConstants.DOUBLE;
@@ -1172,10 +1176,7 @@ void ContenidoClase() :
 { 
   try
   {
-    (((TipoEncapsular() (Declaracion() Puntoyc()
-  | Metodo() | Metodo_void()
-  | Constructor()))
-  | Declaracion() Puntoyc()) ContenidoClase()) ?
+    (((TipoEncapsular())? ( Tipo() (Declaracion() Puntoyc() | Metodo() ) | Constructor() | Metodo_void() )) ContenidoClase()) ?
   }
   catch (ParseException e)
   {
@@ -1211,6 +1212,49 @@ void ContenidoClase() :
       Cuerpo();
     }
   }
+}
+
+void DeclaracionGlobal() :
+{
+}
+{
+  try
+  {
+    (< CORA > < ENTERO > < CORC >)? Declarando() (DeclaracionAsignacion())?
+  }
+  catch (ParseException e)
+  {
+    Token t = getToken(0);
+    if (t.image == ";"
+  | t.image == "{"
+  | t.image == "}"
+  | t.image == null)
+    {
+      t = getNextToken();
+    }
+    logsAcumulatorInstance.getInstance().addSintacticLog("Error en declaracion, linea: " + t.beginLine + ", columna: " + t.beginColumn);
+    if (t.image == "\n")
+    {
+      linea = linea + 1;
+    }
+    if (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}")
+    {
+      do
+      {
+        t = getNextToken();
+      }
+      while (t.image != ";" & t.kind != GramaticaTokenManager.EOF & t.image != "\n" & t.image != "{" & t.image != "}");
+    }
+    if (t.next != null)
+    {
+      t = getNextToken();
+    }
+    if (t.kind != GramaticaTokenManager.EOF)
+    {
+      DeclaracionTA();
+      DeclaracionT();
+    }
+  } 
 }
 
 void Parea() :
@@ -2947,12 +2991,23 @@ void Expr2() :
 }
 
 void PonerDato() :
+{}
 {
-  valor2CompAsig = token.next;
+  TipoDato() seleccionarValor2() CheckCompatibilidad() Expr2()
 }
+
+JAVACODE
+void CheckCompatibilidad()
 {
-  TipoDato() Expr2()
+logsAcumulatorInstance.getInstance().addSemanticLog(TA.checkAsing(valor1CompAsig,valor2CompAsig));
 }
+
+JAVACODE
+void seleccionarValor2()
+{
+valor2CompAsig = token;
+}
+
 
 void ParentesisExpr() :
 {}
@@ -3017,13 +3072,16 @@ void Declaracion() :
 }
 
 void Declarando() :
+{}
 {
-
-  //JOptionPane.showMessageDialog(null,"Declarando: " + getNextTokenWithoutIncrease() + kindParaDeclarar);
-  TA.InsertarSimbolo(getNextTokenWithoutIncrease(), kindParaDeclarar);
+  < VAR > InsertarEnTablaDeVariables()
 }
+
+JAVACODE
+void InsertarEnTablaDeVariables()
 {
-  < VAR >
+//JOptionPane.showMessageDialog(null,"Declarando: " + getNextTokenWithoutIncrease() + kindParaDeclarar);
+TA.InsertarSimbolo(token, kindParaDeclarar);
 }
 
 void DeclaracionAsignacion() :
