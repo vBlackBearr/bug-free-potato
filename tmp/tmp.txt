@@ -5,9 +5,13 @@ public class Miclase{
   private Igf(int pfdds){
   }
   public void principalMain(){
+	int a;
+float b;
+     If(a>=b AND false){
+
+     }
      escribirEnConsola("Hola mundo desde Rex Raptor");
      int x=30;
-x = 2;
      string y="hola";
      escribirEnConsola(x);
      int sss;

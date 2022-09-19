@@ -18,9 +18,12 @@ import java.util.Hashtable;
  * @author Luisp
  */
 public class TokenComparaciones {
+
     //Variable para validar asignaciones a caracteres(ichr)
     public int segunda = 0;
     //Tabla que almacenara los tokens declarados
+
+    typeTableInstance tableInstance = typeTableInstance.getInstance();
 
     ArrayList<objTipoDatoCompatible> tiposVariablesComp;
     objTipoDatoCompatible enteroComp;
@@ -30,7 +33,7 @@ public class TokenComparaciones {
     objTipoDatoCompatible booleanComp;
 
     public void InsertarSimbolo(Token identificador, int tipo) {
-        if (!checkVariable(identificador)) {
+        if (!tableInstance.checkVariable(identificador.image)) {
             typeTableInstance.getInstance().put(identificador.image, tipo);
         } else {
             logsAcumulatorInstance.getInstance().addSemanticLog("Error: El identificador " + identificador.image + " Ya fue declarado \r\nLinea: " + identificador.beginLine);
@@ -96,10 +99,10 @@ public class TokenComparaciones {
 
 //        JOptionPane.showMessageDialog(null, TokenIzq.image + " - " + TokenIzq.kind + "  |  " + TokenAsig.image + " - " + TokenAsig.kind);
         if (TokenIzq.kind == GramaticaConstants.VAR) {
-            if (!checkVariable(TokenIzq)) {
+            if (!tableInstance.checkVariable(TokenIzq.image)) {
                 return "Error: El identificador " + TokenIzq.image + " No ha sido declarado \r\nLinea: " + TokenIzq.beginLine;
             } else {
-                tipoVar1 = getTipoVariable(TokenIzq);
+                tipoVar1 = tableInstance.getTipoVariable(TokenIzq.image);
 //                JOptionPane.showMessageDialog(null,tipoVar1);
             }
 
@@ -108,10 +111,10 @@ public class TokenComparaciones {
         }
 
         if (TokenAsig.kind == GramaticaConstants.VAR) {
-            if (!checkVariable(TokenAsig)) {
+            if (!tableInstance.checkVariable(TokenAsig.image)) {
                 return "Error: El identificador " + TokenAsig.image + " No ha sido declarado \r\nLinea: " + TokenAsig.beginLine;
             } else {
-                tipoVar2 = getTipoVariable(TokenAsig);
+                tipoVar2 = tableInstance.getTipoVariable(TokenAsig.image);
             }
         } else {
             tipoVar2 = TokenAsig.kind;
@@ -141,29 +144,6 @@ public class TokenComparaciones {
         }
 //        return "Sin errores semanticos";
         return "";
-    }
-
-    public boolean checkVariable(Token checkTok) {
-        try {
-//            JOptionPane.showMessageDialog(null, checkTok.image);
-
-//            JOptionPane.showMessageDialog(null, "Tabla: " + tabla);
-            int kind = (Integer) typeTableInstance.getInstance().get(checkTok.image);
-
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
-    }
-
-    public int getTipoVariable(Token token) {
-        try {
-            int kind = (Integer) typeTableInstance.getInstance().get(token.image);
-            return kind;
-        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(null, "fsdsvvse");
-            return 0;
-        }
     }
 
 }

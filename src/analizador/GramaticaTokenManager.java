@@ -2,8 +2,10 @@
 /** Analizador de expresiones aritmeticas sencillas. */
 package Analizador;
 import analizador.TokenAsignaciones;
+import analizador.TokenComparaciones;
 import javax.swing.JOptionPane;
 import extraObjects.logsAcumulatorInstance;
+import extraObjects.typeTableInstance;
 
 /** Token Manager. */
 public class GramaticaTokenManager implements GramaticaConstants

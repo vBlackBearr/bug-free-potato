@@ -9,12 +9,17 @@ PARSER_BEGIN(Gramatica)
 /** Analizador de expresiones aritmeticas sencillas. */
 package Analizador;
 import analizador.TokenAsignaciones;
+import analizador.TokenComparaciones;
 import javax.swing.JOptionPane;
 import extraObjects.logsAcumulatorInstance;
+import extraObjects.typeTableInstance;
 
 public class Gramatica
 {
   TokenAsignaciones TA = new TokenAsignaciones();
+  TokenComparaciones TC = new TokenComparaciones ();
+  
+  logsAcumulatorInstance logsInstance = logsAcumulatorInstance.getInstance();
 
   public static int linea = 1;
 
@@ -23,6 +28,11 @@ public class Gramatica
   int kindParaDeclarar = 0;
   Token valor1CompAsig = null;
   Token valor2CompAsig = null;
+
+  Token valor1CompComp = null;
+  Token valor2CompComp = null;
+
+typeTableInstance tableInstance = typeTableInstance.getInstance();
  
   final public Token getNextTokenWithoutIncrease() {
     if (token.next != null) token = token.next;
@@ -609,6 +619,7 @@ TOKEN :
 void Inicio() :
 {
   TA.SetTables();
+  TC.SetTables();
 }
 {
   try
@@ -2708,7 +2719,7 @@ void ExpresionBooleana() :
 {
   try
   {
-    (Parea() ExpresionBooleana() Parec() ExpresionBooleana2() | TipoDato() ExpresionBooleana2() | < NOT > ExpresionBooleana()) CondgA()
+    (Comparacion() | < TRUE > | < FALSE> | < NOT > ExpresionBooleana()) CondgA()
   }
   catch (ParseException e)
   {
@@ -2745,12 +2756,26 @@ void ExpresionBooleana() :
   }
 }
 
-void ExpresionBooleana2() :
+JAVACODE
+void colocacionDatoParaComparacion1() 
+{
+    valor1CompComp = token;
+}
+
+JAVACODE
+void colocacionDatoParaComparacion2()
+{
+    valor2CompComp = token;
+    logsInstance.addSemanticLog(TC.checkAsing(valor1CompComp, valor2CompComp));
+}
+
+
+void Comparacion() :
 {}
 {
   try
   {
-    (OperadoresRelacionales() TipoDato() )?
+    TipoDatoComparacion() colocacionDatoParaComparacion1() OperadoresRelacionales() TipoDato() colocacionDatoParaComparacion2()
   }
   catch (ParseException e)
   {
@@ -3056,7 +3081,7 @@ valor2CompAsig = token;
 JAVACODE
 void verificarExistencia()
 {
-if(!TA.checkVariable(token)){
+if(!tableInstance.checkVariable(token.image)){
     logsAcumulatorInstance.getInstance().addSemanticLog("Error: El identificador " + token.image + " No ha sido declarado \r\nLinea: " + token.beginLine);
 }
 }
@@ -3077,6 +3102,17 @@ void TipoDato() :
 | < CADENA >
 | < TRUE >
 | < FALSE >
+| < VAR >
+}
+
+void TipoDatoComparacion() :
+{
+}
+{
+  < ENTERO >
+| < FLOTANTEDOUBLE >
+| < CARACTER >
+| < CADENA >
 | < VAR >
 }
 

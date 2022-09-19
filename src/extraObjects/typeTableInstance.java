@@ -4,6 +4,7 @@
  */
 package extraObjects;
 
+import Analizador.Token;
 import java.util.Hashtable;
 
 /**
@@ -45,17 +46,35 @@ public class typeTableInstance {
     public void setTabla(Hashtable<String, Integer> tabla) {
         this.tabla = tabla;
     }
-    
-    public void put(String image, int kind){
+
+    public void put(String image, int kind) {
         tabla.put(image, kind);
     }
-    
-    
-    public Integer get(String image){
+
+    public Integer get(String image) {
         return tabla.get(image);
     }
-    
-    public void clearTable(){
+
+    public void clearTable() {
         tabla = new Hashtable();
+    }
+
+    public boolean checkVariable(String var) {
+        try {
+            int kind = (Integer) tabla.get(var);
+
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public int getTipoVariable(String var) {
+        try {
+            int kind = (Integer) tabla.get(var);
+            return kind;
+        } catch (Exception e) {
+            return 0;
+        }
     }
 }

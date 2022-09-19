@@ -24,7 +24,6 @@ public class Analizar {
 //    public String respuestaLexico = "";
 //    public String respuestaSintactico = "Sin errores";
 //    public String respuestaSemantico = "Sin errores";
-
     public void AnalizarCodigo(FileReader file) {
 //        respuestaSintactico = "Sin errores";
         try {
