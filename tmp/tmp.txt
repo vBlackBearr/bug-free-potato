@@ -5,8 +5,8 @@ public class Miclase{
   private Igf(int pfdds){
   }
   public void principalMain(){
-	int a;
-float b;
+     int a;
+     float b;
      If(a>=b AND false){
 
      }
@@ -15,15 +15,15 @@ float b;
      string y="hola";
      escribirEnConsola(x);
      int sss;
-     sss = 2 / true;
-     abc = false;
+     sss = 2 / 5;
+    
      escribirEnConsola(y);
      escribirEnConsola(z);
-     int z=x+y;
-     int [2] arreglo=("hola");
-     boolean ssy = 2;
+     int z=x+50;
+     string [2] arreglo=("hola");
+     boolean ssy = false;
      escribirEnConsola(z);
-     If(x>=y AND true OR x==y){
+     If(x>=5 AND true OR x==x){
            While(true){
 
             }
@@ -34,8 +34,9 @@ float b;
                   }
 
             }Else{
-                  int z=x+y+5*5434/44;
-                  float[5] arreglo=("hola");
+                  int j;
+                  z=x+j+5*5434/44;
+                  float[5] arregloss=(3.6 + 2);
            }
       }
    }
@@ -65,8 +66,9 @@ float b;
                break;
            }
     }
-    public int sumarNumeros(int x, string y){
-           double z=x+y;
+    public int sumarNumeros(int xxy, string yy){ 
+           int ent = 4;
+           float zz=x+ent;
             return z;
       }
 }
