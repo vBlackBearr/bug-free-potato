@@ -19,9 +19,10 @@ public class Conversor {
     public static Stack pilaAuxiliar = new Stack();
     public static int tope = 0;
     public static String opc="";
+    public static String opc2=" ";
     public static String prefijo="";
     public static void main(String[] args) {
-        
+        boolean band=true;
         String infija= JOptionPane.showInputDialog("Dame infijo :");
         System.out.println(infija);
         System.out.println("Prefijo : ");
@@ -33,25 +34,34 @@ public class Conversor {
             opc = st.nextToken();
             pilaInfijo.push(opc);
         }
-        opc = (String) pilaInfijo.pop();
-        while(!pilaInfijo.empty()){
-            
-            System.out.println(opc);
-            if (opc.matches("\\+")||opc.matches("-")||opc.matches("\\*")||opc.matches("/")||opc.matches("^")||opc.matches("\\(")||opc.matches("\\)")) { // Es un operador o paréntesis
-                if(jerarquia(opc)>tope){
-                    pilaAuxiliar.push(opc);
-                    tope=jerarquia(opc);
-                    opc = (String) pilaInfijo.pop();
-                    
-                }else{
-                    prefijo=((String) pilaAuxiliar.pop())+prefijo;
-                    pilaAuxiliar.push(opc);
-                    tope=jerarquia(opc);
-                }
-                
-            } else {//es un operando
-                prefijo=opc+prefijo;
+        
+        while (!pilaInfijo.empty()) {
+            if(band){
+                opc = (String) pilaInfijo.pop();
+                band=false;
             }
+            if (opc.matches("\\+") || opc.matches("-") || opc.matches("\\*") || opc.matches("/") || opc.matches("^") || opc.matches("\\(") || opc.matches("\\)")) { // Es un operador o paréntesis
+                if (jerarquia(opc) > jerarquia(opc2)) {
+                    pilaAuxiliar.push(opc);
+                    opc2=opc;
+                    band = true;
+                } else {
+                    opc2= (String)pilaAuxiliar.pop();
+                    prefijo = opc2 + prefijo;
+                    if(!pilaAuxiliar.empty()){
+                        opc2=(String) pilaAuxiliar.pop();
+                    }else{
+                        opc2=" ";
+                    }
+
+                }
+
+            } else {//es un operando
+                prefijo = opc + prefijo;
+                band=true;
+
+            }
+            
         }
         
             prefijo = pilaAuxiliar.pop() + prefijo;
@@ -65,28 +75,43 @@ public class Conversor {
     }
  
     public static int jerarquia(String elemento) {
-        int res = 5;
+        int res = 0;
         if(elemento.equals("\\^")){
             System.out.println("AGRIA BANDAAAAAAAA");
         }
-        switch (elemento) {
-        case "\\^":
+        switch (elemento.charAt(0)) {
+        case '^':
             System.out.println("AAgria");
             res = 5; break;
-        case "*":
-            System.out.println("AAgria222");
+        case '*':
+            System.out.println("Multiplicacion");
             res = 4; break;
-        case "/":
+        case '/':
+            System.out.println("Division");
             res = 4; break;
-        case "+":
-            res = 3; break;
-        case "-":
-            res = 3; break;
+        case '+':
+            System.out.println("Suma");
+            res = 2; break;
+        case '-':
+            System.out.println("Resta");
+            res = 2; break;
+        default:
+            System.out.println("Resta");
+            res = 0; break;
         }
         return res;
     }
     public static void comparaJerarquía(){
-        
+        int topeAux = 0;
+        String aux2 = (String) pilaAuxiliar.pop();
+        prefijo = aux2 + prefijo;
+        if (jerarquia(aux2) > tope) {
+            pilaAuxiliar.push(opc);
+            tope = jerarquia(opc);
+        } else {
+            comparaJerarquía();
+        }
+
     }
     
 }
