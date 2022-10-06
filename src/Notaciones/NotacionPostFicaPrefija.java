@@ -25,13 +25,18 @@ public class NotacionPostFicaPrefija {
     String[] arrayInfix = expr.split(" ");
 
     //Declaración de las pilas
+    PilaEnlazada E2 = new PilaEnlazada(); //Pila entrada
     PilaEnlazada E = new PilaEnlazada(); //Pila entrada
     PilaEnlazada P = new PilaEnlazada(); //Pila temporal para operadores
     PilaEnlazada S = new PilaEnlazada(); //Pila salida
 
     //Añadir la array a la Pila de entrada (E)
     for (int i = arrayInfix.length - 1; i >= 0; i--) {
-      E.push(arrayInfix[i]);
+      E2.push(arrayInfix[i]);
+    }
+    while(!E2.isEmpty()){
+        E.push((String)E2.pop());
+        System.out.println("ajijo");
     }
 
     try {

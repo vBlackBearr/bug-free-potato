@@ -11,9 +11,12 @@ package Notaciones;
 public class Infijas {
     public static void main(String[] args){
         NotacionPostFicaPrefija np = new NotacionPostFicaPrefija();
-        String cadena = "3+8*2+1";
-        np.analizar(cadena);
-        System.out.println(np.postfija);
+        Operaciones oper = new Operaciones();
+        String cadena = "(A+C/15.3)+(B/C/2+100)";
+//        np.analizar(cadena);
+//        System.out.println(cadena);
+//        System.out.println(np.postfija);
+oper.Asufijo(cadena, 0);
     }
     
 }
