@@ -15,7 +15,8 @@ public class Miclase{
      string y="hola";
      escribirEnConsola(x);
      int sss;
-     sss = 2 / 5;
+     int m = 1;
+     sss = 2 / 5+m;
     
      escribirEnConsola(y);
      escribirEnConsola(z);
