@@ -10,9 +10,10 @@ package Notaciones;
  */
 public class NotacionPolaca {
     public static void main (String[] args){
+        /*Ejemplo de operacion 1 fue usado por el equipo CEDAJO y el resultado es 26.25*/
         System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - ");
         System.out.println("Operacion 1:");
-        String infijo = "2+4/5*(5-3)";
+        String infijo = "7*4-(5+2)/4";
         System.out.println("Infija: "+infijo);
         String prefija = Conversion.conversionPrefijo(infijo).toString();
         System.out.println("Expresion prefija: "+prefija);
