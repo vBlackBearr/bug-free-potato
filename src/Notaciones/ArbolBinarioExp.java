@@ -169,18 +169,23 @@ public class ArbolBinarioExp {
             switch(subArbol.dato.toString().charAt(0)){
                 case '^':
                     acum = acum + Math.pow(evalua(subArbol.izquierdo), evalua(subArbol.derecho));
+                    System.out.println("^\t"+subArbol.izquierdo.dato +"\t"+ subArbol.derecho.dato+"\t"+acum);
                     break;
                 case '*':
                     acum = acum + evalua(subArbol.izquierdo) * evalua(subArbol.derecho);
+                    System.out.println("*\t"+subArbol.izquierdo.dato +"\t"+ subArbol.derecho.dato+"\t"+acum);
                     break;
                 case '/':
                     acum = acum + evalua(subArbol.izquierdo) / evalua(subArbol.derecho);
+                    System.out.println("/\t"+subArbol.izquierdo.dato +"\t"+ subArbol.derecho.dato+"\t"+acum);
                     break;
                 case '+':
                     acum = acum + evalua(subArbol.izquierdo) + evalua(subArbol.derecho);
+                    System.out.println("+\t"+subArbol.izquierdo.dato +"\t"+ subArbol.derecho.dato+"\t"+acum);
                     break;
                 case '-':
                     acum = acum + evalua(subArbol.izquierdo) - evalua(subArbol.derecho);
+                    System.out.println("+\t"+subArbol.izquierdo.dato +"\t"+ subArbol.derecho.dato+"\t"+acum);
                     break;
             }
         }
