@@ -17,7 +17,7 @@ public class NotacionPolaca {
         System.out.println("Infija: "+infijo);
         String prefija = Conversion.conversionPrefijo(infijo).toString();
         System.out.println("Expresion prefija: "+prefija);
-        System.out.println("Oper\tIzq\tDer\tVarTemp");
+        System.out.println("Oper\tIzq\tDer\tResul\tVarTemp");
         ArbolBinarioExp ABE = new ArbolBinarioExp(infijo);
         System.out.println("Resultado: " + ABE.EvaluaExpresion());
         System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - ");
@@ -27,7 +27,7 @@ public class NotacionPolaca {
         
         String prefija2 = Conversion.conversionPrefijo(infijo2).toString();
         System.out.println("Expresion prefija: "+prefija2);
-        System.out.println("Oper\tIzq\tDer\tVarTemp");
+        System.out.println("Oper\tIzq\tDer\tResul\tVarTemp");
         ArbolBinarioExp ABE2 = new ArbolBinarioExp(infijo2);
         System.out.println("Resultado: " + ABE2.EvaluaExpresion());
         System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - ");
