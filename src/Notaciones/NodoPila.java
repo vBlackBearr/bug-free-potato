@@ -6,14 +6,16 @@ package Notaciones;
 
 /**
  *
- * @author JuanO
+ * @author TeamPotato:)
  */
 public class NodoPila {
+
     NodoArbol dato;
     NodoPila siguiente;
-    public NodoPila (NodoArbol x){
+
+    public NodoPila(NodoArbol x) {
         dato = x;
         siguiente = null;
     }
-    
+
 }

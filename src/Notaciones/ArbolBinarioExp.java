@@ -6,7 +6,7 @@ package Notaciones;
 
 /**
  *
- * @author JuanO
+ * @author TeamPotato:)
  */
 public class ArbolBinarioExp {
     NodoArbol raiz;

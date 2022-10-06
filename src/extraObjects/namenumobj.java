@@ -6,20 +6,21 @@ package extraObjects;
 
 /**
  *
- * @author Luisp
+ * @author TeamPotato:)
  */
 public class namenumobj {
+
     public int token;
     public String name;
-    
+
     /**
      *
      * @param token
      * @param name
      */
-    public namenumobj(int token, String name){
+    public namenumobj(int token, String name) {
         this.token = token;
         this.name = name;
     }
-    
+
 }

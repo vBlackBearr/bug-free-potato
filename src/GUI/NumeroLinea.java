@@ -12,14 +12,18 @@ import javax.swing.border.*;
 import javax.swing.event.*;
 import javax.swing.text.*;
 
+/**
+ *
+ * @author TeamPotato:)
+ */
 public class NumeroLinea extends JPanel
         implements CaretListener, DocumentListener, PropertyChangeListener {
 
     public final static float LEFT = 0.0f;
     public final static float CENTER = 0.5f;
     public final static float RIGHT = 1.0f;
-    private Color color1 = new Color(255,0,0);
-    private final static Border OUTER = new MatteBorder(0, 0, 0, 2,Color.BLACK);
+    private Color color1 = new Color(255, 0, 0);
+    private final static Border OUTER = new MatteBorder(0, 0, 0, 2, Color.BLACK);
 
     private final static int HEIGHT = Integer.MAX_VALUE - 1000000;
 
@@ -31,19 +35,16 @@ public class NumeroLinea extends JPanel
     private float digitAlignment;
     private int minimumDisplayDigits;
 
-    
     private int lastDigits;
     private int lastHeight;
     private int lastLine;
 
     private HashMap<String, FontMetrics> fonts;
 
-    
     public NumeroLinea(JTextComponent component) {
         this(component, 3);
     }
 
-    
     public NumeroLinea(JTextComponent component, int minimumDisplayDigits) {
         this.component = component;
 
@@ -59,22 +60,18 @@ public class NumeroLinea extends JPanel
         component.addPropertyChangeListener("font", this);
     }
 
-    
     public boolean getUpdateFont() {
         return updateFont;
     }
 
-    
     public void setUpdateFont(boolean updateFont) {
         this.updateFont = updateFont;
     }
 
-    
     public int getBorderGap() {
         return borderGap;
     }
 
-    
     public void setBorderGap(int borderGap) {
         this.borderGap = borderGap;
         Border inner = new EmptyBorder(0, borderGap, 0, borderGap);
@@ -83,37 +80,32 @@ public class NumeroLinea extends JPanel
         setPreferredWidth();
     }
 
-   
     public Color getCurrentLineForeground() {
         return currentLineForeground == null ? getForeground() : currentLineForeground;
     }
 
-    
     public void setCurrentLineForeground(Color currentLineForeground) {
         this.currentLineForeground = currentLineForeground;
     }
 
-    
     public float getDigitAlignment() {
         return digitAlignment;
     }
+
     public void setDigitAlignment(float digitAlignment) {
         this.digitAlignment
                 = digitAlignment > 1.0f ? 1.0f : digitAlignment < 0.0f ? -1.0f : digitAlignment;
     }
 
-   
     public int getMinimumDisplayDigits() {
         return minimumDisplayDigits;
     }
 
-   
     public void setMinimumDisplayDigits(int minimumDisplayDigits) {
         this.minimumDisplayDigits = minimumDisplayDigits;
         setPreferredWidth();
     }
 
-    
     private void setPreferredWidth() {
         Element root = component.getDocument().getDefaultRootElement();
         int lines = root.getElementCount();

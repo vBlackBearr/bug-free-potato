@@ -9,7 +9,7 @@ import javax.swing.JFileChooser;
 
 /**
  *
- * @author JuanO
+ * @author TeamPotato:)
  */
 public class ManejadorDeArchivo {
     File codigoSeleccionado;

@@ -9,7 +9,7 @@ import java.util.Hashtable;
 
 /**
  *
- * @author Luisp
+ * @author TeamPotato:)
  */
 public class typeTableInstance {
 

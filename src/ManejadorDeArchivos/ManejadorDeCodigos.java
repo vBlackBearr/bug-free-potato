@@ -11,7 +11,7 @@ import javax.swing.JFileChooser;
 
 /**
  *
- * @author JuanO
+ * @author TeamPotato:)
  */
 public class ManejadorDeCodigos {
     File codigoSeleccionado;

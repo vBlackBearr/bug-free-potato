@@ -26,7 +26,7 @@ import extraObjects.typeTableInstance;
 
 /**
  *
- * @author JuanO
+ * @author TeamPotato:)
  */
 public class GUI extends javax.swing.JFrame {
 

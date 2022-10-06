@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Luisp
+ * @author TeamPotato:)
  */
 public class objTipoDatoCompatible {
 
@@ -46,8 +46,8 @@ public class objTipoDatoCompatible {
     public void setTiposCompatibles(ArrayList<Integer> tiposCompatibles) {
         this.tiposCompatibles = tiposCompatibles;
     }
-    
-    public void addCompatible(int tipo){
+
+    public void addCompatible(int tipo) {
         tiposCompatibles.add(tipo);
     }
 }

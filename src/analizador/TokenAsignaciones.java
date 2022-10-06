@@ -12,6 +12,11 @@ import Analizador.GramaticaConstants;
 import extraObjects.logsAcumulatorInstance;
 import extraObjects.typeTableInstance;
 
+
+/**
+ *
+ * @author TeamPotato:)
+ */
 public class TokenAsignaciones extends Error {
 
     typeTableInstance tableInstance = typeTableInstance.getInstance();
@@ -120,7 +125,6 @@ public class TokenAsignaciones extends Error {
 
         objTipoDatoCompatible tipo = null;
         for (objTipoDatoCompatible var : tiposVariablesComp) {
-//            JOptionPane.showMessageDialog(null, var.getIDs() + " : " + var.getTiposCompatibles());
             for (Integer ID : var.getIDs()) {
                 if (ID.equals(tipoVar1)) {
                     tipo = var;
@@ -136,11 +140,9 @@ public class TokenAsignaciones extends Error {
         }
 
         GramaticaConstantsNames names = new GramaticaConstantsNames();
-//        JOptionPane.showMessageDialog(null, tipoVar1);
         if (!tipo.getTiposCompatibles().contains(tipoVar2)) {
             return "Error: No se puede convertir " + TokenAsig.image + " a " + names.getNameFromToken(tipoVar1) + " \r\nLinea: " + TokenIzq.beginLine;
         }
-//        return "Sin errores semanticos";
         return "";
     }
 
