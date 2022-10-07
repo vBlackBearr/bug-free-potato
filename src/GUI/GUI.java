@@ -46,6 +46,7 @@ public class GUI extends javax.swing.JFrame {
         txtArea_Editor.setText("");
         setLocationRelativeTo(null);
         logsAcumulatorInstance.getInstance().setGuiInstance(this);
+        this.setExtendedState(MAXIMIZED_BOTH);
 //        logsAcumulatorInstance.getInstance().addlexicLog
     }
 
@@ -70,10 +71,13 @@ public class GUI extends javax.swing.JFrame {
         jScroll_Respuesta = new javax.swing.JScrollPane();
         txtAreaLexico = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
-        txtAreaSemantico = new javax.swing.JTextArea();
+        txtAreaNotacionPolaca = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        txtAreaSemantico = new javax.swing.JTextArea();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
@@ -89,7 +93,7 @@ public class GUI extends javax.swing.JFrame {
         jm_Semantico = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setResizable(false);
+        setExtendedState(MAXIMIZED_BOTH);
         setSize(new java.awt.Dimension(1200, 760));
 
         txtArea_Editor.setColumns(20);
@@ -116,15 +120,21 @@ public class GUI extends javax.swing.JFrame {
         txtAreaLexico.setRows(5);
         jScroll_Respuesta.setViewportView(txtAreaLexico);
 
-        txtAreaSemantico.setColumns(20);
-        txtAreaSemantico.setRows(5);
-        jScrollPane2.setViewportView(txtAreaSemantico);
+        txtAreaNotacionPolaca.setColumns(20);
+        txtAreaNotacionPolaca.setRows(5);
+        jScrollPane2.setViewportView(txtAreaNotacionPolaca);
 
         jLabel1.setText("Lexico:");
 
         jLabel2.setText("Sintactico:");
 
         jLabel3.setText("Semantico:");
+
+        jLabel4.setText("Notacion Polaca:");
+
+        txtAreaSemantico.setColumns(20);
+        txtAreaSemantico.setRows(5);
+        jScrollPane3.setViewportView(txtAreaSemantico);
 
         javax.swing.GroupLayout paneOutputLayout = new javax.swing.GroupLayout(paneOutput);
         paneOutput.setLayout(paneOutputLayout);
@@ -133,19 +143,27 @@ public class GUI extends javax.swing.JFrame {
             .addGroup(paneOutputLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(paneOutputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addGroup(paneOutputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addContainerGap())
-            .addGroup(paneOutputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(paneOutputLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jScroll_Respuesta, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(354, Short.MAX_VALUE)))
+                    .addGroup(paneOutputLayout.createSequentialGroup()
+                        .addGroup(paneOutputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))
+                        .addGroup(paneOutputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(paneOutputLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                                .addComponent(jLabel3)
+                                .addGap(253, 253, 253))
+                            .addGroup(paneOutputLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(paneOutputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(paneOutputLayout.createSequentialGroup()
+                        .addComponent(jScroll_Respuesta, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         paneOutputLayout.setVerticalGroup(
             paneOutputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,17 +173,18 @@ public class GUI extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
-                .addComponent(jLabel2)
+                .addGroup(paneOutputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
+                    .addComponent(jScroll_Respuesta))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addGroup(paneOutputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(paneOutputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane2)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE))
                 .addGap(29, 29, 29))
-            .addGroup(paneOutputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(paneOutputLayout.createSequentialGroup()
-                    .addGap(48, 48, 48)
-                    .addComponent(jScroll_Respuesta, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(320, Short.MAX_VALUE)))
         );
 
         fileMenu.setMnemonic('f');
@@ -304,16 +323,16 @@ public class GUI extends javax.swing.JFrame {
                 .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(lbl_Respuesta)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(paneOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lbl_Escribiendo)
                             .addComponent(lbl_Codigo))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScroll_Editor, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lbl_Respuesta)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(paneOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(36, Short.MAX_VALUE))
+                        .addComponent(jScroll_Editor)))
+                .addGap(36, 36, 36))
         );
 
         pack();
@@ -403,7 +422,7 @@ public class GUI extends javax.swing.JFrame {
         txtAreaSintactico.setText(texto);
     }
     public void setTxtAreaSemantico(String texto){
-        txtAreaSemantico.setText(texto);
+        txtAreaNotacionPolaca.setText(texto);
     }
     
     /**
@@ -450,8 +469,10 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScroll_Editor;
     private javax.swing.JScrollPane jScroll_Respuesta;
     private javax.swing.JMenuItem jm_CodInter;
@@ -468,6 +489,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem saveAsMenuItem;
     private javax.swing.JMenuItem saveMenuItem;
     private javax.swing.JTextArea txtAreaLexico;
+    private javax.swing.JTextArea txtAreaNotacionPolaca;
     private javax.swing.JTextArea txtAreaSemantico;
     private javax.swing.JTextArea txtAreaSintactico;
     private javax.swing.JTextArea txtArea_Editor;
