@@ -3,30 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< Updated upstream
-            <file>file:/C:/Users/JuanO/Documents/GitHub/bug-free-potato/src/Notaciones/Conversion.java</file>
-            <file>file:/C:/Users/JuanO/Documents/GitHub/bug-free-potato/src/Notaciones/NodoPila.java</file>
             <file>file:/C:/Users/JuanO/Documents/GitHub/bug-free-potato/src/Notaciones/ArbolBinarioExp.java</file>
             <file>file:/C:/Users/JuanO/Documents/GitHub/bug-free-potato/src/Notaciones/NotacionPolaca.java</file>
-            <file>file:/C:/Users/JuanO/Documents/GitHub/bug-free-potato/src/Notaciones/PilaArbolExp.java</file>
-            <file>file:/C:/Users/JuanO/Documents/GitHub/bug-free-potato/src/Notaciones/NodoArbol.java</file>
-=======
-            <file>file:/C:/Users/Luisp/OneDrive/Documentos/NetBeansProjects/LenguajeE/bug-free-potato/src/analizador/TokenAsignaciones.java</file>
-            <file>file:/C:/Users/Luisp/OneDrive/Documentos/NetBeansProjects/LenguajeE/bug-free-potato/src/Notaciones/NotacionPostFicaPrefija.java</file>
-            <file>file:/C:/Users/Luisp/OneDrive/Documentos/NetBeansProjects/LenguajeE/bug-free-potato/src/extraObjects/typeTableInstance.java</file>
-            <file>file:/C:/Users/Luisp/OneDrive/Documentos/NetBeansProjects/LenguajeE/bug-free-potato/src/analizador/GramaticaTokenManager.java</file>
-            <file>file:/C:/Users/Luisp/OneDrive/Documentos/NetBeansProjects/LenguajeE/bug-free-potato/src/extraObjects/GramaticaConstantsNames.java</file>
-            <file>file:/C:/Users/Luisp/OneDrive/Documentos/NetBeansProjects/LenguajeE/bug-free-potato/src/GUI/GUI.java</file>
-            <file>file:/C:/Users/Luisp/OneDrive/Documentos/NetBeansProjects/LenguajeE/bug-free-potato/src/analizador/Gramatica.jj</file>
-            <file>file:/C:/Users/Luisp/OneDrive/Documentos/NetBeansProjects/LenguajeE/bug-free-potato/src/extraObjects/logsAcumulatorInstance.java</file>
-            <file>file:/C:/Users/Luisp/OneDrive/Documentos/NetBeansProjects/LenguajeE/bug-free-potato/src/analizador/TokenComparaciones.java</file>
-            <file>file:/C:/Users/Luisp/OneDrive/Documentos/NetBeansProjects/LenguajeE/bug-free-potato/src/extraObjects/namenumobj.java</file>
-            <file>file:/C:/Users/Luisp/OneDrive/Documentos/NetBeansProjects/LenguajeE/bug-free-potato/src/extraObjects/objTipoDatoCompatible.java</file>
-            <file>file:/C:/Users/Luisp/OneDrive/Documentos/NetBeansProjects/LenguajeE/bug-free-potato/src/analizador/Gramatica.java</file>
-            <file>file:/C:/Users/Luisp/OneDrive/Documentos/NetBeansProjects/LenguajeE/bug-free-potato/src/lenguajee/Analizar.java</file>
-            <file>file:/C:/Users/Luisp/OneDrive/Documentos/NetBeansProjects/LenguajeE/bug-free-potato/src/extraObjects/GramaticaConstantsTypeName.java</file>
-            <file>file:/C:/Users/Luisp/OneDrive/Documentos/NetBeansProjects/LenguajeE/bug-free-potato/src/Notaciones/Infijas.java</file>
->>>>>>> Stashed changes
+            <file>file:/C:/Users/JuanO/Documents/GitHub/bug-free-potato/src/GUI/GUI.java</file>
         </group>
     </open-files>
 </project-private>
