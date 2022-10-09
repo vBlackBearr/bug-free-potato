@@ -14,7 +14,7 @@ public class NotacionPolaca {
         /*Ejemplo de operacion 1 fue usado por el equipo CEDAJO y el resultado es 26.25*/
         System.out.println("- - - - - - - - - - - - - - - - - - - - - - - - - - - ");
         System.out.println("Operacion 1:");
-        String infijo = "7*4-(5+2)/4";
+        String infijo = "73*4-(5+255.5)/4";
         System.out.println("Infija: " + infijo);
         String prefija = Conversion.conversionPrefijo(infijo).toString();
         System.out.println("Expresion prefija: " + prefija);
