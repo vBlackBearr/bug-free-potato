@@ -20,7 +20,7 @@ public class Miclase{
      escribirEnConsola(y);
      escribirEnConsola(z);
      int z=x+50;
-     string [2] arreglo=("hola");
+     string[2] arreglo=("hola");
      boolean ssy = false;
      escribirEnConsola(z);
      If(x>=5 AND true OR x==x){
@@ -35,7 +35,7 @@ public class Miclase{
 
             }Else{
                   int j;
-                  z=x+j+5*5434/442;
+                  z=x+j+5*5434/44;
                   float[5] arregloss=(3.6 + 2);
            }
       }

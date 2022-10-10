@@ -4,7 +4,9 @@
  */
 package extraObjects;
 
+//import Conversor.Conversor;
 import GUI.GUI;
+import Notaciones.Conversion;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,13 +20,18 @@ public class logsAcumulatorInstance {
     private static logsAcumulatorInstance INSTANCE = null;
 
     private logsAcumulatorInstance() {
+        conversion = new Conversion();
     }
+    
+    Conversion conversion;
 
     private String lexicLogs = "";
 
     private String sintacticLogs = "";
 
     private String semanticLogs = "";
+
+    private String expresionInfija = "";
 
     private synchronized static void createInstance() {
         if (INSTANCE == null) {
@@ -58,6 +65,16 @@ public class logsAcumulatorInstance {
         if (!"".equals(log)) {
             setSemanticLogs(getSemanticLogs() + log + "\n");
             guiInstance.setTxtAreaSemantico(semanticLogs);
+        }
+
+    }
+
+    public void addComponenteExpresionInfija(String log) {
+        if (!"".equals(log)) {
+//            conversion.conversionPrefijo(log);
+//            expresionInfija += conversion.pilaDeResultados + "\n\n";
+//            conversion.pilaDeResultados = "";
+//            guiInstance.setTxtAreaNotacionPolaca(expresionInfija);
         }
 
     }

@@ -27,6 +27,8 @@ public class Gramatica
   
   logsAcumulatorInstance logsInstance = logsAcumulatorInstance.getInstance();
 
+  public String expresionInfija = "";
+
   public static int linea = 1;
 
   public static int la;
@@ -476,6 +478,8 @@ TOKEN :
 | < ENTERO : (< digito >)+ >
   {
     logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Numero entero " + "\n");
+    //logsAcumulatorInstance.getInstance().addComponenteExpresionInfija(image.toString());
+    //JOptionPane.showMessageDialog(null,image);
   }
   : DEFAULT
 | < FLOTANTEDOUBLE :
@@ -2725,7 +2729,7 @@ void ExpresionBooleana() :
 {
   try
   {
-    (Comparacion() | < TRUE > | < FALSE> | < NOT > ExpresionBooleana()) CondgA()
+    ( Comparacion() | < TRUE > | < FALSE> | (< NOT > ExpresionBooleana()) ) CondgA()
   }
   catch (ParseException e)
   {
@@ -2781,7 +2785,7 @@ void Comparacion() :
 {
   try
   {
-    TipoDatoComparacion() colocacionDatoParaComparacion1() OperadoresRelacionales() TipoDato() colocacionDatoParaComparacion2()
+    TipoDatoComparacion() colocacionDatoParaComparacion1() OperadoresRelacionales() TipoDatoComparacion() colocacionDatoParaComparacion2()
   }
   catch (ParseException e)
   {
@@ -3058,12 +3062,19 @@ void Expr() :
 
 void Expr2() :
 {
-  //logsAcumulatorInstance.getInstance().addSemanticLog(TA.checkAsing(valor1CompAsig, valor2CompAsig));
 }
 {
   (
-    Oper() Expr()
-  )?
+    (Oper() Expr())
+  ) | mandarAConvertirYRestablecerExpresionInfija()
+}
+
+JAVACODE
+void mandarAConvertirYRestablecerExpresionInfija()
+{
+logsAcumulatorInstance.getInstance().addComponenteExpresionInfija(expresionInfija);
+expresionInfija = "";
+
 }
 
 void PonerDato() :
@@ -3092,6 +3103,16 @@ if(!tableInstance.checkVariable(token.image)){
 }
 }
 
+JAVACODE
+void agregarAExpresionInfija(Token valor){
+    if(expresionInfija!=null){
+       expresionInfija += valor.toString();
+    }else{
+        expresionInfija = valor.toString();
+    }
+//JOptionPane.showMessageDialog(null,token);
+}
+
 void ParentesisExpr() :
 {}
 {
@@ -3102,13 +3123,13 @@ void TipoDato() :
 {
 }
 {
-  < ENTERO >
-| < FLOTANTEDOUBLE >
+  (< ENTERO > 
+| < FLOTANTEDOUBLE > 
 | < CARACTER >
 | < CADENA >
 | < TRUE >
 | < FALSE >
-| < VAR >
+| < VAR >) agregarAExpresionInfija(token)
 }
 
 void TipoDatoComparacion() :
@@ -3449,12 +3470,12 @@ void Oper() :
 {
   try
   {
-    < SUMA >
+   ( < SUMA >
   | < RESTA >
   | < DIVIS >
   | < POTEN >
   | < MODUL >
-  | < MULTI >
+  | < MULTI > ) agregarAExpresionInfija(token)
   }
   catch (ParseException e)
   {
