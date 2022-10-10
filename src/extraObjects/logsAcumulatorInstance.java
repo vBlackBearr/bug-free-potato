@@ -7,6 +7,7 @@ package extraObjects;
 //import Conversor.Conversor;
 import GUI.GUI;
 import Notaciones.Conversion;
+import Notaciones.NotacionPolaca;
 import javax.swing.JOptionPane;
 
 /**
@@ -21,8 +22,9 @@ public class logsAcumulatorInstance {
 
     private logsAcumulatorInstance() {
         conversion = new Conversion();
+//        addSintacticLog("No hay errores!")
     }
-    
+
     Conversion conversion;
 
     private String lexicLogs = "";
@@ -32,6 +34,8 @@ public class logsAcumulatorInstance {
     private String semanticLogs = "";
 
     private String expresionInfija = "";
+
+    private String notacionPolacaLogs = "";
 
     private synchronized static void createInstance() {
         if (INSTANCE == null) {
@@ -70,11 +74,13 @@ public class logsAcumulatorInstance {
     }
 
     public void addComponenteExpresionInfija(String log) {
-        if (!"".equals(log)) {
-//            conversion.conversionPrefijo(log);
-//            expresionInfija += conversion.pilaDeResultados + "\n\n";
-//            conversion.pilaDeResultados = "";
-//            guiInstance.setTxtAreaNotacionPolaca(expresionInfija);
+        if (!"".equals(log) && !log.contains("\"")) {
+            
+            NotacionPolaca np = new NotacionPolaca();
+            String operacion = np.notacionPolaca(log, "variables");
+//            System.out.println(operacion);
+            notacionPolacaLogs += operacion + "\n\n";
+            guiInstance.setTxtAreaNotacionPolaca(notacionPolacaLogs);
         }
 
     }

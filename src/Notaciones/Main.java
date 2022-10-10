@@ -9,10 +9,13 @@ package Notaciones;
  * @author JuanO
  */
 public class Main {
-    public static void main(String[] args){
+
+    public static void main(String[] args) {
         NotacionPolaca np = new NotacionPolaca();
-        String infijo="2+4/5*(5-3)*(4/8*9-9)";
+        String infijo = "22+rr/5*(5-3)*(4/8*49-9)";
         String operacion = np.notacionPolaca(infijo, "variables");
+//        System.out.println(operacion);
+//        StringBuilder conversionPrefijo = Conversion.conversionPrefijo(infijo);
         System.out.println(operacion);
     }
 }

@@ -9,20 +9,22 @@ package Notaciones;
  * @author TeamPotato:)
  */
 public class NotacionPolaca {
-public String cadenaEvaluada="";
-public double resultado;
-public int contador=0;
+
+    public String cadenaEvaluada = "";
+    public double resultado;
+    public int contador = 0;
+
     public String notacionPolaca(String infijo, String variables) {
         contador++;
         ArbolBinarioExp ABE = new ArbolBinarioExp(infijo);
-        resultado = ABE.EvaluaExpresion();
-        cadenaEvaluada= cadenaEvaluada+"- - - - - - - - - - - - - - - - - - - - - - - - - - -"
-                + "\nOperación: "+ contador
-                + "\nInfija: "+ infijo
-                + "\nPrefija: "+ Conversion.conversionPrefijo(infijo).toString()
-                + "\nVariables: "+ variables
-                + "\nCuartiles: \nOper\tIzq\tDer\tResul\tVarTemp"+ABE.evaluacion
-                + "\nResultado = "+resultado;
+        //resultado = ABE.EvaluaExpresion();
+        cadenaEvaluada = "- - - - - - - - - - - - - - - - - - - - - - - - - - -"
+                + "\nOperación: " + contador
+                + "\nInfija: " + infijo
+                + "\nPrefija: " + Conversion.conversionPrefijo(infijo).toString()
+                + "\nVariables: " + variables
+                + "\nCuartiles: \nOper\tIzq\tDer\tResul\tVarTemp" //    + ABE.evaluacion
+                + "\nResultado = " ;//+ resultado;
         return cadenaEvaluada;
     }
 }
