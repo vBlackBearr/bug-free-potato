@@ -17,14 +17,14 @@ public class NotacionPolaca {
     public String notacionPolaca(String infijo, String variables) {
         contador++;
         ArbolBinarioExp ABE = new ArbolBinarioExp(infijo);
-        //resultado = ABE.EvaluaExpresion();
+        resultado = ABE.EvaluaExpresion();
         cadenaEvaluada = "- - - - - - - - - - - - - - - - - - - - - - - - - - -"
                 + "\nOperación: " + contador
                 + "\nInfija: " + infijo
                 + "\nPrefija: " + Conversion.conversionPrefijo(infijo).toString()
                 + "\nVariables: " + variables
-                + "\nCuartiles: \nOper\tIzq\tDer\tResul\tVarTemp" //    + ABE.evaluacion
-                + "\nResultado = " ;//+ resultado;
+                + "\nCuartiles: \nOper\tIzq\tDer\tResul\tVarTemp"     + ABE.evaluacion
+                + "\nResultado = " + resultado;
         return cadenaEvaluada;
     }
 }

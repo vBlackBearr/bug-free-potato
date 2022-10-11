@@ -16,7 +16,7 @@ public class typeTableInstance {
     private static typeTableInstance INSTANCE = null;
 
     private Hashtable<String, Integer> tabla = new Hashtable();
-
+    
     private typeTableInstance() {
     }
 

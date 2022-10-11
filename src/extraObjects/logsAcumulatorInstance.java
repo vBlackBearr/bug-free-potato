@@ -21,19 +21,14 @@ public class logsAcumulatorInstance {
     private static logsAcumulatorInstance INSTANCE = null;
 
     private logsAcumulatorInstance() {
-        conversion = new Conversion();
 //        addSintacticLog("No hay errores!")
     }
-
-    Conversion conversion;
 
     private String lexicLogs = "";
 
     private String sintacticLogs = "";
 
     private String semanticLogs = "";
-
-    private String expresionInfija = "";
 
     private String notacionPolacaLogs = "";
 
@@ -53,7 +48,7 @@ public class logsAcumulatorInstance {
     public void addlexicLog(String log) {
         if (!"".equals(log)) {
             setLexicLogs(getLexicLogs() + log + "\n");
-            guiInstance.setTxtAreaLexico(lexicLogs);
+            getGuiInstance().setTxtAreaLexico(lexicLogs);
         }
 
     }
@@ -61,14 +56,14 @@ public class logsAcumulatorInstance {
     public void addSintacticLog(String log) {
         if (!"".equals(log)) {
             setSintacticLogs(getSintacticLogs() + log + "\n");
-            guiInstance.setTxtAreaSintactico(sintacticLogs);
+            getGuiInstance().setTxtAreaSintactico(sintacticLogs);
         }
     }
 
     public void addSemanticLog(String log) {
         if (!"".equals(log)) {
             setSemanticLogs(getSemanticLogs() + log + "\n");
-            guiInstance.setTxtAreaSemantico(semanticLogs);
+            getGuiInstance().setTxtAreaSemantico(semanticLogs);
         }
 
     }
@@ -79,8 +74,8 @@ public class logsAcumulatorInstance {
             NotacionPolaca np = new NotacionPolaca();
             String operacion = np.notacionPolaca(log, "variables");
 //            System.out.println(operacion);
-            notacionPolacaLogs += operacion + "\n\n";
-            guiInstance.setTxtAreaNotacionPolaca(notacionPolacaLogs);
+            setNotacionPolacaLogs(getNotacionPolacaLogs() + operacion + "\n\n");
+            getGuiInstance().setTxtAreaNotacionPolaca(getNotacionPolacaLogs());
         }
 
     }
@@ -89,9 +84,11 @@ public class logsAcumulatorInstance {
         setLexicLogs("");
         setSintacticLogs("");
         setSemanticLogs("");
-        guiInstance.setTxtAreaLexico(lexicLogs);
-        guiInstance.setTxtAreaSintactico(sintacticLogs);
-        guiInstance.setTxtAreaSemantico(semanticLogs);
+        setNotacionPolacaLogs("");
+        getGuiInstance().setTxtAreaLexico(lexicLogs);
+        getGuiInstance().setTxtAreaSintactico(sintacticLogs);
+        getGuiInstance().setTxtAreaSemantico(semanticLogs);
+        getGuiInstance().setTxtAreaNotacionPolaca(semanticLogs);
     }
 
     /**
@@ -148,5 +145,19 @@ public class logsAcumulatorInstance {
      */
     public void setGuiInstance(GUI guiInstance) {
         this.guiInstance = guiInstance;
+    }
+
+    /**
+     * @return the notacionPolacaLogs
+     */
+    public String getNotacionPolacaLogs() {
+        return notacionPolacaLogs;
+    }
+
+    /**
+     * @param notacionPolacaLogs the notacionPolacaLogs to set
+     */
+    public void setNotacionPolacaLogs(String notacionPolacaLogs) {
+        this.notacionPolacaLogs = notacionPolacaLogs;
     }
 }

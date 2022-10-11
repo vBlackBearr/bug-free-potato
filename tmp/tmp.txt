@@ -11,7 +11,7 @@ public class Miclase{
 
      }
      escribirEnConsola("Hola mundo desde Rex Raptor");
-     int x=30;
+
      string y="hola";
      escribirEnConsola(x);
      int sss;
