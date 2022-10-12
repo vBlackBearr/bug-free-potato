@@ -5,15 +5,12 @@
         <group>
             <file>file:/C:/Users/Luisp/OneDrive/Documentos/NetBeansProjects/LenguajeE/bug-free-potato/src/analizador/Gramatica.jj</file>
             <file>file:/C:/Users/Luisp/OneDrive/Documentos/NetBeansProjects/LenguajeE/bug-free-potato/src/extraObjects/logsAcumulatorInstance.java</file>
-            <file>file:/C:/Users/Luisp/OneDrive/Documentos/NetBeansProjects/LenguajeE/bug-free-potato/src/Notaciones/NodoPila.java</file>
             <file>file:/C:/Users/Luisp/OneDrive/Documentos/NetBeansProjects/LenguajeE/bug-free-potato/src/Notaciones/ArbolBinarioExp.java</file>
+            <file>file:/C:/Users/Luisp/OneDrive/Documentos/NetBeansProjects/LenguajeE/bug-free-potato/src/extraObjects/typeTableInstance.java</file>
             <file>file:/C:/Users/Luisp/OneDrive/Documentos/NetBeansProjects/LenguajeE/bug-free-potato/src/Notaciones/NotacionPolaca.java</file>
-            <file>file:/C:/Users/Luisp/OneDrive/Documentos/NetBeansProjects/LenguajeE/bug-free-potato/src/Notaciones/NodoArbol.java</file>
+            <file>file:/C:/Users/Luisp/OneDrive/Documentos/NetBeansProjects/LenguajeE/bug-free-potato/src/extraObjects/objRelacionDatoVar.java</file>
             <file>file:/C:/Users/Luisp/OneDrive/Documentos/NetBeansProjects/LenguajeE/bug-free-potato/src/analizador/Gramatica.java</file>
-            <file>file:/C:/Users/Luisp/OneDrive/Documentos/NetBeansProjects/LenguajeE/bug-free-potato/src/analizador/GramaticaTokenManager.java</file>
             <file>file:/C:/Users/Luisp/OneDrive/Documentos/NetBeansProjects/LenguajeE/bug-free-potato/src/GUI/GUI.java</file>
-            <file>file:/C:/Users/Luisp/OneDrive/Documentos/NetBeansProjects/LenguajeE/bug-free-potato/src/Notaciones/Main.java</file>
-            <file>file:/C:/Users/Luisp/OneDrive/Documentos/NetBeansProjects/LenguajeE/bug-free-potato/src/Notaciones/Conversion.java</file>
         </group>
     </open-files>
 </project-private>

@@ -4,8 +4,6 @@
  */
 package GUI;
 
-import Analizador.GramaticaTokenManager;
-import analizador.TokenAsignaciones;
 import java.awt.Color;
 import java.awt.HeadlessException;
 import lenguajee.Analizar;
@@ -18,7 +16,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.stage.FileChooser;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import extraObjects.logsAcumulatorInstance;
@@ -143,26 +140,27 @@ public class GUI extends javax.swing.JFrame {
             .addGroup(paneOutputLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(paneOutputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
+                    .addComponent(jScroll_Respuesta)
                     .addGroup(paneOutputLayout.createSequentialGroup()
                         .addGroup(paneOutputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1)
                             .addComponent(jLabel2))
-                        .addGap(18, 18, 18)
-                        .addGroup(paneOutputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, paneOutputLayout.createSequentialGroup()
-                                .addGap(0, 10, Short.MAX_VALUE)
-                                .addGroup(paneOutputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel3)))
-                            .addComponent(jScrollPane3)
-                            .addGroup(paneOutputLayout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap())
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(18, 18, 18)
+                .addGroup(paneOutputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(paneOutputLayout.createSequentialGroup()
-                        .addComponent(jScroll_Respuesta, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addComponent(jLabel4)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2)
+                    .addGroup(paneOutputLayout.createSequentialGroup()
+                        .addGroup(paneOutputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(paneOutputLayout.createSequentialGroup()
+                                .addGap(10, 10, 10)
+                                .addComponent(jLabel3))
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         paneOutputLayout.setVerticalGroup(
             paneOutputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -172,15 +170,15 @@ public class GUI extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(paneOutputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(paneOutputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScroll_Respuesta, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
                     .addComponent(jScrollPane2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addGap(45, 45, 45)
                 .addGroup(paneOutputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(paneOutputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(paneOutputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
                     .addComponent(jScrollPane3))
                 .addGap(29, 29, 29))
@@ -314,7 +312,7 @@ public class GUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbl_Respuesta)
                     .addComponent(paneOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -407,6 +405,7 @@ public class GUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         logsAcumulatorInstance.getInstance().resetLogs();
         typeTableInstance.getInstance().clearTable();
+        logsAcumulatorInstance.getInstance().reestablecerNp();
         analisis();
     }//GEN-LAST:event_btnCompilarMouseClicked
 

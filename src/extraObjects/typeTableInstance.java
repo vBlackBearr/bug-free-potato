@@ -4,7 +4,8 @@
  */
 package extraObjects;
 
-import Analizador.Token;
+
+import java.util.ArrayList;
 import java.util.Hashtable;
 
 /**
@@ -16,7 +17,9 @@ public class typeTableInstance {
     private static typeTableInstance INSTANCE = null;
 
     private Hashtable<String, Integer> tabla = new Hashtable();
-    
+
+    private ArrayList<objRelacionDatoVar> tablaValores = new ArrayList<>();
+
     private typeTableInstance() {
     }
 
@@ -51,10 +54,13 @@ public class typeTableInstance {
         tabla.put(image, kind);
     }
 
-    public Integer get(String image) {
+    public Integer getType(String image) {
         return tabla.get(image);
     }
 
+//    public Object getValue(String image) {
+//        return tablaValores.get(image);
+//    }
     public void clearTable() {
         tabla = new Hashtable();
     }
@@ -76,5 +82,34 @@ public class typeTableInstance {
         } catch (Exception e) {
             return 0;
         }
+    }
+
+    public void setValorVar(String img, Object obj) {
+        if (checkVariable(img)) {
+            if (existInTablaValores(img)) {
+                objRelacionDatoVar ss = getFromTablaValores(img);
+                ss.setDato(obj);
+            } else {
+                tablaValores.add(new objRelacionDatoVar(img, obj));
+            }
+        }
+    }
+
+    private boolean existInTablaValores(String ID) {
+        for (objRelacionDatoVar ss : tablaValores) {
+            if (ss.getID().equals(ID)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public objRelacionDatoVar getFromTablaValores(String ID) {
+        for (objRelacionDatoVar ss : tablaValores) {
+            if (ss.getID().equals(ID)) {
+                return ss;
+            }
+        }
+        return null;
     }
 }

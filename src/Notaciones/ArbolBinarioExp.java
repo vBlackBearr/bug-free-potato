@@ -4,7 +4,10 @@
  */
 package Notaciones;
 
+import Analizador.GramaticaConstants;
+import extraObjects.objRelacionDatoVar;
 import extraObjects.typeTableInstance;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -66,7 +69,7 @@ public class ArbolBinarioExp {
     }
 
     private int prioridad(char c) {
-        int p = 100;
+        int p;
         switch (c) {
             case '+':
             case '-':
@@ -130,7 +133,7 @@ public class ArbolBinarioExp {
                 }
             }
 
-            if (s != "") { //Es un operando
+            if (!"".equals(s)) { //Es un operando
                 i += j - 1;
                 token = new NodoArbol(s);
                 PilaExpresiones.insertar(token);
@@ -186,41 +189,51 @@ public class ArbolBinarioExp {
         if (!esOperador(dato.charAt(0))) {
             if (dato.matches("([a-z]|[A-Z])([a-z]|[A-Z]|[0-9])*")) {
                 if (typeTableInstance.getInstance().checkVariable(dato)) {
-                    return typeTableInstance.getInstance().get(subArbol.dato.toString());
+//                    JOptionPane.showMessageDialog(null, "paso");
+                    objRelacionDatoVar dat = typeTableInstance.getInstance().getFromTablaValores(dato);
+                    if (dat != null) {
+                        return (Double) dat.getDato();
+                    }
+                    return 0;
                 }
+                return 0;
             } else {
                 return Double.parseDouble(subArbol.dato.toString());
             }
-
         } else {
             switch (subArbol.dato.toString().charAt(0)) {
                 case '^':
                     acum = acum + Math.pow(evalua(subArbol.izquierdo), evalua(subArbol.derecho));
-                    evaluacion = evaluacion + subArbol.dato.toString() + "\t" + subArbol.izquierdo.dato + "\t" + subArbol.derecho.dato + "\t" + acum + "\t" + "T" + contador + "\n";
+                    evaluacion = evaluacion + subArbol.dato.toString() + "\t" + subArbol.izquierdo.dato + "\t"
+                            + subArbol.derecho.dato + "\t" + acum + "\t" + "T" + contador + "\n";
                     subArbol.dato = "T" + contador;
                     contador++;
                     break;
                 case '*':
                     acum = acum + evalua(subArbol.izquierdo) * evalua(subArbol.derecho);
-                    evaluacion = evaluacion + subArbol.dato.toString() + "\t" + subArbol.izquierdo.dato + "\t" + subArbol.derecho.dato + "\t" + acum + "\t" + "T" + contador + "\n";
+                    evaluacion = evaluacion + subArbol.dato.toString() + "\t" + subArbol.izquierdo.dato + "\t"
+                            + subArbol.derecho.dato + "\t" + acum + "\t" + "T" + contador + "\n";
                     subArbol.dato = "T" + contador;
                     contador++;
                     break;
                 case '/':
                     acum = acum + evalua(subArbol.izquierdo) / evalua(subArbol.derecho);
-                    evaluacion = evaluacion + subArbol.dato.toString() + "\t" + subArbol.izquierdo.dato + "\t" + subArbol.derecho.dato + "\t" + acum + "\t" + "T" + contador + "\n";
+                    evaluacion = evaluacion + subArbol.dato.toString() + "\t" + subArbol.izquierdo.dato + "\t"
+                            + subArbol.derecho.dato + "\t" + acum + "\t" + "T" + contador + "\n";
                     subArbol.dato = "T" + contador;
                     contador++;
                     break;
                 case '+':
                     acum = acum + evalua(subArbol.izquierdo) + evalua(subArbol.derecho);
-                    evaluacion = evaluacion + subArbol.dato.toString() + "\t" + subArbol.izquierdo.dato + "\t" + subArbol.derecho.dato + "\t" + acum + "\t" + "T" + contador + "\n";
+                    evaluacion = evaluacion + subArbol.dato.toString() + "\t" + subArbol.izquierdo.dato + "\t"
+                            + subArbol.derecho.dato + "\t" + acum + "\t" + "T" + contador + "\n";
                     subArbol.dato = "T" + contador;
                     contador++;
                     break;
                 case '-':
                     acum = acum + evalua(subArbol.izquierdo) - evalua(subArbol.derecho);
-                    evaluacion = evaluacion + subArbol.dato.toString() + "\t" + subArbol.izquierdo.dato + "\t" + subArbol.derecho.dato + "\t" + acum + "\t" + "T" + contador + "\n";
+                    evaluacion = evaluacion + subArbol.dato.toString() + "\t" + subArbol.izquierdo.dato + "\t"
+                            + subArbol.derecho.dato + "\t" + acum + "\t" + "T" + contador + "\n";
                     subArbol.dato = "T" + contador;
                     contador++;
                     break;

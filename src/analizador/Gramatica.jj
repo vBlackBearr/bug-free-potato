@@ -3036,7 +3036,7 @@ void Asignacion() :
 {
 }
 {
-  < VAR > verificarExistencia()
+  < VAR > agregarAExpresionInfija(token) verificarExistencia()
   (
     Asignacion2()
   | Sentencia_incremental()
@@ -3049,7 +3049,7 @@ valor1CompAsig = token;
 }
 {
   
-    < ASIG > Expr()
+    < ASIG > agregarAExpresionInfija(token) Expr()
 }
 
 void Expr() :
@@ -3075,6 +3075,12 @@ void mandarAConvertirYRestablecerExpresionInfija()
 logsAcumulatorInstance.getInstance().addComponenteExpresionInfija(expresionInfija);
 expresionInfija = "";
 
+}
+
+JAVACODE
+
+void restablecerExpresionInfija(){
+expresionInfija = "";
 }
 
 void PonerDato() :
@@ -3149,7 +3155,7 @@ void Declaracion() :
 {
   try
   {
-    Tipo() (< CORA > < ENTERO > < CORC >)? Declarando() (DeclaracionAsignacion())?
+    Tipo() (< CORA > < ENTERO > < CORC >)? Declarando() (DeclaracionAsignacion() | restablecerExpresionInfija())
   }
   catch (ParseException e)
   {
@@ -3187,9 +3193,9 @@ void Declaracion() :
 }
 
 void Declarando() :
-{}
+{} 
 {
-  < VAR > InsertarEnTablaDeVariables()
+  < VAR > agregarAExpresionInfija(token) InsertarEnTablaDeVariables()
 }
 
 JAVACODE
@@ -3206,7 +3212,7 @@ void DeclaracionAsignacion() :
 {
   try
   {
-    < ASIG > Expr()
+    < ASIG > agregarAExpresionInfija(token) Expr()
   }
   catch (ParseException e)
   {

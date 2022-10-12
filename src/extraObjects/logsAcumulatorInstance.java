@@ -5,6 +5,7 @@
 package extraObjects;
 
 //import Conversor.Conversor;
+import Analizador.GramaticaConstants;
 import GUI.GUI;
 import Notaciones.Conversion;
 import Notaciones.NotacionPolaca;
@@ -20,8 +21,9 @@ public class logsAcumulatorInstance {
 
     private static logsAcumulatorInstance INSTANCE = null;
 
+    public static NotacionPolaca np = new NotacionPolaca();
+
     private logsAcumulatorInstance() {
-//        addSintacticLog("No hay errores!")
     }
 
     private String lexicLogs = "";
@@ -43,6 +45,10 @@ public class logsAcumulatorInstance {
             createInstance();
         }
         return INSTANCE;
+    }
+
+    public void reestablecerNp() {
+        np = new NotacionPolaca();
     }
 
     public void addlexicLog(String log) {
@@ -69,15 +75,16 @@ public class logsAcumulatorInstance {
     }
 
     public void addComponenteExpresionInfija(String log) {
-        if (!"".equals(log) && !log.contains("\"")) {
-            
-            NotacionPolaca np = new NotacionPolaca();
-            String operacion = np.notacionPolaca(log, "variables");
-//            System.out.println(operacion);
-            setNotacionPolacaLogs(getNotacionPolacaLogs() + operacion + "\n\n");
-            getGuiInstance().setTxtAreaNotacionPolaca(getNotacionPolacaLogs());
-        }
 
+        if (!"".equals(log) && !log.contains("\"") && !log.contains("\'")) {
+            String[] op = log.split("=");
+            int type = typeTableInstance.getInstance().getType(op[0]);
+            if (type == GramaticaConstants.INT || type == GramaticaConstants.FLOAT || type == GramaticaConstants.DOUBLE) {
+                String operacion = np.notacionPolaca(log);
+                setNotacionPolacaLogs(getNotacionPolacaLogs() + operacion + "\n\n");
+                getGuiInstance().setTxtAreaNotacionPolaca(getNotacionPolacaLogs());
+            }
+        }
     }
 
     public void resetLogs() {

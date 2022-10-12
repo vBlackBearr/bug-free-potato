@@ -2861,6 +2861,7 @@ typeTableInstance tableInstance = typeTableInstance.getInstance();
 
   final public void Asignacion() throws ParseException {
     jj_consume_token(VAR);
+    agregarAExpresionInfija(token);
     verificarExistencia();
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case ASIG:
@@ -2880,6 +2881,7 @@ typeTableInstance tableInstance = typeTableInstance.getInstance();
   final public void Asignacion2() throws ParseException {
 valor1CompAsig = token;
     jj_consume_token(ASIG);
+    agregarAExpresionInfija(token);
     Expr();
   }
 
@@ -2923,6 +2925,10 @@ valor1CompAsig = token;
 
   void mandarAConvertirYRestablecerExpresionInfija() throws ParseException {
 logsAcumulatorInstance.getInstance().addComponenteExpresionInfija(expresionInfija);
+expresionInfija = "";
+  }
+
+  void restablecerExpresionInfija() throws ParseException {
 expresionInfija = "";
   }
 
@@ -3037,7 +3043,7 @@ if(!tableInstance.checkVariable(token.image)){
         break;
       default:
         jj_la1[55] = jj_gen;
-        ;
+        restablecerExpresionInfija();
       }
     } catch (ParseException e) {
     Token t = getToken(0);
@@ -3075,6 +3081,7 @@ if(!tableInstance.checkVariable(token.image)){
 
   final public void Declarando() throws ParseException {
     jj_consume_token(VAR);
+    agregarAExpresionInfija(token);
     InsertarEnTablaDeVariables();
   }
 
@@ -3087,6 +3094,7 @@ TA.InsertarSimbolo(token, kindParaDeclarar);
   valor1CompAsig = token;
     try {
       jj_consume_token(ASIG);
+      agregarAExpresionInfija(token);
       Expr();
     } catch (ParseException e) {
     Token t = getToken(0);
