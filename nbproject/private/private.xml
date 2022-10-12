@@ -5,6 +5,7 @@
         <group>
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             <file>file:/C:/Users/JuanO/Documents/GitHub/bug-free-potato/src/extraObjects/objTipoDatoCompatible.java</file>
             <file>file:/C:/Users/JuanO/Documents/GitHub/bug-free-potato/src/lenguajee/LenguajeE.java</file>
             <file>file:/C:/Users/JuanO/Documents/GitHub/bug-free-potato/src/JASM/Main.java</file>
@@ -30,6 +31,14 @@
             <file>file:/C:/Users/JuanO/Documents/GitHub/bug-free-potato/src/Notaciones/ArbolBinarioExp.java</file>
             <file>file:/C:/Users/JuanO/Documents/GitHub/bug-free-potato/src/Notaciones/PilaArbolExp.java</file>
             <file>file:/C:/Users/JuanO/Documents/GitHub/bug-free-potato/src/Notaciones/NodoArbol.java</file>
+>>>>>>> Stashed changes
+=======
+            <file>file:/C:/Users/JuanO/Documents/GitHub/bug-free-potato/src/Notaciones/Main.java</file>
+            <file>file:/C:/Users/JuanO/Documents/GitHub/bug-free-potato/src/GUI/NumeroLinea.java</file>
+            <file>file:/C:/Users/JuanO/Documents/GitHub/bug-free-potato/src/Notaciones/ArbolBinarioExp.java</file>
+            <file>file:/C:/Users/JuanO/Documents/GitHub/bug-free-potato/src/Notaciones/NotacionPolaca.java</file>
+            <file>file:/C:/Users/JuanO/Documents/GitHub/bug-free-potato/src/Notaciones/PilaArbolExp.java</file>
+            <file>file:/C:/Users/JuanO/Documents/GitHub/bug-free-potato/src/GUI/GUI.java</file>
 >>>>>>> Stashed changes
         </group>
     </open-files>
