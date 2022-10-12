@@ -6,7 +6,7 @@ package extraObjects;
 
 /**
  *
- * @author Luisp
+ * @author TeamPotato:)
  */
 public class objRelacionDatoVar {
     private String ID;
