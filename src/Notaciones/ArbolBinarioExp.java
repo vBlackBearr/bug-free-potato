@@ -189,7 +189,6 @@ public class ArbolBinarioExp {
         if (!esOperador(dato.charAt(0))) {
             if (dato.matches("([a-z]|[A-Z])([a-z]|[A-Z]|[0-9])*")) {
                 if (typeTableInstance.getInstance().checkVariable(dato)) {
-//                    JOptionPane.showMessageDialog(null, "paso");
                     objRelacionDatoVar dat = typeTableInstance.getInstance().getFromTablaValores(dato);
                     if (dat != null) {
                         return (Double) dat.getDato();

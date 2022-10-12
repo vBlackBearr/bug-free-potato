@@ -80,9 +80,11 @@ public class logsAcumulatorInstance {
             String[] op = log.split("=");
             int type = typeTableInstance.getInstance().getType(op[0]);
             if (type == GramaticaConstants.INT || type == GramaticaConstants.FLOAT || type == GramaticaConstants.DOUBLE) {
-                String operacion = np.notacionPolaca(log);
-                setNotacionPolacaLogs(getNotacionPolacaLogs() + operacion + "\n\n");
-                getGuiInstance().setTxtAreaNotacionPolaca(getNotacionPolacaLogs());
+                if (containsOperador(op[1])) {
+                    String operacion = np.notacionPolaca(log);
+                    setNotacionPolacaLogs(getNotacionPolacaLogs() + operacion + "\n\n");
+                    getGuiInstance().setTxtAreaNotacionPolaca(getNotacionPolacaLogs());
+                }
             }
         }
     }
@@ -166,5 +168,30 @@ public class logsAcumulatorInstance {
      */
     public void setNotacionPolacaLogs(String notacionPolacaLogs) {
         this.notacionPolacaLogs = notacionPolacaLogs;
+    }
+
+    private boolean containsOperador(String cadena) {
+        if (cadena.contains("(")) {
+            return true;
+        }
+        if (cadena.contains(")")) {
+            return true;
+        }
+        if (cadena.contains("+")) {
+            return true;
+        }
+        if (cadena.contains("-")) {
+            return true;
+        }
+        if (cadena.contains("*")) {
+            return true;
+        }
+        if (cadena.contains("/")) {
+            return true;
+        }
+        if (cadena.contains("^")) {
+            return true;
+        }
+        return false;
     }
 }
