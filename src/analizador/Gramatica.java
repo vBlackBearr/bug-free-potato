@@ -2886,6 +2886,11 @@ valor1CompAsig = token;
   }
 
   final public void Expr() throws ParseException {
+    ExprSus();
+    mandarAConvertirYRestablecerExpresionInfija();
+  }
+
+  final public void ExprSus() throws ParseException {
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case TRUE:
     case FALSE:
@@ -2915,11 +2920,11 @@ valor1CompAsig = token;
     case MODUL:
     case MULTI:
       Oper();
-      Expr();
+      ExprSus();
       break;
     default:
       jj_la1[51] = jj_gen;
-      mandarAConvertirYRestablecerExpresionInfija();
+      ;
     }
   }
 
@@ -2963,8 +2968,10 @@ if(!tableInstance.checkVariable(token.image)){
 
   final public void ParentesisExpr() throws ParseException {
     jj_consume_token(PAREA);
-    Expr();
+    agregarAExpresionInfija(token);
+    ExprSus();
     jj_consume_token(PAREC);
+    agregarAExpresionInfija(token);
     Expr2();
   }
 

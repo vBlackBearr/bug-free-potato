@@ -84,14 +84,14 @@ public class logsAcumulatorInstance {
                     String operacion = np.notacionPolaca(log);
                     setNotacionPolacaLogs(getNotacionPolacaLogs() + operacion + "\n\n");
                     getGuiInstance().setTxtAreaNotacionPolaca(getNotacionPolacaLogs());
-                }else{
+                } else {
                     np.insertarValorAVar(log);
                 }
-            }else{
+            } else {
                 np.insertarValorAVar(log);
             }
-        }else{
-           np.insertarValorAVar(log);
+        } else {
+//           np.insertarValorAVar(log);
         }
     }
 

@@ -3056,6 +3056,13 @@ void Expr() :
 {
 }
 {
+ExprSus() mandarAConvertirYRestablecerExpresionInfija()
+}
+
+void ExprSus() :
+{
+}
+{
   PonerDato()
 | ParentesisExpr()
 }
@@ -3065,13 +3072,14 @@ void Expr2() :
 }
 {
   (
-    (Oper() Expr())
-  ) | mandarAConvertirYRestablecerExpresionInfija()
+    (Oper() ExprSus())?
+  )
 }
 
 JAVACODE
 void mandarAConvertirYRestablecerExpresionInfija()
 {
+
 logsAcumulatorInstance.getInstance().addComponenteExpresionInfija(expresionInfija);
 expresionInfija = "";
 
@@ -3122,7 +3130,7 @@ void agregarAExpresionInfija(Token valor){
 void ParentesisExpr() :
 {}
 {
-  < PAREA > Expr() < PAREC > Expr2()
+  < PAREA > agregarAExpresionInfija(token) ExprSus() < PAREC > agregarAExpresionInfija(token) Expr2()
 }
 
 void TipoDato() :
