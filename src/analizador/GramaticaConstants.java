@@ -12,193 +12,193 @@ public interface GramaticaConstants {
   /** End of File. */
   int EOF = 0;
   /** RegularExpression Id. */
-  int ENTER = 5;
+  int ENTER = 6;
   /** RegularExpression Id. */
-  int IF = 6;
+  int IF = 7;
   /** RegularExpression Id. */
-  int ELSE = 7;
+  int ELSE = 8;
   /** RegularExpression Id. */
-  int WHILE = 8;
+  int WHILE = 9;
   /** RegularExpression Id. */
-  int CLASS = 9;
+  int CLASS = 10;
   /** RegularExpression Id. */
-  int PACK = 10;
+  int PACK = 11;
   /** RegularExpression Id. */
-  int PUBLIC = 11;
+  int PUBLIC = 12;
   /** RegularExpression Id. */
-  int PRIVATE = 12;
+  int PRIVATE = 13;
   /** RegularExpression Id. */
-  int BREAK = 13;
+  int BREAK = 14;
   /** RegularExpression Id. */
-  int DO = 14;
+  int DO = 15;
   /** RegularExpression Id. */
-  int CHAR = 15;
+  int CHAR = 16;
   /** RegularExpression Id. */
-  int STRING = 16;
+  int STRING = 17;
   /** RegularExpression Id. */
-  int INT = 17;
+  int INT = 18;
   /** RegularExpression Id. */
-  int FLOAT = 18;
+  int FLOAT = 19;
   /** RegularExpression Id. */
-  int BOOLEAN = 19;
+  int BOOLEAN = 20;
   /** RegularExpression Id. */
-  int TRY = 20;
+  int TRY = 21;
   /** RegularExpression Id. */
-  int CATCH = 21;
+  int CATCH = 22;
   /** RegularExpression Id. */
-  int SUPER = 22;
+  int SUPER = 23;
   /** RegularExpression Id. */
-  int THIS = 23;
+  int THIS = 24;
   /** RegularExpression Id. */
-  int DERIVATE = 24;
+  int DERIVATE = 25;
   /** RegularExpression Id. */
-  int RETURN = 25;
+  int RETURN = 26;
   /** RegularExpression Id. */
-  int FINAL = 26;
+  int FINAL = 27;
   /** RegularExpression Id. */
-  int VOID = 27;
+  int VOID = 28;
   /** RegularExpression Id. */
-  int NULL = 28;
+  int NULL = 29;
   /** RegularExpression Id. */
-  int IMPORT = 29;
+  int IMPORT = 30;
   /** RegularExpression Id. */
-  int TRUE = 30;
+  int TRUE = 31;
   /** RegularExpression Id. */
-  int FALSE = 31;
+  int FALSE = 32;
   /** RegularExpression Id. */
-  int FOR = 32;
+  int FOR = 33;
   /** RegularExpression Id. */
-  int SWITCH = 33;
+  int SWITCH = 34;
   /** RegularExpression Id. */
-  int CASE = 34;
+  int CASE = 35;
   /** RegularExpression Id. */
-  int PRINMAIN = 35;
+  int PRINMAIN = 36;
   /** RegularExpression Id. */
-  int DOUBLE = 36;
+  int DOUBLE = 37;
   /** RegularExpression Id. */
-  int EXCEPT = 37;
+  int EXCEPT = 38;
   /** RegularExpression Id. */
-  int DEF = 38;
+  int DEF = 39;
   /** RegularExpression Id. */
-  int LLAVA = 39;
+  int LLAVA = 40;
   /** RegularExpression Id. */
-  int LLAVC = 40;
+  int LLAVC = 41;
   /** RegularExpression Id. */
-  int CORA = 41;
+  int CORA = 42;
   /** RegularExpression Id. */
-  int CORC = 42;
+  int CORC = 43;
   /** RegularExpression Id. */
-  int PAREA = 43;
+  int PAREA = 44;
   /** RegularExpression Id. */
-  int PAREC = 44;
+  int PAREC = 45;
   /** RegularExpression Id. */
-  int PYC = 45;
+  int PYC = 46;
   /** RegularExpression Id. */
-  int COMSIM = 46;
+  int COMSIM = 47;
   /** RegularExpression Id. */
-  int COM = 47;
+  int COM = 48;
   /** RegularExpression Id. */
-  int PUNT = 48;
+  int PUNT = 49;
   /** RegularExpression Id. */
-  int GUIONB = 49;
+  int GUIONB = 50;
   /** RegularExpression Id. */
-  int DOSP = 50;
+  int DOSP = 51;
   /** RegularExpression Id. */
-  int MAYORQ = 51;
+  int MAYORQ = 52;
   /** RegularExpression Id. */
-  int MENORQ = 52;
+  int MENORQ = 53;
   /** RegularExpression Id. */
-  int MAYORI = 53;
+  int MAYORI = 54;
   /** RegularExpression Id. */
-  int MENORI = 54;
+  int MENORI = 55;
   /** RegularExpression Id. */
-  int IGUALI = 55;
+  int IGUALI = 56;
   /** RegularExpression Id. */
-  int DIFER = 56;
+  int DIFER = 57;
   /** RegularExpression Id. */
-  int AND = 57;
+  int AND = 58;
   /** RegularExpression Id. */
-  int OR = 58;
+  int OR = 59;
   /** RegularExpression Id. */
-  int NOT = 59;
+  int NOT = 60;
   /** RegularExpression Id. */
-  int INCRE = 60;
+  int INCRE = 61;
   /** RegularExpression Id. */
-  int DECRE = 61;
+  int DECRE = 62;
   /** RegularExpression Id. */
-  int ASIG = 62;
+  int ASIG = 63;
   /** RegularExpression Id. */
-  int SUMASIG = 63;
+  int SUMASIG = 64;
   /** RegularExpression Id. */
-  int RESASIG = 64;
+  int RESASIG = 65;
   /** RegularExpression Id. */
-  int MULASIG = 65;
+  int MULASIG = 66;
   /** RegularExpression Id. */
-  int DIVASIG = 66;
+  int DIVASIG = 67;
   /** RegularExpression Id. */
-  int MODASIG = 67;
+  int MODASIG = 68;
   /** RegularExpression Id. */
-  int SUMA = 68;
+  int SUMA = 69;
   /** RegularExpression Id. */
-  int RESTA = 69;
+  int RESTA = 70;
   /** RegularExpression Id. */
-  int DIVIS = 70;
+  int DIVIS = 71;
   /** RegularExpression Id. */
-  int POTEN = 71;
+  int POTEN = 72;
   /** RegularExpression Id. */
-  int MODUL = 72;
+  int MODUL = 73;
   /** RegularExpression Id. */
-  int MULTI = 73;
+  int MULTI = 74;
   /** RegularExpression Id. */
-  int letraMay = 74;
+  int letraMay = 75;
   /** RegularExpression Id. */
-  int letraMin = 75;
+  int letraMin = 76;
   /** RegularExpression Id. */
-  int c = 76;
+  int c = 77;
   /** RegularExpression Id. */
-  int cinv = 77;
+  int cinv = 78;
   /** RegularExpression Id. */
-  int c2 = 78;
+  int c2 = 79;
   /** RegularExpression Id. */
-  int digito = 79;
+  int digito = 80;
   /** RegularExpression Id. */
-  int ENTERO = 80;
+  int ENTERO = 81;
   /** RegularExpression Id. */
-  int FLOTANTEDOUBLE = 81;
+  int FLOTANTEDOUBLE = 82;
   /** RegularExpression Id. */
-  int CLASES = 82;
+  int CLASES = 83;
   /** RegularExpression Id. */
-  int CARACTER = 83;
+  int CARACTER = 84;
   /** RegularExpression Id. */
-  int CADENA = 84;
+  int CADENA = 85;
   /** RegularExpression Id. */
-  int VAR = 85;
+  int VAR = 86;
   /** RegularExpression Id. */
-  int FUNC = 86;
+  int FUNC = 87;
   /** RegularExpression Id. */
-  int LIBR = 87;
+  int LIBR = 88;
   /** RegularExpression Id. */
-  int ENTEROINV = 88;
+  int ENTEROINV = 89;
   /** RegularExpression Id. */
-  int FLOTDOBINV = 89;
+  int FLOTDOBINV = 90;
   /** RegularExpression Id. */
-  int CADENAINV = 90;
+  int CADENAINV = 91;
   /** RegularExpression Id. */
-  int A = 91;
+  int A = 92;
   /** RegularExpression Id. */
-  int GRADOS = 92;
+  int GRADOS = 93;
   /** RegularExpression Id. */
-  int CPOR = 93;
+  int CPOR = 94;
   /** RegularExpression Id. */
-  int PUNTOS = 94;
+  int PUNTOS = 95;
   /** RegularExpression Id. */
-  int ACENTOI = 95;
+  int ACENTOI = 96;
   /** RegularExpression Id. */
-  int ACENTO = 96;
+  int ACENTO = 97;
   /** RegularExpression Id. */
-  int BARRAI = 97;
+  int BARRAI = 98;
   /** RegularExpression Id. */
-  int ARROBA = 98;
+  int ARROBA = 99;
 
   /** Lexical state. */
   int SALTO = 0;
@@ -211,6 +211,7 @@ public interface GramaticaConstants {
     "\" \"",
     "\"\\t\"",
     "\"\\r\"",
+    "<token of kind 4>",
     "\"\\n\"",
     "\"\\n\"",
     "\"If\"",

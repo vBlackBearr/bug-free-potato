@@ -63,6 +63,7 @@ SKIP :
   " "
 | "\t"
 | "\r"
+| < "//" (~["\r", "\n"])* >
 }
 
 < SALTO >
@@ -625,7 +626,6 @@ TOKEN :
 
 
 /**Inicio sintactico*/
-
 void Inicio() :
 {
   TA.SetTables();
