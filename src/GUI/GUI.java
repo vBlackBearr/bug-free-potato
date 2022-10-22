@@ -75,6 +75,7 @@ public class GUI extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         txtAreaNotacionPolaca = new javax.swing.JTextArea();
+        txtTiempoEjecucion = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
@@ -185,6 +186,8 @@ public class GUI extends javax.swing.JFrame {
                     .addComponent(jScrollPane1))
                 .addContainerGap(12, Short.MAX_VALUE))
         );
+
+        txtTiempoEjecucion.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         fileMenu.setMnemonic('f');
         fileMenu.setText("Archivo");
@@ -312,8 +315,11 @@ public class GUI extends javax.swing.JFrame {
                         .addComponent(lbl_Codigo)))
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbl_Respuesta)
-                    .addComponent(paneOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(paneOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lbl_Respuesta)
+                        .addGap(132, 132, 132)
+                        .addComponent(txtTiempoEjecucion, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -322,8 +328,13 @@ public class GUI extends javax.swing.JFrame {
                 .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lbl_Respuesta)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lbl_Respuesta)
+                                .addGap(14, 14, 14))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(txtTiempoEjecucion, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addComponent(paneOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -426,7 +437,7 @@ public class GUI extends javax.swing.JFrame {
     public void setTxtAreaSemantico(String texto) {
         txtAreaSemantico.setText(texto);
     }
-    
+
     public void setTxtAreaNotacionPolaca(String texto) {
         txtAreaNotacionPolaca.setText(texto);
     }
@@ -499,12 +510,16 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JTextArea txtAreaSemantico;
     private javax.swing.JTextArea txtAreaSintactico;
     private javax.swing.JTextArea txtArea_Editor;
+    private javax.swing.JLabel txtTiempoEjecucion;
     // End of variables declaration//GEN-END:variables
 
     public void analisis() {
         try {
             File file = crearArchivoConTexto(txtArea_Editor.getText());
+            long inicioEjecucion = System.currentTimeMillis();
             an.AnalizarCodigo(new FileReader(file));
+            long finEjecucion = System.currentTimeMillis();
+            txtTiempoEjecucion.setText(((double) (finEjecucion - inicioEjecucion) / 1000) + " segundos");;
 //            txtAreaLexico.setText(an.respuestaLexico);
 //            if(an.respuestaSintactico.equals("")){
 //                txtAreaSintactico.setText("Sin errores sintacticos");

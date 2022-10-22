@@ -25,7 +25,6 @@ public class Miclase{
      escribirEnConsola(z);
      If(x>=5 AND true OR x==x){
            While(true){
-dffd
 
             }
             escribirEnConsola("X es mayor");
