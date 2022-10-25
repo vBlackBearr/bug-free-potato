@@ -462,18 +462,15 @@ public class GUI extends javax.swing.JFrame {
     private void jm_Optimizacion1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jm_Optimizacion1ActionPerformed
         // TODO add your handling code here:
         txtArea_Editor.setText(Optimizador.Optimizar(txtArea_Editor.getText()));
-
     }//GEN-LAST:event_jm_Optimizacion1ActionPerformed
 
     private void btnCompilar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCompilar1MouseClicked
         // TODO add your handling code here:
         txtArea_Editor.setText(Optimizador.Optimizar(txtArea_Editor.getText()));
-
     }//GEN-LAST:event_btnCompilar1MouseClicked
 
     private void btnCompilar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompilar1ActionPerformed
         // TODO add your handling code here:
-        
     }//GEN-LAST:event_btnCompilar1ActionPerformed
 
     private void btnCompilarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCompilarMouseEntered

@@ -4,12 +4,11 @@
  */
 package analizador;
 
-import java.io.File;
 import java.util.ArrayList;
 
 /**
  *
- * @author Luisp
+ * @author TeamPotato
  */
 public class Optimizador {
 
@@ -17,7 +16,7 @@ public class Optimizador {
     }
 
     public static String Optimizar(String texto) {
-        texto = texto.replaceAll("/[*](\\S)*[*]/", "");
+        texto = texto.replaceAll("/[*](\\S|\\n)*[*]/", "");
         ArrayList<String> textIn = convertirTextToArray(texto);
         String textOut = "";
 
