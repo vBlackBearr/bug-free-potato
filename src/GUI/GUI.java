@@ -5,6 +5,7 @@
 package GUI;
 
 import analizador.Optimizador;
+import extraObjects.Cross;
 import extraObjects.jScrollPane;
 import java.awt.Color;
 import java.awt.HeadlessException;
@@ -23,10 +24,12 @@ import javax.swing.JOptionPane;
 import extraObjects.logsAcumulatorInstance;
 import extraObjects.textEditorPane;
 import extraObjects.typeTableInstance;
+import java.awt.BorderLayout;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 
 /**
@@ -34,8 +37,7 @@ import javax.swing.JTextArea;
  * @author TeamPotato:)
  */
 public class GUI extends javax.swing.JFrame {
-
-    ArrayList<File> selectedFiles = new ArrayList<>();
+    
     JFileChooser seleccionarCodigo;
     Analizar an = new Analizar();
     public String muestraLexicos = "";
@@ -57,6 +59,7 @@ public class GUI extends javax.swing.JFrame {
         this.setExtendedState(MAXIMIZED_BOTH);
 
         abrirArchivosEnCache();
+
     }
 
     /**
@@ -407,7 +410,7 @@ public class GUI extends javax.swing.JFrame {
         seleccionarCodigo.showOpenDialog(null);
         if (seleccionarCodigo.getSelectedFile() != null) {
             File file = seleccionarCodigo.getSelectedFile();
-            selectedFiles.add(file);
+//            selectedFiles.add(file);
 //            String contenido = "";
 //            try {
 //                FileReader fr = new FileReader(file);
@@ -685,7 +688,7 @@ public class GUI extends javax.swing.JFrame {
             String line;
             ArrayList<String> lineas = new ArrayList<>();
             while ((line = br.readLine()) != null) {
-                
+
                 lineas.add(line);
             }
 
@@ -707,8 +710,9 @@ public class GUI extends javax.swing.JFrame {
             FileWriter fw = new FileWriter(file);
 
             String files = "";
-            for (int i = 0; i < selectedFiles.size(); i++) {
-                files += selectedFiles.get(i).getAbsolutePath() + "\n";
+            for (int i = 0; i < tabbedPane.getTabCount(); i++) {
+                textEditorPane pane = (textEditorPane) tabbedPane.getComponentAt(i);
+                files += pane.file.getAbsolutePath() + "\n";
             }
             fw.write(files);
             fw.close();
@@ -763,6 +767,9 @@ public class GUI extends javax.swing.JFrame {
     private textEditorPane nuevaPestaña() {
         textEditorPane pane = new textEditorPane();
         tabbedPane.addTab("Nuevo Archivo", pane);
+//        int i = tabbedPane.indexOfTab(file.getName());
+//        tabbedPane.setTabComponentAt(i, new Cross(tabbedPane.getTitleAt(i), tabbedPane)); //agrega titulo y boton X.
+//        getContentPane().add(tabbedPane, BorderLayout.CENTER);
         return pane;
     }
 
@@ -770,10 +777,17 @@ public class GUI extends javax.swing.JFrame {
         textEditorPane pane = new textEditorPane();
         File file = pane.file = new File(ruta);
         if (file.exists()) {
-            selectedFiles.add(file);
+//            selectedFiles.add(file);
             pane.setTextArea(getText(file));
             tabbedPane.addTab(file.getName(), pane);
+            int i = tabbedPane.indexOfTab(file.getName());
+            tabbedPane.setTabComponentAt(i, new Cross(tabbedPane.getTitleAt(i), this)); //agrega titulo y boton X.
+            getContentPane().add(tabbedPane, BorderLayout.CENTER);
         }
+
+        
+
+        
         return pane;
     }
 
@@ -783,6 +797,9 @@ public class GUI extends javax.swing.JFrame {
         pane.file = file;
         pane.setTextArea(codigo);
         tabbedPane.addTab(file.getName(), pane);
+        int i = tabbedPane.indexOfTab(file.getName());
+        tabbedPane.setTabComponentAt(i, new Cross(tabbedPane.getTitleAt(i), this)); //agrega titulo y boton X.
+        getContentPane().add(tabbedPane, BorderLayout.CENTER);
         return pane;
     }
 
@@ -794,5 +811,9 @@ public class GUI extends javax.swing.JFrame {
     private void setTextToSelectedTab(String text) {
         textEditorPane pane = (textEditorPane) tabbedPane.getSelectedComponent();
         pane.setTextArea(text);
+    }
+    
+    public JTabbedPane getTabbedPane(){
+        return tabbedPane;
     }
 }
