@@ -38,7 +38,7 @@ public class Cross extends JPanel {
         B.setIcon(getImage());
         B.addActionListener(e -> gui.getTabbedPane().removeTabAt(gui.getTabbedPane().indexOfTab(title)));
         add(L, gbc);
-        gbc.gridx++; 
+        gbc.gridx++;
         gbc.weightx = 0;
         add(B, gbc);
     }

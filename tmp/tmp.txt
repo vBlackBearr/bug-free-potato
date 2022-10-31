@@ -45,7 +45,7 @@ public class Miclase{
            Try{
                  escribirEnConsola(z);
            }Catch(Except e){
-                 escribirEnConsola(x);
+                 escribirEnConsola(x); sd
                  escribirEnConsola(y);
                  escribirEnConsola(z);
            }
