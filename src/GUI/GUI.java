@@ -5,6 +5,7 @@
 package GUI;
 
 import analizador.Optimizador;
+import extraObjects.jScrollPane;
 import java.awt.Color;
 import java.awt.HeadlessException;
 import lenguajee.Analizar;
@@ -20,7 +21,13 @@ import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import extraObjects.logsAcumulatorInstance;
+import extraObjects.textEditorPane;
 import extraObjects.typeTableInstance;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
 /**
  *
@@ -28,10 +35,13 @@ import extraObjects.typeTableInstance;
  */
 public class GUI extends javax.swing.JFrame {
 
-    File selectedFile = null;
+    ArrayList<File> selectedFiles = new ArrayList<>();
     JFileChooser seleccionarCodigo;
     Analizar an = new Analizar();
     public String muestraLexicos = "";
+    private ArrayList<String> urlsDeArchivosAbiertos = new ArrayList<>();
+
+    private final String URLFILEVENTANAS = "cache/openedWindows.txt";
 
     /**
      * Creates new form GUI
@@ -45,7 +55,8 @@ public class GUI extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         logsAcumulatorInstance.getInstance().setGuiInstance(this);
         this.setExtendedState(MAXIMIZED_BOTH);
-//        logsAcumulatorInstance.getInstance().addlexicLog
+
+        abrirArchivosEnCache();
     }
 
     /**
@@ -57,8 +68,6 @@ public class GUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScroll_Editor = new javax.swing.JScrollPane();
-        txtArea_Editor = new javax.swing.JTextArea();
         lbl_Escribiendo = new javax.swing.JLabel();
         lbl_Respuesta = new javax.swing.JLabel();
         lbl_Codigo = new javax.swing.JLabel();
@@ -80,6 +89,9 @@ public class GUI extends javax.swing.JFrame {
         txtCodigoOptimizado = new javax.swing.JTextArea();
         jLabel5 = new javax.swing.JLabel();
         txtTiempoEjecucion = new javax.swing.JLabel();
+        tabbedPane = new javax.swing.JTabbedPane();
+        jScroll_Editor = new javax.swing.JScrollPane();
+        txtArea_Editor = new javax.swing.JTextArea();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
@@ -98,10 +110,14 @@ public class GUI extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setExtendedState(MAXIMIZED_BOTH);
         setSize(new java.awt.Dimension(1200, 760));
-
-        txtArea_Editor.setColumns(20);
-        txtArea_Editor.setRows(5);
-        jScroll_Editor.setViewportView(txtArea_Editor);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         lbl_Escribiendo.setFont(new java.awt.Font("Microsoft YaHei", 0, 14)); // NOI18N
         lbl_Escribiendo.setText("Escribiendo en:");
@@ -199,6 +215,14 @@ public class GUI extends javax.swing.JFrame {
         );
 
         txtTiempoEjecucion.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+
+        tabbedPane.setName(""); // NOI18N
+
+        txtArea_Editor.setColumns(20);
+        txtArea_Editor.setRows(5);
+        jScroll_Editor.setViewportView(txtArea_Editor);
+
+        tabbedPane.addTab("tab1", jScroll_Editor);
 
         fileMenu.setMnemonic('f');
         fileMenu.setText("Archivo");
@@ -342,40 +366,43 @@ public class GUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScroll_Editor, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(tabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 812, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(paneOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(41, 41, 41))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lbl_Escribiendo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lbl_Codigo)))
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(paneOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lbl_Codigo)
+                        .addGap(283, 283, 283)
                         .addComponent(lbl_Respuesta)
-                        .addGap(132, 132, 132)
-                        .addComponent(txtTiempoEjecucion, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtTiempoEjecucion, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(589, 589, 589))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lbl_Escribiendo)
-                            .addComponent(lbl_Codigo))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScroll_Editor)
-                        .addGap(206, 206, 206))
+                            .addComponent(lbl_Codigo)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbl_Respuesta)
-                            .addComponent(txtTiempoEjecucion, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addContainerGap()
+                        .addComponent(txtTiempoEjecucion, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lbl_Respuesta))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(paneOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(288, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(tabbedPane)
+                        .addContainerGap())))
         );
 
         pack();
@@ -383,28 +410,26 @@ public class GUI extends javax.swing.JFrame {
 
     private void openMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openMenuItemActionPerformed
         // TODO add your handling code here:
+
         seleccionarCodigo = new JFileChooser();
         seleccionarCodigo.showOpenDialog(null);
         if (seleccionarCodigo.getSelectedFile() != null) {
-            selectedFile = seleccionarCodigo.getSelectedFile();
-            System.out.println("Archivo Seleccionado " + selectedFile.getName());
-            System.out.println("Path Actual " + seleccionarCodigo.getCurrentDirectory());
+            File file = seleccionarCodigo.getSelectedFile();
+            selectedFiles.add(file);
+//            String contenido = "";
+//            try {
+//                FileReader fr = new FileReader(file);
+//                BufferedReader br = new BufferedReader(fr);
+//                String txt;
+//                while ((txt = br.readLine()) != null) {
+//                    contenido = contenido + txt + "\n";
+//                }
+//            } catch (Exception ex) {
+//                //Logger.getLogger(ManejadorDeArchivos.class.getName()).log(Level.SEVERE, null, ex);
+//
+//            }
+            nuevaPestaña(file);
 
-            String contenido = "";
-            try {
-                FileReader fr = new FileReader(selectedFile);
-                BufferedReader br = new BufferedReader(fr);
-                String txt;
-                while ((txt = br.readLine()) != null) {
-                    contenido = contenido + txt + "\n";
-                }
-            } catch (Exception ex) {
-                //Logger.getLogger(ManejadorDeArchivos.class.getName()).log(Level.SEVERE, null, ex);
-
-            }
-            txtArea_Editor.setText(contenido);
-            lbl_Codigo.setForeground(Color.blue);
-            lbl_Codigo.setText(selectedFile.getName());
         }
 
     }//GEN-LAST:event_openMenuItemActionPerformed
@@ -425,18 +450,18 @@ public class GUI extends javax.swing.JFrame {
 
     private void jm_LexicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jm_LexicoActionPerformed
         // TODO add your handling code here:
-        if (seleccionarCodigo.getCurrentDirectory() == null) {
-            JOptionPane.showMessageDialog(null, "No hay ningún codigo seleccionado");
-        } else {
-            String ruta = String.valueOf(seleccionarCodigo.getCurrentDirectory()) + "/" + selectedFile.getName();
-            System.out.println(ruta);
-            try {
-                an.AnalizarCodigo(new FileReader(ruta));
-            } catch (FileNotFoundException ex) {
-                JOptionPane.showMessageDialog(null, "Error al leer el archivo");
-            }
-
-        }
+//        if (seleccionarCodigo.getCurrentDirectory() == null) {
+//            JOptionPane.showMessageDialog(null, "No hay ningún codigo seleccionado");
+//        } else {
+//            String ruta = String.valueOf(seleccionarCodigo.getCurrentDirectory()) + "/" + selectedFile.getName();
+//            System.out.println(ruta);
+//            try {
+//                an.AnalizarCodigo(new FileReader(ruta));
+//            } catch (FileNotFoundException ex) {
+//                JOptionPane.showMessageDialog(null, "Error al leer el archivo");
+//            }
+//
+//        }
     }//GEN-LAST:event_jm_LexicoActionPerformed
 
     private void jm_SintacticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jm_SintacticoActionPerformed
@@ -476,6 +501,17 @@ public class GUI extends javax.swing.JFrame {
     private void btnCompilarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCompilarMouseEntered
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCompilarMouseEntered
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_formWindowClosed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        guardarVentanasAbiertas();
+//        JOptionPane.showMessageDialog(null, "");
+    }//GEN-LAST:event_formWindowClosing
 
     public void setTxtAreaLexico(String texto) {
         txtAreaLexico.setText(texto);
@@ -559,6 +595,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JPanel paneOutput;
     private javax.swing.JMenuItem saveAsMenuItem;
     private javax.swing.JMenuItem saveMenuItem;
+    private javax.swing.JTabbedPane tabbedPane;
     private javax.swing.JTextArea txtAreaLexico;
     private javax.swing.JTextArea txtAreaNotacionPolaca;
     private javax.swing.JTextArea txtAreaSemantico;
@@ -619,8 +656,9 @@ public class GUI extends javax.swing.JFrame {
             JFileChooser fc = new JFileChooser();
             fc.showSaveDialog(null);
             fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-            selectedFile = fc.getSelectedFile();
-            if (selectedFile == null) {
+            jScrollPane scroll = (extraObjects.jScrollPane) (tabbedPane.getSelectedComponent());
+            scroll.file = fc.getSelectedFile();
+            if (scroll.file == null) {
                 return;
             }
             guardar();
@@ -631,9 +669,11 @@ public class GUI extends javax.swing.JFrame {
     }
 
     public void guardar() {
-        if (selectedFile != null) {
+        jScrollPane scroll = (extraObjects.jScrollPane) (tabbedPane.getSelectedComponent());
+        File file = scroll.file;
+        if (file != null) {
             try {
-                BufferedWriter bw = new BufferedWriter(new FileWriter(selectedFile));
+                BufferedWriter bw = new BufferedWriter(new FileWriter(file));
                 bw.close();
             } catch (IOException ex) {
                 Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
@@ -644,4 +684,110 @@ public class GUI extends javax.swing.JFrame {
         }
     }
 
+    private void abrirArchivosEnCache() {
+
+        try {
+            File file = new File(URLFILEVENTANAS);
+            FileReader fr = new FileReader(file);
+            BufferedReader br = new BufferedReader(fr);
+            String line;
+            ArrayList<String> lineas = new ArrayList<>();
+            while ((line = br.readLine()) != null) {
+                selectedFiles.add(new File(line));
+                lineas.add(line);
+            }
+
+            for (String linea : lineas) {
+                nuevaPestaña(linea);
+            }
+
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void guardarVentanasAbiertas() {
+
+        try {
+            File file = new File(URLFILEVENTANAS);
+            FileWriter fw = new FileWriter(file);
+
+            String files = "";
+            for (int i = 0; i < selectedFiles.size(); i++) {
+                files += selectedFiles.get(i).getAbsolutePath() + "\n";
+            }
+            fw.write(files);
+            fw.close();
+        } catch (IOException ex) {
+            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println("Error: " + ex);
+        }
+    }
+
+    private String getText(String ruta) {
+        String contenido = "";
+        try {
+            File file = new File(ruta);
+            FileReader fr = new FileReader(file);
+            BufferedReader br = new BufferedReader(fr);
+            String txt;
+            while ((txt = br.readLine()) != null) {
+                contenido = contenido + txt + "\n";
+            }
+            return contenido;
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    private String getText(File file) {
+        String contenido = "";
+        try {
+            FileReader fr = new FileReader(file);
+            BufferedReader br = new BufferedReader(fr);
+            String txt;
+            while ((txt = br.readLine()) != null) {
+                contenido = contenido + txt + "\n";
+            }
+            return contenido;
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    private String getArchiveNameFromUbication(String ruta) {
+        File file = new File(ruta);
+        return file.getName();
+    }
+
+    private textEditorPane nuevaPestaña() {
+        textEditorPane pane = new textEditorPane();
+        tabbedPane.addTab("Nuevo Archivo", pane);
+        return pane;
+    }
+
+    private textEditorPane nuevaPestaña(String ruta) {
+        textEditorPane pane = new textEditorPane();
+        File file = pane.file = new File(ruta);
+        pane.setTextArea(getText(file));
+        tabbedPane.addTab(file.getName(), pane);
+        return pane;
+    }
+
+    private textEditorPane nuevaPestaña(File file) {
+        String codigo = getText(file);
+        textEditorPane pane = new textEditorPane();
+        pane.file = file;
+        pane.setTextArea(codigo);
+        tabbedPane.addTab(file.getName(), pane);
+        return pane;
+    }
 }
