@@ -6,7 +6,6 @@ package GUI;
 
 import analizador.Optimizador;
 import extraObjects.Cross;
-import extraObjects.jScrollPane;
 import java.awt.Color;
 import java.awt.HeadlessException;
 import lenguajee.Analizar;
@@ -37,7 +36,7 @@ import javax.swing.JTextArea;
  * @author TeamPotato:)
  */
 public class GUI extends javax.swing.JFrame {
-    
+
     JFileChooser seleccionarCodigo;
     Analizar an = new Analizar();
     public String muestraLexicos = "";
@@ -96,6 +95,7 @@ public class GUI extends javax.swing.JFrame {
         tabbedPane = new javax.swing.JTabbedPane();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
+        newMenuItem = new javax.swing.JMenuItem();
         openMenuItem = new javax.swing.JMenuItem();
         saveMenuItem = new javax.swing.JMenuItem();
         saveAsMenuItem = new javax.swing.JMenuItem();
@@ -240,6 +240,16 @@ public class GUI extends javax.swing.JFrame {
         fileMenu.setText("Archivo");
         fileMenu.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         fileMenu.setMargin(new java.awt.Insets(6, 10, 6, 10));
+
+        newMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        newMenuItem.setMnemonic('o');
+        newMenuItem.setText("Nuevo");
+        newMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newMenuItemActionPerformed(evt);
+            }
+        });
+        fileMenu.add(newMenuItem);
 
         openMenuItem.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         openMenuItem.setMnemonic('o');
@@ -519,8 +529,14 @@ public class GUI extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
         guardarVentanasAbiertas();
+//        checarVentanasNoGuardadas();
 //        JOptionPane.showMessageDialog(null, "");
     }//GEN-LAST:event_formWindowClosing
+
+    private void newMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newMenuItemActionPerformed
+        // TODO add your handling code here:
+        nuevaPestaña();
+    }//GEN-LAST:event_newMenuItemActionPerformed
 
     public void setTxtAreaLexico(String texto) {
         txtAreaLexico.setText(texto);
@@ -600,6 +616,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_Escribiendo;
     private javax.swing.JLabel lbl_Respuesta;
     private javax.swing.JMenuBar menuBar;
+    private javax.swing.JMenuItem newMenuItem;
     private javax.swing.JMenuItem openMenuItem;
     private javax.swing.JPanel paneOutput;
     private javax.swing.JMenuItem saveAsMenuItem;
@@ -664,11 +681,16 @@ public class GUI extends javax.swing.JFrame {
             JFileChooser fc = new JFileChooser();
             fc.showSaveDialog(null);
             fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-            jScrollPane scroll = (extraObjects.jScrollPane) (tabbedPane.getSelectedComponent());
-            scroll.file = fc.getSelectedFile();
-            if (scroll.file == null) {
+            textEditorPane pane = (extraObjects.textEditorPane) (tabbedPane.getSelectedComponent());
+            pane.file = fc.getSelectedFile();
+            if (pane.file == null) {
                 return;
             }
+//            JOptionPane.showMessageDialog(null, "changing name to " + pane.file.getName());
+            tabbedPane.setTitleAt(tabbedPane.getSelectedIndex(), pane.file.getName());
+//            JOptionPane.showMessageDialog(null, "changing name to " + tabbedPane.getTitleAt(tabbedPane.getSelectedIndex()));
+            tabbedPane.repaint();
+//            tabbedPane.updateUI();
             guardar();
         } catch (HeadlessException ex) {
             Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
@@ -677,11 +699,12 @@ public class GUI extends javax.swing.JFrame {
     }
 
     public void guardar() {
-        jScrollPane scroll = (extraObjects.jScrollPane) (tabbedPane.getSelectedComponent());
-        File file = scroll.file;
+        textEditorPane pane = (extraObjects.textEditorPane) (tabbedPane.getSelectedComponent());
+        File file = pane.file;
         if (file != null) {
             try {
                 BufferedWriter bw = new BufferedWriter(new FileWriter(file));
+                bw.write(pane.getTextArea());
                 bw.close();
             } catch (IOException ex) {
                 Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
@@ -717,7 +740,6 @@ public class GUI extends javax.swing.JFrame {
     }
 
     private void guardarVentanasAbiertas() {
-
         try {
             File file = new File(URLFILEVENTANAS);
             FileWriter fw = new FileWriter(file);
@@ -725,7 +747,9 @@ public class GUI extends javax.swing.JFrame {
             String files = "";
             for (int i = 0; i < tabbedPane.getTabCount(); i++) {
                 textEditorPane pane = (textEditorPane) tabbedPane.getComponentAt(i);
-                files += pane.file.getAbsolutePath() + "\n";
+                if (pane.file != null) {
+                    files += pane.file.getAbsolutePath() + "\n";
+                }
             }
             fw.write(files);
             fw.close();
@@ -779,7 +803,22 @@ public class GUI extends javax.swing.JFrame {
 
     private textEditorPane nuevaPestaña() {
         textEditorPane pane = new textEditorPane();
-        tabbedPane.addTab("Nuevo Archivo", pane);
+        String nombre = "Nuevo Archivo";
+        pane.name = nombre;
+        int cont = 1;
+        while (existArchivo(nombre)) {
+//            JOptionPane.showMessageDialog(null, nombre);
+            if (nombre.endsWith(cont + "")) {
+                String[] split = nombre.split(cont + "");
+                nombre = split[0];
+                cont++;
+            }
+            nombre += cont;
+        }
+        tabbedPane.addTab(nombre, pane);
+        int i = tabbedPane.indexOfTab(nombre);
+        tabbedPane.setTabComponentAt(i, new Cross(tabbedPane.getTitleAt(i), this)); //agrega titulo y boton X.
+        getContentPane().add(tabbedPane, BorderLayout.CENTER);
 //        int i = tabbedPane.indexOfTab(file.getName());
 //        tabbedPane.setTabComponentAt(i, new Cross(tabbedPane.getTitleAt(i), tabbedPane)); //agrega titulo y boton X.
 //        getContentPane().add(tabbedPane, BorderLayout.CENTER);
@@ -798,9 +837,6 @@ public class GUI extends javax.swing.JFrame {
             getContentPane().add(tabbedPane, BorderLayout.CENTER);
         }
 
-        
-
-        
         return pane;
     }
 
@@ -825,8 +861,21 @@ public class GUI extends javax.swing.JFrame {
         textEditorPane pane = (textEditorPane) tabbedPane.getSelectedComponent();
         pane.setTextArea(text);
     }
-    
-    public JTabbedPane getTabbedPane(){
+
+    public JTabbedPane getTabbedPane() {
         return tabbedPane;
+    }
+
+    private boolean existArchivo(String nombre) {
+        for (int i = 0; i < tabbedPane.getTabCount(); i++) {
+            textEditorPane pane = (textEditorPane) tabbedPane.getComponentAt(i);
+            if (pane.name != null && pane.name.equals(nombre)) {
+                return true;
+            }
+            if (pane.file != null && pane.file.getName().equals(nombre)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

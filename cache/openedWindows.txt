@@ -1,1 +1,2 @@
-C:\Users\Luisp\OneDrive\Documentos\NetBeansProjects\LenguajeE\bug-free-potato\Ejemplos\Pruebas Semantica - sin errores.txt
+C:\Users\Luisp\OneDrive\Escritorio\prueba2.txt
+C:\Users\Luisp\OneDrive\Escritorio\zzz.txt
