@@ -685,7 +685,7 @@ public class GUI extends javax.swing.JFrame {
             String line;
             ArrayList<String> lineas = new ArrayList<>();
             while ((line = br.readLine()) != null) {
-                selectedFiles.add(new File(line));
+                
                 lineas.add(line);
             }
 
@@ -769,8 +769,11 @@ public class GUI extends javax.swing.JFrame {
     private textEditorPane nuevaPestaña(String ruta) {
         textEditorPane pane = new textEditorPane();
         File file = pane.file = new File(ruta);
-        pane.setTextArea(getText(file));
-        tabbedPane.addTab(file.getName(), pane);
+        if (file.exists()) {
+            selectedFiles.add(file);
+            pane.setTextArea(getText(file));
+            tabbedPane.addTab(file.getName(), pane);
+        }
         return pane;
     }
 
