@@ -1,0 +1,72 @@
+import raptor_util_Print;
+public class Miclase{
+  private Ig(int pfd){
+  }
+  private Igf(int pfdds){
+  }
+  public void principalMain(){
+     int a;
+     float b;
+     If(a>=b AND false){
+
+     }
+     escribirEnConsola("Hola mundo desde Rex Raptor");
+     int x=30;
+     string y="hola";
+     escribirEnConsola(x);
+     int sss;
+     sss = 2 / true;
+     abc = false;
+     escribirEnConsola(y);
+     escribirEnConsola(z);
+     int z=x+y;
+     int [2] arreglo=("hola");
+     boolean ssy = 2;
+     escribirEnConsola(z);
+     If(x>=y AND true OR x==y){
+           While(true){
+
+            }
+            escribirEnConsola("X es mayor");
+            If(true){
+                  For(int i =0; i<=5;i++){
+                        escribirEnConsola(z);
+                  }
+
+            }Else{
+                  int z=x+y+5*5434/44;
+                  float[5] arreglo=("hola");
+           }
+      }
+   }
+
+   public void escribirEnConsola(char variable){
+           Try{
+                 escribirEnConsola(z);
+           }Catch(Except e){
+                 escribirEnConsola(x);
+                 escribirEnConsola(y);
+                 escribirEnConsola(z);
+           }
+           Switch var{
+               Case 1:
+                  escribirEnConsola(x);
+               break;
+
+               Case "a":
+                  escribirEnConsola(y);
+               break;
+
+               Case 'b':
+                  escribirEnConsola(f);
+               break;
+               Default:
+                  escribirEnConsola(p);
+               break;
+           }
+    }
+    public int sumarNumeros(int x, string y){
+           double z=x+y;
+            return z;
+      }
+}
