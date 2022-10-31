@@ -78,7 +78,13 @@ public class logsAcumulatorInstance {
 
         if (!"".equals(log) && !log.contains("\"") && !log.contains("\'")) {
             String[] op = log.split("=");
-            int type = typeTableInstance.getInstance().getType(op[0]);
+
+            int type = 0;
+            Integer a;
+            if ((a = typeTableInstance.getInstance().getType(op[0])) != null) {
+                type = a;
+            }
+
             if (type == GramaticaConstants.INT || type == GramaticaConstants.FLOAT || type == GramaticaConstants.DOUBLE) {
                 if (containsOperador(op[1])) {
                     String operacion = np.notacionPolaca(log);
@@ -88,10 +94,10 @@ public class logsAcumulatorInstance {
                     np.insertarValorAVar(log);
                 }
             } else {
-                np.insertarValorAVar(log);
+//                np.insertarValorAVar(log);
             }
         } else {
-//           np.insertarValorAVar(log);
+//            np.insertarValorAVar(log);
         }
     }
 

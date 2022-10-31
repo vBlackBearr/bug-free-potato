@@ -12,6 +12,7 @@ import extraObjects.objTipoDatoCompatible;
 import extraObjects.typeTableInstance;
 import java.util.ArrayList;
 import java.util.Hashtable;
+import javax.swing.JOptionPane;
 
 /**
  *

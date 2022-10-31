@@ -12,7 +12,6 @@ import Analizador.GramaticaConstants;
 import extraObjects.logsAcumulatorInstance;
 import extraObjects.typeTableInstance;
 
-
 /**
  *
  * @author TeamPotato:)
@@ -100,6 +99,16 @@ public class TokenAsignaciones extends Error {
         int tipoVar1 = 0;
         int tipoVar2 = 0;
 
+        if (TokenAsig.kind == GramaticaConstants.VAR) {
+            if (!tableInstance.checkVariable(TokenAsig.image)) {
+                return "Error: El identificador " + TokenAsig.image + " No ha sido declarado \r\nLinea: " + TokenAsig.beginLine;
+            } else {
+                tipoVar2 = tableInstance.getTipoVariable(TokenAsig.image);
+            }
+        } else {
+            tipoVar2 = TokenAsig.kind;
+        }
+
 //        JOptionPane.showMessageDialog(null, TokenIzq.image + " - " + TokenIzq.kind + "  |  " + TokenAsig.image + " - " + TokenAsig.kind);
         if (TokenIzq.kind == GramaticaConstants.VAR) {
             if (!tableInstance.checkVariable(TokenIzq.image)) {
@@ -111,16 +120,6 @@ public class TokenAsignaciones extends Error {
 
         } else {
             tipoVar1 = TokenIzq.kind;
-        }
-
-        if (TokenAsig.kind == GramaticaConstants.VAR) {
-            if (!tableInstance.checkVariable(TokenAsig.image)) {
-                return "Error: El identificador " + TokenAsig.image + " No ha sido declarado \r\nLinea: " + TokenAsig.beginLine;
-            } else {
-                tipoVar2 = tableInstance.getTipoVariable(TokenAsig.image);
-            }
-        } else {
-            tipoVar2 = TokenAsig.kind;
         }
 
         objTipoDatoCompatible tipo = null;
@@ -139,8 +138,8 @@ public class TokenAsignaciones extends Error {
             return "Error: Problema con el identificador " + TokenIzq.image + "\r\nLinea: " + TokenIzq.beginLine;
         }
 
-        GramaticaConstantsNames names = new GramaticaConstantsNames();
         if (!tipo.getTiposCompatibles().contains(tipoVar2)) {
+            GramaticaConstantsNames names = new GramaticaConstantsNames();
             return "Error: No se puede convertir " + TokenAsig.image + " a " + names.getNameFromToken(tipoVar1) + " \r\nLinea: " + TokenIzq.beginLine;
         }
         return "";

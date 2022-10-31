@@ -54,7 +54,14 @@ public class typeTableInstance {
     }
 
     public Integer getType(String image) {
-        return tabla.get(image);
+        try {
+            int a = tabla.get(image);
+            return a;
+
+        } catch (Exception e) {
+            return null;
+        }
+
     }
 
 //    public Object getValue(String image) {
