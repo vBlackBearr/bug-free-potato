@@ -62,4 +62,8 @@ public class textEditorPane extends javax.swing.JPanel {
         this.textArea.setText(text);
     }
     
+    public String getTextArea(){
+        return this.textArea.getText();
+    }
+    
 }

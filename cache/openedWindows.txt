@@ -1,1 +1,2 @@
 C:\Users\Luisp\OneDrive\Escritorio\Ejemplos POTATO\Pruebas Semantica - sin errores.txt
+C:\Users\Luisp\OneDrive\Escritorio\Ejemplos POTATO\Pruebas Semantica - con errores.txt

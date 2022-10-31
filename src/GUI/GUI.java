@@ -49,9 +49,9 @@ public class GUI extends javax.swing.JFrame {
     public GUI() {
 //        GramaticaTokenManager valores = new GramaticaTokenManager();
         initComponents();
-        NumeroLinea tln = new NumeroLinea(txtArea_Editor);
-        jScroll_Editor.setRowHeaderView(tln);
-        txtArea_Editor.setText("");
+//        NumeroLinea tln = new NumeroLinea(txtArea_Editor);
+//        jScroll_Editor.setRowHeaderView(tln);
+//        txtArea_Editor.setText("");
         setLocationRelativeTo(null);
         logsAcumulatorInstance.getInstance().setGuiInstance(this);
         this.setExtendedState(MAXIMIZED_BOTH);
@@ -90,8 +90,6 @@ public class GUI extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         txtTiempoEjecucion = new javax.swing.JLabel();
         tabbedPane = new javax.swing.JTabbedPane();
-        jScroll_Editor = new javax.swing.JScrollPane();
-        txtArea_Editor = new javax.swing.JTextArea();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
@@ -217,12 +215,6 @@ public class GUI extends javax.swing.JFrame {
         txtTiempoEjecucion.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
 
         tabbedPane.setName(""); // NOI18N
-
-        txtArea_Editor.setColumns(20);
-        txtArea_Editor.setRows(5);
-        jScroll_Editor.setViewportView(txtArea_Editor);
-
-        tabbedPane.addTab("tab1", jScroll_Editor);
 
         fileMenu.setMnemonic('f');
         fileMenu.setText("Archivo");
@@ -486,12 +478,14 @@ public class GUI extends javax.swing.JFrame {
 
     private void jm_Optimizacion1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jm_Optimizacion1ActionPerformed
         // TODO add your handling code here:
-        txtArea_Editor.setText(Optimizador.Optimizar(txtArea_Editor.getText()));
+        String text = getTextFromSelectedTab();
+        setTextToSelectedTab(Optimizador.Optimizar(text));
     }//GEN-LAST:event_jm_Optimizacion1ActionPerformed
 
     private void btnCompilar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCompilar1MouseClicked
         // TODO add your handling code here:
-        txtArea_Editor.setText(Optimizador.Optimizar(txtArea_Editor.getText()));
+        String text = getTextFromSelectedTab();
+        setTextToSelectedTab(Optimizador.Optimizar(text));
     }//GEN-LAST:event_btnCompilar1MouseClicked
 
     private void btnCompilar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompilar1ActionPerformed
@@ -580,7 +574,6 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScroll_Editor;
     private javax.swing.JScrollPane jScroll_Respuesta;
     private javax.swing.JMenuItem jm_CodInter;
     private javax.swing.JMenuItem jm_Lexico;
@@ -600,14 +593,13 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JTextArea txtAreaNotacionPolaca;
     private javax.swing.JTextArea txtAreaSemantico;
     private javax.swing.JTextArea txtAreaSintactico;
-    private javax.swing.JTextArea txtArea_Editor;
     private javax.swing.JTextArea txtCodigoOptimizado;
     private javax.swing.JLabel txtTiempoEjecucion;
     // End of variables declaration//GEN-END:variables
 
     public void analisis() {
         try {
-            File file = crearArchivoConTexto(txtArea_Editor.getText());
+            File file = crearArchivoConTexto(getTextFromSelectedTab());
             long inicioEjecucion = System.currentTimeMillis();
             an.AnalizarCodigo(new FileReader(file));
             long finEjecucion = System.currentTimeMillis();
@@ -789,5 +781,15 @@ public class GUI extends javax.swing.JFrame {
         pane.setTextArea(codigo);
         tabbedPane.addTab(file.getName(), pane);
         return pane;
+    }
+
+    private String getTextFromSelectedTab() {
+        textEditorPane pane = (textEditorPane) tabbedPane.getSelectedComponent();
+        return pane.getTextArea();
+    }
+
+    private void setTextToSelectedTab(String text) {
+        textEditorPane pane = (textEditorPane) tabbedPane.getSelectedComponent();
+        pane.setTextArea(text);
     }
 }
