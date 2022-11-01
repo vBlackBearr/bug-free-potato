@@ -1,2 +1,3 @@
-C:\Users\Luisp\OneDrive\Escritorio\prueba2.txt
-C:\Users\Luisp\OneDrive\Escritorio\zzz.txt
+C:\Users\JuanO\Documents\GitHub\bug-free-potato\juan
+C:\Users\JuanO\Documents\GitHub\bug-free-potato\prueba.txt
+C:\Users\JuanO\Documents\GitHub\bug-free-potato\juan

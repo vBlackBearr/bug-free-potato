@@ -70,29 +70,33 @@ public class GUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lbl_Escribiendo = new javax.swing.JLabel();
-        lbl_Respuesta = new javax.swing.JLabel();
+        panel_Edicion = new javax.swing.JPanel();
         lbl_Codigo = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        paneOutput = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txtAreaSintactico = new javax.swing.JTextArea();
-        jScroll_Respuesta = new javax.swing.JScrollPane();
-        txtAreaLexico = new javax.swing.JTextArea();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        txtAreaNotacionPolaca = new javax.swing.JTextArea();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        txtAreaSemantico = new javax.swing.JTextArea();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        txtCodigoOptimizado = new javax.swing.JTextArea();
-        jLabel5 = new javax.swing.JLabel();
+        lbl_Escribiendo = new javax.swing.JLabel();
+        panel_Respuestas = new javax.swing.JPanel();
+        lbl_Respuesta = new javax.swing.JLabel();
         txtTiempoEjecucion = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        jScrollPane_CodOp = new javax.swing.JScrollPane();
+        txtCodigoOptimizado = new javax.swing.JTextArea();
+        jScrollPane_Semantico = new javax.swing.JScrollPane();
+        txtAreaSemantico = new javax.swing.JTextArea();
+        jScrollPane_NotPol = new javax.swing.JScrollPane();
+        txtAreaNotacionPolaca = new javax.swing.JTextArea();
+        jScroll_Lexico = new javax.swing.JScrollPane();
+        txtAreaLexico = new javax.swing.JTextArea();
+        jScrollPane_Sintactico = new javax.swing.JScrollPane();
+        txtAreaSintactico = new javax.swing.JTextArea();
+        respuesta_NotPol = new javax.swing.JLabel();
+        respuesta_Semantico = new javax.swing.JLabel();
+        respuesta_Sintactico = new javax.swing.JLabel();
+        respuesta_Lexico = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        respuesta_CodOp = new javax.swing.JLabel();
+        respuesta_Lexico1 = new javax.swing.JLabel();
+        respuesta_Sintactico1 = new javax.swing.JLabel();
+        panel_Edicon = new javax.swing.JPanel();
         tabbedPane = new javax.swing.JTabbedPane();
+        etiqueta_Fondo = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         newMenuItem = new javax.swing.JMenuItem();
@@ -110,8 +114,14 @@ public class GUI extends javax.swing.JFrame {
         jm_Semantico = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("´Potato: Equipo python");
+        setAutoRequestFocus(false);
+        setBackground(new java.awt.Color(0, 204, 204));
         setExtendedState(MAXIMIZED_BOTH);
-        setSize(new java.awt.Dimension(1200, 760));
+        setMaximumSize(new java.awt.Dimension(1710, 845));
+        setPreferredSize(new java.awt.Dimension(1710, 845));
+        setResizable(false);
+        setSize(new java.awt.Dimension(1710, 845));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
@@ -120,122 +130,194 @@ public class GUI extends javax.swing.JFrame {
                 formWindowClosing(evt);
             }
         });
+        getContentPane().setLayout(null);
 
-        lbl_Escribiendo.setFont(new java.awt.Font("Microsoft YaHei", 0, 14)); // NOI18N
-        lbl_Escribiendo.setText("Escribiendo en:");
-
-        lbl_Respuesta.setFont(new java.awt.Font("Microsoft YaHei", 0, 14)); // NOI18N
-        lbl_Respuesta.setText("Esperando respuesta...");
+        panel_Edicion.setBackground(new java.awt.Color(255, 255, 255));
+        panel_Edicion.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 0, 0), 3, true));
+        panel_Edicion.setForeground(new java.awt.Color(255, 0, 0));
 
         lbl_Codigo.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         lbl_Codigo.setText("(Sin Nombre)");
 
-        jButton1.setText("jButton1");
+        lbl_Escribiendo.setFont(new java.awt.Font("Microsoft YaHei", 0, 14)); // NOI18N
+        lbl_Escribiendo.setText("Escribiendo en:");
 
-        txtAreaSintactico.setColumns(20);
-        txtAreaSintactico.setRows(5);
-        jScrollPane1.setViewportView(txtAreaSintactico);
+        javax.swing.GroupLayout panel_EdicionLayout = new javax.swing.GroupLayout(panel_Edicion);
+        panel_Edicion.setLayout(panel_EdicionLayout);
+        panel_EdicionLayout.setHorizontalGroup(
+            panel_EdicionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_EdicionLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lbl_Escribiendo, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbl_Codigo)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        panel_EdicionLayout.setVerticalGroup(
+            panel_EdicionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_EdicionLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panel_EdicionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl_Escribiendo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lbl_Codigo))
+                .addGap(20, 20, 20))
+        );
+
+        getContentPane().add(panel_Edicion);
+        panel_Edicion.setBounds(40, 10, 310, 40);
+
+        panel_Respuestas.setBackground(new java.awt.Color(255, 255, 255));
+        panel_Respuestas.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 0, 51), 3, true));
+
+        lbl_Respuesta.setFont(new java.awt.Font("Microsoft YaHei", 0, 14)); // NOI18N
+        lbl_Respuesta.setText("Tiempo de ejecución: ");
+
+        txtTiempoEjecucion.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        txtTiempoEjecucion.setText("Esperando ejecución...");
+
+        javax.swing.GroupLayout panel_RespuestasLayout = new javax.swing.GroupLayout(panel_Respuestas);
+        panel_Respuestas.setLayout(panel_RespuestasLayout);
+        panel_RespuestasLayout.setHorizontalGroup(
+            panel_RespuestasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_RespuestasLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lbl_Respuesta)
+                .addGap(2, 2, 2)
+                .addComponent(txtTiempoEjecucion)
+                .addGap(116, 116, 116))
+        );
+        panel_RespuestasLayout.setVerticalGroup(
+            panel_RespuestasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panel_RespuestasLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panel_RespuestasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl_Respuesta)
+                    .addComponent(txtTiempoEjecucion, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(panel_Respuestas);
+        panel_Respuestas.setBounds(360, 10, 330, 40);
+
+        jScrollPane_CodOp.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 0), 3));
+
+        txtCodigoOptimizado.setEditable(false);
+        txtCodigoOptimizado.setBackground(new java.awt.Color(255, 255, 255));
+        txtCodigoOptimizado.setColumns(20);
+        txtCodigoOptimizado.setRows(5);
+        jScrollPane_CodOp.setViewportView(txtCodigoOptimizado);
+
+        getContentPane().add(jScrollPane_CodOp);
+        jScrollPane_CodOp.setBounds(1240, 450, 424, 267);
+
+        jScrollPane_Semantico.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 255), 3));
+
+        txtAreaSemantico.setEditable(false);
+        txtAreaSemantico.setColumns(20);
+        txtAreaSemantico.setRows(5);
+        jScrollPane_Semantico.setViewportView(txtAreaSemantico);
+
+        getContentPane().add(jScrollPane_Semantico);
+        jScrollPane_Semantico.setBounds(750, 520, 467, 200);
+
+        jScrollPane_NotPol.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 0), 3, true));
+
+        txtAreaNotacionPolaca.setEditable(false);
+        txtAreaNotacionPolaca.setColumns(20);
+        txtAreaNotacionPolaca.setRows(5);
+        jScrollPane_NotPol.setViewportView(txtAreaNotacionPolaca);
+
+        getContentPane().add(jScrollPane_NotPol);
+        jScrollPane_NotPol.setBounds(1240, 130, 424, 267);
+
+        jScroll_Lexico.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
 
         txtAreaLexico.setEditable(false);
         txtAreaLexico.setColumns(20);
         txtAreaLexico.setRows(5);
-        jScroll_Respuesta.setViewportView(txtAreaLexico);
+        jScroll_Lexico.setViewportView(txtAreaLexico);
 
-        jLabel1.setText("Lexico:");
+        getContentPane().add(jScroll_Lexico);
+        jScroll_Lexico.setBounds(750, 80, 467, 182);
 
-        jLabel2.setText("Sintactico:");
+        jScrollPane_Sintactico.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0), 3));
 
-        jLabel3.setText("Semantico:");
+        txtAreaSintactico.setEditable(false);
+        txtAreaSintactico.setColumns(20);
+        txtAreaSintactico.setRows(5);
+        jScrollPane_Sintactico.setViewportView(txtAreaSintactico);
 
-        jLabel4.setText("Notacion Polaca:");
+        getContentPane().add(jScrollPane_Sintactico);
+        jScrollPane_Sintactico.setBounds(750, 300, 467, 176);
 
-        txtAreaNotacionPolaca.setColumns(20);
-        txtAreaNotacionPolaca.setRows(5);
-        jScrollPane3.setViewportView(txtAreaNotacionPolaca);
+        respuesta_NotPol.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
+        respuesta_NotPol.setForeground(new java.awt.Color(255, 255, 0));
+        respuesta_NotPol.setText("Notacion Polaca:");
+        getContentPane().add(respuesta_NotPol);
+        respuesta_NotPol.setBounds(1240, 100, 200, 32);
 
-        txtAreaSemantico.setColumns(20);
-        txtAreaSemantico.setRows(5);
-        jScrollPane2.setViewportView(txtAreaSemantico);
+        respuesta_Semantico.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
+        respuesta_Semantico.setForeground(new java.awt.Color(255, 0, 255));
+        respuesta_Semantico.setText("Semantico:");
+        getContentPane().add(respuesta_Semantico);
+        respuesta_Semantico.setBounds(750, 490, 150, 21);
 
-        txtCodigoOptimizado.setColumns(20);
-        txtCodigoOptimizado.setRows(5);
-        jScrollPane4.setViewportView(txtCodigoOptimizado);
+        respuesta_Sintactico.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
+        respuesta_Sintactico.setForeground(new java.awt.Color(255, 0, 0));
+        respuesta_Sintactico.setText("Sintactico:");
+        getContentPane().add(respuesta_Sintactico);
+        respuesta_Sintactico.setBounds(750, 270, 150, 32);
 
-        jLabel5.setText("Codigo optimizado:");
+        respuesta_Lexico.setBackground(new java.awt.Color(153, 153, 255));
+        respuesta_Lexico.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
+        respuesta_Lexico.setText("Lexico:");
+        getContentPane().add(respuesta_Lexico);
+        respuesta_Lexico.setBounds(750, 50, 90, 32);
 
-        javax.swing.GroupLayout paneOutputLayout = new javax.swing.GroupLayout(paneOutput);
-        paneOutput.setLayout(paneOutputLayout);
-        paneOutputLayout.setHorizontalGroup(
-            paneOutputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(paneOutputLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(paneOutputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScroll_Respuesta, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1)
-                    .addGroup(paneOutputLayout.createSequentialGroup()
-                        .addGroup(paneOutputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(paneOutputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addGap(0, 3, Short.MAX_VALUE))
-        );
-        paneOutputLayout.setVerticalGroup(
-            paneOutputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(paneOutputLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(paneOutputLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(paneOutputLayout.createSequentialGroup()
-                        .addComponent(jScroll_Respuesta, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 50, Short.MAX_VALUE))
-                    .addGroup(paneOutputLayout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33))))
-        );
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondo/Potato.png"))); // NOI18N
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(1460, 10, 200, 70);
 
-        txtTiempoEjecucion.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        respuesta_CodOp.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
+        respuesta_CodOp.setForeground(new java.awt.Color(255, 153, 0));
+        respuesta_CodOp.setText("Codigo Optimizado:");
+        getContentPane().add(respuesta_CodOp);
+        respuesta_CodOp.setBounds(1240, 420, 230, 32);
 
+        respuesta_Lexico1.setBackground(new java.awt.Color(153, 153, 255));
+        respuesta_Lexico1.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
+        respuesta_Lexico1.setForeground(new java.awt.Color(153, 153, 255));
+        respuesta_Lexico1.setText("Lexico:");
+        getContentPane().add(respuesta_Lexico1);
+        respuesta_Lexico1.setBounds(750, 60, 57, 25);
+
+        respuesta_Sintactico1.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
+        respuesta_Sintactico1.setForeground(new java.awt.Color(255, 0, 0));
+        respuesta_Sintactico1.setText("Sintactico:");
+        getContentPane().add(respuesta_Sintactico1);
+        respuesta_Sintactico1.setBounds(750, 270, 150, 32);
+
+        panel_Edicon.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        panel_Edicon.setPreferredSize(new java.awt.Dimension(650, 702));
+        panel_Edicon.setLayout(null);
+
+        tabbedPane.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         tabbedPane.setName(""); // NOI18N
+        panel_Edicon.add(tabbedPane);
+        tabbedPane.setBounds(40, 64, 670, 660);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addComponent(tabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 742, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 49, Short.MAX_VALUE)
-                .addComponent(tabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 678, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        getContentPane().add(panel_Edicon);
+        panel_Edicon.setBounds(40, 70, 650, 650);
 
+        etiqueta_Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondo/fondo.png"))); // NOI18N
+        getContentPane().add(etiqueta_Fondo);
+        etiqueta_Fondo.setBounds(0, 0, 1750, 820);
+
+        menuBar.setBackground(new java.awt.Color(0, 0, 255));
+        menuBar.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        menuBar.setBorderPainted(false);
+
+        fileMenu.setBackground(new java.awt.Color(204, 204, 204));
         fileMenu.setMnemonic('f');
         fileMenu.setText("Archivo");
         fileMenu.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -381,46 +463,6 @@ public class GUI extends javax.swing.JFrame {
         menuBar.add(helpMenu);
 
         setJMenuBar(menuBar);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(lbl_Escribiendo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lbl_Codigo)
-                .addGap(283, 283, 283)
-                .addComponent(lbl_Respuesta)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtTiempoEjecucion, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 386, Short.MAX_VALUE)
-                .addComponent(paneOutput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lbl_Escribiendo)
-                            .addComponent(lbl_Codigo)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(txtTiempoEjecucion, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lbl_Respuesta))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(paneOutput, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -592,21 +634,16 @@ public class GUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu btnCompilar;
     private javax.swing.JMenu btnCompilar1;
+    private javax.swing.JLabel etiqueta_Fondo;
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScroll_Respuesta;
+    private javax.swing.JScrollPane jScrollPane_CodOp;
+    private javax.swing.JScrollPane jScrollPane_NotPol;
+    private javax.swing.JScrollPane jScrollPane_Semantico;
+    private javax.swing.JScrollPane jScrollPane_Sintactico;
+    private javax.swing.JScrollPane jScroll_Lexico;
     private javax.swing.JMenuItem jm_CodInter;
     private javax.swing.JMenuItem jm_Lexico;
     private javax.swing.JMenuItem jm_Optimizacion1;
@@ -618,7 +655,16 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem newMenuItem;
     private javax.swing.JMenuItem openMenuItem;
-    private javax.swing.JPanel paneOutput;
+    private javax.swing.JPanel panel_Edicion;
+    private javax.swing.JPanel panel_Edicon;
+    private javax.swing.JPanel panel_Respuestas;
+    private javax.swing.JLabel respuesta_CodOp;
+    private javax.swing.JLabel respuesta_Lexico;
+    private javax.swing.JLabel respuesta_Lexico1;
+    private javax.swing.JLabel respuesta_NotPol;
+    private javax.swing.JLabel respuesta_Semantico;
+    private javax.swing.JLabel respuesta_Sintactico;
+    private javax.swing.JLabel respuesta_Sintactico1;
     private javax.swing.JMenuItem saveAsMenuItem;
     private javax.swing.JMenuItem saveMenuItem;
     private javax.swing.JTabbedPane tabbedPane;
