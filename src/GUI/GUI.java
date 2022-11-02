@@ -55,7 +55,9 @@ public class GUI extends javax.swing.JFrame {
 //        txtArea_Editor.setText("");
         setLocationRelativeTo(null);
         logsAcumulatorInstance.getInstance().setGuiInstance(this);
-        this.setExtendedState(MAXIMIZED_BOTH);
+        
+        //Poner en modo pantalla completa
+//        this.setExtendedState(MAXIMIZED_BOTH);
 
         abrirArchivosEnCache();
 

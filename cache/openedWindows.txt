@@ -1,3 +1,1 @@
-C:\Users\JuanO\Documents\GitHub\bug-free-potato\juan
-C:\Users\JuanO\Documents\GitHub\bug-free-potato\prueba.txt
-C:\Users\JuanO\Documents\GitHub\bug-free-potato\juan
+C:\Users\Luisp\OneDrive\Documentos\NetBeansProjects\LenguajeE\bug-free-potato\Ejemplos\Pruebas Semantica - sin errores.txt
