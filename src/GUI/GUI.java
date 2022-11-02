@@ -115,7 +115,7 @@ public class GUI extends javax.swing.JFrame {
         jm_Semantico = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("´Potato: Equipo python");
+        setTitle("Potato: Equipo python");
         setAutoRequestFocus(false);
         setBackground(new java.awt.Color(0, 204, 204));
         setExtendedState(MAXIMIZED_BOTH);

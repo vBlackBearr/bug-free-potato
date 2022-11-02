@@ -8,6 +8,7 @@ public class Miclase{
      int a;
      float b;
      If(a>=b AND false){
+
      }
      escribirEnConsola("Hola mundo desde Rex Raptor");
      int x=30;
@@ -15,6 +16,7 @@ public class Miclase{
      escribirEnConsola(x);
      int sss;
      sss = 2 / 5;
+    
      escribirEnConsola(y);
      escribirEnConsola(z);
      int z=x+50;
@@ -23,12 +25,14 @@ public class Miclase{
      escribirEnConsola(z);
      If(x>=5 AND true OR x==x){
            While(true){
+
             }
             escribirEnConsola("X es mayor");
             If(true){
                   For(int i =0; i<=5;i++){
                         escribirEnConsola(z);
                   }
+
             }Else{
                   int j;
                   z=x+j+5*5434/44;
@@ -36,6 +40,7 @@ public class Miclase{
            }
       }
    }
+
    public void escribirEnConsola(char variable){
            Try{
                  escribirEnConsola(z);
@@ -48,9 +53,11 @@ public class Miclase{
                Case 1:
                   escribirEnConsola(x);
                break;
+
                Case "a":
                   escribirEnConsola(y);
                break;
+
                Case 'b':
                   escribirEnConsola(f);
                break;
