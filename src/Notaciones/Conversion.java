@@ -24,6 +24,7 @@ public class Conversion {
         ArrayList<Character> carexp = new ArrayList<Character>();
         for (int i = 0; i < careaux.length; i++) {
             if (jerarquia(careaux[i]) > 0) {
+                
                 carexp.add(' ');
                 carexp.add(careaux[i]);
                 carexp.add(' ');
@@ -47,7 +48,6 @@ public class Conversion {
             s += carexp.get(i).toString();
         }
 
-        System.out.println(s);
 
         for (int i = 0; i < carexp.size(); i++) {
             char car = carexp.get(i);

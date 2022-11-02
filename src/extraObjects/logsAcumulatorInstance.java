@@ -102,9 +102,9 @@ public class logsAcumulatorInstance {
     }
 
     public void resetLogs() {
-        setLexicLogs("");
-        setSintacticLogs("");
-        setSemanticLogs("");
+        setLexicLogs("PERO");
+        setSintacticLogs("Sin errores sintácticos");
+        setSemanticLogs("Sin errores semánticos");
         setNotacionPolacaLogs("");
         getGuiInstance().setTxtAreaLexico(lexicLogs);
         getGuiInstance().setTxtAreaSintactico(sintacticLogs);
