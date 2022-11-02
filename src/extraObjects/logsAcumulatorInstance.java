@@ -26,7 +26,7 @@ public class logsAcumulatorInstance {
     private logsAcumulatorInstance() {
     }
 
-    private String lexicLogs = "";
+    public String lexicLogs = "";
 
     private String sintacticLogs = "";
 
@@ -61,6 +61,7 @@ public class logsAcumulatorInstance {
 
     public void addSintacticLog(String log) {
         if (!"".equals(log)) {
+            setSintacticLogs("");
             setSintacticLogs(getSintacticLogs() + log + "\n");
             getGuiInstance().setTxtAreaSintactico(sintacticLogs);
         }
@@ -68,6 +69,7 @@ public class logsAcumulatorInstance {
 
     public void addSemanticLog(String log) {
         if (!"".equals(log)) {
+            setSemanticLogs("");
             setSemanticLogs(getSemanticLogs() + log + "\n");
             getGuiInstance().setTxtAreaSemantico(semanticLogs);
         }
