@@ -832,16 +832,19 @@ public class GUI extends javax.swing.JFrame {
         while (existArchivo(nombre)) {
 //            JOptionPane.showMessageDialog(null, nombre);
             if (nombre.endsWith(cont + "")) {
+                cont++;
                 String[] split = nombre.split(cont + "");
                 nombre = split[0];
-                cont++;
+                
             }
             nombre += cont;
         }
         tabbedPane.addTab(nombre, pane);
         int i = tabbedPane.indexOfTab(nombre);
         tabbedPane.setTabComponentAt(i, new Cross(tabbedPane.getTitleAt(i), this)); //agrega titulo y boton X.
-//        getContentPane().add(tabbedPane, BorderLayout.CENTER);
+
+
+
 //        int i = tabbedPane.indexOfTab(file.getName());
 //        tabbedPane.setTabComponentAt(i, new Cross(tabbedPane.getTitleAt(i), tabbedPane)); //agrega titulo y boton X.
 //        getContentPane().add(tabbedPane, BorderLayout.CENTER);
@@ -857,7 +860,6 @@ public class GUI extends javax.swing.JFrame {
             tabbedPane.addTab(file.getName(), pane);
             int i = tabbedPane.indexOfTab(file.getName());
             tabbedPane.setTabComponentAt(i, new Cross(tabbedPane.getTitleAt(i), this)); //agrega titulo y boton X.
-            getContentPane().add(tabbedPane, BorderLayout.CENTER);
         }
 
         return pane;
@@ -871,7 +873,7 @@ public class GUI extends javax.swing.JFrame {
         tabbedPane.addTab(file.getName(), pane);
         int i = tabbedPane.indexOfTab(file.getName());
         tabbedPane.setTabComponentAt(i, new Cross(tabbedPane.getTitleAt(i), this)); //agrega titulo y boton X.
-        getContentPane().add(tabbedPane, BorderLayout.CENTER);
+//        getContentPane().add(tabbedPane, BorderLayout.CENTER);
         return pane;
     }
 
