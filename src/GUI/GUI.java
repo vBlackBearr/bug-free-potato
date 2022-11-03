@@ -532,7 +532,6 @@ public class GUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         String text = getTextFromSelectedTab();
         txtCodigoOptimizado.setText(Optimizador.Optimizar(text));
-        setTextToSelectedTab(Optimizador.Optimizar(txtCodigoOptimizado.getText()));
     }//GEN-LAST:event_btnCompilar1MouseClicked
 
     private void btnCompilar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompilar1ActionPerformed
@@ -658,6 +657,8 @@ public class GUI extends javax.swing.JFrame {
     public void analisis() {
         try {
             File file = crearArchivoConTexto(getTextFromSelectedTab());
+            String text = getTextFromSelectedTab();
+            txtCodigoOptimizado.setText(Optimizador.Optimizar(text));
             long inicioEjecucion = System.currentTimeMillis();
             an.AnalizarCodigo(new FileReader(file));
             long finEjecucion = System.currentTimeMillis();
@@ -834,10 +835,10 @@ public class GUI extends javax.swing.JFrame {
         while (existArchivo(nombre)) {
 //            JOptionPane.showMessageDialog(null, nombre);
             if (nombre.endsWith(cont + "")) {
-                cont++;
+//                JOptionPane.showMessageDialog(null, "Accept");
                 String[] split = nombre.split(cont + "");
                 nombre = split[0];
-                
+                cont++;
             }
             nombre += cont;
         }
@@ -895,7 +896,9 @@ public class GUI extends javax.swing.JFrame {
 
     private boolean existArchivo(String nombre) {
         for (int i = 0; i < tabbedPane.getTabCount(); i++) {
+            
             textEditorPane pane = (textEditorPane) tabbedPane.getComponentAt(i);
+//            JOptionPane.showMessageDialog(null, pane.file!=null?pane.file.getName():pane.name);
             if (pane.name != null && pane.name.equals(nombre)) {
                 return true;
             }

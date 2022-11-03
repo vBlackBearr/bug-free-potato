@@ -21,7 +21,6 @@ public class typeTableInstance {
 
     private typeTableInstance() {
     }
-
     private synchronized static void createInstance() {
         if (INSTANCE == null) {
             INSTANCE = new typeTableInstance();

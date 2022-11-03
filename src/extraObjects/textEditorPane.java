@@ -14,7 +14,7 @@ import java.io.File;
 public class textEditorPane extends javax.swing.JPanel {
 
     public File file;
-    public String name;
+    public String name = "";
     
     /**q
      * Creates new form textEditorPane

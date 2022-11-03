@@ -1,1 +1,2 @@
-C:\Users\JuanO\Documents\GitHub\bug-free-potato\Pruebas Semantica - sin errores.txt
+C:\Users\Luisp\OneDrive\Documentos\NetBeansProjects\LenguajeE\bug-free-potato\Ejemplos\Pruebas Semantica - sin errores.txt
+C:\Users\Luisp\OneDrive\Documentos\NetBeansProjects\LenguajeE\bug-free-potato\Ejemplos\Ejemplo optimizacion.txt
