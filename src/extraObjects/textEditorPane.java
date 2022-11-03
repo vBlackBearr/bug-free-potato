@@ -24,6 +24,14 @@ public class textEditorPane extends javax.swing.JPanel {
         NumeroLinea nl = new NumeroLinea(textArea);
         jScrollPane1.setRowHeaderView(nl);
     }
+    
+    public textEditorPane(String nombre, File file) {
+        initComponents();
+        NumeroLinea nl = new NumeroLinea(textArea);
+        jScrollPane1.setRowHeaderView(nl);
+        this.name = nombre;
+        this.file = file;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

@@ -55,10 +55,11 @@ public class GUI extends javax.swing.JFrame {
 //        txtArea_Editor.setText("");
         setLocationRelativeTo(null);
         logsAcumulatorInstance.getInstance().setGuiInstance(this);
-        
+
         //Poner en modo pantalla completa
 //        this.setExtendedState(MAXIMIZED_BOTH);
-
+        NumeroLinea num = new NumeroLinea(txtCodigoOptimizado);
+        jScrollPane_CodOp.setRowHeaderView(num);
         abrirArchivosEnCache();
 
     }
@@ -657,8 +658,7 @@ public class GUI extends javax.swing.JFrame {
     public void analisis() {
         try {
             File file = crearArchivoConTexto(getTextFromSelectedTab());
-            String text = getTextFromSelectedTab();
-            txtCodigoOptimizado.setText(Optimizador.Optimizar(text));
+            Optimizar();
             long inicioEjecucion = System.currentTimeMillis();
             an.AnalizarCodigo(new FileReader(file));
             long finEjecucion = System.currentTimeMillis();
@@ -828,9 +828,9 @@ public class GUI extends javax.swing.JFrame {
     }
 
     private textEditorPane nuevaPestaña() {
-        textEditorPane pane = new textEditorPane();
+
         String nombre = "Nuevo Archivo";
-        pane.name = nombre;
+        textEditorPane pane = new textEditorPane(nombre, null);
         int cont = 1;
         while (existArchivo(nombre)) {
 //            JOptionPane.showMessageDialog(null, nombre);
@@ -845,8 +845,6 @@ public class GUI extends javax.swing.JFrame {
         tabbedPane.addTab(nombre, pane);
         int i = tabbedPane.indexOfTab(nombre);
         tabbedPane.setTabComponentAt(i, new Cross(tabbedPane.getTitleAt(i), this)); //agrega titulo y boton X.
-
-
 
 //        int i = tabbedPane.indexOfTab(file.getName());
 //        tabbedPane.setTabComponentAt(i, new Cross(tabbedPane.getTitleAt(i), tabbedPane)); //agrega titulo y boton X.
@@ -893,10 +891,15 @@ public class GUI extends javax.swing.JFrame {
     public JTabbedPane getTabbedPane() {
         return tabbedPane;
     }
+    
+    private String getFileNameFromSelectedTab(){
+        textEditorPane pane = (textEditorPane) tabbedPane.getSelectedComponent();
+        return pane.file.getName();
+    }
 
     private boolean existArchivo(String nombre) {
         for (int i = 0; i < tabbedPane.getTabCount(); i++) {
-            
+
             textEditorPane pane = (textEditorPane) tabbedPane.getComponentAt(i);
 //            JOptionPane.showMessageDialog(null, pane.file!=null?pane.file.getName():pane.name);
             if (pane.name != null && pane.name.equals(nombre)) {
@@ -907,5 +910,16 @@ public class GUI extends javax.swing.JFrame {
             }
         }
         return false;
+    }
+    
+    private void Optimizar(){
+        String text = getTextFromSelectedTab();
+        String textOpti = Optimizador.Optimizar(text);
+        txtCodigoOptimizado.setText(textOpti);
+        try {
+            ManejadorDeArchivo.generarArchivo(textOpti, "Ejemplos/Optimized_" + getFileNameFromSelectedTab());
+        } catch (IOException ex) {
+            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

@@ -63,7 +63,7 @@ public class Optimizador {
     }
 
     public static String Optimizar(String texto) {
-        texto = texto.replaceAll("/[*](\\S|\\n)*[*]/", "");
+        texto = texto.replaceAll("(/[*])([A-Z]|[a-z]|[0-9]|[ ])*([*]/)", "");
         ArrayList<String> textIn = convertirTextToArray(texto);
         String textOut = "";
 
@@ -91,6 +91,7 @@ public class Optimizador {
                                     var = line[lineIndex];
 //                                JOptionPane.showMessageDialog(null, var);
                                     if (isVar(var)) {
+
 //                                    JOptionPane.showMessageDialog(null, "Var found");
 //                                    lastVar = new objRelacionDatoVar(var, 0);
 //                                    tablaValores.add(lastVar);
@@ -101,12 +102,36 @@ public class Optimizador {
                                         } else {
 //                                        textOut += textIn.get(i) + "\n";
                                         }
+//                                        reportVarUsage(var);
                                     }
                                 }
                             }
                             break;
                         default:
                             if (!isPalRes(line[lineIndex]) && isVar(line[lineIndex])) {
+                                if (lineIndex == 0) {
+                                    if (line.length > lineIndex) {
+                                        String var;
+                                        var = line[lineIndex];
+//                                        JOptionPane.showMessageDialog(null, var);
+
+//                                JOptionPane.showMessageDialog(null, var);
+                                        if (isVar(var)) {
+
+//                                    JOptionPane.showMessageDialog(null, "Var found");
+//                                    lastVar = new objRelacionDatoVar(var, 0);
+//                                    tablaValores.add(lastVar);
+//                                    asig();
+                                            if (!isUsed(var)) {
+//                                        JOptionPane.showMessageDialog(null,"NO usage found");
+                                                textIn.set(i, "");
+                                            } else {
+//                                        textOut += textIn.get(i) + "\n";
+                                            }
+//                                            reportVarUsage(var);
+                                        }
+                                    }
+                                }
                                 asig();
                             }
 //                            textOut += textIn.get(i) + "\n";
@@ -238,10 +263,22 @@ public class Optimizador {
     }
 
     private static void reportVarUsage(String image) {
+//        JOptionPane.showMessageDialog(null, "Reporting usage from: " + image);
         objRelacionDatoVar obj = getFromTablaValores(image);
         if (obj != null) {
             obj.setDato(1);
+        } else {
+            tablaValores.add(new objRelacionDatoVar(image, 0));
         }
+    }
+
+    private static boolean isVarUsed(String image) {
+        for (int i = 0; i < tablaValores.size(); i++) {
+            if (tablaValores.get(i).getID().equals(image)) {
+                return (int) (tablaValores.get(i).getDato()) == 1;
+            }
+        }
+        throw new Error();
     }
 
     private static objRelacionDatoVar getFromTablaValores(String id) {
@@ -251,6 +288,10 @@ public class Optimizador {
             }
         }
         return null;
+    }
+
+    private static void insertOnTablaValores() {
+
     }
 
 }

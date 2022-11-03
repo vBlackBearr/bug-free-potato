@@ -1,13 +1,87 @@
 import raptor_util_Print;
 public class Miclase{
-    public void principalMain(){
-        
-        int a = 2;
+  private Ig(int pfd){
+  }
+  private Igf(int pfdds){
+  }
+  public void principalMain(){
+     int a;
+     float b;
+     If(a>=3 AND false){
 
-        int b = 3;
-        b=2;
+     }
+     escribirEnConsola("Hola mundo desde Rex Raptor");
+     int x=30;
+     string y="hola";
+     escribirEnConsola(x);
+     int sss;
+     sss = 2 / 5;
+     int varA = 10;
+     int varB = 10;
+     int varC = 10;
+     int varD = 10;
+     int varE = 10;
+     int resultado = varA + 10;
 
-        int resul = a + b;
-        
+     /*Mandamos a imprimir en consola*/
+     escribirEnConsola(y);
+     escribirEnConsola(z);
+     int z=x+50;
+     string[2] arreglo=("hola");
+     boolean ssy = false;
+     escribirEnConsola(z);
+     If(x>=5 AND true OR x==x){
+           While(true){
+
+            }//Comentario
+            escribirEnConsola("X es mayor");
+            If(true){
+                  For(int i =0; i<=5;i++){
+                        escribirEnConsola(z);
+                  }
+
+            }Else{
+                  int j;
+                  z=x+j+5*5434/44;
+                  float[5] arregloss=(3.6 + 2);
+           }
+      }
+
+      //Calculadora
+   }
+
+
+
+   //Escribir en consola
+   public void escribirEnConsola(char variable){
+           Try{
+                 escribirEnConsola(z);
+           }Catch(Except e){
+                 escribirEnConsola(x);
+                 escribirEnConsola(y);
+                 escribirEnConsola(z);
+           }
+           Switch var{
+               Case 1:
+                  escribirEnConsola(x);
+               break;
+
+               Case "a":
+                  escribirEnConsola(y);
+               break;
+
+               Case 'b':
+                  escribirEnConsola(f);
+               break;
+               Default:
+                  escribirEnConsola(p);
+               break;
+           }
     }
+    public int sumarNumeros(int xxy, string yy){ 
+           int ent = 4;
+           float zz=x+ent;
+
+            return z;
+      }
 }
