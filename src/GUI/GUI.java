@@ -24,6 +24,8 @@ import extraObjects.logsAcumulatorInstance;
 import extraObjects.textEditorPane;
 import extraObjects.typeTableInstance;
 import java.awt.BorderLayout;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.swing.JPanel;
@@ -48,11 +50,8 @@ public class GUI extends javax.swing.JFrame {
      * Creates new form GUI
      */
     public GUI() {
-//        GramaticaTokenManager valores = new GramaticaTokenManager();
         initComponents();
-//        NumeroLinea tln = new NumeroLinea(txtArea_Editor);
-//        jScroll_Editor.setRowHeaderView(tln);
-//        txtArea_Editor.setText("");
+
         setLocationRelativeTo(null);
         logsAcumulatorInstance.getInstance().setGuiInstance(this);
 
@@ -120,8 +119,7 @@ public class GUI extends javax.swing.JFrame {
         setAutoRequestFocus(false);
         setBackground(new java.awt.Color(0, 204, 204));
         setExtendedState(MAXIMIZED_BOTH);
-        setMaximumSize(new java.awt.Dimension(1710, 845));
-        setPreferredSize(new java.awt.Dimension(1710, 845));
+        setIconImage(getIconImage());
         setResizable(false);
         setSize(new java.awt.Dimension(1710, 845));
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -229,7 +227,6 @@ public class GUI extends javax.swing.JFrame {
 
         jScroll_Lexico.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
 
-        txtAreaLexico.setEditable(false);
         txtAreaLexico.setColumns(20);
         txtAreaLexico.setRows(5);
         jScroll_Lexico.setViewportView(txtAreaLexico);
@@ -453,21 +450,7 @@ public class GUI extends javax.swing.JFrame {
         seleccionarCodigo.showOpenDialog(null);
         if (seleccionarCodigo.getSelectedFile() != null) {
             File file = seleccionarCodigo.getSelectedFile();
-//            selectedFiles.add(file);
-//            String contenido = "";
-//            try {
-//                FileReader fr = new FileReader(file);
-//                BufferedReader br = new BufferedReader(fr);
-//                String txt;
-//                while ((txt = br.readLine()) != null) {
-//                    contenido = contenido + txt + "\n";
-//                }
-//            } catch (Exception ex) {
-//                //Logger.getLogger(ManejadorDeArchivos.class.getName()).log(Level.SEVERE, null, ex);
-//
-//            }
             nuevaPestaña(file);
-
         }
 
     }//GEN-LAST:event_openMenuItemActionPerformed
@@ -487,19 +470,7 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_exitMenuItemActionPerformed
 
     private void jm_LexicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jm_LexicoActionPerformed
-        // TODO add your handling code here:
-//        if (seleccionarCodigo.getCurrentDirectory() == null) {
-//            JOptionPane.showMessageDialog(null, "No hay ningún codigo seleccionado");
-//        } else {
-//            String ruta = String.valueOf(seleccionarCodigo.getCurrentDirectory()) + "/" + selectedFile.getName();
-//            System.out.println(ruta);
-//            try {
-//                an.AnalizarCodigo(new FileReader(ruta));
-//            } catch (FileNotFoundException ex) {
-//                JOptionPane.showMessageDialog(null, "Error al leer el archivo");
-//            }
-//
-//        }
+
     }//GEN-LAST:event_jm_LexicoActionPerformed
 
     private void jm_SintacticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jm_SintacticoActionPerformed
@@ -551,8 +522,6 @@ public class GUI extends javax.swing.JFrame {
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         // TODO add your handling code here:
         guardarVentanasAbiertas();
-//        checarVentanasNoGuardadas();
-//        JOptionPane.showMessageDialog(null, "");
     }//GEN-LAST:event_formWindowClosing
 
     private void newMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newMenuItemActionPerformed
@@ -663,27 +632,17 @@ public class GUI extends javax.swing.JFrame {
             an.AnalizarCodigo(new FileReader(file));
             long finEjecucion = System.currentTimeMillis();
             txtTiempoEjecucion.setText(((double) (finEjecucion - inicioEjecucion) / 1000) + " segundos");;
-//            txtAreaLexico.setText(an.respuestaLexico);
-//            if(an.respuestaSintactico.equals("")){
-//                txtAreaSintactico.setText("Sin errores sintacticos");
-//            }else{
-//                txtAreaSintactico.setText(an.respuestaSintactico);
-//            }
-//            
-//            txtAreaSemantico.setText(an.respuestaSemantico);
+            
+            //Poner los logs de compilacion en sus respectivos textArea's
+            logsAcumulatorInstance ins = logsAcumulatorInstance.getInstance();
+            setTxtAreaLexico(ins.getLexicLogs());
+            setTxtAreaSintactico(ins.getSintacticLogs());
+            setTxtAreaSemantico(ins.getSemanticLogs());
+
         } catch (FileNotFoundException ex) {
             Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Error de analisis: " + ex);
         }
-    }
-
-    public void analisisSintactico() {
-
-    }
-
-    public void analisisSemantico() {
-//        TokenAsignaciones sem = new TokenAsignaciones();
-//        sem.checkAsing(TokenIzq, TokenAsig)
     }
 
     public File crearArchivoConTexto(String texto) {
@@ -712,11 +671,8 @@ public class GUI extends javax.swing.JFrame {
             if (pane.file == null) {
                 return;
             }
-//            JOptionPane.showMessageDialog(null, "changing name to " + pane.file.getName());
             tabbedPane.setTitleAt(tabbedPane.getSelectedIndex(), pane.file.getName());
-//            JOptionPane.showMessageDialog(null, "changing name to " + tabbedPane.getTitleAt(tabbedPane.getSelectedIndex()));
             tabbedPane.repaint();
-//            tabbedPane.updateUI();
             guardar();
         } catch (HeadlessException ex) {
             Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
@@ -750,14 +706,11 @@ public class GUI extends javax.swing.JFrame {
             String line;
             ArrayList<String> lineas = new ArrayList<>();
             while ((line = br.readLine()) != null) {
-
                 lineas.add(line);
             }
-
             for (String linea : lineas) {
                 nuevaPestaña(linea);
             }
-
         } catch (FileNotFoundException ex) {
             Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -769,7 +722,6 @@ public class GUI extends javax.swing.JFrame {
         try {
             File file = new File(URLFILEVENTANAS);
             FileWriter fw = new FileWriter(file);
-
             String files = "";
             for (int i = 0; i < tabbedPane.getTabCount(); i++) {
                 textEditorPane pane = (textEditorPane) tabbedPane.getComponentAt(i);
@@ -828,14 +780,11 @@ public class GUI extends javax.swing.JFrame {
     }
 
     private textEditorPane nuevaPestaña() {
-
         String nombre = "Nuevo Archivo";
         textEditorPane pane = new textEditorPane(nombre, null);
         int cont = 1;
         while (existArchivo(nombre)) {
-//            JOptionPane.showMessageDialog(null, nombre);
             if (nombre.endsWith(cont + "")) {
-//                JOptionPane.showMessageDialog(null, "Accept");
                 String[] split = nombre.split(cont + "");
                 nombre = split[0];
                 cont++;
@@ -845,10 +794,6 @@ public class GUI extends javax.swing.JFrame {
         tabbedPane.addTab(nombre, pane);
         int i = tabbedPane.indexOfTab(nombre);
         tabbedPane.setTabComponentAt(i, new Cross(tabbedPane.getTitleAt(i), this)); //agrega titulo y boton X.
-
-//        int i = tabbedPane.indexOfTab(file.getName());
-//        tabbedPane.setTabComponentAt(i, new Cross(tabbedPane.getTitleAt(i), tabbedPane)); //agrega titulo y boton X.
-//        getContentPane().add(tabbedPane, BorderLayout.CENTER);
         return pane;
     }
 
@@ -856,11 +801,10 @@ public class GUI extends javax.swing.JFrame {
         textEditorPane pane = new textEditorPane();
         File file = pane.file = new File(ruta);
         if (file.exists()) {
-//            selectedFiles.add(file);
             pane.setTextArea(getText(file));
             tabbedPane.addTab(file.getName(), pane);
             int i = tabbedPane.indexOfTab(file.getName());
-            tabbedPane.setTabComponentAt(i, new Cross(tabbedPane.getTitleAt(i), this)); //agrega titulo y boton X.
+            tabbedPane.setTabComponentAt(i, new Cross(tabbedPane.getTitleAt(i), this));
         }
 
         return pane;
@@ -873,8 +817,7 @@ public class GUI extends javax.swing.JFrame {
         pane.setTextArea(codigo);
         tabbedPane.addTab(file.getName(), pane);
         int i = tabbedPane.indexOfTab(file.getName());
-        tabbedPane.setTabComponentAt(i, new Cross(tabbedPane.getTitleAt(i), this)); //agrega titulo y boton X.
-//        getContentPane().add(tabbedPane, BorderLayout.CENTER);
+        tabbedPane.setTabComponentAt(i, new Cross(tabbedPane.getTitleAt(i), this));
         return pane;
     }
 
@@ -899,9 +842,7 @@ public class GUI extends javax.swing.JFrame {
 
     private boolean existArchivo(String nombre) {
         for (int i = 0; i < tabbedPane.getTabCount(); i++) {
-
             textEditorPane pane = (textEditorPane) tabbedPane.getComponentAt(i);
-//            JOptionPane.showMessageDialog(null, pane.file!=null?pane.file.getName():pane.name);
             if (pane.name != null && pane.name.equals(nombre)) {
                 return true;
             }
@@ -921,5 +862,13 @@ public class GUI extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().
+                getImage(ClassLoader.getSystemResource("img/Patata.png"));
+
+        return retValue;
     }
 }

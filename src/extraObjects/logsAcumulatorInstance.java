@@ -54,7 +54,6 @@ public class logsAcumulatorInstance {
     public void addlexicLog(String log) {
         if (!"".equals(log)) {
             setLexicLogs(getLexicLogs() + log + "\n");
-            getGuiInstance().setTxtAreaLexico(lexicLogs);
         }
 
     }
@@ -63,7 +62,6 @@ public class logsAcumulatorInstance {
         if (!"".equals(log)) {
             setSintacticLogs("");
             setSintacticLogs(getSintacticLogs() + log + "\n");
-            getGuiInstance().setTxtAreaSintactico(sintacticLogs);
         }
     }
 
@@ -71,7 +69,6 @@ public class logsAcumulatorInstance {
         if (!"".equals(log)) {
             setSemanticLogs("");
             setSemanticLogs(getSemanticLogs() + log + "\n");
-            getGuiInstance().setTxtAreaSemantico(semanticLogs);
         }
 
     }
@@ -104,7 +101,6 @@ public class logsAcumulatorInstance {
     }
 
     public void resetLogs() {
-        setLexicLogs("PERO");
         setSintacticLogs("Sin errores sintácticos");
         setSemanticLogs("Sin errores semánticos");
         setNotacionPolacaLogs("");
