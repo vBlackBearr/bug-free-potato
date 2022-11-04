@@ -63,7 +63,6 @@ public class Optimizador {
     }
 
     public static String Optimizar(String texto) {
-        texto = texto.replaceAll("(/[*])([A-Z]|[a-z]|[0-9]|[ ])*([*]/)", "");
         ArrayList<String> textIn = convertirTextToArray(texto);
         String textOut = "";
 
@@ -73,7 +72,8 @@ public class Optimizador {
         for (int i = 0; i < textIn.size(); i++) {
 
             if (!textIn.get(i).equals("") && !textIn.get(i).matches("(\\s)+")) {
-                textIn.set(i, textIn.get(i).replaceAll("//(\\S)*", ""));
+                textIn.set(i, textIn.get(i).replaceAll("//([A-Z]|[a-z]|[0-9]|[ ])*", ""));
+                textIn.set(i, textIn.get(i).replaceAll("(/[*])([A-Z]|[a-z]|[0-9]|[ ])*([*]/)", ""));
 
                 line = separarConCaracteresTokenizer(textIn.get(i));
                 for (lineIndex = 0; lineIndex < line.length; lineIndex++) {

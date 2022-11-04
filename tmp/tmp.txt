@@ -1,6 +1,6 @@
 import raptor_util_Print;
 public class Miclase{
- /*fdjkslafjdskadfjdksalsfd*/
+
   //se pueden declarar constructores   
   private Ig(int pfd){
   
@@ -10,7 +10,7 @@ public class Miclase{
   
   }
   
-  //se tiene un metodo principal, para colocar el codigo correspondiente a la programacion
+  //se tiene un metodo principal para colocar el codigo correspondiente a la programacion
   public void principalMain(){
      int a=1;
      float b=2;
@@ -21,8 +21,8 @@ public class Miclase{
 
      }
 	 
-	 //Potato es un lenguaje que pretende ser sencillo y facil de usar, esto se puede lograr
-	 //a traves de una buena documentacion y de un buen manual de usuario, ademas de una buenta optimizacion del lenguaje
+	 //Potato es un lenguaje que pretende ser sencillo y facil de usar esto se puede lograr
+	 //a traves de una buena documentacion y de un buen manual de usuario ademas de una buenta optimizacion del lenguaje
 	 
      escribirEnConsola("Hola mundo desde Rex Raptor");
      int x=30;
@@ -47,12 +47,11 @@ public class Miclase{
      escribirEnConsola(y);
      escribirEnConsola(z);
      int z=x+50;
-     //string c;
      string[2] arreglo=("hola");
      boolean ssy = false;
      escribirEnConsola(z);
      
-     //potato permite combinar ciclos con condicionales, y anidar diferentes funciones
+     //potato permite combinar ciclos con condicionales y anidar diferentes funciones
      If(x>=5 AND true OR x==x){
 		  char cara='s';
 		  char carb='i';
@@ -90,7 +89,7 @@ public class Miclase{
      //Se crea un metodo especifico para la funcion de escribir en una consola
      public void escribirEnConsola(char variable){
 	 
-		  //se tiene la funcion try-catch para poder evitar errores en el funcionamiento del codigo
+		  //se tiene la funcion try catch para poder evitar errores en el funcionamiento del codigo
           Try{
                escribirEnConsola(z);
 			   string cade="hola mundo";
@@ -102,7 +101,7 @@ public class Miclase{
           }
 		  
 		  //los switch son importantes porque ayudan a crear ahorrar espacio en lineas de codigo
-		  //al colocar una sola funcion switch en lugar de varios if's anidados
+		  //al colocar una sola funcion switch en lugar de varios ifs anidados
           Switch vaz{
                Case 1:
                   escribirEnConsola(x);
