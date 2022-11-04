@@ -1,6 +1,6 @@
 import raptor_util_Print;
 public class Miclase{
-
+ /*fdjkslafjdskadfjdksalsfd*/
   //se pueden declarar constructores   
   private Ig(int pfd){
   
