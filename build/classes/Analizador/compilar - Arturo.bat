@@ -1,2 +1,2 @@
-java -cp C:\Users\Luisp\OneDrive\Escritorio\JavaCC\javacc.jar javacc Gramatica.jj
+java -cp C:\Users\Luisp\OneDrive\Escritorio\Automatas\JavaCC\javacc.jar javacc Gramatica.jj
 pause

@@ -101,6 +101,7 @@ public class logsAcumulatorInstance {
     }
 
     public void resetLogs() {
+        setLexicLogs("");
         setSintacticLogs("Sin errores sintácticos");
         setSemanticLogs("Sin errores semánticos");
         setNotacionPolacaLogs("");

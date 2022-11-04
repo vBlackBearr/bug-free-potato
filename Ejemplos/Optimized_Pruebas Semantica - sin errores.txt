@@ -1,5 +1,4 @@
 import raptor_util_Print;
-public class Miclase{
   private Ig(int pfd){
   }
   private Igf(int pfdds){

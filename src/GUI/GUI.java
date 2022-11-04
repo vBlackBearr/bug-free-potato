@@ -868,7 +868,6 @@ public class GUI extends javax.swing.JFrame {
     public Image getIconImage() {
         Image retValue = Toolkit.getDefaultToolkit().
                 getImage(ClassLoader.getSystemResource("img/Patata.png"));
-
         return retValue;
     }
 }

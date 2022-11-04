@@ -1,5 +1,5 @@
 import raptor_util_Print;
-public class Miclase{
+publicc class Miclase{
   private Ig(int pfd){
   }
   private Igf(int pfdds){
@@ -80,7 +80,7 @@ public class Miclase{
     }
     public int sumarNumeros(int xxy, string yy){ 
            int ent = 4;
-           float zz=x+ent;
+           floast zz=x+ent;
 
             return z;
       }

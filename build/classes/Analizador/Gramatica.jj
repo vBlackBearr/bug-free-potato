@@ -479,8 +479,6 @@ TOKEN :
 | < ENTERO : (< digito >)+ >
   {
     logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Numero entero " + "\n");
-    //logsAcumulatorInstance.getInstance().addComponenteExpresionInfija(image.toString());
-    //JOptionPane.showMessageDialog(null,image);
   }
   : DEFAULT
 | < FLOTANTEDOUBLE :
