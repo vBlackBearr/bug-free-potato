@@ -2450,7 +2450,7 @@ void Sentencia_this() :
 {
   try
   {
-    (< VAR > < ASIG > Var() (< CORA > ArregloL()) ? Puntoyc() Sentencia_this()) ?
+    (Var() < ASIG > Var() (< CORA > ArregloL()) ? Puntoyc() Sentencia_this()) ?
   }
   catch (ParseException e)
   {
@@ -2913,7 +2913,7 @@ void Exp() :
   try
   {
     Parea() Exp() Parec() ExpA()
-  | < VAR > (< CORA > ArregloL()) ? ExpA()
+  | Var() (< CORA > ArregloL()) ? ExpA()
   | < ENTERO > ExpA()
   | < FLOTANTEDOUBLE > ExpA()
   }
@@ -3034,7 +3034,7 @@ void Asignacion() :
 {
 }
 {
-  < VAR > agregarAExpresionInfija(token) verificarExistencia()
+  Var() agregarAExpresionInfija(token) verificarExistencia()
   (
     Asignacion2()
   | Sentencia_incremental()
@@ -3141,7 +3141,7 @@ void TipoDato() :
 | < CADENA >
 | < TRUE >
 | < FALSE >
-| < VAR >) agregarAExpresionInfija(token)
+| Var()) agregarAExpresionInfija(token)
 }
 
 void TipoDatoComparacion() :
@@ -3152,7 +3152,7 @@ void TipoDatoComparacion() :
 | < FLOTANTEDOUBLE >
 | < CARACTER >
 | < CADENA >
-| < VAR >
+| Var()
 }
 
 void Declaracion() :
@@ -3201,7 +3201,7 @@ void Declaracion() :
 void Declarando() :
 {} 
 {
-  < VAR > agregarAExpresionInfija(token) InsertarEnTablaDeVariables()
+  Var() agregarAExpresionInfija(token) InsertarEnTablaDeVariables()
 }
 
 JAVACODE
@@ -3409,7 +3409,7 @@ void ArregloL() :
   try
   {
     ((< ENTERO >)
-  | (< VAR >)
+  | (Var())
     ) < CORC >
   }
   catch (ParseException e)
@@ -3449,7 +3449,7 @@ void Valor() :
   | < CADENA >
   | < TRUE >
   | < FALSE >
-  | < VAR > (< CORA > ArregloL()) ?
+  | Var() (< CORA > ArregloL()) ?
   }
   catch (ParseException e)
   {

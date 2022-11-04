@@ -2161,7 +2161,7 @@ typeTableInstance tableInstance = typeTableInstance.getInstance();
     try {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case VAR:
-        jj_consume_token(VAR);
+        Var();
         jj_consume_token(ASIG);
         Var();
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
@@ -2713,7 +2713,7 @@ typeTableInstance tableInstance = typeTableInstance.getInstance();
         ExpA();
         break;
       case VAR:
-        jj_consume_token(VAR);
+        Var();
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
         case CORA:
           jj_consume_token(CORA);
@@ -2860,7 +2860,7 @@ typeTableInstance tableInstance = typeTableInstance.getInstance();
   }
 
   final public void Asignacion() throws ParseException {
-    jj_consume_token(VAR);
+    Var();
     agregarAExpresionInfija(token);
     verificarExistencia();
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
@@ -2996,7 +2996,7 @@ if(!tableInstance.checkVariable(token.image)){
       jj_consume_token(FALSE);
       break;
     case VAR:
-      jj_consume_token(VAR);
+      Var();
       break;
     default:
       jj_la1[52] = jj_gen;
@@ -3021,7 +3021,7 @@ if(!tableInstance.checkVariable(token.image)){
       jj_consume_token(CADENA);
       break;
     case VAR:
-      jj_consume_token(VAR);
+      Var();
       break;
     default:
       jj_la1[53] = jj_gen;
@@ -3087,7 +3087,7 @@ if(!tableInstance.checkVariable(token.image)){
   }
 
   final public void Declarando() throws ParseException {
-    jj_consume_token(VAR);
+    Var();
     agregarAExpresionInfija(token);
     InsertarEnTablaDeVariables();
   }
@@ -3440,7 +3440,7 @@ TA.InsertarSimbolo(token, kindParaDeclarar);
         jj_consume_token(ENTERO);
         break;
       case VAR:
-        jj_consume_token(VAR);
+        Var();
         break;
       default:
         jj_la1[66] = jj_gen;
@@ -3495,7 +3495,7 @@ TA.InsertarSimbolo(token, kindParaDeclarar);
         jj_consume_token(FALSE);
         break;
       case VAR:
-        jj_consume_token(VAR);
+        Var();
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
         case CORA:
           jj_consume_token(CORA);
