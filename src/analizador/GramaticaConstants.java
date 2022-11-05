@@ -172,7 +172,7 @@ public interface GramaticaConstants {
   /** RegularExpression Id. */
   int CADENA = 86;
   /** RegularExpression Id. */
-  int VAR = 87;
+  int VAR1 = 87;
   /** RegularExpression Id. */
   int FUNC = 88;
   /** RegularExpression Id. */
@@ -294,7 +294,7 @@ public interface GramaticaConstants {
     "<CLASES>",
     "<CARACTER>",
     "<CADENA>",
-    "<VAR>",
+    "<VAR1>",
     "<FUNC>",
     "<LIBR>",
     "<ENTEROINV>",

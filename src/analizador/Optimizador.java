@@ -291,7 +291,7 @@ public class Optimizador {
     }
 
     private static void insertOnTablaValores() {
-
+        
     }
 
 }

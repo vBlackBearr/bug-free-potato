@@ -70,9 +70,9 @@ public class typeTableInstance {
         tabla = new Hashtable();
     }
 
-    public boolean checkVariable(String var) {
+    public boolean checkVariable(String var1) {
         try {
-            int kind = (Integer) tabla.get(var);
+            int kind = (Integer) tabla.get(var1);
 
             return true;
         } catch (Exception e) {
@@ -80,9 +80,9 @@ public class typeTableInstance {
         }
     }
 
-    public int getTipoVariable(String var) {
+    public int getTipoVariable(String var1) {
         try {
-            int kind = (Integer) tabla.get(var);
+            int kind = (Integer) tabla.get(var1);
             return kind;
         } catch (Exception e) {
             return 0;

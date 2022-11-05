@@ -100,7 +100,7 @@ public class TokenComparaciones {
         int tipoVar2 = 0;
 
 //        JOptionPane.showMessageDialog(null, TokenIzq.image + " - " + TokenIzq.kind + "  |  " + TokenAsig.image + " - " + TokenAsig.kind);
-        if (TokenIzq.kind == GramaticaConstants.VAR) {
+        if (TokenIzq.kind == GramaticaConstants.VAR1) {
             if (!tableInstance.checkVariable(TokenIzq.image)) {
                 return "Error: El identificador " + TokenIzq.image + " No ha sido declarado \r\nLinea: " + TokenIzq.beginLine;
             } else {
@@ -112,7 +112,7 @@ public class TokenComparaciones {
             tipoVar1 = TokenIzq.kind;
         }
 
-        if (TokenAsig.kind == GramaticaConstants.VAR) {
+        if (TokenAsig.kind == GramaticaConstants.VAR1) {
             if (!tableInstance.checkVariable(TokenAsig.image)) {
                 return "Error: El identificador " + TokenAsig.image + " No ha sido declarado \r\nLinea: " + TokenAsig.beginLine;
             } else {

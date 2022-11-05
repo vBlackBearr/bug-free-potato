@@ -1505,7 +1505,7 @@ typeTableInstance tableInstance = typeTableInstance.getInstance();
       case FOR:
       case SWITCH:
       case DOUBLE:
-      case VAR:
+      case VAR1:
       case FUNC:
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
         case FOR:
@@ -1528,7 +1528,7 @@ typeTableInstance tableInstance = typeTableInstance.getInstance();
           Puntoyc();
           Sentencia();
           break;
-        case VAR:
+        case VAR1:
           Asignacion();
           Puntoyc();
           Sentencia();
@@ -1609,10 +1609,10 @@ typeTableInstance tableInstance = typeTableInstance.getInstance();
       case FLOTANTEDOUBLE:
       case CARACTER:
       case CADENA:
-      case VAR:
+      case VAR1:
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-        case VAR:
-          Var();
+        case VAR1:
+          Var1();
           switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
           case CORA:
             jj_consume_token(CORA);
@@ -1686,8 +1686,8 @@ typeTableInstance tableInstance = typeTableInstance.getInstance();
       case COM:
         jj_consume_token(COM);
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-        case VAR:
-          Var();
+        case VAR1:
+          Var1();
           switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
           case CORA:
             jj_consume_token(CORA);
@@ -1858,7 +1858,7 @@ typeTableInstance tableInstance = typeTableInstance.getInstance();
       Catch();
       Parea();
       Except();
-      Var();
+      Var1();
       Parec();
       Llavea();
       Sentencia();
@@ -1909,7 +1909,7 @@ typeTableInstance tableInstance = typeTableInstance.getInstance();
       case DOUBLE:
         Declaracion();
         break;
-      case VAR:
+      case VAR1:
         Asignacion();
         break;
       default:
@@ -2160,10 +2160,10 @@ typeTableInstance tableInstance = typeTableInstance.getInstance();
   final public void Sentencia_this() throws ParseException {
     try {
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
-      case VAR:
-        Var();
+      case VAR1:
+        Var1();
         jj_consume_token(ASIG);
-        Var();
+        Var1();
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
         case CORA:
           jj_consume_token(CORA);
@@ -2243,7 +2243,7 @@ typeTableInstance tableInstance = typeTableInstance.getInstance();
 
   final public void Sentencia_switch() throws ParseException {
     try {
-      Var();
+      Var1();
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case CORA:
         jj_consume_token(CORA);
@@ -2380,8 +2380,8 @@ typeTableInstance tableInstance = typeTableInstance.getInstance();
       case CARACTER:
         jj_consume_token(CARACTER);
         break;
-      case VAR:
-        Var();
+      case VAR1:
+        Var1();
         break;
       default:
         jj_la1[39] = jj_gen;
@@ -2482,7 +2482,7 @@ typeTableInstance tableInstance = typeTableInstance.getInstance();
       case FLOTANTEDOUBLE:
       case CARACTER:
       case CADENA:
-      case VAR:
+      case VAR1:
         Comparacion();
         break;
       case TRUE:
@@ -2712,8 +2712,8 @@ typeTableInstance tableInstance = typeTableInstance.getInstance();
         Parec();
         ExpA();
         break;
-      case VAR:
-        Var();
+      case VAR1:
+        Var1();
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
         case CORA:
           jj_consume_token(CORA);
@@ -2831,9 +2831,9 @@ typeTableInstance tableInstance = typeTableInstance.getInstance();
     }
   }
 
-  final public void Var() throws ParseException {
+  final public void Var1() throws ParseException {
     try {
-      jj_consume_token(VAR);
+      jj_consume_token(VAR1);
     } catch (ParseException e) {
     Token t = getToken(0);
     if (t.image == ";"
@@ -2860,7 +2860,7 @@ typeTableInstance tableInstance = typeTableInstance.getInstance();
   }
 
   final public void Asignacion() throws ParseException {
-    Var();
+    Var1();
     agregarAExpresionInfija(token);
     verificarExistencia();
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
@@ -2898,7 +2898,7 @@ valor1CompAsig = token;
     case FLOTANTEDOUBLE:
     case CARACTER:
     case CADENA:
-    case VAR:
+    case VAR1:
       PonerDato();
       break;
     case PAREA:
@@ -2995,8 +2995,8 @@ if(!tableInstance.checkVariable(token.image)){
     case FALSE:
       jj_consume_token(FALSE);
       break;
-    case VAR:
-      Var();
+    case VAR1:
+      Var1();
       break;
     default:
       jj_la1[52] = jj_gen;
@@ -3020,8 +3020,8 @@ if(!tableInstance.checkVariable(token.image)){
     case CADENA:
       jj_consume_token(CADENA);
       break;
-    case VAR:
-      Var();
+    case VAR1:
+      Var1();
       break;
     default:
       jj_la1[53] = jj_gen;
@@ -3087,7 +3087,7 @@ if(!tableInstance.checkVariable(token.image)){
   }
 
   final public void Declarando() throws ParseException {
-    Var();
+    Var1();
     agregarAExpresionInfija(token);
     InsertarEnTablaDeVariables();
   }
@@ -3143,7 +3143,7 @@ TA.InsertarSimbolo(token, kindParaDeclarar);
       case ENTERO:
       case FLOTANTEDOUBLE:
       case CADENA:
-      case VAR:
+      case VAR1:
         Valor();
         label_1:
         while (true) {
@@ -3226,7 +3226,7 @@ TA.InsertarSimbolo(token, kindParaDeclarar);
       case ENTERO:
       case FLOTANTEDOUBLE:
       case CADENA:
-      case VAR:
+      case VAR1:
         Valor();
         label_3:
         while (true) {
@@ -3439,8 +3439,8 @@ TA.InsertarSimbolo(token, kindParaDeclarar);
       case ENTERO:
         jj_consume_token(ENTERO);
         break;
-      case VAR:
-        Var();
+      case VAR1:
+        Var1();
         break;
       default:
         jj_la1[66] = jj_gen;
@@ -3494,8 +3494,8 @@ TA.InsertarSimbolo(token, kindParaDeclarar);
       case FALSE:
         jj_consume_token(FALSE);
         break;
-      case VAR:
-        Var();
+      case VAR1:
+        Var1();
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
         case CORA:
           jj_consume_token(CORA);
@@ -3596,8 +3596,8 @@ TA.InsertarSimbolo(token, kindParaDeclarar);
     case FALSE:
       jj_consume_token(FALSE);
       break;
-    case VAR:
-      Var();
+    case VAR1:
+      Var1();
       break;
     default:
       jj_la1[70] = jj_gen;
@@ -3612,8 +3612,8 @@ TA.InsertarSimbolo(token, kindParaDeclarar);
       jj_consume_token(ENTERO);
       X1();
       break;
-    case VAR:
-      Var();
+    case VAR1:
+      Var1();
       X1();
       break;
     case PAREA:
@@ -3680,8 +3680,8 @@ TA.InsertarSimbolo(token, kindParaDeclarar);
       jj_consume_token(FLOTANTEDOUBLE);
       Y1();
       break;
-    case VAR:
-      Var();
+    case VAR1:
+      Var1();
       Y1();
       break;
     case PAREA:
@@ -3736,7 +3736,7 @@ TA.InsertarSimbolo(token, kindParaDeclarar);
       switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
       case INT:
         jj_consume_token(INT);
-        Var();
+        Var1();
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
         case CORA:
           jj_consume_token(CORA);
@@ -3751,7 +3751,7 @@ TA.InsertarSimbolo(token, kindParaDeclarar);
         break;
       case DOUBLE:
         jj_consume_token(DOUBLE);
-        Var();
+        Var1();
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
         case CORA:
           jj_consume_token(CORA);
@@ -3766,7 +3766,7 @@ TA.InsertarSimbolo(token, kindParaDeclarar);
         break;
       case FLOAT:
         jj_consume_token(FLOAT);
-        Var();
+        Var1();
         switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
         case CORA:
           jj_consume_token(CORA);

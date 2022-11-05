@@ -512,7 +512,7 @@ TOKEN :
     logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Cadena " + "\n");
   }
   : DEFAULT
-| < VAR : (< letraMin >)+ >
+| < VAR1 : (< letraMin >)+ >
   {
     logsAcumulatorInstance.getInstance().addlexicLog(image + " -> Nombre de variable " + "\n");
   }
@@ -1989,7 +1989,7 @@ void Parametros() :
 {
   try
   {
-    (Var() (< CORA > ArregloL()) ? Parametros2()
+    (Var1() (< CORA > ArregloL()) ? Parametros2()
   | Exp()
   | < CADENA > Parametros2()
   | < CARACTER > Parametros2()) ?
@@ -2033,7 +2033,7 @@ void Parametros2() :
 {
   try
   {
-    (< COM > (Var() (< CORA > ArregloL()) ? Parametros2()
+    (< COM > (Var1() (< CORA > ArregloL()) ? Parametros2()
   | Exp()
   | < CADENA > Parametros2()
   | < CARACTER > Parametros2())) ?
@@ -2184,7 +2184,7 @@ void Sentencia_try() :
 {
   try
   {
-    Llavea() Sentencia() Llavec() Catch() Parea() Except() Var() Parec() Llavea() Sentencia() Llavec()
+    Llavea() Sentencia() Llavec() Catch() Parea() Except() Var1() Parec() Llavea() Sentencia() Llavec()
   }
   catch (ParseException e)
   {
@@ -2451,7 +2451,7 @@ void Sentencia_this() :
 {
   try
   {
-    (Var() < ASIG > Var() (< CORA > ArregloL()) ? Puntoyc() Sentencia_this()) ?
+    (Var1() < ASIG > Var1() (< CORA > ArregloL()) ? Puntoyc() Sentencia_this()) ?
   }
   catch (ParseException e)
   {
@@ -2525,7 +2525,7 @@ void Sentencia_switch() :
 {
   try
   {
-    Var() (< CORA > ArregloL()) ? Llavea() Case() < DEF > < DOSP > Sentencia() Break() Puntoyc() Llavec()
+    Var1() (< CORA > ArregloL()) ? Llavea() Case() < DEF > < DOSP > Sentencia() Break() Puntoyc() Llavec()
   }
   catch (ParseException e)
   {
@@ -2644,7 +2644,7 @@ void Caso() :
     < ENTERO >
   | < CADENA >
   | < CARACTER >
-  | Var()
+  | Var1()
   }
   catch (ParseException e)
   {
@@ -2914,7 +2914,7 @@ void Exp() :
   try
   {
     Parea() Exp() Parec() ExpA()
-  | Var() (< CORA > ArregloL()) ? ExpA()
+  | Var1() (< CORA > ArregloL()) ? ExpA()
   | < ENTERO > ExpA()
   | < FLOTANTEDOUBLE > ExpA()
   }
@@ -2998,12 +2998,12 @@ void ExpA() :
   }
 }
 
-void Var() :
+void Var1() :
 {}
 {
   try
   {
-    < VAR >
+    < VAR1 >
   }
   catch (ParseException e)
   {
@@ -3035,7 +3035,7 @@ void Asignacion() :
 {
 }
 {
-  Var() agregarAExpresionInfija(token) verificarExistencia()
+  Var1() agregarAExpresionInfija(token) verificarExistencia()
   (
     Asignacion2()
   | Sentencia_incremental()
@@ -3142,7 +3142,7 @@ void TipoDato() :
 | < CADENA >
 | < TRUE >
 | < FALSE >
-| Var()) agregarAExpresionInfija(token)
+| Var1()) agregarAExpresionInfija(token)
 }
 
 void TipoDatoComparacion() :
@@ -3153,7 +3153,7 @@ void TipoDatoComparacion() :
 | < FLOTANTEDOUBLE >
 | < CARACTER >
 | < CADENA >
-| Var()
+| Var1()
 }
 
 void Declaracion() :
@@ -3202,7 +3202,7 @@ void Declaracion() :
 void Declarando() :
 {} 
 {
-  Var() agregarAExpresionInfija(token) InsertarEnTablaDeVariables()
+  Var1() agregarAExpresionInfija(token) InsertarEnTablaDeVariables()
 }
 
 JAVACODE
@@ -3410,7 +3410,7 @@ void ArregloL() :
   try
   {
     ((< ENTERO >)
-  | (Var())
+  | (Var1())
     ) < CORC >
   }
   catch (ParseException e)
@@ -3450,7 +3450,7 @@ void Valor() :
   | < CADENA >
   | < TRUE >
   | < FALSE >
-  | Var() (< CORA > ArregloL()) ?
+  | Var1() (< CORA > ArregloL()) ?
   }
   catch (ParseException e)
   {
@@ -3521,14 +3521,14 @@ void Z() :
 {
   < TRUE >
 | < FALSE >
-| Var()
+| Var1()
 }
 
 void X() :
 {}
 {
   < ENTERO > X1()
-| Var() X1()
+| Var1() X1()
 | Parea() X() Parec() X1()
 }
 
@@ -3548,7 +3548,7 @@ void Y() :
 {}
 {
   < FLOTANTEDOUBLE > Y1()
-| Var() Y1()
+| Var1() Y1()
 | Parea() Y() Parec() Y1()
 }
 
@@ -3567,9 +3567,9 @@ void Declaracionfor() :
 {
   try
   {
-    < INT > Var() (< CORA > ArregloL()) ? < ASIG > X()
-  | < DOUBLE > Var() (< CORA > ArregloL()) ? < ASIG > Y()
-  | < FLOAT > Var() (< CORA > ArregloL()) ? < ASIG > Y()
+    < INT > Var1() (< CORA > ArregloL()) ? < ASIG > X()
+  | < DOUBLE > Var1() (< CORA > ArregloL()) ? < ASIG > Y()
+  | < FLOAT > Var1() (< CORA > ArregloL()) ? < ASIG > Y()
   }
   catch (ParseException e)
   {

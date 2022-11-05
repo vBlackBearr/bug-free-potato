@@ -99,7 +99,7 @@ public class TokenAsignaciones extends Error {
         int tipoVar1 = 0;
         int tipoVar2 = 0;
 
-        if (TokenAsig.kind == GramaticaConstants.VAR) {
+        if (TokenAsig.kind == GramaticaConstants.VAR1) {
             if (!tableInstance.checkVariable(TokenAsig.image)) {
                 return "Error: El identificador " + TokenAsig.image + " No ha sido declarado \r\nLinea: " + TokenAsig.beginLine;
             } else {
@@ -110,7 +110,7 @@ public class TokenAsignaciones extends Error {
         }
 
 //        JOptionPane.showMessageDialog(null, TokenIzq.image + " - " + TokenIzq.kind + "  |  " + TokenAsig.image + " - " + TokenAsig.kind);
-        if (TokenIzq.kind == GramaticaConstants.VAR) {
+        if (TokenIzq.kind == GramaticaConstants.VAR1) {
             if (!tableInstance.checkVariable(TokenIzq.image)) {
                 return "Error: El identificador " + TokenIzq.image + " No ha sido declarado \r\nLinea: " + TokenIzq.beginLine;
             } else {
