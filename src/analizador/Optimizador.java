@@ -70,11 +70,9 @@ public class Optimizador {
 
         //Analisis linea por linea
         for (int i = 0; i < textIn.size(); i++) {
-
+            textIn.set(i, textIn.get(i).replaceAll("//([A-Z]|[a-z]|[0-9]|[ ])*", ""));
+            textIn.set(i, textIn.get(i).replaceAll("(/[*])([A-Z]|[a-z]|[0-9]|[ ])*([*]/)", ""));
             if (!textIn.get(i).equals("") && !textIn.get(i).matches("(\\s)+")) {
-                textIn.set(i, textIn.get(i).replaceAll("//([A-Z]|[a-z]|[0-9]|[ ])*", ""));
-                textIn.set(i, textIn.get(i).replaceAll("(/[*])([A-Z]|[a-z]|[0-9]|[ ])*([*]/)", ""));
-
                 line = separarConCaracteresTokenizer(textIn.get(i));
                 for (lineIndex = 0; lineIndex < line.length; lineIndex++) {
                     switch (line[lineIndex]) {
@@ -138,10 +136,13 @@ public class Optimizador {
                             break;
                     }
                 }
-                if (!"".equals(textIn.get(i))) {
-                    textOut += textIn.get(i) + "\n";
+                if (!textIn.get(i).equals("")) {
+                    if (i + 1 == textIn.size()) {
+                        textOut += textIn.get(i);
+                    } else {
+                        textOut += textIn.get(i) + "\n";
+                    }
                 }
-
             }
         }
 
@@ -291,7 +292,7 @@ public class Optimizador {
     }
 
     private static void insertOnTablaValores() {
-        
+
     }
 
 }
