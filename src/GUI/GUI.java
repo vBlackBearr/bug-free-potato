@@ -4,11 +4,11 @@
  */
 package GUI;
 
+import Analizador.Gramatica;
+import Analizador.ParseException;
 import analizador.Optimizador;
 import extraObjects.Cross;
-import java.awt.Color;
 import java.awt.HeadlessException;
-import lenguajee.Analizar;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -23,15 +23,10 @@ import javax.swing.JOptionPane;
 import extraObjects.logsAcumulatorInstance;
 import extraObjects.textEditorPane;
 import extraObjects.typeTableInstance;
-import java.awt.BorderLayout;
 import java.awt.Image;
 import java.awt.Toolkit;
-import java.io.PrintWriter;
 import java.util.ArrayList;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
-import javax.swing.JTextArea;
 
 /**
  *
@@ -40,9 +35,7 @@ import javax.swing.JTextArea;
 public class GUI extends javax.swing.JFrame {
 
     JFileChooser seleccionarCodigo;
-    Analizar an = new Analizar();
     public String muestraLexicos = "";
-    private ArrayList<String> urlsDeArchivosAbiertos = new ArrayList<>();
 
     private final String URLFILEVENTANAS = "cache/openedWindows.txt";
 
@@ -510,13 +503,11 @@ public class GUI extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new GUI().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new GUI().setVisible(true);
         });
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu btnCompilar;
     private javax.swing.JMenu btnCompilar1;
@@ -561,9 +552,10 @@ public class GUI extends javax.swing.JFrame {
             File file = crearArchivoConTexto(getTextFromSelectedTab());
             Optimizar();
             long inicioEjecucion = System.currentTimeMillis();
-            an.AnalizarCodigo(new FileReader(file));
+            Gramatica parser = new Gramatica(new BufferedReader(new FileReader(file)));
+            parser.Inicio();
             long finEjecucion = System.currentTimeMillis();
-            txtTiempoEjecucion.setText(((double) (finEjecucion - inicioEjecucion) / 1000) + " segundos");;
+            txtTiempoEjecucion.setText(((double) (finEjecucion - inicioEjecucion) / 1000) + " segundos");
 
             //Poner los logs de compilacion en sus respectivos textArea's
             logsAcumulatorInstance ins = logsAcumulatorInstance.getInstance();
@@ -574,6 +566,8 @@ public class GUI extends javax.swing.JFrame {
         } catch (FileNotFoundException ex) {
             Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Error de analisis: " + ex);
+        } catch (ParseException ex) {
+            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

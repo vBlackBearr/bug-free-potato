@@ -10,13 +10,13 @@ package Notaciones;
  */
 public class Main {
 
-    public static void main(String[] args) {
-//        NotacionPolaca np = new NotacionPolaca();
-//        String infijo = "22+3/5*(5-3)*(4/8*49-9)";
-//        String operacion = np.notacionPolaca(infijo, "variables");
+//    public static void main(String[] args) {
+////        NotacionPolaca np = new NotacionPolaca();
+////        String infijo = "22+3/5*(5-3)*(4/8*49-9)";
+////        String operacion = np.notacionPolaca(infijo, "variables");
+//////        System.out.println(operacion);
+//////        StringBuilder conversionPrefijo = Conversion.conversionPrefijo(infijo);
 ////        System.out.println(operacion);
-////        StringBuilder conversionPrefijo = Conversion.conversionPrefijo(infijo);
-//        System.out.println(operacion);
-Double.parseDouble("dsddsd");
-    }
+//Double.parseDouble("dsddsd");
+//    }
 }
