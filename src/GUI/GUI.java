@@ -72,9 +72,6 @@ public class GUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panel_Edicion = new javax.swing.JPanel();
-        lbl_Codigo = new javax.swing.JLabel();
-        lbl_Escribiendo = new javax.swing.JLabel();
         panel_Respuestas = new javax.swing.JPanel();
         lbl_Respuesta = new javax.swing.JLabel();
         txtTiempoEjecucion = new javax.swing.JLabel();
@@ -93,13 +90,14 @@ public class GUI extends javax.swing.JFrame {
         respuesta_Semantico = new javax.swing.JLabel();
         respuesta_Sintactico = new javax.swing.JLabel();
         respuesta_Lexico = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         respuesta_CodOp = new javax.swing.JLabel();
         respuesta_Lexico1 = new javax.swing.JLabel();
         respuesta_Sintactico1 = new javax.swing.JLabel();
         lblNuevoArchivo = new javax.swing.JLabel();
         lblAbrir = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        lblGuardar = new javax.swing.JLabel();
+        lblPlay = new javax.swing.JLabel();
+        lblPotato = new javax.swing.JLabel();
         etiqueta_Fondo = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
@@ -110,12 +108,6 @@ public class GUI extends javax.swing.JFrame {
         exitMenuItem = new javax.swing.JMenuItem();
         btnCompilar = new javax.swing.JMenu();
         btnCompilar1 = new javax.swing.JMenu();
-        helpMenu = new javax.swing.JMenu();
-        jm_Lexico = new javax.swing.JMenuItem();
-        jm_Sintactico = new javax.swing.JMenuItem();
-        jm_CodInter = new javax.swing.JMenuItem();
-        jm_Optimizacion1 = new javax.swing.JMenuItem();
-        jm_Semantico = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Potato: Equipo python");
@@ -134,39 +126,6 @@ public class GUI extends javax.swing.JFrame {
             }
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        panel_Edicion.setBackground(new java.awt.Color(255, 255, 255));
-        panel_Edicion.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 0, 0), 3, true));
-        panel_Edicion.setForeground(new java.awt.Color(255, 0, 0));
-
-        lbl_Codigo.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
-        lbl_Codigo.setText("(Sin Nombre)");
-
-        lbl_Escribiendo.setFont(new java.awt.Font("Microsoft YaHei", 0, 14)); // NOI18N
-        lbl_Escribiendo.setText("Escribiendo en:");
-
-        javax.swing.GroupLayout panel_EdicionLayout = new javax.swing.GroupLayout(panel_Edicion);
-        panel_Edicion.setLayout(panel_EdicionLayout);
-        panel_EdicionLayout.setHorizontalGroup(
-            panel_EdicionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_EdicionLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lbl_Escribiendo, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lbl_Codigo)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        panel_EdicionLayout.setVerticalGroup(
-            panel_EdicionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panel_EdicionLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panel_EdicionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbl_Escribiendo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lbl_Codigo))
-                .addGap(20, 20, 20))
-        );
-
-        getContentPane().add(panel_Edicion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 310, 40));
 
         panel_Respuestas.setBackground(new java.awt.Color(255, 255, 255));
         panel_Respuestas.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 0, 51), 3, true));
@@ -198,7 +157,7 @@ public class GUI extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        getContentPane().add(panel_Respuestas, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 100, 330, 40));
+        getContentPane().add(panel_Respuestas, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 330, 40));
 
         jScrollPane_CodOp.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 0), 3));
 
@@ -248,7 +207,7 @@ public class GUI extends javax.swing.JFrame {
         tabbedPane.setBackground(new java.awt.Color(255, 255, 255));
         tabbedPane.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         tabbedPane.setName(""); // NOI18N
-        getContentPane().add(tabbedPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 640, 610));
+        getContentPane().add(tabbedPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 640, 680));
 
         respuesta_NotPol.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
         respuesta_NotPol.setForeground(new java.awt.Color(255, 255, 0));
@@ -269,9 +228,6 @@ public class GUI extends javax.swing.JFrame {
         respuesta_Lexico.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
         respuesta_Lexico.setText("Lexico:");
         getContentPane().add(respuesta_Lexico, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 50, 90, -1));
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondo/Potato.png"))); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1460, 10, -1, -1));
 
         respuesta_CodOp.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
         respuesta_CodOp.setForeground(new java.awt.Color(255, 153, 0));
@@ -307,14 +263,26 @@ public class GUI extends javax.swing.JFrame {
         });
         getContentPane().add(lblAbrir, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 0, 70, 70));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Icono-guardar2.png"))); // NOI18N
-        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Icono-guardar2.png"))); // NOI18N
+        lblGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel1MouseClicked(evt);
+                lblGuardarMouseClicked(evt);
             }
         });
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, -1, 50));
+        getContentPane().add(lblGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, -1, 50));
+
+        lblPlay.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/play2.png"))); // NOI18N
+        lblPlay.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblPlay.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblPlayMouseClicked(evt);
+            }
+        });
+        getContentPane().add(lblPlay, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 10, 50, 50));
+
+        lblPotato.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Patata.png"))); // NOI18N
+        getContentPane().add(lblPotato, new org.netbeans.lib.awtextra.AbsoluteConstraints(1570, 0, 140, 110));
 
         etiqueta_Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondo/fondo.png"))); // NOI18N
         getContentPane().add(etiqueta_Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -416,58 +384,6 @@ public class GUI extends javax.swing.JFrame {
         });
         menuBar.add(btnCompilar1);
 
-        helpMenu.setMnemonic('h');
-        helpMenu.setText("Fases Compilacion");
-        helpMenu.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        helpMenu.setMargin(new java.awt.Insets(6, 10, 6, 10));
-
-        jm_Lexico.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jm_Lexico.setMnemonic('c');
-        jm_Lexico.setText("Léxico");
-        jm_Lexico.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jm_LexicoActionPerformed(evt);
-            }
-        });
-        helpMenu.add(jm_Lexico);
-
-        jm_Sintactico.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jm_Sintactico.setMnemonic('a');
-        jm_Sintactico.setText("Sintactico");
-        jm_Sintactico.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jm_SintacticoActionPerformed(evt);
-            }
-        });
-        helpMenu.add(jm_Sintactico);
-
-        jm_CodInter.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jm_CodInter.setMnemonic('a');
-        jm_CodInter.setText("Código intermedio");
-        helpMenu.add(jm_CodInter);
-
-        jm_Optimizacion1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jm_Optimizacion1.setMnemonic('a');
-        jm_Optimizacion1.setText("Optimización");
-        jm_Optimizacion1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jm_Optimizacion1ActionPerformed(evt);
-            }
-        });
-        helpMenu.add(jm_Optimizacion1);
-
-        jm_Semantico.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jm_Semantico.setMnemonic('a');
-        jm_Semantico.setText("Semantico");
-        jm_Semantico.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jm_SemanticoActionPerformed(evt);
-            }
-        });
-        helpMenu.add(jm_Semantico);
-
-        menuBar.add(helpMenu);
-
         setJMenuBar(menuBar);
 
         pack();
@@ -492,36 +408,15 @@ public class GUI extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_exitMenuItemActionPerformed
 
-    private void jm_LexicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jm_LexicoActionPerformed
-
-    }//GEN-LAST:event_jm_LexicoActionPerformed
-
-    private void jm_SintacticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jm_SintacticoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jm_SintacticoActionPerformed
-
     private void btnCompilarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompilarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCompilarActionPerformed
 
     private void btnCompilarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCompilarMouseClicked
         // TODO add your handling code here:
-        logsAcumulatorInstance.getInstance().resetLogs();
-        typeTableInstance.getInstance().clearTable();
-        logsAcumulatorInstance.getInstance().reestablecerNp();
-        analisis();
+
+        compilar();
     }//GEN-LAST:event_btnCompilarMouseClicked
-
-    private void jm_SemanticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jm_SemanticoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jm_SemanticoActionPerformed
-
-    private void jm_Optimizacion1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jm_Optimizacion1ActionPerformed
-        // TODO add your handling code here:
-        String text = getTextFromSelectedTab();
-        txtCodigoOptimizado.setText(Optimizador.Optimizar(text));
-        setTextToSelectedTab(Optimizador.Optimizar(txtCodigoOptimizado.getText()));
-    }//GEN-LAST:event_jm_Optimizacion1ActionPerformed
 
     private void btnCompilar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCompilar1MouseClicked
         // TODO add your handling code here:
@@ -562,10 +457,15 @@ public class GUI extends javax.swing.JFrame {
         openFile();
     }//GEN-LAST:event_lblAbrirMouseClicked
 
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+    private void lblGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblGuardarMouseClicked
         // TODO add your handling code here:
         guardar();
-    }//GEN-LAST:event_jLabel1MouseClicked
+    }//GEN-LAST:event_lblGuardarMouseClicked
+
+    private void lblPlayMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblPlayMouseClicked
+        // TODO add your handling code here:
+        compilar();
+    }//GEN-LAST:event_lblPlayMouseClicked
 
     public void setTxtAreaLexico(String texto) {
         txtAreaLexico.setText(texto);
@@ -624,28 +524,20 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel etiqueta_Fondo;
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
-    private javax.swing.JMenu helpMenu;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane_CodOp;
     private javax.swing.JScrollPane jScrollPane_NotPol;
     private javax.swing.JScrollPane jScrollPane_Semantico;
     private javax.swing.JScrollPane jScrollPane_Sintactico;
     private javax.swing.JScrollPane jScroll_Lexico;
-    private javax.swing.JMenuItem jm_CodInter;
-    private javax.swing.JMenuItem jm_Lexico;
-    private javax.swing.JMenuItem jm_Optimizacion1;
-    private javax.swing.JMenuItem jm_Semantico;
-    private javax.swing.JMenuItem jm_Sintactico;
     private javax.swing.JLabel lblAbrir;
+    private javax.swing.JLabel lblGuardar;
     private javax.swing.JLabel lblNuevoArchivo;
-    private javax.swing.JLabel lbl_Codigo;
-    private javax.swing.JLabel lbl_Escribiendo;
+    private javax.swing.JLabel lblPlay;
+    private javax.swing.JLabel lblPotato;
     private javax.swing.JLabel lbl_Respuesta;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem newMenuItem;
     private javax.swing.JMenuItem openMenuItem;
-    private javax.swing.JPanel panel_Edicion;
     private javax.swing.JPanel panel_Respuestas;
     private javax.swing.JLabel respuesta_CodOp;
     private javax.swing.JLabel respuesta_Lexico;
@@ -825,13 +717,12 @@ public class GUI extends javax.swing.JFrame {
         textEditorPane pane = new textEditorPane(nombre, null);
         int cont = 1;
         while (existArchivo(nombre)) {
-            if (nombre.endsWith(cont + "")) {
-                String[] split = nombre.split(cont + "");
-                nombre = split[0];
-                cont++;
-            }
+            String[] split = nombre.split(cont + "");
+            nombre = split[0];
+            cont++;
             nombre += cont;
         }
+        pane.name = nombre;
         tabbedPane.addTab(nombre, pane);
         int i = tabbedPane.indexOfTab(nombre);
         tabbedPane.setTabComponentAt(i, new Cross(tabbedPane.getTitleAt(i), this)); //agrega titulo y boton X.
@@ -878,7 +769,13 @@ public class GUI extends javax.swing.JFrame {
 
     private String getFileNameFromSelectedTab() {
         textEditorPane pane = (textEditorPane) tabbedPane.getSelectedComponent();
-        return pane.file.getName();
+        if (pane.file != null) {
+            return pane.file.getName();
+        }
+        if (pane.name != null) {
+            return pane.name;
+        }
+        return "";
     }
 
     private boolean existArchivo(String nombre) {
@@ -918,6 +815,20 @@ public class GUI extends javax.swing.JFrame {
         if (seleccionarCodigo.getSelectedFile() != null) {
             File file = seleccionarCodigo.getSelectedFile();
             nuevaPestaña(file);
+        }
+    }
+
+    private void compilar() {
+        logsAcumulatorInstance.getInstance().resetLogs();
+        typeTableInstance.getInstance().clearTable();
+        logsAcumulatorInstance.getInstance().reestablecerNp();
+
+        analisis();
+        if (txtAreaSintactico.getText().equals("")) {
+            txtAreaSintactico.setText("Sin Errores Sintacticos");
+        }
+        if (txtAreaSemantico.getText().equals("")) {
+            txtAreaSemantico.setText("Sin Errores Semanticos");
         }
     }
 }
