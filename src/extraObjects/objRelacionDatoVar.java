@@ -11,6 +11,7 @@ package extraObjects;
 public class objRelacionDatoVar {
     private String ID;
     private Object Dato;
+    private boolean isUsed;
 
     public objRelacionDatoVar(String id, Object dato){
         this.ID = id;
@@ -43,5 +44,19 @@ public class objRelacionDatoVar {
      */
     public void setDato(Object Dato) {
         this.Dato = Dato;
+    }
+
+    /**
+     * @return the isUsed
+     */
+    public boolean isIsUsed() {
+        return isUsed;
+    }
+
+    /**
+     * @param isUsed the isUsed to set
+     */
+    public void setIsUsed(boolean isUsed) {
+        this.isUsed = isUsed;
     }
 }

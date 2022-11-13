@@ -42,7 +42,7 @@ public class Cross extends JPanel {
         gbc.weightx = 0;
         add(B, gbc);
     }
-
+ 
     private ImageIcon getImage() {
         java.awt.Image IMG = null;
         try {

@@ -1,8 +1,7 @@
 import raptor_util_Print;
 public class Miclase{
     public void principalMain(){
-        int a = 2;
-        int resul;
+int a = 2,resul;
         resul = a + a; 
     }
 }		

@@ -55,22 +55,18 @@ public class logsAcumulatorInstance {
         if (!"".equals(log)) {
             setLexicLogs(getLexicLogs() + log + "\n");
         }
-
     }
 
     public void addSintacticLog(String log) {
         if (!"".equals(log)) {
-            setSintacticLogs("");
             setSintacticLogs(getSintacticLogs() + log + "\n");
         }
     }
 
     public void addSemanticLog(String log) {
         if (!"".equals(log)) {
-            setSemanticLogs("");
             setSemanticLogs(getSemanticLogs() + log + "\n");
         }
-
     }
 
     public void addComponenteExpresionInfija(String log) {
@@ -102,8 +98,8 @@ public class logsAcumulatorInstance {
 
     public void resetLogs() {
         setLexicLogs("");
-        setSintacticLogs("Sin errores sintácticos");
-        setSemanticLogs("Sin errores semánticos");
+        setSintacticLogs("");
+        setSemanticLogs("");
         setNotacionPolacaLogs("");
         getGuiInstance().setTxtAreaLexico(lexicLogs);
         getGuiInstance().setTxtAreaSintactico(sintacticLogs);

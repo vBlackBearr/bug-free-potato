@@ -1,1 +1,2 @@
-D:\Escuela\OneDrive - Instituto Tecnológico de Toluca\Lenguajes y automatas 2\ejemplo codigo.txt
+C:\Users\Luisp\OneDrive\Documentos\NetBeansProjects\LenguajeE\bug-free-potato\Ejemplos\Ejemplo_optimizacion.txt
+C:\Users\Luisp\OneDrive\Documentos\NetBeansProjects\LenguajeE\bug-free-potato\Ejemplos\Ejemplo optimizacion.txt

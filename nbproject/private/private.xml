@@ -3,15 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Escuela/OneDrive%20-%20Instituto%20Tecnológico%20de%20Toluca/Lenguajes%20y%20automatas%202/bug-free-potato/src/analizador/GramaticaTokenManager.java</file>
-            <file>file:/D:/Escuela/OneDrive%20-%20Instituto%20Tecnológico%20de%20Toluca/Lenguajes%20y%20automatas%202/bug-free-potato/src/analizador/TokenMgrError.java</file>
-            <file>file:/D:/Escuela/OneDrive%20-%20Instituto%20Tecnológico%20de%20Toluca/Lenguajes%20y%20automatas%202/bug-free-potato/src/extraObjects/logsAcumulatorInstance.java</file>
-            <file>file:/D:/Escuela/OneDrive%20-%20Instituto%20Tecnológico%20de%20Toluca/Lenguajes%20y%20automatas%202/bug-free-potato/src/analizador/Token.java</file>
-            <file>file:/D:/Escuela/OneDrive%20-%20Instituto%20Tecnológico%20de%20Toluca/Lenguajes%20y%20automatas%202/bug-free-potato/src/analizador/Optimizador.java</file>
-            <file>file:/D:/Escuela/OneDrive%20-%20Instituto%20Tecnológico%20de%20Toluca/Lenguajes%20y%20automatas%202/bug-free-potato/src/analizador/Gramatica.java</file>
-            <file>file:/D:/Escuela/OneDrive%20-%20Instituto%20Tecnológico%20de%20Toluca/Lenguajes%20y%20automatas%202/bug-free-potato/src/analizador/TokenAsignaciones.java</file>
-            <file>file:/D:/Escuela/OneDrive%20-%20Instituto%20Tecnológico%20de%20Toluca/Lenguajes%20y%20automatas%202/bug-free-potato/src/extraObjects/typeTableInstance.java</file>
-            <file>file:/D:/Escuela/OneDrive%20-%20Instituto%20Tecnológico%20de%20Toluca/Lenguajes%20y%20automatas%202/bug-free-potato/src/analizador/GramaticaConstants.java</file>
+            <file>file:/C:/Users/Luisp/OneDrive/Documentos/NetBeansProjects/LenguajeE/bug-free-potato/src/analizador/Optimizador.java</file>
+            <file>file:/C:/Users/Luisp/OneDrive/Documentos/NetBeansProjects/LenguajeE/bug-free-potato/src/extraObjects/lineaDeclaracion.java</file>
+            <file>file:/C:/Users/Luisp/OneDrive/Documentos/NetBeansProjects/LenguajeE/bug-free-potato/src/extraObjects/logsAcumulatorInstance.java</file>
+            <file>file:/C:/Users/Luisp/OneDrive/Documentos/NetBeansProjects/LenguajeE/bug-free-potato/src/GUI/GUI.java</file>
+            <file>file:/C:/Users/Luisp/OneDrive/Documentos/NetBeansProjects/LenguajeE/bug-free-potato/src/extraObjects/objRelacionDatoVar.java</file>
         </group>
     </open-files>
 </project-private>

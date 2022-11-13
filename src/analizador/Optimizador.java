@@ -4,6 +4,7 @@
  */
 package analizador;
 
+import extraObjects.lineaDeclaracion;
 import extraObjects.objRelacionDatoVar;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -63,86 +64,96 @@ public class Optimizador {
     }
 
     public static String Optimizar(String texto) {
+        texto = texto.replaceAll("(/[*])([A-Z]|[a-z]|[0-9]|[ ]|\n)*([*]/)", "");
+        texto = texto.replaceAll("//([A-Z]|[a-z]|[0-9]|[ ])*", "");
+
         ArrayList<String> textIn = convertirTextToArray(texto);
         String textOut = "";
-
+        List<lineaDeclaracion> lineasDeclaracion = new ArrayList<>();
         code = texto;
 
         //Analisis linea por linea
         for (int i = 0; i < textIn.size(); i++) {
-            textIn.set(i, textIn.get(i).replaceAll("//([A-Z]|[a-z]|[0-9]|[ ])*", ""));
-            textIn.set(i, textIn.get(i).replaceAll("(/[*])([A-Z]|[a-z]|[0-9]|[ ])*([*]/)", ""));
-            if (!textIn.get(i).equals("") && !textIn.get(i).matches("(\\s)+")) {
+            if (!textIn.get(i).equals("") && !textIn.get(i).matches("([ ]|\t)+")) {
+//                JOptionPane.showMessageDialog(null, textIn.get(i));
+                int index = 0;
                 line = separarConCaracteresTokenizer(textIn.get(i));
-                for (lineIndex = 0; lineIndex < line.length; lineIndex++) {
-                    switch (line[lineIndex]) {
-                        case "int":
-                        case "double":
-                        case "float":
-                        case "string":
-                        case "boolean":
-                            if (lineIndex == 0) {
-//                                decVar();
-                                lineIndex++;
-                                if (line.length > lineIndex) {
+//                JOptionPane.showMessageDialog(null, line[index]);
+                switch (line[index]) {
+                    case "int":
+                    case "double":
+                    case "float":
+                    case "string":
+                    case "boolean":
+                    case "char":
+                        String type = line[index];
+                        lineaDeclaracion linea;
+                        boolean isNewLinea = false;
+                        if (!lineasDeclaracion.isEmpty() && lineasDeclaracion.get(lineasDeclaracion.size() - 1).getNumLinea() == i - 1
+                                && lineasDeclaracion.get(lineasDeclaracion.size() - 1).getType().equals(type)) {
+                            linea = lineasDeclaracion.get(lineasDeclaracion.size() - 1);
+                        } else {
+                            linea = new lineaDeclaracion(type);
+                            isNewLinea = true;
+                        }
+                        linea.setNumLinea(i);
+                        index++;
+                        do {
+                            String var;
+                            var = line[index];
+                            if (isVar(var) && isUsed(var)) {
+                                Object value = null;
+                                index++;
+                                if (line[index].equals("=")) {
+                                    value = "";
+                                    String val;
+                                    index++;
+                                    while (!(line[index]).equals(";") && !(line[index]).equals(",")) {
+                                        val = line[index];
+                                        value += val;
+                                        index++;
+                                    }
+                                }
+                                linea.addVar(new objRelacionDatoVar(var, value));
+                            }
+                        } while (line[index++].equals(","));
+                        if (isNewLinea) {
+                            lineasDeclaracion.add(linea);
+                        }
+                        break;
+                    default:
+
+                        //Agregando las lineas de declaracion al textout
+                        for (lineaDeclaracion lineax : lineasDeclaracion) {
+                            textOut += lineax.getDeclarationLine() + "\n";
+                        }
+                        lineasDeclaracion.clear();
+
+                        if (!isPalRes(line[index]) && isVar(line[index])) {
+                            if (index == 0) {
+                                if (line.length > index) {
                                     String var;
-                                    var = line[lineIndex];
-//                                JOptionPane.showMessageDialog(null, var);
+                                    var = line[index];
                                     if (isVar(var)) {
-
-//                                    JOptionPane.showMessageDialog(null, "Var found");
-//                                    lastVar = new objRelacionDatoVar(var, 0);
-//                                    tablaValores.add(lastVar);
-//                                    asig();
                                         if (!isUsed(var)) {
-//                                        JOptionPane.showMessageDialog(null,"NO usage found");
                                             textIn.set(i, "");
-                                        } else {
-//                                        textOut += textIn.get(i) + "\n";
-                                        }
-//                                        reportVarUsage(var);
-                                    }
-                                }
-                            }
-                            break;
-                        default:
-                            if (!isPalRes(line[lineIndex]) && isVar(line[lineIndex])) {
-                                if (lineIndex == 0) {
-                                    if (line.length > lineIndex) {
-                                        String var;
-                                        var = line[lineIndex];
-//                                        JOptionPane.showMessageDialog(null, var);
-
-//                                JOptionPane.showMessageDialog(null, var);
-                                        if (isVar(var)) {
-
-//                                    JOptionPane.showMessageDialog(null, "Var found");
-//                                    lastVar = new objRelacionDatoVar(var, 0);
-//                                    tablaValores.add(lastVar);
-//                                    asig();
-                                            if (!isUsed(var)) {
-//                                        JOptionPane.showMessageDialog(null,"NO usage found");
-                                                textIn.set(i, "");
-                                            } else {
-//                                        textOut += textIn.get(i) + "\n";
-                                            }
-//                                            reportVarUsage(var);
                                         }
                                     }
                                 }
-                                asig();
                             }
-//                            textOut += textIn.get(i) + "\n";
-                            break;
-                    }
+                            asig();
+                        }
+                        if (!textIn.get(i).equals("")) {
+                            if (i + 1 == textIn.size()) {
+                                textOut += textIn.get(i);
+                            } else {
+                                textOut += textIn.get(i) + "\n";
+                            }
+                        }
+                        break;
+
                 }
-                if (!textIn.get(i).equals("")) {
-                    if (i + 1 == textIn.size()) {
-                        textOut += textIn.get(i);
-                    } else {
-                        textOut += textIn.get(i) + "\n";
-                    }
-                }
+
             }
         }
 
@@ -166,8 +177,10 @@ public class Optimizador {
     private static ArrayList<String> convertirTextToArray(String texto) {
         ArrayList<String> array = new ArrayList<>();
         String[] texto2 = texto.split("\n");
-        for (int i = 0; i < texto2.length; i++) {
-            array.add(texto2[i]);
+        for (String texto21 : texto2) {
+            if (!texto21.matches("([ ]|\t)*") && !texto21.equals("")) {
+                array.add(texto21);
+            }
         }
         return array;
     }
@@ -238,14 +251,10 @@ public class Optimizador {
         StringTokenizer st = new StringTokenizer(cadena, "=-+*/^; ()[]{}<>\n\t", true);
         ArrayList<String> cadenaArray = new ArrayList<>();
         while (st.hasMoreTokens()) {
-
-            String parrafo = st.nextToken();
-            if (!" ".equals(parrafo)) {
-//                cadenaSeparada[i] = parrafo;
-                cadenaArray.add(parrafo);
-//                JOptionPane.showMessageDialog(null, parrafo);
+            String token = st.nextToken();
+            if (!" ".equals(token) && !"\n".equals(token)) {
+                cadenaArray.add(token);
             }
-//            System.out.println(parrafo);
         }
         String[] cadenaSeparada = new String[cadenaArray.size()];
         for (int i = 0; i < cadenaArray.size(); i++) {

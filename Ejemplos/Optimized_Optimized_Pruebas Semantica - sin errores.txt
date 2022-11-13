@@ -5,20 +5,20 @@ public class Miclase{
   private Igf(int pfdds){
   }
   public void principalMain(){
-     int a;
+int a;
      If(a>=3 AND false){
      }
      escribirEnConsola("Hola mundo desde Rex Raptor");
-     int x=30;
-     string y="hola";
+int x = 30;
+string y = "hola";
      escribirEnConsola(x);
-     int sss;
+int sss;
      sss = 2 / 5;
-     int var = 10;
+int var = 10;
      escribirEnConsola(y);
      escribirEnConsola(z);
-     int z=x+50;
-     string[2] arreglo=("hola");
+int z = x+50;
+
      escribirEnConsola(z);
      If(x>=5 AND true OR x==x){
            While(true){
@@ -29,12 +29,11 @@ public class Miclase{
                         escribirEnConsola(z);
                   }
             }Else{
-                  int j;
+int j;
                   z=x+j+5*5434/44;
-                  float[5] arregloss=(3.6 + 2);
+
            }
       }
-      
    }
    public void escribirEnConsola(char variable){
            Try{
@@ -60,8 +59,7 @@ public class Miclase{
            }
     }
     public int sumarNumeros(int xxy, string yy){ 
-           int ent = 4;
-int a = 2;
+int ent = 4,asds = 2;
             return z;
       }
 }
