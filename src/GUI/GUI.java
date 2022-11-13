@@ -97,6 +97,9 @@ public class GUI extends javax.swing.JFrame {
         respuesta_CodOp = new javax.swing.JLabel();
         respuesta_Lexico1 = new javax.swing.JLabel();
         respuesta_Sintactico1 = new javax.swing.JLabel();
+        lblNuevoArchivo = new javax.swing.JLabel();
+        lblAbrir = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         etiqueta_Fondo = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
@@ -163,7 +166,7 @@ public class GUI extends javax.swing.JFrame {
                 .addGap(20, 20, 20))
         );
 
-        getContentPane().add(panel_Edicion, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 310, 40));
+        getContentPane().add(panel_Edicion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 310, 40));
 
         panel_Respuestas.setBackground(new java.awt.Color(255, 255, 255));
         panel_Respuestas.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 0, 51), 3, true));
@@ -195,7 +198,7 @@ public class GUI extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        getContentPane().add(panel_Respuestas, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 10, 330, 40));
+        getContentPane().add(panel_Respuestas, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 100, 330, 40));
 
         jScrollPane_CodOp.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 0), 3));
 
@@ -245,7 +248,7 @@ public class GUI extends javax.swing.JFrame {
         tabbedPane.setBackground(new java.awt.Color(255, 255, 255));
         tabbedPane.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         tabbedPane.setName(""); // NOI18N
-        getContentPane().add(tabbedPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 640, 610));
+        getContentPane().add(tabbedPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 640, 610));
 
         respuesta_NotPol.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
         respuesta_NotPol.setForeground(new java.awt.Color(255, 255, 0));
@@ -285,6 +288,33 @@ public class GUI extends javax.swing.JFrame {
         respuesta_Sintactico1.setForeground(new java.awt.Color(255, 0, 0));
         respuesta_Sintactico1.setText("Sintactico:");
         getContentPane().add(respuesta_Sintactico1, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 270, 150, -1));
+
+        lblNuevoArchivo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/1969648.png"))); // NOI18N
+        lblNuevoArchivo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblNuevoArchivo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblNuevoArchivoMouseClicked(evt);
+            }
+        });
+        getContentPane().add(lblNuevoArchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 50, 50));
+
+        lblAbrir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icono_abrir2.png"))); // NOI18N
+        lblAbrir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblAbrir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblAbrirMouseClicked(evt);
+            }
+        });
+        getContentPane().add(lblAbrir, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 0, 70, 70));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Icono-guardar2.png"))); // NOI18N
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 10, -1, 50));
 
         etiqueta_Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Fondo/fondo.png"))); // NOI18N
         getContentPane().add(etiqueta_Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -445,14 +475,7 @@ public class GUI extends javax.swing.JFrame {
 
     private void openMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openMenuItemActionPerformed
         // TODO add your handling code here:
-
-        seleccionarCodigo = new JFileChooser();
-        seleccionarCodigo.showOpenDialog(null);
-        if (seleccionarCodigo.getSelectedFile() != null) {
-            File file = seleccionarCodigo.getSelectedFile();
-            nuevaPestaña(file);
-        }
-
+        openFile();
     }//GEN-LAST:event_openMenuItemActionPerformed
 
     private void saveMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveMenuItemActionPerformed
@@ -529,6 +552,21 @@ public class GUI extends javax.swing.JFrame {
         nuevaPestaña();
     }//GEN-LAST:event_newMenuItemActionPerformed
 
+    private void lblNuevoArchivoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblNuevoArchivoMouseClicked
+        // TODO add your handling code here:
+        nuevaPestaña();
+    }//GEN-LAST:event_lblNuevoArchivoMouseClicked
+
+    private void lblAbrirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAbrirMouseClicked
+        // TODO add your handling code here:
+        openFile();
+    }//GEN-LAST:event_lblAbrirMouseClicked
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        // TODO add your handling code here:
+        guardar();
+    }//GEN-LAST:event_jLabel1MouseClicked
+
     public void setTxtAreaLexico(String texto) {
         txtAreaLexico.setText(texto);
     }
@@ -587,6 +625,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane_CodOp;
     private javax.swing.JScrollPane jScrollPane_NotPol;
@@ -598,6 +637,8 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem jm_Optimizacion1;
     private javax.swing.JMenuItem jm_Semantico;
     private javax.swing.JMenuItem jm_Sintactico;
+    private javax.swing.JLabel lblAbrir;
+    private javax.swing.JLabel lblNuevoArchivo;
     private javax.swing.JLabel lbl_Codigo;
     private javax.swing.JLabel lbl_Escribiendo;
     private javax.swing.JLabel lbl_Respuesta;
@@ -632,7 +673,7 @@ public class GUI extends javax.swing.JFrame {
             an.AnalizarCodigo(new FileReader(file));
             long finEjecucion = System.currentTimeMillis();
             txtTiempoEjecucion.setText(((double) (finEjecucion - inicioEjecucion) / 1000) + " segundos");;
-            
+
             //Poner los logs de compilacion en sus respectivos textArea's
             logsAcumulatorInstance ins = logsAcumulatorInstance.getInstance();
             setTxtAreaLexico(ins.getLexicLogs());
@@ -834,8 +875,8 @@ public class GUI extends javax.swing.JFrame {
     public JTabbedPane getTabbedPane() {
         return tabbedPane;
     }
-    
-    private String getFileNameFromSelectedTab(){
+
+    private String getFileNameFromSelectedTab() {
         textEditorPane pane = (textEditorPane) tabbedPane.getSelectedComponent();
         return pane.file.getName();
     }
@@ -852,8 +893,8 @@ public class GUI extends javax.swing.JFrame {
         }
         return false;
     }
-    
-    private void Optimizar(){
+
+    private void Optimizar() {
         String text = getTextFromSelectedTab();
         String textOpti = Optimizador.Optimizar(text);
         txtCodigoOptimizado.setText(textOpti);
@@ -863,11 +904,20 @@ public class GUI extends javax.swing.JFrame {
             Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     @Override
     public Image getIconImage() {
         Image retValue = Toolkit.getDefaultToolkit().
                 getImage(ClassLoader.getSystemResource("img/Patata.png"));
         return retValue;
+    }
+
+    private void openFile() {
+        seleccionarCodigo = new JFileChooser();
+        seleccionarCodigo.showOpenDialog(null);
+        if (seleccionarCodigo.getSelectedFile() != null) {
+            File file = seleccionarCodigo.getSelectedFile();
+            nuevaPestaña(file);
+        }
     }
 }
