@@ -107,7 +107,7 @@ public class GUI extends javax.swing.JFrame {
         setAutoRequestFocus(false);
         setBackground(new java.awt.Color(0, 204, 204));
         setIconImage(getIconImage());
-        setResizable(false);
+        setPreferredSize(new java.awt.Dimension(1416, 701));
         setSize(new java.awt.Dimension(1710, 845));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosed(java.awt.event.WindowEvent evt) {
@@ -146,7 +146,7 @@ public class GUI extends javax.swing.JFrame {
                 .addGroup(panel_RespuestasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_Respuesta)
                     .addComponent(txtTiempoEjecucion, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(7, Short.MAX_VALUE))
         );
 
         getContentPane().add(panel_Respuestas, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 330, 40));
@@ -159,7 +159,7 @@ public class GUI extends javax.swing.JFrame {
         txtCodigoOptimizado.setRows(5);
         jScrollPane_CodOp.setViewportView(txtCodigoOptimizado);
 
-        getContentPane().add(jScrollPane_CodOp, new org.netbeans.lib.awtextra.AbsoluteConstraints(1240, 450, 424, 267));
+        getContentPane().add(jScrollPane_CodOp, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 350, 290, 240));
 
         jScrollPane_Semantico.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 255), 3));
 
@@ -168,7 +168,7 @@ public class GUI extends javax.swing.JFrame {
         txtAreaSemantico.setRows(5);
         jScrollPane_Semantico.setViewportView(txtAreaSemantico);
 
-        getContentPane().add(jScrollPane_Semantico, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 520, 467, 200));
+        getContentPane().add(jScrollPane_Semantico, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 440, 320, 150));
 
         jScrollPane_NotPol.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 0), 3, true));
 
@@ -177,7 +177,7 @@ public class GUI extends javax.swing.JFrame {
         txtAreaNotacionPolaca.setRows(5);
         jScrollPane_NotPol.setViewportView(txtAreaNotacionPolaca);
 
-        getContentPane().add(jScrollPane_NotPol, new org.netbeans.lib.awtextra.AbsoluteConstraints(1240, 130, 424, 267));
+        getContentPane().add(jScrollPane_NotPol, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 110, -1, 190));
 
         jScroll_Lexico.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
 
@@ -185,7 +185,7 @@ public class GUI extends javax.swing.JFrame {
         txtAreaLexico.setRows(5);
         jScroll_Lexico.setViewportView(txtAreaLexico);
 
-        getContentPane().add(jScroll_Lexico, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 80, 467, 182));
+        getContentPane().add(jScroll_Lexico, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 80, 320, 140));
 
         jScrollPane_Sintactico.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0), 3));
 
@@ -194,27 +194,27 @@ public class GUI extends javax.swing.JFrame {
         txtAreaSintactico.setRows(5);
         jScrollPane_Sintactico.setViewportView(txtAreaSintactico);
 
-        getContentPane().add(jScrollPane_Sintactico, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 300, 467, 176));
+        getContentPane().add(jScrollPane_Sintactico, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 260, 320, 130));
 
         tabbedPane.setBackground(new java.awt.Color(255, 255, 255));
         tabbedPane.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         tabbedPane.setName(""); // NOI18N
-        getContentPane().add(tabbedPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 640, 680));
+        getContentPane().add(tabbedPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 640, 510));
 
         respuesta_NotPol.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
         respuesta_NotPol.setForeground(new java.awt.Color(255, 255, 0));
         respuesta_NotPol.setText("Notacion Polaca:");
-        getContentPane().add(respuesta_NotPol, new org.netbeans.lib.awtextra.AbsoluteConstraints(1240, 100, 200, -1));
+        getContentPane().add(respuesta_NotPol, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 80, 200, -1));
 
         respuesta_Semantico.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
         respuesta_Semantico.setForeground(new java.awt.Color(255, 0, 255));
         respuesta_Semantico.setText("Semantico:");
-        getContentPane().add(respuesta_Semantico, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 490, 150, 21));
+        getContentPane().add(respuesta_Semantico, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 410, 150, 21));
 
         respuesta_Sintactico.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
         respuesta_Sintactico.setForeground(new java.awt.Color(255, 0, 0));
         respuesta_Sintactico.setText("Sintactico:");
-        getContentPane().add(respuesta_Sintactico, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 270, 150, -1));
+        getContentPane().add(respuesta_Sintactico, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 230, 150, -1));
 
         respuesta_Lexico.setBackground(new java.awt.Color(153, 153, 255));
         respuesta_Lexico.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
@@ -224,7 +224,7 @@ public class GUI extends javax.swing.JFrame {
         respuesta_CodOp.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
         respuesta_CodOp.setForeground(new java.awt.Color(255, 153, 0));
         respuesta_CodOp.setText("Codigo Optimizado:");
-        getContentPane().add(respuesta_CodOp, new org.netbeans.lib.awtextra.AbsoluteConstraints(1240, 420, 230, -1));
+        getContentPane().add(respuesta_CodOp, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 320, 240, -1));
 
         respuesta_Lexico1.setBackground(new java.awt.Color(153, 153, 255));
         respuesta_Lexico1.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
