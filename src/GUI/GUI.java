@@ -113,7 +113,6 @@ public class GUI extends javax.swing.JFrame {
         setTitle("Potato: Equipo python");
         setAutoRequestFocus(false);
         setBackground(new java.awt.Color(0, 204, 204));
-        setExtendedState(MAXIMIZED_BOTH);
         setIconImage(getIconImage());
         setResizable(false);
         setSize(new java.awt.Dimension(1710, 845));
