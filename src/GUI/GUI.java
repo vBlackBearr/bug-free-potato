@@ -45,7 +45,7 @@ public class GUI extends javax.swing.JFrame {
 //        this.setExtendedState(MAXIMIZED_BOTH);
         NumeroLinea num = new NumeroLinea(txtCodigoOptimizado);
         jScrollPane_CodOp.setRowHeaderView(num);
-//        abrirArchivosEnCache();
+        abrirArchivosEnCache();
 
     }
 
