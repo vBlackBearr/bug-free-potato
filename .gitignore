@@ -24,3 +24,5 @@ hs_err_pid*
 /dist/
 cache/openedWindows.txt
 tmp/tmp.txt
+*.tmp
+*.class
