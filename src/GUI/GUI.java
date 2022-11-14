@@ -4,10 +4,6 @@
  */
 package GUI;
 
-import Analizador.Gramatica;
-import Analizador.ParseException;
-import analizador.Optimizador;
-import extraObjects.Cross;
 import java.awt.HeadlessException;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -20,9 +16,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import extraObjects.logsAcumulatorInstance;
-import extraObjects.textEditorPane;
-import extraObjects.typeTableInstance;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.util.ArrayList;
@@ -36,7 +29,7 @@ public class GUI extends javax.swing.JFrame {
 
     JFileChooser seleccionarCodigo;
     public String muestraLexicos = "";
-
+    Optimizador op = new Optimizador();
     private final String URLFILEVENTANAS = "cache/openedWindows.txt";
 
     /**
@@ -52,7 +45,7 @@ public class GUI extends javax.swing.JFrame {
 //        this.setExtendedState(MAXIMIZED_BOTH);
         NumeroLinea num = new NumeroLinea(txtCodigoOptimizado);
         jScrollPane_CodOp.setRowHeaderView(num);
-        abrirArchivosEnCache();
+//        abrirArchivosEnCache();
 
     }
 
@@ -413,7 +406,7 @@ public class GUI extends javax.swing.JFrame {
     private void btnCompilar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCompilar1MouseClicked
         // TODO add your handling code here:
         String text = getTextFromSelectedTab();
-        txtCodigoOptimizado.setText(Optimizador.Optimizar(text));
+        txtCodigoOptimizado.setText(op.Optimizar(text));
     }//GEN-LAST:event_btnCompilar1MouseClicked
 
     private void btnCompilar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompilar1ActionPerformed
@@ -592,7 +585,7 @@ public class GUI extends javax.swing.JFrame {
             JFileChooser fc = new JFileChooser();
             fc.showSaveDialog(null);
             fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-            textEditorPane pane = (extraObjects.textEditorPane) (tabbedPane.getSelectedComponent());
+            textEditorPane pane = (textEditorPane) (tabbedPane.getSelectedComponent());
             pane.file = fc.getSelectedFile();
             if (pane.file == null) {
                 return;
@@ -607,7 +600,7 @@ public class GUI extends javax.swing.JFrame {
     }
 
     public void guardar() {
-        textEditorPane pane = (extraObjects.textEditorPane) (tabbedPane.getSelectedComponent());
+        textEditorPane pane = (textEditorPane) (tabbedPane.getSelectedComponent());
         File file = pane.file;
         if (file != null) {
             try {
@@ -786,7 +779,7 @@ public class GUI extends javax.swing.JFrame {
 
     private void Optimizar() {
         String text = getTextFromSelectedTab();
-        String textOpti = Optimizador.Optimizar(text);
+        String textOpti = op.Optimizar(text);
         txtCodigoOptimizado.setText(textOpti);
         try {
             ManejadorDeArchivo.generarArchivo(textOpti, "Ejemplos/Optimized_" + getFileNameFromSelectedTab());
