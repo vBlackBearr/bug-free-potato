@@ -20,6 +20,7 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.util.ArrayList;
 import javax.swing.JTabbedPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -27,7 +28,7 @@ import javax.swing.JTabbedPane;
  */
 public class GUI extends javax.swing.JFrame {
 
-    JFileChooser seleccionarCodigo;
+    
     public String muestraLexicos = "";
     private final String URLFILEVENTANAS = "dataFiles/cache/openedWindows.tmp";
     private final String URLFILETMPEJECUTION = "dataFiles/tmp/tmp.tmp";
@@ -373,7 +374,7 @@ public class GUI extends javax.swing.JFrame {
 
     private void openMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openMenuItemActionPerformed
         // TODO add your handling code here:
-        openFile();
+        abrirArchivo();
     }//GEN-LAST:event_openMenuItemActionPerformed
 
     private void saveMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveMenuItemActionPerformed
@@ -434,7 +435,7 @@ public class GUI extends javax.swing.JFrame {
 
     private void lblAbrirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAbrirMouseClicked
         // TODO add your handling code here:
-        openFile();
+        abrirArchivo();
     }//GEN-LAST:event_lblAbrirMouseClicked
 
     private void lblGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblGuardarMouseClicked
@@ -775,7 +776,7 @@ public class GUI extends javax.swing.JFrame {
         String textOpti = Optimizador.Optimizar(text);
         txtCodigoOptimizado.setText(textOpti);
         try {
-            ManejadorDeArchivo.generarArchivo(textOpti, "Ejemplos/Optimized_" + getFileNameFromSelectedTab());
+            ManejadorDeArchivo.generarArchivo(textOpti, "output/Optimized_" + getFileNameFromSelectedTab());
         } catch (IOException ex) {
             Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -788,11 +789,16 @@ public class GUI extends javax.swing.JFrame {
         return retValue;
     }
 
-    private void openFile() {
-        seleccionarCodigo = new JFileChooser();
-        seleccionarCodigo.showOpenDialog(null);
-        if (seleccionarCodigo.getSelectedFile() != null) {
-            File file = seleccionarCodigo.getSelectedFile();
+    private void abrirArchivo() {
+        JFileChooser codigo;
+        codigo = new JFileChooser();
+        
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos Potato .ptt","ptt");
+        codigo.setFileFilter(filter);
+        codigo.setCurrentDirectory(new File("ejemplos"));
+        codigo.showOpenDialog(null);
+        if (codigo.getSelectedFile() != null) {
+            File file = codigo.getSelectedFile();
             nuevaPestaña(file);
         }
     }
