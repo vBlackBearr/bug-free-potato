@@ -29,7 +29,6 @@ public class GUI extends javax.swing.JFrame {
 
     JFileChooser seleccionarCodigo;
     public String muestraLexicos = "";
-    Optimizador op = new Optimizador();
     private final String URLFILEVENTANAS = "cache/openedWindows.txt";
 
     /**
@@ -406,7 +405,7 @@ public class GUI extends javax.swing.JFrame {
     private void btnCompilar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCompilar1MouseClicked
         // TODO add your handling code here:
         String text = getTextFromSelectedTab();
-        txtCodigoOptimizado.setText(op.Optimizar(text));
+        txtCodigoOptimizado.setText(Optimizador.Optimizar(text));
     }//GEN-LAST:event_btnCompilar1MouseClicked
 
     private void btnCompilar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompilar1ActionPerformed
@@ -779,7 +778,7 @@ public class GUI extends javax.swing.JFrame {
 
     private void Optimizar() {
         String text = getTextFromSelectedTab();
-        String textOpti = op.Optimizar(text);
+        String textOpti = Optimizador.Optimizar(text);
         txtCodigoOptimizado.setText(textOpti);
         try {
             ManejadorDeArchivo.generarArchivo(textOpti, "Ejemplos/Optimized_" + getFileNameFromSelectedTab());
