@@ -1,7 +1,0 @@
-import raptor_util_Print;
-public class Miclase{
-    public void principalMain(){
-int a = 2,b = 3,resul;
-        resul = a + b; 
-    }
-}		

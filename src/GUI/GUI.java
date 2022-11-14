@@ -4,10 +4,6 @@
  */
 package GUI;
 
-import Analizador.Gramatica;
-import Analizador.ParseException;
-import analizador.Optimizador;
-import extraObjects.Cross;
 import java.awt.HeadlessException;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -20,13 +16,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import extraObjects.logsAcumulatorInstance;
-import extraObjects.textEditorPane;
-import extraObjects.typeTableInstance;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.util.ArrayList;
 import javax.swing.JTabbedPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -34,26 +28,23 @@ import javax.swing.JTabbedPane;
  */
 public class GUI extends javax.swing.JFrame {
 
-    JFileChooser seleccionarCodigo;
+    
     public String muestraLexicos = "";
-
-    private final String URLFILEVENTANAS = "cache/openedWindows.txt";
+    private final String URLFILEVENTANAS = "dataFiles/cache/openedWindows.tmp";
+    private final String URLFILETMPEJECUTION = "dataFiles/tmp/tmp.tmp";
 
     /**
      * Creates new form GUI
      */
     public GUI() {
         initComponents();
-
         setLocationRelativeTo(null);
         logsAcumulatorInstance.getInstance().setGuiInstance(this);
-
         //Poner en modo pantalla completa
 //        this.setExtendedState(MAXIMIZED_BOTH);
         NumeroLinea num = new NumeroLinea(txtCodigoOptimizado);
         jScrollPane_CodOp.setRowHeaderView(num);
         abrirArchivosEnCache();
-
     }
 
     /**
@@ -383,7 +374,7 @@ public class GUI extends javax.swing.JFrame {
 
     private void openMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openMenuItemActionPerformed
         // TODO add your handling code here:
-        openFile();
+        abrirArchivo();
     }//GEN-LAST:event_openMenuItemActionPerformed
 
     private void saveMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveMenuItemActionPerformed
@@ -406,7 +397,6 @@ public class GUI extends javax.swing.JFrame {
 
     private void btnCompilarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCompilarMouseClicked
         // TODO add your handling code here:
-
         compilar();
     }//GEN-LAST:event_btnCompilarMouseClicked
 
@@ -426,7 +416,6 @@ public class GUI extends javax.swing.JFrame {
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         // TODO add your handling code here:
-
     }//GEN-LAST:event_formWindowClosed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
@@ -446,7 +435,7 @@ public class GUI extends javax.swing.JFrame {
 
     private void lblAbrirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAbrirMouseClicked
         // TODO add your handling code here:
-        openFile();
+        abrirArchivo();
     }//GEN-LAST:event_lblAbrirMouseClicked
 
     private void lblGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblGuardarMouseClicked
@@ -547,7 +536,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel txtTiempoEjecucion;
     // End of variables declaration//GEN-END:variables
 
-    public void analisis() {
+    private void analisis() {
         try {
             File file = crearArchivoConTexto(getTextFromSelectedTab());
             Optimizar();
@@ -562,7 +551,6 @@ public class GUI extends javax.swing.JFrame {
             setTxtAreaLexico(ins.getLexicLogs());
             setTxtAreaSintactico(ins.getSintacticLogs());
             setTxtAreaSemantico(ins.getSemanticLogs());
-
         } catch (FileNotFoundException ex) {
             Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Error de analisis: " + ex);
@@ -571,10 +559,10 @@ public class GUI extends javax.swing.JFrame {
         }
     }
 
-    public File crearArchivoConTexto(String texto) {
+    private File crearArchivoConTexto(String texto) {
 
         try {
-            File file = new File("tmp/tmp.txt");
+            File file = new File(URLFILETMPEJECUTION);
             FileWriter fw = new FileWriter(file);
             BufferedWriter bw = new BufferedWriter(fw);
             bw.write(texto);
@@ -584,15 +572,14 @@ public class GUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Error al escribir en archivo TMP");
             return null;
         }
-
     }
 
-    public void guardarComo() {
+    private void guardarComo() {
         try {
             JFileChooser fc = new JFileChooser();
             fc.showSaveDialog(null);
             fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-            textEditorPane pane = (extraObjects.textEditorPane) (tabbedPane.getSelectedComponent());
+            textEditorPane pane = (textEditorPane) (tabbedPane.getSelectedComponent());
             pane.file = fc.getSelectedFile();
             if (pane.file == null) {
                 return;
@@ -606,8 +593,8 @@ public class GUI extends javax.swing.JFrame {
         }
     }
 
-    public void guardar() {
-        textEditorPane pane = (extraObjects.textEditorPane) (tabbedPane.getSelectedComponent());
+    private void guardar() {
+        textEditorPane pane = (textEditorPane) (tabbedPane.getSelectedComponent());
         File file = pane.file;
         if (file != null) {
             try {
@@ -789,7 +776,7 @@ public class GUI extends javax.swing.JFrame {
         String textOpti = Optimizador.Optimizar(text);
         txtCodigoOptimizado.setText(textOpti);
         try {
-            ManejadorDeArchivo.generarArchivo(textOpti, "Ejemplos/Optimized_" + getFileNameFromSelectedTab());
+            ManejadorDeArchivo.generarArchivo(textOpti, "output/Optimized_" + getFileNameFromSelectedTab());
         } catch (IOException ex) {
             Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -802,11 +789,16 @@ public class GUI extends javax.swing.JFrame {
         return retValue;
     }
 
-    private void openFile() {
-        seleccionarCodigo = new JFileChooser();
-        seleccionarCodigo.showOpenDialog(null);
-        if (seleccionarCodigo.getSelectedFile() != null) {
-            File file = seleccionarCodigo.getSelectedFile();
+    private void abrirArchivo() {
+        JFileChooser codigo;
+        codigo = new JFileChooser();
+        
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos Potato .ptt","ptt");
+        codigo.setFileFilter(filter);
+        codigo.setCurrentDirectory(new File("ejemplos"));
+        codigo.showOpenDialog(null);
+        if (codigo.getSelectedFile() != null) {
+            File file = codigo.getSelectedFile();
             nuevaPestaña(file);
         }
     }

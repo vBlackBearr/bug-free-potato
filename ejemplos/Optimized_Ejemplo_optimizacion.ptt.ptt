@@ -1,0 +1,96 @@
+import raptor_util_Print;
+public class Miclase{
+  private Ig(int pfd){
+  }
+  private Igf(int pfdds){
+  }
+  public void principalMain(){
+int a = 1;
+
+int e = 5;
+     If(a>=3 AND false){
+     }
+     escribirEnConsola("Hola mundo desde Rex Raptor");
+int x = 30;
+string y = "hola";
+     escribirEnConsola(x);
+int sss;
+     sss = 2 / 5;
+
+float f = 6,i = 9;
+
+     escribirEnConsola(y);
+     escribirEnConsola(z);
+int z = x+50;
+
+
+     escribirEnConsola(z);
+     If(x>=5 AND true OR x==x){
+		  char cara='s';
+		  char carb='i';
+		  char carc='n';
+		  char card='o';
+          While(true){
+
+          }
+          escribirEnConsola("X es mayor");
+          If(true){
+               For(int ia =0; i<=5;i++){
+                    escribirEnConsola(z);
+
+               }
+          }
+		  Else{
+
+
+int j;
+               z=x+j+5*5434/44;
+
+          }
+     }
+  }    
+     public void escribirEnConsola(char variable){
+          Try{
+               escribirEnConsola(z);
+			   string cade="hola mundo";
+          }
+		  Catch(Except e){
+               escribirEnConsola(x);
+               escribirEnConsola(y);
+               escribirEnConsola(z);
+          }
+          Switch vaz{
+               Case 1:
+                  escribirEnConsola(x);
+               break;
+               Case "a":
+                  escribirEnConsola(y);
+               break;
+               Case 'b':
+                  escribirEnConsola(f);
+               break;
+               Default:
+                  escribirEnConsola(p);
+               break;
+          }
+     }
+     public int sumarNumeros(int xxy, string yy){ 
+int ent = 4;
+
+		  Switch ent{
+               Case 1:
+                  escribirEnConsola(x);
+               break;
+               Case 2:
+                  escribirEnConsola(y);
+               break;
+               Case 3:
+                  escribirEnConsola(f);
+               break;
+               Default:
+                  escribirEnConsola(p);
+               break;
+          }
+          return z;
+     }
+}
