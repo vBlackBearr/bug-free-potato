@@ -9,7 +9,7 @@ public class Miclase{
   private Igf(int pfdds){
   
   }
-  
+   
   //se tiene un metodo principal para colocar el codigo correspondiente a la programacion
   public void principalMain(){
      int a=1;

@@ -29,23 +29,21 @@ public class GUI extends javax.swing.JFrame {
 
     JFileChooser seleccionarCodigo;
     public String muestraLexicos = "";
-    private final String URLFILEVENTANAS = "cache/openedWindows.txt";
+    private final String URLFILEVENTANAS = "dataFiles/cache/openedWindows.tmp";
+    private final String URLFILETMPEJECUTION = "dataFiles/tmp/tmp.tmp";
 
     /**
      * Creates new form GUI
      */
     public GUI() {
         initComponents();
-
         setLocationRelativeTo(null);
         logsAcumulatorInstance.getInstance().setGuiInstance(this);
-
         //Poner en modo pantalla completa
 //        this.setExtendedState(MAXIMIZED_BOTH);
         NumeroLinea num = new NumeroLinea(txtCodigoOptimizado);
         jScrollPane_CodOp.setRowHeaderView(num);
         abrirArchivosEnCache();
-
     }
 
     /**
@@ -398,7 +396,6 @@ public class GUI extends javax.swing.JFrame {
 
     private void btnCompilarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCompilarMouseClicked
         // TODO add your handling code here:
-
         compilar();
     }//GEN-LAST:event_btnCompilarMouseClicked
 
@@ -418,7 +415,6 @@ public class GUI extends javax.swing.JFrame {
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         // TODO add your handling code here:
-
     }//GEN-LAST:event_formWindowClosed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
@@ -539,7 +535,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JLabel txtTiempoEjecucion;
     // End of variables declaration//GEN-END:variables
 
-    public void analisis() {
+    private void analisis() {
         try {
             File file = crearArchivoConTexto(getTextFromSelectedTab());
             Optimizar();
@@ -554,7 +550,6 @@ public class GUI extends javax.swing.JFrame {
             setTxtAreaLexico(ins.getLexicLogs());
             setTxtAreaSintactico(ins.getSintacticLogs());
             setTxtAreaSemantico(ins.getSemanticLogs());
-
         } catch (FileNotFoundException ex) {
             Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Error de analisis: " + ex);
@@ -563,10 +558,10 @@ public class GUI extends javax.swing.JFrame {
         }
     }
 
-    public File crearArchivoConTexto(String texto) {
+    private File crearArchivoConTexto(String texto) {
 
         try {
-            File file = new File("tmp/tmp.txt");
+            File file = new File(URLFILETMPEJECUTION);
             FileWriter fw = new FileWriter(file);
             BufferedWriter bw = new BufferedWriter(fw);
             bw.write(texto);
@@ -576,10 +571,9 @@ public class GUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Error al escribir en archivo TMP");
             return null;
         }
-
     }
 
-    public void guardarComo() {
+    private void guardarComo() {
         try {
             JFileChooser fc = new JFileChooser();
             fc.showSaveDialog(null);
@@ -598,7 +592,7 @@ public class GUI extends javax.swing.JFrame {
         }
     }
 
-    public void guardar() {
+    private void guardar() {
         textEditorPane pane = (textEditorPane) (tabbedPane.getSelectedComponent());
         File file = pane.file;
         if (file != null) {
