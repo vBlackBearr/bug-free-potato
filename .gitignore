@@ -26,3 +26,7 @@ cache/openedWindows.txt
 tmp/tmp.txt
 *.tmp
 *.class
+dataFiles/cache/openedWindows.tmp
+dataFiles/tmp/tmp.tmp
+*.ptt
+dataFiles/cache/openedWindows.tmp
