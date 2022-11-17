@@ -27,7 +27,6 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * @author TeamPotato:)
  */
 public class GUI extends javax.swing.JFrame {
-
     
     public String muestraLexicos = "";
     private final String URLFILEVENTANAS = "dataFiles/cache/openedWindows.tmp";
